@@ -1,0 +1,85 @@
+steps:
+  V_PRODUCTS-7639d08e-85de-4b8b-8d69-9d3b0418172c:
+    operation:
+      config:
+        OverrideSQLCreate: false
+        groupByAll: false
+        insertStrategy: UNION
+        secureoption: false
+        selectDistinct: false
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: TARGET_DB
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 6f64fc29-2f02-4714-a52a-a0ebe8f8fb54
+              stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
+            dataType: NUMBER(38,0)
+            description: ""
+            name: PRODUCT_ID
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 5f0fd9bb-16a6-4f02-ac17-130f627ab186
+                    stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+                transform: ""
+          - columnReference:
+              columnCounter: bd021a33-37bd-4628-991d-d146125d2e10
+              stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
+            dataType: VARCHAR(255)
+            description: ""
+            name: PRODUCT_NAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: cbc95546-10d1-44f3-a4ee-366e56645e77
+                    stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+                transform: ""
+          - columnReference:
+              columnCounter: db6f18d9-e752-4202-82a3-04c0825d9ece
+              stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
+            dataType: VARCHAR(100)
+            description: ""
+            name: BRAND
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6bff80ab-af7f-4ca4-a4f6-9df32b6c0c2d
+                    stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+                transform: ""
+          - columnReference:
+              columnCounter: 998a6949-26a9-4576-a105-4a9047f601e5
+              stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
+            dataType: VARCHAR(50)
+            description: ""
+            name: COLOUR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3382adaf-a3f5-4657-b50e-1e4b1e2d321a
+                    stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE_DATA
+                nodeName: PRODUCTS
+            join:
+              joinCondition: FROM {{ ref('SOURCE_DATA', 'PRODUCTS') }} "PRODUCTS"
+            name: V_PRODUCTS
+            noLinkRefs: []
+      name: V_PRODUCTS
+      overrideSQL: false
+      schema: ""
+      sqlType: "188"
+      type: sql
+    stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c

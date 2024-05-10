@@ -1,0 +1,78 @@
+steps:
+  PRODUCTS-3ba85f1e-e3d2-490f-8423-b9c6b99ca366:
+    operation:
+      database: ""
+      dataset: ""
+      deployEnabled: true
+      description: ""
+      locationName: SOURCE_DATA
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5f0fd9bb-16a6-4f02-ac17-130f627ab186
+              stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: PRODUCT_ID
+            nullable: false
+            primaryKey: true
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: cbc95546-10d1-44f3-a4ee-366e56645e77
+              stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+            config: {}
+            dataType: VARCHAR(255)
+            defaultValue: ""
+            description: ""
+            name: PRODUCT_NAME
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 6bff80ab-af7f-4ca4-a4f6-9df32b6c0c2d
+              stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+            config: {}
+            dataType: VARCHAR(100)
+            defaultValue: ""
+            description: ""
+            name: BRAND
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3382adaf-a3f5-4657-b50e-1e4b1e2d321a
+              stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+            config: {}
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            name: COLOUR
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('SAMPLE_SOURCE', 'PRODUCTS') }}
+      name: PRODUCTS
+      schema: ""
+      sqlType: Source
+      table: PRODUCTS
+      type: sourceInput
+    stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366

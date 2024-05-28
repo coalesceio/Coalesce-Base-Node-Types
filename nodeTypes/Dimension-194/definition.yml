@@ -1,15 +1,15 @@
 fileVersion: 1
-id: "173"
+id: "194"
 isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |
-    capitalized: Persistent Stage
-    short: PSTG
-    plural: Persistent Stages
-    tagColor: '#29B2DB'
-        
+  nodeMetadataSpec: |-
+    capitalized: Dimension 
+    short: DIM
+    tagColor: '#1E339A'
+    plural: Dimensions
+
     config:
     - groupName: Options
       items:
@@ -18,9 +18,13 @@ metadata:
         default: table
         options:
         - table
-      
+        - view
+
+      - type: overrideSQLToggle
+        enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
+        
       - type: multisourceToggle
-        enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
+        enableIf: "{% if node.override.create.enabled %} false {% else %} true {% endif %}"
 
       - displayName: Multi Source Strategy
         attributeName: insertStrategy
@@ -31,42 +35,44 @@ metadata:
         - "UNION ALL"
         isRequired: false
         enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
-      
+
       - type: businessKeyColumns
-        isRequired: false
-      
+        isRequired: true
+
       - type: changeTrackingColumns
         isRequired: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
 
       - displayName: Truncate Before
         attributeName: truncateBefore
         type: toggleButton
         default: true
-       
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
 
       - displayName: Enable Tests
         attributeName: testsEnabled
         type: toggleButton
-        default: true
         enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+        default: true
         
-
       - displayName: Distinct
         attributeName: selectDistinct
         type: toggleButton
-        enableIf: "{% if config.groupByAll %} false {% else %} true {% endif %}"
+        enableIf: "{% if config.groupByAll or  node.override.create.enabled %} false {% else %} true {% endif %}"
         default: false
+        
 
       - displayName: Group By All
         attributeName: groupByAll
         type: toggleButton
-        enableIf: "{% if config.selectDistinct %} false {% else %} true {% endif %}"
         default: false
-        
+        enableIf: "{% if config.selectDistinct or  node.override.create.enabled %} false {% else %} true {% endif %}"    
+
       - displayName: Order By
         attributeName: orderby
         type: toggleButton
         default: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
 
       - type: tabular
         displayName: 'Sort column'
@@ -86,7 +92,7 @@ metadata:
              - asc
            
         isRequired: true
-        enableIf: "{% if config.orderby %} true {% else %} false {% endif %}"    
+        enableIf: "{% if config.orderby %} true {% else %} false {% endif %}"
 
       - displayName: Pre-SQL
         attributeName: preSQL
@@ -95,7 +101,6 @@ metadata:
         isRequired: false
         enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
 
-
       - displayName: Post-SQL
         attributeName: postSQL
         type: textBox
@@ -103,11 +108,7 @@ metadata:
         isRequired: false
         enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
 
-
-
-
     systemColumns:
-
     - displayName: '{{NODE_NAME}}_KEY'
       transform: ''
       dataType: NUMBER
@@ -149,5 +150,5 @@ metadata:
       dataType: TIMESTAMP
       placement: end
       attributeName: isSystemUpdateDate
-name: Persistent Stage_1.0
+name: Dimension
 type: NodeType

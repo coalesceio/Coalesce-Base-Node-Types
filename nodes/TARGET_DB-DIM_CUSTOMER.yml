@@ -14,7 +14,7 @@ operation:
   database: ""
   deployEnabled: true
   description: Customer data as defined by TPC-H
-  isMultisource: false
+  isMultisource: true
   locationName: TARGET_DB
   materializationType: table
   metadata:

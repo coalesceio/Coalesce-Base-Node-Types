@@ -115,5 +115,5 @@ metadata:
       dataType: TIMESTAMP
       placement: end
       attributeName: isSystemUpdateDate
-name: Fact_1.0
+name: Fact
 type: NodeType

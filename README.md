@@ -418,7 +418,6 @@ Your available options will change depending on table or view.
     * True - Multiple sources can be combined in a single node. The sources are combined using the option specified in the Multi Source Strategy.
 	    * UNION - Combines with duplicate elimination.
 		* UNION ALL - Combines without duplicate elimination.
-		* INSERT - [Missing Content]
     * False - Single source node or multiple sources combined using a join.
 * **Business key**: It is a required column for Fact table creation.
 * **Truncate Before**: True / False toggle that determines whether or not a table is overwritten each time a task executes.

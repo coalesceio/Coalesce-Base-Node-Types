@@ -1,0 +1,250 @@
+fileVersion: 1
+id: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+name: PSTG_EMP_SAMP
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 68de5bd1-7cf2-4a70-ac1f-f3c6bab72894
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: PSTG_EMP_SAMP_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d19aa9b7-5e9f-4066-b1c2-3e5ab18a36de
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isChangeTracking: true
+        name: EMPLOYEEID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bdcfb261-58a6-4842-8683-9ac070c6d4bb
+                stepCounter: 03ba3c9f-29c8-4e9b-8f18-059d7d12138f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5640a58f-59a3-467d-8efc-e3328cbefb07
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: FIRSTNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 27c96e25-3c58-4443-af8c-a7f0436d8bb1
+                stepCounter: 03ba3c9f-29c8-4e9b-8f18-059d7d12138f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d8276ca0-decd-4d3d-bc37-6cd46e93a300
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: LASTNAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a02a838-e48d-4aa6-986c-b94a265b8628
+                stepCounter: 03ba3c9f-29c8-4e9b-8f18-059d7d12138f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ab729fae-6476-4994-8cbb-ce9799ed5310
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: DEPARTMENTID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4b23bf74-9854-41fc-95e4-71cc62fd323d
+                stepCounter: 03ba3c9f-29c8-4e9b-8f18-059d7d12138f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5b24b360-a29a-49d0-b589-09c5f85a85ef
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: NUMBER(10,2)
+        description: ""
+        name: SALARY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c0965a01-3ff5-437a-9351-3f75dab42723
+                stepCounter: 03ba3c9f-29c8-4e9b-8f18-059d7d12138f
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25708251-d253-4de3-9bd4-f0e13cfcdc48
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30bd97df-de72-417c-a552-ce164e4f65f4
+                stepCounter: 03ba3c9f-29c8-4e9b-8f18-059d7d12138f
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8f5f6d2-ff7a-4644-ac9e-9ff7d9ba2690
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 206b894e-3ac7-415a-8ffe-a284dc796cbb
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: dbdb236c-bc3c-4de6-b703-9aa2e68e956e
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e46b3a25-a6a8-425e-aa93-d54417dee156
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e86d8b8-8459-41d9-80c4-9b7cab7b2f9a
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 341c2d4b-2311-47dc-aff9-ce56d94a6c99
+          stepCounter: 333e6ec2-92e7-4e4e-a2c7-5097bf72f9dd
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: EMP_SAMP
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'EMP_SAMP') }} "EMP_SAMP"
+        name: PSTG_EMP_SAMP
+        noLinkRefs: []
+  name: PSTG_EMP_SAMP
+  overrideSQL: false
+  schema: ""
+  sqlType: "173"
+  type: sql
+  version: 1
+type: Node

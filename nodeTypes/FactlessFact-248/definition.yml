@@ -5,7 +5,7 @@ metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |
-    capitalized: Factless Fact
+    capitalized: Factless fact
     plural: Facts
     short: FCT
     tagColor: '#D9A438'

@@ -734,4 +734,4 @@ This is executed in the below stage:
 
 [Macros](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/macros/macro-1.yml)
 
-[<img src="https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/608d9966-531a-41fe-af0d-ecf742721cba" alt="Git Logo" height="40">](https://github.com/coalesceio/Coalesce-Base-Node-Types)
+

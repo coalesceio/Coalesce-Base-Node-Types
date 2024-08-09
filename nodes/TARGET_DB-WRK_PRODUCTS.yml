@@ -1,0 +1,101 @@
+fileVersion: 1
+id: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+name: WRK_PRODUCTS
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 440645fb-a318-455c-8639-d6c06aa34681
+          stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PRODUCT_ID
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f0fd9bb-16a6-4f02-ac17-130f627ab186
+                stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 563848e9-a927-449d-a3e0-ff162c6a5325
+          stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+        config: {}
+        dataType: VARCHAR(255)
+        description: ""
+        name: PRODUCT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cbc95546-10d1-44f3-a4ee-366e56645e77
+                stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4cdc5815-49db-432f-81e5-b808fdcd1eb9
+          stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6bff80ab-af7f-4ca4-a4f6-9df32b6c0c2d
+                stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 026c46c7-77d7-4a3f-b0ca-678831903366
+          stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: COLOUR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3382adaf-a3f5-4657-b50e-1e4b1e2d321a
+                stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: PRODUCTS
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'PRODUCTS') }} "PRODUCTS"
+        name: WRK_PRODUCTS
+        noLinkRefs: []
+  name: WRK_PRODUCTS
+  overrideSQL: false
+  schema: ""
+  sqlType: Basenodes1:::204
+  type: sql
+  version: 1
+type: Node

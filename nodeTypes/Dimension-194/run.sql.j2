@@ -251,15 +251,16 @@ does not permit copying or modification for any other purpose.
                       )
                   {% endif %}
               {% endfor %}
-            {% endif %}
-            {{  get_clause(joinclause)  }}
-            {% if config.groupByAll %}
+            
+               {{  get_clause(joinclause)  }}
+               {% if config.groupByAll %}
                 GROUP BY ALL
-            {% endif %}
-            {{ sortorder_by_colv() }}) 
-            {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+               {% endif %}
+               {{ sortorder_by_colv() }}) 
+               {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
                 {{config.insertStrategy}}
-            {% endif %}               
+               {% endif %} 
+            {% endif %}              
         {% endfor %}  
                          
         ) AS "SRC"

@@ -256,11 +256,11 @@ does not permit copying or modification for any other purpose.
                {% if config.groupByAll %}
                 GROUP BY ALL
                {% endif %}
-               {{ sortorder_by_colv() }}) 
+               {{ sortorder_by_colv() }} )      
+            {% endif %}   
                {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
                 {{config.insertStrategy}}
-               {% endif %} 
-            {% endif %}              
+               {% endif %}            
         {% endfor %}  
                          
         ) AS "SRC"

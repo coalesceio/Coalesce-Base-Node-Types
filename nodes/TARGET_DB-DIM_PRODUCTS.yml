@@ -62,6 +62,7 @@ operation:
         config: {}
         dataType: VARCHAR(255)
         description: ""
+        isChangeTracking: true
         name: PRODUCT_NAME
         nullable: true
         sourceColumnReferences:
@@ -76,6 +77,7 @@ operation:
         config: {}
         dataType: VARCHAR(100)
         description: ""
+        isChangeTracking: true
         name: BRAND
         nullable: true
         sourceColumnReferences:
@@ -90,6 +92,7 @@ operation:
         config: {}
         dataType: VARCHAR(50)
         description: ""
+        isChangeTracking: true
         name: COLOUR
         nullable: true
         sourceColumnReferences:
@@ -181,7 +184,7 @@ operation:
   name: DIM_PRODUCTS
   overrideSQL: false
   schema: ""
-  sqlType: Basenodes1:::194
+  sqlType: "194"
   type: sql
   version: 1
 type: Node

@@ -14,7 +14,7 @@ operation:
   database: ""
   deployEnabled: true
   description: Customer data as defined by TPC-H
-  isMultisource: true
+  isMultisource: false
   locationName: TARGET_DB
   materializationType: table
   metadata:
@@ -77,86 +77,12 @@ operation:
         dataType: VARCHAR(40)
         description: ""
         hashDetails: null
+        isChangeTracking: true
         name: C_ADDRESS
         nullable: false
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 98337c57-7992-4376-b192-d2cdc3a95bf9
-                stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: f65acb68-cf2c-45c3-b320-b7e241a319fd
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-        config: {}
-        dataType: NUMBER(38,0)
-        description: ""
-        hashDetails: null
-        name: C_NATIONKEY
-        nullable: false
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 600fd967-1cc5-4ee9-8b46-53f3b4329e0f
-                stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 04c56643-4adf-4bbe-8fb1-8204e726b746
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-        config: {}
-        dataType: VARCHAR(15)
-        description: ""
-        hashDetails: null
-        name: C_PHONE
-        nullable: false
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 35a719cc-7b7d-4023-87c7-4b676aa304db
-                stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 6837f042-7873-439b-813b-8fdaa0a5f327
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-        config: {}
-        dataType: NUMBER(12,2)
-        description: ""
-        hashDetails: null
-        name: C_ACCTBAL
-        nullable: false
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: dc88ab80-5e9b-4a04-ae14-b22cd524dfc2
-                stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: bf2e5e12-0532-4d7b-85f4-35997793d300
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-        config: {}
-        dataType: VARCHAR(10)
-        description: ""
-        hashDetails: null
-        name: C_MKTSEGMENT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 651d14af-4b19-4397-b6c6-a4c193715e16
-                stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 5098748c-749d-4dc4-add7-9497fb8078b5
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-        config: {}
-        dataType: VARCHAR(117)
-        description: ""
-        hashDetails: null
-        name: C_COMMENT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 02d7d8b6-b44a-4f55-b8e6-9b333f85a55d
                 stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
             transform: ""
       - acceptedValues:

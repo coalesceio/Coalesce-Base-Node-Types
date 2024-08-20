@@ -155,7 +155,7 @@ The stage executed:
 
 **Delete View**: Drops the existing Work view from target environment.
 
-## Persistent Stage
+<h2 id="persistent-stage">Persistent Stage</h2>
 
 The Coalesce Persistent Stage Nodes element, serving as an intermediary object, is frequently utilized to maintain data persistence across multiple execution cycles.
 
@@ -261,7 +261,7 @@ This is executed in two stages:
 * **Delete Table**
 * **Drop Table or View**
 
-## DIMENSION
+<h2 id="dimension">Dimension</h2>
 
 The Coalesce Dimension UDN is a versatile node that allows you to develop and deploy a Dimension table in Snowflake.
 
@@ -379,7 +379,7 @@ The stage executed:
 
 * **Delete View**: Drops the existing Dimension view from target environment.
 
-## FACT
+<h2 id="fact">Fact</h2>
 
 The Coalesce Fact UDN is a versatile node that allows you to develop and deploy a Fact table in Snowflake.
 
@@ -523,7 +523,7 @@ The stage executed:
 
 * **Delete View**: Drops the existing Fact view from target environment.
 
-## FACTLESS FACT
+<h2 id="factless-fact">Factless Fact</h2>
 
 The Coalesce Fact UDN is a versatile node that allows you to develop and deploy a Fact table in Snowflake.
 
@@ -611,7 +611,7 @@ This is executed in two stages:
 1. **Delete Table**: Coalesce Internal table is dropped.
 2. **Delete Table**: Target table in Snowflake is dropped.
   
-## VIEW
+<h2 id="view">View</h2>
  
 The Coalesce View UDN is a versatile node that allows you to develop and deploy a View in Snowflake.
 
@@ -694,7 +694,7 @@ This is executed in the below stage:
 
 * **Delete View**
 
-## Code
+<h2 id="code">Code</h2>
 
 ### Work
 

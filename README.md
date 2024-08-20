@@ -10,7 +10,7 @@ The Coalesce Base Node Types Package includes:
 * [View](#view)
 * [Code](#code)
 
-## Work
+<h2 id="work">Work</h2>
 
 The Coalesce work node is a versatile node that allows you to develop and deploy a Work table/view in Snowflake.
 

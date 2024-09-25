@@ -25,7 +25,6 @@ does not permit copying or modification for any other purpose.
             {%- if not col.nullable %} NOT NULL
             {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {% endif %}
-            {% endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
             {%- if not loop.last -%}, {% endif %}
         {% endfor %}

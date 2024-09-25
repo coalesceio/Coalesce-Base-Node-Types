@@ -238,14 +238,17 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          PRODUCTS: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: PRODUCTS
         join:
-          joinCondition: FROM {{ ref('SOURCE_DATA', 'PRODUCTS') }} "PRODUCTS"
+          joinCondition: |-
+            FROM {{ ref('SOURCE_DATA', 'PRODUCTS') }} "PRODUCTS"
+            where "PRODUCTS"."BRAND" like '%G%'
         name: PRODUCTS
         noLinkRefs: []
       - aliases:

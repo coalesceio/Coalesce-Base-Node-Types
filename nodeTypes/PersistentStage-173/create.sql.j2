@@ -10,7 +10,6 @@ does not permit copying or modification for any other purpose.
 {# == Node Type Description    : This node creates Persistent stage tables  == #}
 
 
-
 {% if node.materializationType == 'table' %}
     {{ stage('Create Persistent Stage Table') }}
 
@@ -24,7 +23,8 @@ does not permit copying or modification for any other purpose.
 		        identity
             {% endif %}
             {%- if not col.nullable %} NOT NULL
-                {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            {% endif %}
             {% endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
             {%- if not loop.last -%}, {% endif %}

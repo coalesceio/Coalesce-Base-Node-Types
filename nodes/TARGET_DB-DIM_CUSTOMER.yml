@@ -196,10 +196,10 @@ operation:
           customSQL: ""
         dependencies:
           - locationName: TARGET_DB
-            nodeName: WRK_CUSTOMER
+            nodeName: WRK_CUSTOMER123
         join:
           joinCondition: |-
-            FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER') }} "WRK_CUSTOMER"
+            FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER123') }} "WRK_CUSTOMER"
             where "WRK_CUSTOMER"."C_CUSTKEY">10
         name: DIM_CUSTOMER
         noLinkRefs: []

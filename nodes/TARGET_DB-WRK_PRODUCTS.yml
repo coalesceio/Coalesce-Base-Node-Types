@@ -95,7 +95,7 @@ operation:
   name: WRK_PRODUCTS
   overrideSQL: false
   schema: ""
-  sqlType: Basenodes1:::204
+  sqlType: "204"
   type: sql
   version: 1
 type: Node

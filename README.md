@@ -83,6 +83,16 @@ The following stages will execute when deployed for the first time.
 
 1. **Create Work Table or Work View**: Executes CREATE OR REPLACE statement and create a table or view in the target environment.
 
+ALTERNATE FORMATTING:
+
+When deployed for the first time into an environment the Factless Fact node of materialization type table will execute the below stage:
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Create Fact Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
+
+END ALTERNATE FORMATTING
+
 #### Work Redeployment
 
 After the WORK node with materialization type table has been deployed for the first time into a target environment, subsequent deployments may result in either altering the WORK Table or recreating the WORK table.

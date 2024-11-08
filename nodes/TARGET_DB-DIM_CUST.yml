@@ -48,7 +48,6 @@ operation:
         dataType: NUMBER(38,0)
         description: ""
         isBusinessKey: true
-        isChangeTracking: true
         name: C_CUSTKEY
         nullable: true
         sourceColumnReferences:
@@ -63,7 +62,6 @@ operation:
         config: {}
         dataType: VARCHAR(25)
         description: ""
-        isChangeTracking: true
         name: C_NAME
         nullable: true
         sourceColumnReferences:
@@ -78,7 +76,6 @@ operation:
         config: {}
         dataType: VARCHAR(40)
         description: ""
-        isChangeTracking: true
         name: C_ADDRESS
         nullable: true
         sourceColumnReferences:
@@ -93,7 +90,6 @@ operation:
         config: {}
         dataType: NUMBER(38,0)
         description: ""
-        isChangeTracking: true
         name: C_NATIONKEY
         nullable: true
         sourceColumnReferences:
@@ -108,7 +104,6 @@ operation:
         config: {}
         dataType: VARCHAR(15)
         description: ""
-        isChangeTracking: true
         name: C_PHONE
         nullable: true
         sourceColumnReferences:
@@ -123,7 +118,6 @@ operation:
         config: {}
         dataType: NUMBER(12,2)
         description: ""
-        isChangeTracking: true
         name: C_ACCTBAL
         nullable: true
         sourceColumnReferences:
@@ -138,7 +132,6 @@ operation:
         config: {}
         dataType: VARCHAR(10)
         description: ""
-        isChangeTracking: true
         name: C_MKTSEGMENT
         nullable: true
         sourceColumnReferences:
@@ -153,7 +146,6 @@ operation:
         config: {}
         dataType: VARCHAR(117)
         description: ""
-        isChangeTracking: true
         name: C_COMMENT
         nullable: true
         sourceColumnReferences:
@@ -168,7 +160,6 @@ operation:
         config: {}
         dataType: TIMESTAMP_LTZ(9)
         description: ""
-        isChangeTracking: true
         name: C_LOAD_TIMESTAMP
         nullable: true
         sourceColumnReferences:

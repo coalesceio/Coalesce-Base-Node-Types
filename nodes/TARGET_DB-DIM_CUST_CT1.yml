@@ -134,7 +134,7 @@ operation:
         config: {}
         dataType: VARCHAR(10)
         description: ""
-        name: C_MKTSEGMENT
+        name: C_MKTSEGMENT1
         nullable: true
         sourceColumnReferences:
           - columnReferences:

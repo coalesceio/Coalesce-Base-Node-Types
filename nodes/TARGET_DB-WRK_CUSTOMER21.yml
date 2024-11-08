@@ -1,6 +1,6 @@
 fileVersion: 1
 id: cab4f9e3-e7ea-400f-86c1-a2690115926d
-name: WRK_CUSTOMER2
+name: WRK_CUSTOMER21
 operation:
   config:
     groupByAll: false
@@ -42,7 +42,7 @@ operation:
           columnCounter: f21efd6a-1ff3-40e1-bf68-e5b73250c90a
           stepCounter: cab4f9e3-e7ea-400f-86c1-a2690115926d
         config: {}
-        dataType: VARCHAR(25)
+        dataType: VARCHAR(102)
         description: ""
         name: C_NAME
         nullable: true
@@ -100,7 +100,7 @@ operation:
         config: {}
         dataType: NUMBER(12,2)
         description: ""
-        name: C_ACCTBAL
+        name: C_ACCTBAL1
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -160,9 +160,9 @@ operation:
             nodeName: CUSTOMER
         join:
           joinCondition: FROM {{ ref('SOURCE_DATA', 'CUSTOMER') }} "CUSTOMER"
-        name: WRK_CUSTOMER2
+        name: WRK_CUSTOMER21
         noLinkRefs: []
-  name: WRK_CUSTOMER2
+  name: WRK_CUSTOMER21
   overrideSQL: false
   schema: ""
   sqlType: "204"

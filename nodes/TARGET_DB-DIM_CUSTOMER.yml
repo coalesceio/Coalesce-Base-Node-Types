@@ -5,6 +5,10 @@ operation:
   config:
     groupByAll: false
     insertStrategy: UNION ALL
+    insertZeroKey: true
+    insertZeroKeyDate: 01-01-1900
+    insertZeroKeyStr: NEW
+    insertZeroKeySurrogateKey: "-1"
     orderby: false
     postSQL: ""
     preSQL: ""

@@ -22,9 +22,32 @@ metadata:
 
       - type: overrideSQLToggle
         enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
-        
-      - type: multisourceToggle
-        enableIf: "{% if node.override.create.enabled %} false {% else %} true {% endif %}"
+
+      - type: toggleButton
+        attributeName: insertZeroKey
+        displayName: Insert Zero Key Record
+        default: false
+
+      - displayName: Default String Value
+        attributeName: insertZeroKeyStr
+        type: textBox
+        default: "UNKNOWN"
+        isRequired: false
+        enableIf: "{% if config.insertZeroKey %} true {% else %} false {% endif %}"
+
+      - displayName: Default Surrogate Key Value
+        attributeName: insertZeroKeySurrogateKey
+        type: textBox
+        default: "0"
+        isRequired: false
+        enableIf: "{% if config.insertZeroKey %} true {% else %} false {% endif %}"
+
+      - displayName: Default Date Value
+        attributeName: insertZeroKeyDate
+        type: textBox
+        default: "01/01/1900"
+        isRequired: false
+        enableIf: "{% if config.insertZeroKey %} true {% else %} false {% endif %}"
 
       - displayName: Multi Source Strategy
         attributeName: insertStrategy

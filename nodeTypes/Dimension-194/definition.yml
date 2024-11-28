@@ -42,10 +42,10 @@ metadata:
         isRequired: false
         enableIf: "{% if config.insertZeroKey %} true {% else %} false {% endif %}"
 
-      - displayName: Default Date Value
+      - displayName: Default Date Value (Date Format DD-MM-YYYY)
         attributeName: insertZeroKeyDate
         type: textBox
-        default: "01/01/1900"
+        default: "01-01-1900"
         isRequired: false
         enableIf: "{% if config.insertZeroKey %} true {% else %} false {% endif %}"
 

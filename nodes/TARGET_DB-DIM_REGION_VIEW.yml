@@ -18,7 +18,7 @@ operation:
     testsEnabled: false
     truncateBefore: false
   database: ""
-  deployEnabled: true
+  deployEnabled: false
   description: Region data as defined by TPC-H
   isMultisource: false
   locationName: TARGET_DB

@@ -4,7 +4,7 @@ name: REGION
 operation:
   database: ""
   dataset: ""
-  deployEnabled: true
+  deployEnabled: false
   description: Region data as defined by TPC-H
   locationName: SOURCE_DATA
   metadata:

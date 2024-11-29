@@ -1,6 +1,6 @@
 fileVersion: 1
 id: c6733541-44c7-4f12-bdf1-a8cb17fea4fb
-name: DIM_CUSTOMER_DEMO
+name: DIM_CUSTOMER_DEMO_NEW
 operation:
   config:
     groupByAll: false
@@ -285,9 +285,9 @@ operation:
             nodeName: CUSTOMER
         join:
           joinCondition: FROM {{ ref('SOURCE_DATA', 'CUSTOMER') }} "CUSTOMER"
-        name: DIM_CUSTOMER_DEMO
+        name: DIM_CUSTOMER_DEMO_NEW
         noLinkRefs: []
-  name: DIM_CUSTOMER_DEMO
+  name: DIM_CUSTOMER_DEMO_NEW
   overrideSQL: false
   schema: ""
   sqlType: "194"

@@ -49,7 +49,10 @@ metadata:
         default: "01-01-1900"
         isRequired: false
         enableIf: "{% if config.insertZeroKey %} true {% else %} false {% endif %}"
-
+    	
+      - type: multisourceToggle
+        enableIf: "{% if node.override.create.enabled %} false {% else %} true {% endif %}"
+    	
       - displayName: Multi Source Strategy
         attributeName: insertStrategy
         type: dropdownSelector

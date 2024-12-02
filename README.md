@@ -303,7 +303,7 @@ The Dimension node type has two configuration groups:
 
 ##### Dimension Table Options
 
-![pstage_options1](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/93b431e5-1d5a-45e9-8fe0-2fd6df2a499e)
+![Dimension](https://github.com/user-attachments/assets/8f65ee5c-ce09-457e-b4de-9e6c94038795)
 
 | **Options** | **Description** |
 |---------|-------------|

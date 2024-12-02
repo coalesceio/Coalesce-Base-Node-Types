@@ -308,6 +308,7 @@ The Dimension node type has two configuration groups:
 | **Options** | **Description** |
 |---------|-------------|
 | **Create As** | Table or View |
+| **Insert Zero Key Record** | Toggle: True/False<br/>Insert Zero Key Record to Dimention if enabled |
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions |
 | **Change tracking** | Required column for Type 2 Dimension |

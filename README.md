@@ -12,7 +12,7 @@ The Coalesce Base Node Types Package includes:
 
 ---
 
-## Work Node
+## Work
 
 The Coalesce work node is a versatile node that allows you to develop and deploy a Work table/view in Snowflake.
 
@@ -161,7 +161,7 @@ The stage executed:
 
 ---
 
-## Persistent Stage Node
+## Persistent Stage 
 
 The Coalesce Persistent Stage Nodes element, serving as an intermediary object, is frequently utilized to maintain data persistence across multiple execution cycles.
 
@@ -275,7 +275,7 @@ This is executed in two stages:
 
 ---
 
-## Dimension Node
+## Dimension
 
 The Coalesce Dimension UDN is a versatile node that allows you to develop and deploy a Dimension table in Snowflake.
 
@@ -415,7 +415,7 @@ If a Dimension Node of materialization type view is deleted from a Workspace, th
 |-----------|----------------|
 | **Delete View** | Drops the existing Dimension view from target environment. |
 
-## Fact Node
+## Fact
 
 The Coalesce Fact UDN is a versatile node that allows you to develop and deploy a Fact table in Snowflake.
 
@@ -549,7 +549,7 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-## Factless Fact Node
+## Factless Fact 
 
 The Coalesce Fact UDN is a versatile node that allows you to develop and deploy a Fact table in Snowflake.
 
@@ -656,7 +656,7 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-## View Node
+## View 
 
 The Coalesce View UDN is a versatile node that allows you to develop and deploy a View in Snowflake.
 

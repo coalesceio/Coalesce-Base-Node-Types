@@ -22,7 +22,7 @@ operation:
     testsEnabled: false
     truncateBefore: true
   database: ""
-  deployEnabled: false
+  deployEnabled: true
   description: ""
   isMultisource: false
   locationName: SOURCE_DATA

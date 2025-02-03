@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 6c5ff36c-8010-429e-82d0-a01aa99cf610
-name: WRK_RIGHT_TABLE1_LEFT_TABLE
+name: WRK_RIGHT_TABLE1_LEFT_TABLE_V
 operation:
   config:
     asofColumn:
@@ -162,9 +162,9 @@ operation:
               FROM  {{ ref('SOURCE_DATA', 'LEFT_TABLE') }} "LEFT_TABLE"
                ASOF JOIN {{ ref('SOURCE_DATA', 'WRK_RIGHT_TABLE1') }} "WRK_RIGHT_TABLE1"
                MATCH_CONDITION (LEFT_TABLE.C2>=WRK_RIGHT_TABLE1.C2_R )
-        name: WRK_RIGHT_TABLE1_LEFT_TABLE
+        name: WRK_RIGHT_TABLE1_LEFT_TABLE_V
         noLinkRefs: []
-  name: WRK_RIGHT_TABLE1_LEFT_TABLE
+  name: WRK_RIGHT_TABLE1_LEFT_TABLE_V
   overrideSQL: false
   schema: ""
   sqlType: "204"

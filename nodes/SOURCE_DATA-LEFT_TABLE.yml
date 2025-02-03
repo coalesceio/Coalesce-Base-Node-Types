@@ -6,7 +6,7 @@ operation:
   dataset: ""
   deployEnabled: false
   description: ""
-  locationName: TARGET_DB
+  locationName: SOURCE_DATA
   metadata:
     columns:
       - acceptedValues:

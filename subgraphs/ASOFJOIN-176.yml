@@ -4,8 +4,11 @@ name: ASOF JOIN
 steps:
   - 24915465-8fe0-4102-90b6-56fa66b65b92
   - 284bb4b1-a61f-41d2-86c5-bcdcdce9d21e
+  - 38e03bc8-56d0-49fd-88e1-ff071a85e2d0
   - 3b6b8397-aa79-4fe6-9098-5b2b80b93285
   - 557729db-482e-4a84-9eef-4e2cb5a3e963
   - 600c667a-b275-4b6a-b6dd-d18c863ae968
+  - 689011fd-9d6f-46e4-a35f-b058e9783a81
+  - 9b761c3d-abaf-4233-91eb-491091ca0adb
   - a30cddd0-ca66-4560-8a92-5c202270ff1f
 type: Subgraph

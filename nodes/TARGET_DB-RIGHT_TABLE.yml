@@ -4,9 +4,9 @@ name: RIGHT_TABLE
 operation:
   database: ""
   dataset: ""
-  deployEnabled: true
+  deployEnabled: false
   description: ""
-  locationName: SOURCE_DATA
+  locationName: TARGET_DB
   metadata:
     columns:
       - acceptedValues:

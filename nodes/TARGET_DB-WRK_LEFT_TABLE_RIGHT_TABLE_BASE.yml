@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 600c667a-b275-4b6a-b6dd-d18c863ae968
-name: WRK_LEFT_TABLE_RIGHT_TABLE
+name: WRK_LEFT_TABLE_RIGHT_TABLE_BASE
 operation:
   config:
     asofColumn:
@@ -29,7 +29,7 @@ operation:
     testsEnabled: false
     truncateBefore: true
   database: ""
-  deployEnabled: true
+  deployEnabled: false
   description: ""
   isMultisource: false
   locationName: TARGET_DB
@@ -175,9 +175,9 @@ operation:
                ASOF JOIN {{ ref('SOURCE_DATA', 'RIGHT_TABLE') }} "RIGHT_TABLE1"
                MATCH_CONDITION (LEFT_TABLE.C4>=RIGHT_TABLE1.C4 ) 
                USING (RIGHT_TABLE1.C2)
-        name: WRK_LEFT_TABLE_RIGHT_TABLE
+        name: WRK_LEFT_TABLE_RIGHT_TABLE_BASE
         noLinkRefs: []
-  name: WRK_LEFT_TABLE_RIGHT_TABLE
+  name: WRK_LEFT_TABLE_RIGHT_TABLE_BASE
   overrideSQL: false
   schema: ""
   sqlType: "204"

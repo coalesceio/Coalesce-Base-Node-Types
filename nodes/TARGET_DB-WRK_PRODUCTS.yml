@@ -19,7 +19,7 @@ operation:
   description: ""
   isMultisource: false
   locationName: TARGET_DB
-  materializationType: table
+  materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
@@ -84,7 +84,16 @@ operation:
     sourceMapping:
       - aliases: {}
         customSQL:
-          customSQL: ""
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('TARGET_DB', 'WRK_PRODUCTS')}} AS (
+            		SELECT 
+             "PRODUCT_ID" AS "PRODUCT_ID",
+             "PRODUCT_NAME" AS "PRODUCT_NAME",
+             "BRAND" AS "BRAND",
+             "COLOUR" AS "COLOUR"
+             FROM {{ ref('SOURCE_DATA', 'PRODUCTS') }}
+            	)
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: PRODUCTS
@@ -93,7 +102,7 @@ operation:
         name: WRK_PRODUCTS
         noLinkRefs: []
   name: WRK_PRODUCTS
-  overrideSQL: false
+  overrideSQL: true
   schema: ""
   sqlType: "204"
   type: sql

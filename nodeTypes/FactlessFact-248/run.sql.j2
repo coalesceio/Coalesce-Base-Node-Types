@@ -16,7 +16,7 @@ does not permit copying or modification for any other purpose.
             {{ test_stage(test.name, test.continueOnFailure) }}
             {{ test.templateString }}
         {% endif %}
-    {% endfor %}
+{% endfor %}
 
     {% if node.materializationType == 'table' %}
 

@@ -1,0 +1,112 @@
+fileVersion: 1
+id: 44233ede-f1f3-4c29-956a-f07bdd0e57ab
+name: WRK_LEFT_TABLE2
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: SOURCE_DATA
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9793c6b6-26de-44d9-8eb4-627e4de59aa8
+          stepCounter: 44233ede-f1f3-4c29-956a-f07bdd0e57ab
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: C1_L
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7cd589a-8b01-4e7c-98a7-1630afd0de08
+                stepCounter: 557729db-482e-4a84-9eef-4e2cb5a3e963
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eacf755c-f177-436a-90c7-cb172d741494
+          stepCounter: 44233ede-f1f3-4c29-956a-f07bdd0e57ab
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: C2_L
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 267ac8b5-a27f-487c-a19d-60ac88cf10bf
+                stepCounter: 557729db-482e-4a84-9eef-4e2cb5a3e963
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 464d53f3-ee69-461a-9ab3-874d27144bdc
+          stepCounter: 44233ede-f1f3-4c29-956a-f07bdd0e57ab
+        config: {}
+        dataType: TIME(9)
+        description: ""
+        name: C3_L
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b998d9f-cc23-45b3-b028-0de0acb3fa19
+                stepCounter: 557729db-482e-4a84-9eef-4e2cb5a3e963
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6cad5a18-9e6c-4f5e-8af5-2d04f804f783
+          stepCounter: 44233ede-f1f3-4c29-956a-f07bdd0e57ab
+        config: {}
+        dataType: NUMBER(3,2)
+        description: ""
+        name: C4_L
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9c82932a-3edd-4101-9d20-963c60cbd30e
+                stepCounter: 557729db-482e-4a84-9eef-4e2cb5a3e963
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: LEFT_TABLE
+        join:
+          joinCondition: |2-
+
+
+             
+              FROM  {{ ref('SOURCE_DATA', 'LEFT_TABLE') }} LEFT_TABLE
+        name: WRK_LEFT_TABLE2
+        noLinkRefs: []
+  name: WRK_LEFT_TABLE2
+  overrideSQL: false
+  schema: ""
+  sqlType: "204"
+  type: sql
+  version: 1
+type: Node

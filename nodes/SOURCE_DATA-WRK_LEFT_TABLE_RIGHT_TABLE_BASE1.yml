@@ -150,22 +150,23 @@ operation:
     sourceMapping:
       - aliases:
           LEFT_TABLE: 557729db-482e-4a84-9eef-4e2cb5a3e963
+          RIGHT_TABLE: 284bb4b1-a61f-41d2-86c5-bcdcdce9d21e
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SOURCE_DATA
+          - locationName: TARGET_DB
             nodeName: LEFT_TABLE
           - locationName: TARGET_DB
             nodeName: RIGHT_TABLE
         join:
-          joinCondition: |2-
-
-
-
-               FROM  {{ ref('SOURCE_DATA', 'LEFT_TABLE') }} "LEFT_TABLE"
+          joinCondition: |-
+            
+            
+            
+               FROM  {{ ref('TARGET_DB', 'LEFT_TABLE') }} "LEFT_TABLE"
                ASOF JOIN {{ ref('TARGET_DB', 'RIGHT_TABLE') }} "RIGHT_TABLE"
                MATCH_CONDITION (LEFT_TABLE.C2>=RIGHT_TABLE.C2 ) 
-               ON  (LEFT_TABLE.C1=RIGHT_TABLE.C1 )
+               ON  (LEFT_TABLE.C1=RIGHT_TABLE.C1 AND LEFT_TABLE.C3=RIGHT_TABLE.C3 )
         name: WRK_LEFT_TABLE_RIGHT_TABLE_BASE1
         noLinkRefs: []
   name: WRK_LEFT_TABLE_RIGHT_TABLE_BASE1

@@ -148,17 +148,17 @@ metadata:
           displayName: Column
           attributeName: columnNameDefault
           isRequired: false
-          enableIf: "{% if config.insertZeroKeyAdvanced %} true {% else %} false {% endif %}"
+          enableIf: "{% if config.insertZeroKey == true and config.insertZeroKeyAdvanced  == true and node.materializationType != 'view' %} true {% else %} false {% endif %}"
       
         -  type: textBox
            displayName: Default Value
            attributeName: columnValueDefault
            isRequired: false
-           enableIf: "{% if config.insertZeroKeyAdvanced %} true {% else %} false {% endif %}"
+           enableIf: "{% if config.insertZeroKey == true and config.insertZeroKeyAdvanced  == true and node.materializationType != 'view' %} true {% else %} false {% endif %}"
       
         isRequired: false
-        enableIf: "{% if config.insertZeroKeyAdvanced %} true {% else %} false {% endif %}"
-      enableIf: "{% if config.insertZeroKey %} true {% else %} false {% endif %}"
+        enableIf: "{% if config.insertZeroKey == true and config.insertZeroKeyAdvanced  == true and node.materializationType != 'view' %} true {% else %} false {% endif %}"
+      enableIf: "{% if config.insertZeroKey  and node.materializationType != 'view' %} true {% else %} false {% endif %}"
 
     - groupName: Pre / Post SQL
       items:

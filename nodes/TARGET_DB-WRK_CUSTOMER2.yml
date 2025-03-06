@@ -3,6 +3,10 @@ id: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
 name: WRK_CUSTOMER2
 operation:
   config:
+    asofJoin: true
+    asofJoinMain: true
+    asofJoinON: true
+    asofJoinUSING: false
     groupByAll: false
     insertStrategy: INSERT
     orderby: false

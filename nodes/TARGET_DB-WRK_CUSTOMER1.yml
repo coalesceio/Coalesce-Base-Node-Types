@@ -3,6 +3,7 @@ id: 38a9e4bb-ece0-42ee-831f-ea04056904a1
 name: WRK_CUSTOMER1
 operation:
   config:
+    asofJoinMain: false
     groupByAll: false
     insertStrategy: INSERT
     orderby: false

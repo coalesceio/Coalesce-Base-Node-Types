@@ -40,15 +40,28 @@ does not permit copying or modification for any other purpose.
         TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
     {% endif %}
 			{% if config.insertZeroKey %}
+				{% if config.insertZeroKeyAdvanced == true %}
+				{%- set ns = namespace(varColumnNameDefault = [],varColumnValueDefault=[]) %}
+				{%set ns.varColumnNameDefault = config.customZeroKeyValues.get('items') | map(attribute='columnNameDefault.name') | list%}
+				{%set ns.varColumnValueDefault = config.customZeroKeyValues.get('items') | map(attribute='columnValueDefault') | list%}
+				{% endif %}
 			{{ stage('Insert Zero Record') }}
 			MERGE INTO {{ ref_no_link(node.location.name, node.name) }}USING
 			(SELECT 
 			{% for col in sources[0].columns %}
 				{% set dtparams = col.dataType.partition('(')[-1].rpartition(')')[0].split(',') %}
 				{% if col.isSurrogateKey %} {{config.insertZeroKeySurrogateKey}}
+				{% elif config.insertZeroKeyAdvanced == true and col.name in ns.varColumnNameDefault %}
+					{%- for loopColumn in ns.varColumnNameDefault  -%}
+						{% if col.name ==  loopColumn %}
+						{{ ns.varColumnValueDefault[loop.index0]}} 
+						{% endif %}						
+					{% endfor -%}
 				{% elif col.isSystemCurrentFlag %}'Y'
 				{% elif col.isSystemStartDate or col.isSystemEndDate or col.isSystemUpdateDate or col.isSystemCreateDate %}{{ get_source_transform(col) }}
 				{% elif col.isSystemVersion%}1
+				{% elif config.insertZeroKeyAdvanced and col.name == config.columnNameDefault %} {{config.columnValueDefault}}
+				{% elif col.dataType | upper in ('BOOLEAN') %} {{ config.insertZeroKeyBol }}
 				{% elif col.dataType[:3] | upper in ('NUM','INT','DEC','FLO') %}0
 				{% elif col.dataType[:4] | upper in ('DATE','TIME') %}CAST(TO_TIMESTAMP( '{{config.insertZeroKeyDate}}', 'DD-MM-YYYY') AS {{ col.dataType }})
 				{% elif col.dataType[:3] | upper in ('VAR','CHA','STR','BIN') %}

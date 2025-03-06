@@ -5,11 +5,14 @@ operation:
   config:
     asofColumn:
       items:
-        - {}
+        - matchCondition: null
+          rightTable: null
+          rightTableSL: null
+          usingColumnName: null
     asofJoin: true
-    asofJoinMain: false
+    asofJoinMain: true
     asofJoinON: false
-    asofJoinUSING: false
+    asofJoinUSING: true
     groupByAll: false
     insertStrategy: INSERT
     orderby: false

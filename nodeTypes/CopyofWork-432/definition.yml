@@ -1,0 +1,24 @@
+fileVersion: 1
+id: "432"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: Work
+    short: WRK
+    plural: Works
+    tagColor: '#2EB67D'
+
+    config:
+    - groupName: Options
+      items:
+      - displayName: Truncate Before
+        attributeName: truncateBefore
+        type: toggleButton
+        default: true
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+    joinTemplate: |-
+     TEST
+name: Copy of Work
+type: NodeType

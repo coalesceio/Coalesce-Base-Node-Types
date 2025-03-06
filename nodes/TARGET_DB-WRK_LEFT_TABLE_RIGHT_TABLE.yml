@@ -1,0 +1,188 @@
+fileVersion: 1
+id: fada7a1b-201f-4e90-a680-d72b70539b7d
+name: WRK_LEFT_TABLE_RIGHT_TABLE
+operation:
+  config:
+    asofColumn:
+      items:
+        - matchCondition: LEFT_TABLE.C2>=RIGHT_TABLE.C2
+          rightTable: RIGHT_TABLE
+          rightTableSL: TARGET_DB
+          usingColumnName: C1
+        - matchCondition: LEFT_TABLE.C2>=OUTER_TABLE.C2
+          rightTable: OUTER_TABLE
+          rightTableSL: SOURCE_DATA
+          usingColumnName: C1
+    asofJoin: true
+    asofJoinMain: true
+    asofJoinON: false
+    asofJoinUSING: true
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae19bffe-a382-4eef-88be-32f5120dc0b3
+          stepCounter: fada7a1b-201f-4e90-a680-d72b70539b7d
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: C1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e7cd589a-8b01-4e7c-98a7-1630afd0de08
+                stepCounter: 557729db-482e-4a84-9eef-4e2cb5a3e963
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3e5c7d6-84f9-4a37-8125-9b0f695033a1
+          stepCounter: fada7a1b-201f-4e90-a680-d72b70539b7d
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: C2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 267ac8b5-a27f-487c-a19d-60ac88cf10bf
+                stepCounter: 557729db-482e-4a84-9eef-4e2cb5a3e963
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f5839fef-60d8-45d0-b26b-37e0b04e6d16
+          stepCounter: fada7a1b-201f-4e90-a680-d72b70539b7d
+        config: {}
+        dataType: TIME(9)
+        description: ""
+        name: C3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b998d9f-cc23-45b3-b028-0de0acb3fa19
+                stepCounter: 557729db-482e-4a84-9eef-4e2cb5a3e963
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6de6139-68ca-4e8a-9d79-dcf2a58583e5
+          stepCounter: fada7a1b-201f-4e90-a680-d72b70539b7d
+        config: {}
+        dataType: NUMBER(3,2)
+        description: ""
+        name: C4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9c82932a-3edd-4101-9d20-963c60cbd30e
+                stepCounter: 557729db-482e-4a84-9eef-4e2cb5a3e963
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3d24bace-59b3-40b7-a910-730d2cd29773
+          stepCounter: fada7a1b-201f-4e90-a680-d72b70539b7d
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        name: C1_R
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c66a79ad-b72e-49c4-9bf2-8f5ac37be224
+                stepCounter: 284bb4b1-a61f-41d2-86c5-bcdcdce9d21e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9dce509a-3468-4307-982b-d6445fe64415
+          stepCounter: fada7a1b-201f-4e90-a680-d72b70539b7d
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: C2_R
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 95daa5a3-b0b0-4d74-bc39-735a2545e0b8
+                stepCounter: 284bb4b1-a61f-41d2-86c5-bcdcdce9d21e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 07d28f04-f068-48b8-9092-d15b7754ba25
+          stepCounter: fada7a1b-201f-4e90-a680-d72b70539b7d
+        config: {}
+        dataType: TIME(9)
+        description: ""
+        name: C3_R
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3efc6092-6d32-48e7-8c90-e2e20d359587
+                stepCounter: 284bb4b1-a61f-41d2-86c5-bcdcdce9d21e
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 695a77a8-7a77-4dba-bc80-b47173306e13
+          stepCounter: fada7a1b-201f-4e90-a680-d72b70539b7d
+        config: {}
+        dataType: NUMBER(3,2)
+        description: ""
+        name: C4_R
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87dfdca0-7469-4425-babc-8537e13ce2db
+                stepCounter: 284bb4b1-a61f-41d2-86c5-bcdcdce9d21e
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          LEFT_TABLE: 557729db-482e-4a84-9eef-4e2cb5a3e963
+          OUTER_TABLE: 3b6b8397-aa79-4fe6-9098-5b2b80b93285
+          RIGHT_TABLE: 284bb4b1-a61f-41d2-86c5-bcdcdce9d21e
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: LEFT_TABLE
+          - locationName: SOURCE_DATA
+            nodeName: OUTER_TABLE
+          - locationName: TARGET_DB
+            nodeName: RIGHT_TABLE
+        join:
+          joinCondition: |2-
+
+
+
+               FROM  {{ ref('SOURCE_DATA', 'LEFT_TABLE') }} "LEFT_TABLE"
+               ASOF JOIN {{ ref('TARGET_DB', 'RIGHT_TABLE') }} "RIGHT_TABLE"
+               MATCH_CONDITION (LEFT_TABLE.C2>=RIGHT_TABLE.C2 ) 
+               USING (C1)
+               ASOF JOIN {{ ref('SOURCE_DATA', 'OUTER_TABLE') }} "OUTER_TABLE"
+               MATCH_CONDITION (LEFT_TABLE.C2>=OUTER_TABLE.C2 ) 
+               USING (C1)
+        name: WRK_LEFT_TABLE_RIGHT_TABLE
+        noLinkRefs: []
+  name: WRK_LEFT_TABLE_RIGHT_TABLE
+  overrideSQL: false
+  schema: ""
+  sqlType: "204"
+  type: sql
+  version: 1
+type: Node

@@ -6,9 +6,12 @@ operation:
     groupByAll: false
     insertStrategy: UNION ALL
     insertZeroKey: true
-    insertZeroKeyDate: 01-01-1900
+    insertZeroKeyAdvanced: false
+    insertZeroKeyBol: "FALSE"
+    insertZeroKeyDate: 10-10-2020
     insertZeroKeyStr: NEW
     insertZeroKeySurrogateKey: "-1"
+    insertZeroKeyTimestamp: "2020-10-10 10:10:20.000"
     orderby: false
     postSQL: ""
     preSQL: ""
@@ -195,15 +198,15 @@ operation:
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
-          WRK_CUSTOMER: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
+          WRK_CUSTOMER: 0e64a18e-571d-43b6-a7bc-7dc7f843b877
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: TARGET_DB
-            nodeName: WRK_CUSTOMER123
+            nodeName: WRK_CUSTOMER
         join:
           joinCondition: |-
-            FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER123') }} "WRK_CUSTOMER"
+            FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER') }} "WRK_CUSTOMER"
             where "WRK_CUSTOMER"."C_CUSTKEY">10
         name: DIM_CUSTOMER
         noLinkRefs: []

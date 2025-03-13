@@ -60,9 +60,9 @@ does not permit copying or modification for any other purpose.
 				{% elif col.isSystemCurrentFlag %}'Y'
 				{% elif col.isSystemStartDate or col.isSystemEndDate or col.isSystemUpdateDate or col.isSystemCreateDate %}{{ get_source_transform(col) }}
 				{% elif col.isSystemVersion%}1
-				{% elif config.insertZeroKeyAdvanced and col.name == config.columnNameDefault %} {{config.columnValueDefault}}
 				{% elif col.dataType | upper in ('BOOLEAN') %} {{ config.insertZeroKeyBol }}
 				{% elif col.dataType[:3] | upper in ('NUM','INT','DEC','FLO') %}0
+				{% elif col.dataType [:12]| upper in ('TIMESTAMP_LT','TIMESTAMP_NT','TIMESTAMP_TZ') %} '{{config.insertZeroKeyTimestamp}}' ::{{ col.dataType |upper}}																																						 
 				{% elif col.dataType[:4] | upper in ('DATE','TIME') %}CAST(TO_TIMESTAMP( '{{config.insertZeroKeyDate}}', 'DD-MM-YYYY') AS {{ col.dataType }})
 				{% elif col.dataType[:3] | upper in ('VAR','CHA','STR','BIN') %}
 						{% if dtparams[0] and dtparams[0] | int <  config.insertZeroKeyStr | length  %}
@@ -324,6 +324,7 @@ does not permit copying or modification for any other purpose.
                {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
                 {{config.insertStrategy}}
                {% endif %}            
+					  
         {% endfor %}  
                          
         ) AS "SRC"
@@ -352,6 +353,10 @@ does not permit copying or modification for any other purpose.
             {% if not loop.last %}, {% endif %}
         {% endfor -%}
         )
+
+	
+
+
 
     {% else %}
         
@@ -438,6 +443,7 @@ does not permit copying or modification for any other purpose.
                 {% if not loop.last %}, {% endif %}
             {% endfor -%}
             )
+	 
     {% endif %}
 
 {# == Queries to be excuted post data insertion  == #}

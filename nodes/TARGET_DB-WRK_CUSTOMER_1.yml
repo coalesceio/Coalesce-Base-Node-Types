@@ -16,7 +16,7 @@ operation:
     testsEnabled: false
     truncateBefore: true
   database: ""
-  deployEnabled: false
+  deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET_DB
@@ -157,7 +157,7 @@ operation:
         customSQL:
           customSQL: |-
             {{ stage('Override Create SQL') }}
-            	CREATE OR REPLACE VIEW {{ ref('TARGET_DB', 'WRK_CUSTOMER_12')}} AS (
+            	CREATE OR REPLACE VIEW {{ ref('TARGET_DB', 'WRK_CUSTOMER_1')}} AS (
             		SELECT 
              "C_CUSTKEY" AS "C_CUSTKEY",
              "C_NAME" AS "C_NAME",

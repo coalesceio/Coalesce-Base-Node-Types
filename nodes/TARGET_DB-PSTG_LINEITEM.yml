@@ -3,12 +3,15 @@ id: 72149945-cdee-46a1-9792-e2a90686e017
 name: PSTG_LINEITEM
 operation:
   config:
-    groupByAll: false
+    groupByAll: true
     insertStrategy: UNION ALL
-    orderby: false
+    orderby: true
     orderbycolumn:
       items:
-        - {}
+        - sortColName:
+            columnCounter: 323189a0-ef7a-4ff2-9067-586af6c10e55
+            stepCounter: 72149945-cdee-46a1-9792-e2a90686e017
+          sortOrder: desc
     postSQL: ""
     preSQL: ""
     selectDistinct: false
@@ -383,14 +386,17 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          LINEITEM: d0f98343-29cb-4130-a1f8-1895d12250da
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: LINEITEM
         join:
-          joinCondition: FROM {{ ref('SOURCE_DATA', 'LINEITEM') }} "LINEITEM"
+          joinCondition: |-
+            FROM {{ ref('SOURCE_DATA', 'LINEITEM') }} "LINEITEM"
+            where "LINEITEM"."L_ORDERKEY" >3
         name: PSTG_LINEITEM
         noLinkRefs: []
   name: PSTG_LINEITEM

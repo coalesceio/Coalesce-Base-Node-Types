@@ -209,7 +209,7 @@ The Persistent node type has two configuration groups:
 |---------|-------------|
 | **Create As** | Table is the only option at this time |
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Business key** | Required column for both Type 1 and Type 2 |
+| **Business key** | Required column for both Type 1 and Type 2.Note:Geometry and Geography data type columns are not supported as business key columns. |
 | **Change tracking** | Required column for Type 2 |
 | **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be overwritten each time a task executes.<br/> **True**: Uses INSERT OVERWRITE<br/>**False**: Uses INSERT to append data |
 | **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
@@ -324,7 +324,7 @@ The Dimension node type has two configuration groups:
 | **Create As** | Table or View |
 | **Insert Zero Key Record** | Toggle: True/False<br/>Insert Zero Key Record to Dimention<br/>**True**:  Zero Key Record Options enabled.<br/>**False**: Zero Key Record not added|
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Business key** | Required column for both Type 1 and Type 2 Dimensions |
+| **Business key** | Required column for both Type 1 and Type 2 Dimensions.Note:Geometry and Geography data type columns are not supported as business key columns. |
 | **Change tracking** | Required column for Type 2 Dimension |
 | **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be overwritten each time a task executes. **True**: Uses INSERT OVERWRITE<br/>**False**: Uses INSERT to append data |
 | **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
@@ -462,7 +462,7 @@ The Fact node has two configuration groups:
 | **Options** | **Description** |
 |---------|-------------|
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Business key** | Required column for Fact table creation |
+| **Business key** | Required column for Fact table creation.Note:Geometry and Geography data type columns are not supported as business key columns. |
 | **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be overwritten each time a task executes. **True**: Uses INSERT OVERWRITE<br/>**False**: Uses INSERT to append data |
 | **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
 | **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |

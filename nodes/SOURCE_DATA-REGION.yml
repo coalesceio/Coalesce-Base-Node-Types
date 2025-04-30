@@ -3,7 +3,6 @@ id: 5b0228f8-ce14-4084-8755-cf91974c5fe8
 name: REGION
 operation:
   database: ""
-  dataset: ""
   deployEnabled: false
   description: Region data as defined by TPC-H
   locationName: SOURCE_DATA
@@ -54,12 +53,9 @@ operation:
         nullable: true
         primaryKey: false
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SNOWFLAKE_SAMPLE_DATA', 'REGION') }}
   name: REGION
   schema: ""
   sqlType: Source
-  table: REGION
   type: sourceInput
   version: 1
 type: Node

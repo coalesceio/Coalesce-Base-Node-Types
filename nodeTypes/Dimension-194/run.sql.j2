@@ -187,11 +187,45 @@ does not permit copying or modification for any other purpose.
                 {% else %}
                     OR
                 {% endif %}
-                ( NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**') )
+
+                {% if col.dataType == 'GEOGRAPHY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE
+                                WHEN {{ get_source_transform(col) }} IS NULL THEN TO_GEOGRAPHY('POINT(0 0)')
+                                ELSE {{ get_source_transform(col) }}
+                            END),
+                            (CASE
+                                WHEN "DIM"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)')
+                                ELSE "DIM"."{{ col.name }}"
+                            END)
+                        ) > 0
+                    )
+                {% elif col.dataType == 'GEOMETRY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE
+                                WHEN {{ get_source_transform(col) }} IS NULL THEN TO_GEOMETRY('POINT(0 0)')
+                                ELSE {{ get_source_transform(col) }}
+                            END),
+                            (CASE
+                                WHEN "DIM"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)')
+                                ELSE "DIM"."{{ col.name }}"
+                            END)
+                        ) > 0
+                    )
+                {% else %}
+                    (
+                        NVL(CAST({{ get_source_transform(col) }} AS STRING), '**NULL**') <> 
+                        NVL(CAST("DIM"."{{ col.name }}" AS STRING), '**NULL**')
+                    )
+                {% endif %}
+
                 {% if loop.last %}
                     )
                 {% endif %}
             {% endfor %}
+
             {{  get_clause(joinclause)  }}
             {% if config.groupByAll %}
             GROUP BY ALL
@@ -232,11 +266,45 @@ does not permit copying or modification for any other purpose.
                 {% else %}
                     OR
                 {% endif %}
-                ( NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**') )
+
+                {% if col.dataType == 'GEOGRAPHY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE 
+                                WHEN {{ get_source_transform(col) }} IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE {{ get_source_transform(col) }} 
+                            END),
+                            (CASE 
+                                WHEN "DIM"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "DIM"."{{ col.name }}" 
+                            END)
+                        ) > 0
+                    )
+                {% elif col.dataType == 'GEOMETRY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE 
+                                WHEN {{ get_source_transform(col) }} IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                ELSE {{ get_source_transform(col) }} 
+                            END),
+                            (CASE 
+                                WHEN "DIM"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                ELSE "DIM"."{{ col.name }}" 
+                            END)
+                        ) > 0
+                    )
+                {% else %}
+                    (
+                        NVL(CAST({{ get_source_transform(col) }} AS STRING), '**NULL**') <> 
+                        NVL(CAST("DIM"."{{ col.name }}" AS STRING), '**NULL**')
+                    )
+                {% endif %}
+
                 {% if loop.last %}
                     )
                 {% endif %}
             {% endfor %}
+
             {{  get_clause(joinclause)  }}
             {% if config.groupByAll %}
             GROUP BY ALL
@@ -291,29 +359,94 @@ does not permit copying or modification for any other purpose.
                   {% if not loop.first %}
                       AND
                   {% endif %}
+               {% if col.dataType == 'GEOGRAPHY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE 
+                                WHEN {{ get_source_transform(col) }} IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE {{ get_source_transform(col) }} 
+                            END),
+                            (CASE 
+                                WHEN "DIM"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "DIM"."{{ col.name }}" 
+                            END)
+                        ) = 0
+                    )
+                {% elif col.dataType == 'GEOMETRY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE 
+                                WHEN {{ get_source_transform(col) }} IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                ELSE {{ get_source_transform(col) }} 
+                            END),
+                            (CASE 
+                                WHEN "DIM"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                ELSE "DIM"."{{ col.name }}" 
+                            END)
+                        ) = 0
+                    )
+                  {%else%}                      
                   {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                  {%endif%}
               {% endfor %} )
               
-              {% for col in source.columns if not (   col.isBusinessKey or
-                                                      col.isChangeTracking or
-                                                      col.isSurrogateKey or
-                                                      col.isSystemVersion or
-                                                      col.isSystemCurrentFlag or
-                                                      col.isSystemStartDate or
-                                                      col.isSystemEndDate or
-                                                      col.isSystemUpdateDate or
-                                                      col.isSystemCreateDate) -%}
-                  {% if loop.first %}
-                      AND (
-                  {% endif %}
-                  {% if not loop.first %}
-                      OR
-                  {% endif %}
-                  NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**')
-                  {% if loop.last %}
-                      )
-                  {% endif %}
-              {% endfor %}
+                {% for col in source.columns if not (
+                    col.isBusinessKey or
+                    col.isChangeTracking or
+                    col.isSurrogateKey or
+                    col.isSystemVersion or
+                    col.isSystemCurrentFlag or
+                    col.isSystemStartDate or
+                    col.isSystemEndDate or
+                    col.isSystemUpdateDate or
+                    col.isSystemCreateDate) -%}
+
+                    {% if loop.first %}
+                        AND (
+                    {% endif %}
+                    
+                    {% if not loop.first %}
+                        OR
+                    {% endif %}
+
+               {% if col.dataType == 'GEOGRAPHY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE 
+                                WHEN {{ get_source_transform(col) }} IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE {{ get_source_transform(col) }} 
+                            END),
+                            (CASE 
+                                WHEN "DIM"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "DIM"."{{ col.name }}" 
+                            END)
+                        ) > 0
+                    )
+                {% elif col.dataType == 'GEOMETRY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE 
+                                WHEN {{ get_source_transform(col) }} IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                ELSE {{ get_source_transform(col) }} 
+                            END),
+                            (CASE 
+                                WHEN "DIM"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                ELSE "DIM"."{{ col.name }}" 
+                            END)
+                        ) > 0
+                    )
+                {% else %}
+                        (
+                            NVL(CAST({{ get_source_transform(col) }} AS STRING), '**NULL**') <> 
+                            NVL(CAST("DIM"."{{ col.name }}" AS STRING), '**NULL**')
+                        )
+                    {% endif %}
+
+                    {% if loop.last %}
+                        )
+                    {% endif %}
+                {% endfor %}
+
             
                {{  get_clause(joinclause)  }}
                {% if config.groupByAll %}
@@ -401,24 +534,61 @@ does not permit copying or modification for any other purpose.
                 "SRC"."{{ col.name }}" = "TGT"."{{ col.name }}"
             {% endfor %}
             WHEN MATCHED
-            {% for col in columns if not (   col.isBusinessKey or
-                                                    col.isSurrogateKey or
-                                                    col.isSystemVersion or
-                                                    col.isSystemCurrentFlag or
-                                                    col.isSystemStartDate or
-                                                    col.isSystemEndDate or
-                                                    col.isSystemUpdateDate or
-                                                    col.isSystemCreateDate) %}
-                {% if loop.first %}
-                    AND (
-                {% else %}
-                    OR
-                {% endif %}
-                NVL( CAST("SRC"."{{ col.name }}" as STRING), '**NULL**') <> NVL( CAST("TGT"."{{ col.name }}" as STRING), '**NULL**')
-                {% if loop.last %}
+                {% for col in columns if not (
+                    col.isBusinessKey or
+                    col.isSurrogateKey or
+                    col.isSystemVersion or
+                    col.isSystemCurrentFlag or
+                    col.isSystemStartDate or
+                    col.isSystemEndDate or
+                    col.isSystemUpdateDate or
+                    col.isSystemCreateDate) %}
+
+                    {% if loop.first %}
+                        AND (
+                    {% else %}
+                        OR
+                    {% endif %}
+
+               {% if col.dataType == 'GEOGRAPHY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE 
+                                WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "SRC"."{{ col.name }}" 
+                            END),
+                            (CASE 
+                                WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "TGT"."{{ col.name }}" 
+                            END)
+                        ) > 0
                     )
-                {% endif %}
-            {% endfor %}
+                {% elif col.dataType == 'GEOMETRY' %}
+                    (
+                        ST_DISTANCE(
+							
+								(CASE 
+									WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+									ELSE "SRC"."{{ col.name }}" 
+								END),
+								(CASE 
+									WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+									ELSE "TGT"."{{ col.name }}" 
+                            END)
+                        ) > 0
+                    )
+                {% else %}
+                        (
+                            NVL(CAST("SRC"."{{ col.name }}" AS STRING), '**NULL**') <> 
+                            NVL(CAST("TGT"."{{ col.name }}" AS STRING), '**NULL**')
+                        )
+                    {% endif %}
+
+                    {% if loop.last %}
+                        )
+                    {% endif %}
+                {% endfor %}
+
             THEN UPDATE SET
             {%- for col in columns if not (  col.isBusinessKey or
                                                     col.isSurrogateKey or

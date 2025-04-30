@@ -1,9 +1,9 @@
 fileVersion: 1
-id: 3ee0793d-5b13-4599-89b7-5df13fa16937
-name: PRODUCTS_GROCERY
+id: 2b91a193-34a5-4829-a30d-90658b25d3fb
+name: COURSES_SC
 operation:
   database: ""
-  deployEnabled: false
+  deployEnabled: true
   description: ""
   locationName: SOURCE_DATA
   metadata:
@@ -13,32 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 170b27df-a283-4675-9d84-0f102350d147
-          stepCounter: 3ee0793d-5b13-4599-89b7-5df13fa16937
+          columnCounter: d0d57247-f6cf-4f99-b11b-4df4bd61af4a
+          stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: PRODUCT_ID
-        nullable: false
-        primaryKey: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 8566bbe0-c2d1-4974-9078-0abc39454929
-          stepCounter: 3ee0793d-5b13-4599-89b7-5df13fa16937
-        config: {}
-        dataType: VARCHAR(255)
-        defaultValue: ""
-        description: ""
-        name: PRODUCT_NAME
+        name: COURSE_ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9d2053a5-dde6-4823-ae94-5e44b731206e
-          stepCounter: 3ee0793d-5b13-4599-89b7-5df13fa16937
+          columnCounter: 16df3fc9-1f25-4c0f-90c9-c511656fee09
+          stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
         config: {}
-        dataType: VARCHAR(100)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: BRAND
+        name: COURSE_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6a012205-b814-478f-8b9f-4799b4ea4c93
-          stepCounter: 3ee0793d-5b13-4599-89b7-5df13fa16937
+          columnCounter: 1c00fef9-9eb0-4ac9-a554-b7a8e6168464
+          stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
         config: {}
-        dataType: VARCHAR(50)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: COLOUR
+        name: INSTRUCTOR
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -84,7 +65,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: PRODUCTS_GROCERY
+  name: COURSES_SC
   schema: ""
   sqlType: Source
   type: sourceInput

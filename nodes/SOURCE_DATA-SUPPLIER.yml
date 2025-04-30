@@ -3,7 +3,6 @@ id: b4583da3-560b-4ac6-b4b6-04ce02a8e4cd
 name: SUPPLIER
 operation:
   database: ""
-  dataset: ""
   deployEnabled: false
   description: ""
   locationName: SOURCE_DATA
@@ -161,12 +160,9 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SOURCE_DATA', 'SUPPLIER') }}
   name: SUPPLIER
   schema: ""
   sqlType: Source
-  table: SUPPLIER
   type: sourceInput
   version: 1
 type: Node

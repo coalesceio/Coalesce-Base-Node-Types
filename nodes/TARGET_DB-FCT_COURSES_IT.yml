@@ -1,0 +1,148 @@
+fileVersion: 1
+id: 8bb9469a-5c75-446f-a72a-4d5407afd247
+name: FCT_COURSES_IT
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: true
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e0a0616d-d368-4007-85be-5c1c0c6c6c00
+          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: COURSE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd094a73-85e2-4833-a177-4ef7d7c2f27c
+                stepCounter: f9a0ad54-aa29-470f-8752-eb459a71f206
+            transform: ""
+          - columnReferences:
+              - columnCounter: d0d57247-f6cf-4f99-b11b-4df4bd61af4a
+                stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 373e1594-7154-404c-a12a-cff4fa2b7a2f
+          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: COURSE_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 95619e2b-c184-4614-9ccc-882b7759ee5d
+                stepCounter: f9a0ad54-aa29-470f-8752-eb459a71f206
+            transform: ""
+          - columnReferences:
+              - columnCounter: 16df3fc9-1f25-4c0f-90c9-c511656fee09
+                stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ca2db0f6-e734-4d4d-b4d4-1ce2a402ef75
+          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: INSTRUCTOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 98c24c81-f60c-4999-bac8-1345c9aacec0
+                stepCounter: f9a0ad54-aa29-470f-8752-eb459a71f206
+            transform: ""
+          - columnReferences:
+              - columnCounter: 1c00fef9-9eb0-4ac9-a554-b7a8e6168464
+                stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9cbe4cf8-2323-4449-a7cc-13bcb264642f
+          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 783a35f3-8279-4ec1-bf5c-b8a33c04027a
+          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: COURSES_IT
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'COURSES_IT') }} "COURSES_IT"
+        name: FCT_COURSES_IT
+        noLinkRefs: []
+      - aliases:
+          COURSES_SC: 2b91a193-34a5-4829-a30d-90658b25d3fb
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: COURSES_SC
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'COURSES_SC') }} "COURSES_SC"
+        name: NEW_SOURCE
+        noLinkRefs: []
+  name: FCT_COURSES_IT
+  overrideSQL: false
+  schema: ""
+  sqlType: "205"
+  type: sql
+  version: 1
+type: Node

@@ -44,7 +44,6 @@ metadata:
         attributeName: testsEnabled
         type: toggleButton
         default: false
-        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
         
       - displayName: Distinct
         attributeName: selectDistinct

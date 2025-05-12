@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 9b6ad377-8315-4410-807e-c8a063b1958b
-name: DIM_PRODUCTS
+id: dfbdcb61-1488-4478-83d6-fa5aff78f50b
+name: PSTG_GEOSPATIAL_TABLE_test
 operation:
   config:
     groupByAll: false
@@ -15,7 +15,7 @@ operation:
     testsEnabled: false
     truncateBefore: false
   database: ""
-  deployEnabled: false
+  deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET_DB
@@ -28,85 +28,68 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 5ec83a0d-3062-44b1-aef1-3e5be734cc7c
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
+          columnCounter: 93dd6a8d-cd25-4e37-a9ea-cc7d01829e16
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
         config: {}
         dataType: NUMBER
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        name: DIM_PRODUCTS_KEY
+        name: PSTG_GEOSPATIAL_TABLE_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 85e60fd3-89ba-4d66-bf70-46a9c98b6bcf
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
+          columnCounter: 32a2847b-63f9-488b-a382-e9cd369ea319
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
         config: {}
         dataType: NUMBER(38,0)
         description: ""
         isBusinessKey: true
-        name: PRODUCT_ID
-        nullable: false
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 440645fb-a318-455c-8639-d6c06aa34681
-                stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 224e4589-8899-461a-aeee-e7addb5c6248
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
-        config: {}
-        dataType: VARCHAR(255)
-        description: ""
-        isChangeTracking: true
-        name: PRODUCT_NAME
+        name: ID
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 563848e9-a927-449d-a3e0-ff162c6a5325
-                stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+              - columnCounter: 3694e03f-9b40-44dc-b4c6-0d54875ca045
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b133d68e-a0c9-403a-b452-ff1774df80d8
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
+          columnCounter: c1e4f4c3-bebf-4444-95b2-68d9936c2722
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
         config: {}
-        dataType: VARCHAR(100)
+        dataType: GEOGRAPHY
         description: ""
-        isChangeTracking: true
-        name: BRAND
+        name: G
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 4cdc5815-49db-432f-81e5-b808fdcd1eb9
-                stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+              - columnCounter: 43aa3261-f51f-4135-b972-a79444087286
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2bbd8697-2ccb-4fc8-ad54-666184844abb
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
+          columnCounter: 3f62d5bf-7cf5-4cd1-aa0b-b77a4621bed0
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
         config: {}
-        dataType: VARCHAR(50)
+        dataType: VARCHAR(16777216)
         description: ""
-        isChangeTracking: true
-        name: COLOUR
+        name: DESCRIPTION
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 026c46c7-77d7-4a3f-b0ca-678831903366
-                stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+              - columnCounter: e172d55c-4b53-4382-a11c-ba21c5b1157c
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9b07325f-cf8b-4199-bbbc-bb0d012ed922
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
+          columnCounter: 4c3b6b84-7b24-4e36-a9d9-994036966b72
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -122,8 +105,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f168cfe8-4c61-4e00-89a5-38d058378b79
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
+          columnCounter: bcdc415b-2a1e-4745-a8d2-7b86e9823303
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
         config: {}
         dataType: VARCHAR
         defaultValue: ""
@@ -139,8 +122,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d4efc97a-baba-453d-a5c1-3061e056cbc9
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
+          columnCounter: ea6b1efe-80dc-4386-9f29-340fe8e8963d
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -156,8 +139,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 98c2ca49-3455-41b7-8503-7b3426f5b870
-          stepCounter: 9b6ad377-8315-4410-807e-c8a063b1958b
+          columnCounter: dca60f96-a585-46b2-a259-714c84f98985
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -168,6 +151,40 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 245cb8ab-6af7-46bf-9d56-6b7f5839cf6e
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: afdbf1c5-18f0-4f83-bb6f-2b164e8029e0
+          stepCounter: dfbdcb61-1488-4478-83d6-fa5aff78f50b
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -175,16 +192,16 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: TARGET_DB
-            nodeName: WRK_PRODUCTS
+          - locationName: SOURCE_DATA
+            nodeName: GEOSPATIAL_TABLE
         join:
-          joinCondition: FROM {{ ref('TARGET_DB', 'WRK_PRODUCTS') }} "WRK_PRODUCTS"
-        name: DIM_PRODUCTS
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOSPATIAL_TABLE') }} "GEOSPATIAL_TABLE"
+        name: PSTG_GEOSPATIAL_TABLE_test
         noLinkRefs: []
-  name: DIM_PRODUCTS
+  name: PSTG_GEOSPATIAL_TABLE_test
   overrideSQL: false
   schema: ""
-  sqlType: "194"
+  sqlType: "173"
   type: sql
   version: 1
 type: Node

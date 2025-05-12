@@ -135,34 +135,6 @@ operation:
               - columnCounter: 6c8a20ac-0c0e-4340-8f3b-325c8bf50ace
                 stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
             transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: a25c4398-6461-4531-aa0b-32e7cc227808
-          stepCounter: b3e86129-b51c-41d8-bf32-2acfe917895f
-        config: {}
-        dataType: TIMESTAMP
-        description: ""
-        name: SYSTEM_CREATE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 2480b6eb-3043-43ae-8652-72fe54dcf12c
-                stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 5e1eaedd-153a-45a0-9ead-931944aacc94
-          stepCounter: b3e86129-b51c-41d8-bf32-2acfe917895f
-        config: {}
-        dataType: TIMESTAMP
-        description: ""
-        name: SYSTEM_UPDATE_DATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 6408c9df-0989-45f8-8369-62ca7bc052dd
-                stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []

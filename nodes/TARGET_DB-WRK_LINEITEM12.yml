@@ -3,6 +3,7 @@ id: 1cf73071-fa60-4e31-957e-7b85fe75275b
 name: WRK_LINEITEM12
 operation:
   config:
+    asofJoinMain: false
     groupByAll: false
     insertStrategy: INSERT
     orderby: false
@@ -19,7 +20,7 @@ operation:
   description: ""
   isMultisource: false
   locationName: TARGET_DB
-  materializationType: view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:

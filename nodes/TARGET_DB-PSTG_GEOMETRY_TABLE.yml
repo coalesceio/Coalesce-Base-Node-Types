@@ -1,6 +1,6 @@
 fileVersion: 1
-id: ec6246ad-4e52-4479-b92e-78188b6823fb
-name: PSTG_PRODUCTS1
+id: 65828bf3-8074-4d91-8b48-6eac05d68d32
+name: PSTG_GEOMETRY_TABLE
 operation:
   config:
     groupByAll: false
@@ -15,7 +15,7 @@ operation:
     testsEnabled: false
     truncateBefore: false
   database: ""
-  deployEnabled: false
+  deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET_DB
@@ -28,81 +28,55 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: dbe1300b-97b5-4734-8ed4-8d9e3cde38ea
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: fd6391b4-6ffe-474e-914f-5e57eb4e1282
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
         dataType: NUMBER
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        name: PSTG_PRODUCTS1_KEY
+        name: PSTG_GEOMETRY_TABLE_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 39a8039d-c398-45d4-85b8-d57b22393a20
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: 9d814308-add2-4859-8c8c-b438d3387caf
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: GEOMETRY
         description: ""
-        name: PRODUCT_ID
+        isChangeTracking: true
+        name: G
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 440645fb-a318-455c-8639-d6c06aa34681
-                stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+              - columnCounter: 112bfdd1-663a-498c-9ffe-b24cbf2b7ba3
+                stepCounter: 3630da92-b816-4734-9a1e-49783b0e8e4e
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 83b39c02-6dcb-479c-926f-51a43df0c960
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: 3e59a666-3f5e-4117-b85a-5ab6fe421eeb
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
-        dataType: VARCHAR(255)
+        dataType: VARCHAR(16777216)
         description: ""
-        name: PRODUCT_NAME
+        isBusinessKey: true
+        name: DESCRIPTION
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 563848e9-a927-449d-a3e0-ff162c6a5325
-                stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 3e1f3262-eb39-4f83-bd3c-1f62b1daeb78
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
-        config: {}
-        dataType: VARCHAR(100)
-        description: ""
-        name: BRAND
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 4cdc5815-49db-432f-81e5-b808fdcd1eb9
-                stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: cfdf0fb9-a595-4c03-af91-d049bcf622f5
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
-        config: {}
-        dataType: VARCHAR(50)
-        description: ""
-        name: COLOUR
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 026c46c7-77d7-4a3f-b0ca-678831903366
-                stepCounter: 9b8a6c05-b811-4cba-bdfb-9a95e74ddeaf
+              - columnCounter: 55b8c6e0-e65e-4839-915d-d37e791d2f99
+                stepCounter: 3630da92-b816-4734-9a1e-49783b0e8e4e
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: bf789eb4-d1c9-4afa-81ae-d4d655cfd7bb
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: d5f528fd-dbb8-407e-935b-875ee673c181
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -118,8 +92,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 63e26a3d-8786-4499-9ecc-4ba5f252ab42
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: 7cc5cb45-a406-4612-87d3-838746c12525
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
         dataType: VARCHAR
         defaultValue: ""
@@ -135,8 +109,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 68590567-1962-499a-942b-e622ecf4f704
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: 805f770c-4ad2-4242-b85e-f2f7183db16b
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -152,8 +126,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: af371809-bd41-47cc-8429-b870b01461a0
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: 81c74d60-ef12-4ec4-9f7f-628072090333
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -169,8 +143,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6b4f2609-7a87-4224-a556-ff7b33d22da9
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: 2998f088-358f-455a-9093-5985b3f1c961
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -186,8 +160,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 06a452cc-70e5-4927-a565-0256e2301ce1
-          stepCounter: ec6246ad-4e52-4479-b92e-78188b6823fb
+          columnCounter: 7f8ac489-ca71-4847-9efb-25285d4cbd26
+          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -205,13 +179,13 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: TARGET_DB
-            nodeName: WRK_PRODUCTS
+          - locationName: SOURCE_DATA
+            nodeName: GEOMETRY_TABLE
         join:
-          joinCondition: FROM {{ ref('TARGET_DB', 'WRK_PRODUCTS') }} "WRK_PRODUCTS"
-        name: PSTG_PRODUCTS1
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOMETRY_TABLE') }} "GEOMETRY_TABLE"
+        name: PSTG_GEOMETRY_TABLE
         noLinkRefs: []
-  name: PSTG_PRODUCTS1
+  name: PSTG_GEOMETRY_TABLE
   overrideSQL: false
   schema: ""
   sqlType: "173"

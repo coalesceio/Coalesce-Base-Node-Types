@@ -1,11 +1,14 @@
 fileVersion: 1
-id: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
-name: WRK_CUSTOMER2
+id: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
+name: WRK_CUSTOMERtest1
 operation:
   config:
+    asofColumn:
+      items:
+        - {}
     asofJoin: true
-    asofJoinMain: true
-    asofJoinON: true
+    asofJoinMain: false
+    asofJoinON: false
     asofJoinUSING: false
     groupByAll: false
     insertStrategy: INSERT
@@ -23,14 +26,14 @@ operation:
   description: ""
   isMultisource: false
   locationName: TARGET_DB
-  materializationType: view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 68ef28d8-537a-4a57-aab1-14c42a59f374
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: 91dcad23-d888-46e3-9a11-10874ce98751
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -38,13 +41,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: fe8d9732-1b6e-464c-ad46-106e2be39435
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: 610a49d4-b1fc-48b1-a671-c0a6596f893b
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e7a0836b-dd61-4fd0-a7cf-bc853e057724
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: 398ef9e4-2949-4867-ad17-2062540ecc52
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: VARCHAR(25)
         description: ""
@@ -52,13 +55,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: d7311bf0-8603-4496-bdb6-0f446f15ed69
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: d2961d07-4d17-4a0f-add9-675a4857d077
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 6a133b6a-62ac-4152-ad32-dddd6518636b
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: ca283422-6038-4af2-96df-cbf02bdf6d25
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: VARCHAR(40)
         description: ""
@@ -66,13 +69,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 47d3d202-8a36-49df-bd8f-bf0ed6dc1b9c
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: e50504b9-f70d-4c88-8ebc-ac83fc89629c
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 40109608-5951-43b6-bc92-9f1f1ece4d12
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: 7c959011-5cb9-45ab-b8d4-fc2bafc27dbe
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -80,13 +83,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: f86edb7c-80ae-43a0-90e3-a726026c60fa
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: f0b2af74-554a-43bb-9009-6966b4d9316e
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: efb86881-39d1-4815-a937-1b79143b25c2
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: acb48273-0a7b-4fe3-a7d3-a35331a6495f
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: VARCHAR(15)
         description: ""
@@ -94,13 +97,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 45fa9a6f-b1e5-42cf-ab3b-b05b927e3e39
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: 8a56f70a-197a-4ce8-9a29-e45ae7ac9c64
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 70f34c0b-6cf1-4e61-829e-70ad2142642d
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: a41658f8-cf6c-4458-a70d-501fe4270e70
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: NUMBER(12,2)
         description: ""
@@ -108,13 +111,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: e6453f19-68ed-4568-b3f2-7788fe0e05a6
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: 5f42bd2b-f7cd-4ac4-a61a-6ac25e2fcde4
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fec2a20f-1c21-4d0a-a354-2691a78a4db7
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: 3e5eb3b0-da40-4d74-85a4-c9c044f173ba
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: VARCHAR(10)
         description: ""
@@ -122,13 +125,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 72151111-20fd-4fba-b84b-ce77c2e3fd4e
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: 5beb778b-3564-4db6-8ff6-f320ed24d3cf
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 7616bb43-2804-462a-9066-c8eda257a140
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: a89fb3ad-f6d3-4cd5-bcbf-938157f50b41
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: VARCHAR(117)
         description: ""
@@ -136,13 +139,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 9188b46a-9c61-4dcc-8ff2-8ddba24a150c
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: 4b82bf70-1736-42e6-ab58-af2bb3c07c27
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ccddda89-e4ba-4005-bdfe-5f90b38dedab
-          stepCounter: 8888faaf-bd70-45ce-a6d2-5be3e59838ca
+          columnCounter: 6164c5f4-aebc-4569-9c27-cd7c98153876
+          stepCounter: b5fe69b5-7bd1-4ec0-940b-a2777da55ef2
         config: {}
         dataType: TIMESTAMP_LTZ(9)
         description: ""
@@ -150,30 +153,28 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 9ede5bcf-f3a1-4739-9411-2ba9a03925e1
-                stepCounter: 38a9e4bb-ece0-42ee-831f-ea04056904a1
+              - columnCounter: e35df485-0b9a-4d34-89d9-08e32f64cc3e
+                stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
             transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases: {}
         customSQL:
-          customSQL: |-
-            {{ stage('Override Create SQL') }}
-            	CREATE OR REPLACE VIEW {{ ref('TARGET_DB', 'WRK_CUSTOMER2')}} AS (
-            		SELECT 
-             "C_CUSTKEY" AS "C_CUSTKEY"
-             FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER1') }}
-            	)
+          customSQL: ""
         dependencies:
-          - locationName: TARGET_DB
-            nodeName: WRK_CUSTOMER1
+          - locationName: SOURCE_DATA
+            nodeName: CUSTOMER
         join:
-          joinCondition: FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER1') }} "WRK_CUSTOMER1"
-        name: WRK_CUSTOMER2
+          joinCondition: |2-
+
+
+             
+              FROM  {{ ref('SOURCE_DATA', 'CUSTOMER') }} CUSTOMER
+        name: WRK_CUSTOMERtest1
         noLinkRefs: []
-  name: WRK_CUSTOMER2
-  overrideSQL: true
+  name: WRK_CUSTOMERtest1
+  overrideSQL: false
   schema: ""
   sqlType: "204"
   type: sql

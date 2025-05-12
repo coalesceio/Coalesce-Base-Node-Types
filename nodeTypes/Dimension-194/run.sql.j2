@@ -54,7 +54,11 @@ does not permit copying or modification for any other purpose.
 				{% elif config.insertZeroKeyAdvanced == true and col.name in ns.varColumnNameDefault %}
 					{%- for loopColumn in ns.varColumnNameDefault  -%}
 						{% if col.name ==  loopColumn %}
-						{{ ns.varColumnValueDefault[loop.index0]}} 
+                         {%if col.dataType[:3] | upper in ('VAR','CHA','STR','BIN')%}
+						 '{{ ns.varColumnValueDefault[loop.index0]}}'
+                         {%else%} 
+                         {{ ns.varColumnValueDefault[loop.index0]}}
+                        {%endif%}
 						{% endif %}						
 					{% endfor -%}
 				{% elif col.isSystemCurrentFlag %}'Y'
@@ -66,7 +70,7 @@ does not permit copying or modification for any other purpose.
 				{% elif col.dataType[:4] | upper in ('DATE','TIME') %}CAST(TO_TIMESTAMP( '{{config.insertZeroKeyDate}}', 'DD-MM-YYYY') AS {{ col.dataType }})
 				{% elif col.dataType[:3] | upper in ('VAR','CHA','STR','BIN') %}
 						{% if dtparams[0] and dtparams[0] | int <  config.insertZeroKeyStr | length  %}
-						SUBSTRING({{config.insertZeroKeyStr}},1,{{ dtparams[0] }})
+						SUBSTRING('{{config.insertZeroKeyStr}}',1,{{ dtparams[0] }})
 						{% else %}
 							'{{config.insertZeroKeyStr}}'
 						{% endif %}

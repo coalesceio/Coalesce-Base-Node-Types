@@ -1,35 +1,38 @@
 fileVersion: 1
-id: 121a6ff0-792c-49a8-8e90-99f16f206974
-name: DIM_CUSTOMER
+id: db724595-55e0-479a-a28b-0b1b67b9d2ad
+name: DIM_PRODUCTS21
 operation:
   config:
     customZeroKeyValues:
       items:
         - columnNameDefault:
-            columnCounter: 46cf3b56-8e46-4d81-b738-7a923fece3fa
-            stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-          columnValueDefault: UNKNOWN
+            columnCounter: 27d4a010-7b24-4436-9fd5-06c80a53390e
+            stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
+          columnValueDefault: "'UNKNOWN'"
     groupByAll: false
     insertStrategy: UNION ALL
     insertZeroKey: true
     insertZeroKeyAdvanced: true
     insertZeroKeyBol: "TRUE"
     insertZeroKeyDate: 01-01-1900
-    insertZeroKeyStr: NEW
-    insertZeroKeySurrogateKey: "-1"
-    insertZeroKeyTimestamp: null
+    insertZeroKeyStr: UNKNOWN
+    insertZeroKeySurrogateKey: "0"
+    insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
     orderby: false
+    orderbycolumn:
+      items:
+        - {}
     postSQL: ""
     preSQL: ""
-    selectDistinct: true
-    testsEnabled: true
-    truncateBefore: true
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
   database: ""
-  deployEnabled: false
-  description: Customer data as defined by TPC-H
+  deployEnabled: true
+  description: ""
   isMultisource: false
   locationName: TARGET_DB
-  materializationType: table
+  materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
@@ -38,73 +41,82 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 490b4a64-8099-4995-8c69-037c2c86f2a9
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: eb8b05b8-749d-4142-a853-37a9b7292158
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
         dataType: NUMBER
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        name: DIM_CUSTOMER_KEY
+        name: DIM_PRODUCTS2_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3f82846b-3c06-4d7a-8d78-dbc5073f2d5d
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: 45239c7f-ce3f-4c18-bc05-3532d0001854
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
         dataType: NUMBER(38,0)
         description: ""
-        hashDetails: null
         isBusinessKey: true
-        name: C_CUSTKEY
+        name: PRODUCT_ID
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 0a6f6eed-7f27-4ddd-a965-c43c9c98c07b
-                stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
+              - columnCounter: 6f64fc29-2f02-4714-a52a-a0ebe8f8fb54
+                stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2f6b99e5-3077-43b8-8663-d1db04c187ed
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: 787dca8e-6dd6-4624-b01c-3dfd07b51d21
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
-        dataType: VARCHAR(25)
-        description: Customer Name
-        hashDetails: null
-        isChangeTracking: true
-        name: C_NAME
-        nullable: false
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 668616f2-09e6-450e-b2b1-639d33ec96e3
-                stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 46cf3b56-8e46-4d81-b738-7a923fece3fa
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-        config: {}
-        dataType: VARCHAR(40)
+        dataType: VARCHAR(255)
         description: ""
-        hashDetails: null
-        isChangeTracking: true
-        name: C_ADDRESS
-        nullable: false
+        name: PRODUCT_NAME
+        nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 98337c57-7992-4376-b192-d2cdc3a95bf9
-                stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
+              - columnCounter: bd021a33-37bd-4628-991d-d146125d2e10
+                stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c69a9a9e-a06d-4798-b9e9-77b887e0f1b8
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: BRAND
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db6f18d9-e752-4202-82a3-04c0825d9ece
+                stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27d4a010-7b24-4436-9fd5-06c80a53390e
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: COLOUR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 998a6949-26a9-4576-a105-4a9047f601e5
+                stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b67291c7-dfd4-484f-b30b-9beb54a6b8e4
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: bb01858b-e5a9-4a11-bbf0-9635ff8a7134
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -120,8 +132,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b2d97349-2d56-4771-b41e-7f5593dce31e
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: a0c20e8d-b5e9-4c11-8db1-041446b2a235
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
         dataType: VARCHAR
         defaultValue: ""
@@ -137,8 +149,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: ca295400-27aa-481d-ac1b-7fec5b4edde1
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: b255eca5-128d-4525-8b0f-4885e52ede3b
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -154,8 +166,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6c8a20ac-0c0e-4340-8f3b-325c8bf50ace
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: 8e49ee1e-ac01-4026-83d8-e5a9a827e58c
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -171,8 +183,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2480b6eb-3043-43ae-8652-72fe54dcf12c
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: e0064f3e-3ade-467c-a277-3514bd901895
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -188,8 +200,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6408c9df-0989-45f8-8369-62ca7bc052dd
-          stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          columnCounter: a5d0ca01-26c5-4473-b18d-3620cea9cbf9
+          stepCounter: db724595-55e0-479a-a28b-0b1b67b9d2ad
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -203,20 +215,17 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases:
-          WRK_CUSTOMER123: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
+      - aliases: {}
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: TARGET_DB
-            nodeName: WRK_CUSTOMER123
+            nodeName: V_PRODUCTS
         join:
-          joinCondition: |-
-            FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER123') }} "WRK_CUSTOMER123"
-            where "WRK_CUSTOMER123"."C_CUSTKEY">10
-        name: DIM_CUSTOMER
+          joinCondition: FROM {{ ref('TARGET_DB', 'V_PRODUCTS') }} "V_PRODUCTS"
+        name: DIM_PRODUCTS21
         noLinkRefs: []
-  name: DIM_CUSTOMER
+  name: DIM_PRODUCTS21
   overrideSQL: false
   schema: ""
   sqlType: "194"

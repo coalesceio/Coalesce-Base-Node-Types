@@ -54,7 +54,11 @@ does not permit copying or modification for any other purpose.
 				{% elif config.insertZeroKeyAdvanced == true and col.name in ns.varColumnNameDefault %}
 					{%- for loopColumn in ns.varColumnNameDefault  -%}
 						{% if col.name ==  loopColumn %}
-						{{ ns.varColumnValueDefault[loop.index0]}} 
+                         {%if col.dataType[:3] | upper in ('VAR','CHA','STR','BIN')%}
+						 '{{ ns.varColumnValueDefault[loop.index0]}}'
+                         {%else%} 
+                         {{ ns.varColumnValueDefault[loop.index0]}}
+                        {%endif%}
 						{% endif %}						
 					{% endfor -%}
 				{% elif col.isSystemCurrentFlag %}'Y'

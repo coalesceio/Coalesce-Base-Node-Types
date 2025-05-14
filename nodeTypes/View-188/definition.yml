@@ -51,9 +51,13 @@ metadata:
           attributeName: groupByAll
           type: toggleButton
           enableIf: "{% if config.selectDistinct or node.override.create.enabled %} false {% else %} true {% endif %}" 
+          default: false   
+        
+        - displayName: Enable Tests
+          attributeName: testsEnabled
+          type: toggleButton
           default: false
-
-
+        
       - groupName: Hidden Config
         enableIf: "false"
         items:

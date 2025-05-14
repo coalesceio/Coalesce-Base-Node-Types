@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 673d09fb-ac56-44da-a0fa-18c7026f8909
-name: PSTG_CUSTOMER
+name: PSTG_CUSTOMER_vw
 operation:
   config:
     groupByAll: false
@@ -281,9 +281,9 @@ operation:
             nodeName: CUSTOMER
         join:
           joinCondition: FROM {{ ref('SOURCE_DATA', 'CUSTOMER') }} "CUSTOMER"
-        name: PSTG_CUSTOMER
+        name: PSTG_CUSTOMER_vw
         noLinkRefs: []
-  name: PSTG_CUSTOMER
+  name: PSTG_CUSTOMER_vw
   overrideSQL: false
   schema: ""
   sqlType: "173"

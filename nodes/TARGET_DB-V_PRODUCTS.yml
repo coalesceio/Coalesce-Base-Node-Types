@@ -8,6 +8,7 @@ operation:
     insertStrategy: UNION
     secureoption: false
     selectDistinct: false
+    testsEnabled: true
   database: ""
   deployEnabled: false
   description: ""
@@ -17,7 +18,8 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: true
         columnReference:
           columnCounter: 6f64fc29-2f02-4714-a52a-a0ebe8f8fb54
           stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
@@ -31,7 +33,8 @@ operation:
               - columnCounter: 5f0fd9bb-16a6-4f02-ac17-130f627ab186
                 stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: bd021a33-37bd-4628-991d-d146125d2e10
           stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
@@ -45,7 +48,8 @@ operation:
               - columnCounter: cbc95546-10d1-44f3-a4ee-366e56645e77
                 stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: db6f18d9-e752-4202-82a3-04c0825d9ece
           stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
@@ -59,7 +63,8 @@ operation:
               - columnCounter: 6bff80ab-af7f-4ca4-a4f6-9df32b6c0c2d
                 stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
             transform: ""
-      - appliedColumnTests: {}
+      - appliedColumnTests:
+          hasNull: false
         columnReference:
           columnCounter: 998a6949-26a9-4576-a105-4a9047f601e5
           stepCounter: 7639d08e-85de-4b8b-8d69-9d3b0418172c
@@ -74,7 +79,8 @@ operation:
                 stepCounter: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
             transform: ""
     cteString: ""
-    enabledColumnTestIDs: []
+    enabledColumnTestIDs:
+      - hasNull
     sourceMapping:
       - aliases: {}
         customSQL:

@@ -1,6 +1,6 @@
 fileVersion: 1
-id: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
-name: REGION
+id: 7731904a-fc24-4634-a27d-b9f218db83ed
+name: NATION2
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: a696ebe7-ae19-4e1a-8a42-9327b454f74c
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: 66102616-5f26-4463-891b-3ec9a17188ee
+          stepCounter: 7731904a-fc24-4634-a27d-b9f218db83ed
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: R_REGIONKEY
+        name: N_NATIONKEY
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 515eb7bb-d9e8-46e7-a9b8-2799eb7ab3aa
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: af91f283-9dca-40b8-af68-4895d582b186
+          stepCounter: 7731904a-fc24-4634-a27d-b9f218db83ed
         config: {}
         dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        name: R_NAME
+        name: N_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,32 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7e7a1495-628f-4687-aa7c-126b5118fd7a
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: 13e216b8-3699-4fb5-99d9-6ea6c17c4eb3
+          stepCounter: 7731904a-fc24-4634-a27d-b9f218db83ed
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: N_REGIONKEY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38636202-0487-4e02-b349-1d503f6268bf
+          stepCounter: 7731904a-fc24-4634-a27d-b9f218db83ed
         config: {}
         dataType: VARCHAR(152)
         defaultValue: ""
         description: ""
-        name: R_COMMENT
+        name: N_COMMENT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +89,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 03a033d6-943e-45cb-8b0d-03c917c1fbbe
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: 02933494-c9b8-4886-9836-260738dff672
+          stepCounter: 7731904a-fc24-4634-a27d-b9f218db83ed
         config: {}
         dataType: TIMESTAMP_LTZ(9)
         defaultValue: ""
         description: ""
-        name: R_LOAD_TIMESTAMP
+        name: N_LOAD_TIMESTAMP
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -84,7 +103,26 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: REGION
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 254a6a6c-1b39-475b-8195-2db694d4398a
+          stepCounter: 7731904a-fc24-4634-a27d-b9f218db83ed
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: UPDATE_TIME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: NATION2
   schema: ""
   sqlType: Source
   type: sourceInput

@@ -74,49 +74,54 @@ does not permit copying or modification for any other purpose.
                     {% endif %}
                     "SRC"."{{ col.name }}" = "TGT"."{{ col.name }}"
                 {% endfor %}
-WHEN MATCHED
-    {% for col in columns if not (col.isBusinessKey or col.isSystemUpdateDate or col.isSystemCreateDate) %}
-        {% if loop.first %}
-            AND (
-        {% else %}
-            OR
-        {% endif %}
-        {% if col.dataType == 'GEOGRAPHY' %}
-            (
-                ST_DISTANCE(
-                    (CASE 
-                        WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
-                        ELSE "SRC"."{{ col.name }}" 
-                    END),
-                    (CASE 
-                        WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
-                        ELSE "TGT"."{{ col.name }}" 
-                    END)
-                ) > 0
-            )
-        {% elif col.dataType == 'GEOMETRY' %}
-            (
-                ST_DISTANCE(
-                    (CASE 
-                        WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
-                        ELSE "SRC"."{{ col.name }}" 
-                    END),
-                    (CASE 
-                        WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
-                        ELSE "TGT"."{{ col.name }}" 
-                    END)
-                ) > 0
-            )
-        {% else %}
-            (
-                NVL(CAST("SRC"."{{ col.name }}" AS STRING), '**NULL**') <> 
-                NVL(CAST("TGT"."{{ col.name }}" AS STRING), '**NULL**')
-            )
-        {% endif %}
-        {% if loop.last %}
-            )
-        {% endif %}
-    {% endfor %}                 
+                WHEN MATCHED
+                {% for col in columns if not (   col.isBusinessKey or
+                                                        col.isSystemUpdateDate or
+                                                        col.isSystemCreateDate) %}
+                    {% if loop.first %}
+                        AND (
+                    {% else %}
+                        OR
+                    {% endif %}    
+
+               {% if col.dataType == 'GEOGRAPHY' %}
+                    (
+                        ST_DISTANCE(
+                            (CASE 
+                                WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "SRC"."{{ col.name }}" 
+                            END),
+                            (CASE 
+                                WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "TGT"."{{ col.name }}" 
+                            END)
+                        ) > 0
+                    )
+                {% elif col.dataType == 'GEOMETRY' %}
+                    (
+                        ST_DISTANCE(
+							
+								(CASE 
+									WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+									ELSE "SRC"."{{ col.name }}" 
+								END),
+								(CASE 
+									WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+									ELSE "TGT"."{{ col.name }} 
+                            END)
+                        ) > 0
+                    )
+                {% else %}
+                        (
+                            NVL(CAST("SRC"."{{ col.name }}" AS STRING), '**NULL**') <> 
+                            NVL(CAST("TGT"."{{ col.name }}" AS STRING), '**NULL**')
+                        )
+                    {% endif %}
+
+                    {% if loop.last %}
+                        )
+                    {% endif %}
+                {% endfor %}       
 
                 THEN UPDATE SET
                 {%- for col in columns if not (col.isBusinessKey or col.isSystemCreateDate) %}

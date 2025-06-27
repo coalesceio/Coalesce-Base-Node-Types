@@ -1,0 +1,136 @@
+fileVersion: 1
+id: e349c38e-09bb-4433-92ca-f923ecd715c7
+name: FCT_GEOMETRY_RAIL_LARGEDATA
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22754136-dc62-4df6-900c-66813caa97d0
+          stepCounter: e349c38e-09bb-4433-92ca-f923ecd715c7
+        config: {}
+        dataType: GEOGRAPHY
+        description: ""
+        name: C1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d21ba498-44e7-4545-875b-8b04fc099bbb
+                stepCounter: e3930854-591f-4251-b78a-c524a8331b39
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbea56c2-bc9a-46b6-814c-d826d5ab52f3
+          stepCounter: e349c38e-09bb-4433-92ca-f923ecd715c7
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: C2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fc0cf563-400e-4205-b4a1-c8a2da77edad
+                stepCounter: e3930854-591f-4251-b78a-c524a8331b39
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad868f16-a285-4ef5-9b16-77c138e0f5b1
+          stepCounter: e349c38e-09bb-4433-92ca-f923ecd715c7
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        isBusinessKey: true
+        name: C3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93092c6a-01cb-4051-87d0-ab5e3e492c16
+                stepCounter: e3930854-591f-4251-b78a-c524a8331b39
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b750ef06-e66b-478f-a09a-50192fb5bb64
+          stepCounter: e349c38e-09bb-4433-92ca-f923ecd715c7
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: C4
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 955b989f-7748-4fe4-95b3-69ccb4e21bf4
+                stepCounter: e3930854-591f-4251-b78a-c524a8331b39
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 718ccac7-c6d4-4c5d-a0dc-94c7f7ded71f
+          stepCounter: e349c38e-09bb-4433-92ca-f923ecd715c7
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 92ef254e-4363-4ed9-ae4c-c27c3f7816eb
+          stepCounter: e349c38e-09bb-4433-92ca-f923ecd715c7
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: GEOMETRY_RAIL_LARGEDATA
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOMETRY_RAIL_LARGEDATA') }} "GEOMETRY_RAIL_LARGEDATA"
+        name: FCT_GEOMETRY_RAIL_LARGEDATA
+        noLinkRefs: []
+  name: FCT_GEOMETRY_RAIL_LARGEDATA
+  overrideSQL: false
+  schema: ""
+  sqlType: "205"
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,135 @@
+fileVersion: 1
+id: a9d86e98-b964-4563-bd17-ce35daefe0de
+name: FCT_GEOMETRY_TABLE2
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: true
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c758fc02-94cd-4c24-8c06-770f4cda0cd5
+          stepCounter: a9d86e98-b964-4563-bd17-ce35daefe0de
+        config: {}
+        dataType: GEOMETRY
+        description: ""
+        name: G
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c89c738f-a0e8-4d66-a678-cac1426db94c
+                stepCounter: 93674088-cd32-43bf-a408-8f23e2d88089
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a6b6dbe-f8b6-4c0f-95a0-688d020197ee
+          stepCounter: a9d86e98-b964-4563-bd17-ce35daefe0de
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8126c251-e2bd-4a1d-9a27-200c3ec84ac8
+                stepCounter: 93674088-cd32-43bf-a408-8f23e2d88089
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14515396-cb08-4e8a-97b5-05feea493f0f
+          stepCounter: a9d86e98-b964-4563-bd17-ce35daefe0de
+        config: {}
+        dataType: GEOMETRY
+        description: ""
+        name: G
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5532c22e-db12-477f-aa24-0efcbd5ab165
+                stepCounter: d882788e-0737-49a9-a85f-baa4b3499c98
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf25e6d8-dc7b-4b14-b762-12bb8637bee9
+          stepCounter: a9d86e98-b964-4563-bd17-ce35daefe0de
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1e007d4e-4b6f-46bb-b2ad-2f23dc0874d7
+                stepCounter: d882788e-0737-49a9-a85f-baa4b3499c98
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ea55ec40-c622-486a-ac9f-be7b8dd4c58c
+          stepCounter: a9d86e98-b964-4563-bd17-ce35daefe0de
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2138f612-acd5-4bfd-9db8-31f91c3a4a0a
+          stepCounter: a9d86e98-b964-4563-bd17-ce35daefe0de
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: GEOMETRY_TABLE2
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOMETRY_TABLE2') }} "GEOMETRY_TABLE2"
+        name: FCT_GEOMETRY_TABLE2
+        noLinkRefs: []
+  name: FCT_GEOMETRY_TABLE2
+  overrideSQL: false
+  schema: ""
+  sqlType: "205"
+  type: sql
+  version: 1
+type: Node

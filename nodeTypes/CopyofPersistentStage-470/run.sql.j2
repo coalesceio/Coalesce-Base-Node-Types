@@ -6,13 +6,17 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
 does not permit copying or modification for any other purpose.  
 #}
 {# == Node Type Version        : 1  == #}
-{# == Node Type Name           : Dimension  == #}
-{# == Node Type Description    :This node loads data into work table using config options distinct,groupby all,order by ,multi-source  == #}
+{# == Node Type Name           :  Persistent Stage == #}
+{# == Node Type Description    : This node loads data into work table using config options distinct,groupby all,order by ,multi-source  == #}
 
+ {# == Check if business key is specified  == #}
+
+{% set has_business_key = columns | selectattr("isBusinessKey") | list | length > 0 %}
 
 {# == Variable check to identify type of dimension == #}
 
 {% set is_type_2 = columns | selectattr("isChangeTracking") | list | length > 0 %}
+
 
 {# == To run data quality tests before data insertion == #}
 
@@ -28,7 +32,7 @@ does not permit copying or modification for any other purpose.
 
 {# == Queries to be excuted before data insertion  == #}
 
-	{% if config.preSQL %}			
+	{% if config.preSQL %}
 		{{ stage('Pre-SQL') }}
 		{{ config.preSQL }}
 	{% endif %}
@@ -36,86 +40,20 @@ does not permit copying or modification for any other purpose.
  {# == Truncate data before data insertion  == #}
 
     {% if config.truncateBefore %}
-        {{ stage('Truncate Dimension Table') }}
+        {{ stage('Truncate Persistent Stage Table') }}
         TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
     {% endif %}
-			{% if config.insertZeroKey %}
-				{% if config.insertZeroKeyAdvanced == true %}
-				{%- set ns = namespace(varColumnNameDefault = [],varColumnValueDefault=[]) %}
-				{%set ns.varColumnNameDefault = config.customZeroKeyValues.get('items') | map(attribute='columnNameDefault.name') | list%}
-				{%set ns.varColumnValueDefault = config.customZeroKeyValues.get('items') | map(attribute='columnValueDefault') | list%}
-				{% endif %}
-			{{ stage('Insert Zero Record') }}
-			MERGE INTO {{ ref_no_link(node.location.name, node.name) }}USING
-			(SELECT 
-			{% for col in sources[0].columns %}
-				{% set dtparams = col.dataType.partition('(')[-1].rpartition(')')[0].split(',') %}
-				{% if col.isSurrogateKey %} {{config.insertZeroKeySurrogateKey}}
-				{% elif config.insertZeroKeyAdvanced == true and col.name in ns.varColumnNameDefault %}
-					{%- for loopColumn in ns.varColumnNameDefault  -%}
-						{% if col.name ==  loopColumn %}
-						{{ ns.varColumnValueDefault[loop.index0]}} 
-						{% endif %}						
-					{% endfor -%}
-				{% elif col.isSystemCurrentFlag %}'Y'
-				{% elif col.isSystemStartDate or col.isSystemEndDate or col.isSystemUpdateDate or col.isSystemCreateDate %}{{ get_source_transform(col) }}
-				{% elif col.isSystemVersion%}1
-				{% elif col.dataType | upper in ('BOOLEAN') %} {{ config.insertZeroKeyBol }}
-				{% elif col.dataType[:3] | upper in ('NUM','INT','DEC','FLO') %}0
-				{% elif col.dataType [:12]| upper in ('TIMESTAMP_LT','TIMESTAMP_NT','TIMESTAMP_TZ') %} '{{config.insertZeroKeyTimestamp}}' ::{{ col.dataType |upper}}																																						 
-				{% elif col.dataType[:4] | upper in ('DATE','TIME') %}CAST(TO_TIMESTAMP( '{{config.insertZeroKeyDate}}', 'DD-MM-YYYY') AS {{ col.dataType }})
-				{% elif col.dataType[:3] | upper in ('VAR','CHA','STR','BIN') %}
-						{% if dtparams[0] and dtparams[0] | int <  config.insertZeroKeyStr | length  %}
-						SUBSTRING({{config.insertZeroKeyStr}},1,{{ dtparams[0] }})
-						{% else %}
-							'{{config.insertZeroKeyStr}}'
-						{% endif %}
-				{% elif col.nullable %}NULL
-				{% else %}''
-				{% endif %}
-				AS "{{ col.name }}"
-				{% if not loop.last %}, {% endif %}
-			{% endfor %}
-			FROM   DUAL
-			)AS SOURCE_ZERO
-			ON
-			{%- for col in columns if col.isSurrogateKey %}
-				{{ node.name}}.{{ col.name}} ={{config.insertZeroKeySurrogateKey}}
-			{% endfor -%}			
-			WHEN MATCHED THEN UPDATE
-			SET
-            {%- for col in columns if (not col.isSurrogateKey and not col.isBusinessKey) %}
-				{{ node.name}}.{{ col.name}} =SOURCE_ZERO.{{ col.name}}
-				{% if not loop.last %}, {% endif %}			
-			{% endfor -%}
-            WHEN NOT MATCHED THEN INSERT
-			(
-            {%- for col in columns %}
-				{{ col.name}}
-				{% if not loop.last %}, {% endif %}			
-			{% endfor -%}
-			)
-			VALUES
-			(
-            {%- for col in columns %}
-			 SOURCE_ZERO.{{ col.name}}			
-				{% if not loop.last %}, {% endif %}			
-			{% endfor -%}
-			)
-		  {% endif %}	
-    {% if is_type_2 %}
-         
-         {# SCD-Type 2 Dimension == #}
-        
-            {{ stage('MERGE ' + ' Sources' | string) }}
+	
+    {% if has_business_key and is_type_2 %}
+
+         {# SCD-Type 2 Dimension == #}   
+
+            {{ stage('MERGE ' + 'SOURCES' | string) }}
             MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
             USING (
-      
 
         {% for source in sources %}
 
-           {% set joinclause = source.join %}
-           
             /* New Rows That Don't Exist */
             (SELECT
             {% if config.selectDistinct %}
@@ -132,7 +70,7 @@ does not permit copying or modification for any other purpose.
                 AS "{{ col.name }}",
             {% endfor %}
                 'INSERT_INITAL_VERSION_ROWS' AS "DML_OPERATION"
-            {{  get_clause(joinclause,'from')  }}
+            {{  get_clause(source.join,'from')  }}
             LEFT JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
             {% for col in source.columns if col.isBusinessKey -%}
                 {% if not loop.first %}
@@ -147,7 +85,7 @@ does not permit copying or modification for any other purpose.
                 {% endif %}
                 "DIM"."{{ col.name }}" IS NULL
             {% endfor %}
-            {{ get_clause(joinclause) }}
+            {{ get_clause(source.join) }}
             {% if config.groupByAll %}
             GROUP BY ALL
             {% endif %}
@@ -172,7 +110,7 @@ does not permit copying or modification for any other purpose.
                 AS "{{ col.name }}",
             {% endfor %}
                 'INSERT_NEW_VERSION_ROWS' AS "DML_OPERATION"
-            {{  get_clause(joinclause,'from')  }}
+            {{  get_clause(source.join,'from')  }}
             INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
             {% for col in source.columns if col.isBusinessKey -%}
                 {% if not loop.first %}
@@ -187,7 +125,7 @@ does not permit copying or modification for any other purpose.
                 {% else %}
                     OR
                 {% endif %}
-
+				
                 {% if col.dataType == 'GEOGRAPHY' %}
                     (
                         ST_DISTANCE(
@@ -225,8 +163,7 @@ does not permit copying or modification for any other purpose.
                     )
                 {% endif %}
             {% endfor %}
-
-            {{  get_clause(joinclause)  }}
+            {{  get_clause(source.join)  }}
             {% if config.groupByAll %}
             GROUP BY ALL
             {% endif %}
@@ -251,7 +188,7 @@ does not permit copying or modification for any other purpose.
                 AS "{{ col.name }}",
             {% endfor -%}
                 'update_expired_version_rows' AS "DML_OPERATION"
-            {{  get_clause(joinclause,'from')  }}
+            {{  get_clause(source.join,'from')  }}
             INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
             {% for col in source.columns if col.isBusinessKey -%}
                 {% if not loop.first %}
@@ -266,7 +203,7 @@ does not permit copying or modification for any other purpose.
                 {% else %}
                     OR
                 {% endif %}
-
+				
                 {% if col.dataType == 'GEOGRAPHY' %}
                     (
                         ST_DISTANCE(
@@ -304,8 +241,7 @@ does not permit copying or modification for any other purpose.
                     )
                 {% endif %}
             {% endfor %}
-
-            {{  get_clause(joinclause)  }}
+            {{  get_clause(source.join)  }}
             {% if config.groupByAll %}
             GROUP BY ALL
             {% endif %}
@@ -345,7 +281,7 @@ does not permit copying or modification for any other purpose.
                   AS "{{ col.name }}",
               {% endfor -%}
                   'UPDATE_NON_TYPE2_ROWS' AS "DML_OPERATION"
-              {{  get_clause(joinclause,'from')  }}
+              {{  get_clause(source.join,'from')  }}
               INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
               {% for col in source.columns if col.isBusinessKey -%}
                   {% if not loop.first %}
@@ -388,27 +324,23 @@ does not permit copying or modification for any other purpose.
                   {%else%}                      
                   {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
                   {%endif%}
-              {% endfor %} )
+              {% endfor %} )												   
               
-                {% for col in source.columns if not (
-                    col.isBusinessKey or
-                    col.isChangeTracking or
-                    col.isSurrogateKey or
-                    col.isSystemVersion or
-                    col.isSystemCurrentFlag or
-                    col.isSystemStartDate or
-                    col.isSystemEndDate or
-                    col.isSystemUpdateDate or
-                    col.isSystemCreateDate) -%}
-
-                    {% if loop.first %}
-                        AND (
-                    {% endif %}
-                    
-                    {% if not loop.first %}
-                        OR
-                    {% endif %}
-
+              {% for col in source.columns if not (   col.isBusinessKey or
+                                                      col.isChangeTracking or
+                                                      col.isSurrogateKey or
+                                                      col.isSystemVersion or
+                                                      col.isSystemCurrentFlag or
+                                                      col.isSystemStartDate or
+                                                      col.isSystemEndDate or
+                                                      col.isSystemUpdateDate or
+                                                      col.isSystemCreateDate) -%}
+                  {% if loop.first %}
+                      AND (
+                  {% endif %}
+                  {% if not loop.first %}
+                      OR
+                  {% endif %}
                {% if col.dataType == 'GEOGRAPHY' %}
                     (
                         ST_DISTANCE(
@@ -446,19 +378,16 @@ does not permit copying or modification for any other purpose.
                         )
                     {% endif %}
                 {% endfor %}
-
-            
-               {{  get_clause(joinclause)  }}
-               {% if config.groupByAll %}
+            {{  get_clause(source.join)  }}
+            {% if config.groupByAll %}
                 GROUP BY ALL
-               {% endif %}
-               {{ sortorder_by_colv() }} )      
-            {% endif %}   
-               {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+            {% endif %}
+            {{ sortorder_by_colv() }} )
+            {% endif %}
+            {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
                 {{config.insertStrategy}}
-               {% endif %}            
-					  
-        {% endfor %}  
+            {% endif %}   
+        {% endfor %}
                          
         ) AS "SRC"
         ON
@@ -487,19 +416,15 @@ does not permit copying or modification for any other purpose.
         {% endfor -%}
         )
 
-	
+    {% elif has_business_key and not is_type_2 %}
 
+           {# SCD-Type 1 Dimension == #}
 
-
-    {% else %}
-        
-        {# SCD-Type 1 Dimension == #}
-
-            {{ stage('MERGE ' + ' Sources' | string) }}
+            {{ stage('MERGE ' + 'SOURCES' | string ) }}
             MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
             USING (
 
-        {% for source in sources %}
+            {% for source in sources %}
                ( SELECT
                 {% if config.selectDistinct %}
                 DISTINCT
@@ -534,32 +459,30 @@ does not permit copying or modification for any other purpose.
                 "SRC"."{{ col.name }}" = "TGT"."{{ col.name }}"
             {% endfor %}
             WHEN MATCHED
-                {% for col in columns if not (
-                    col.isBusinessKey or
-                    col.isSurrogateKey or
-                    col.isSystemVersion or
-                    col.isSystemCurrentFlag or
-                    col.isSystemStartDate or
-                    col.isSystemEndDate or
-                    col.isSystemUpdateDate or
-                    col.isSystemCreateDate) %}
-
-                    {% if loop.first %}
-                        AND (
-                    {% else %}
-                        OR
-                    {% endif %}
+            {% for col in columns if not (   col.isBusinessKey or
+                                                    col.isSurrogateKey or
+                                                    col.isSystemVersion or
+                                                    col.isSystemCurrentFlag or
+                                                    col.isSystemStartDate or
+                                                    col.isSystemEndDate or
+                                                    col.isSystemUpdateDate or
+                                                    col.isSystemCreateDate) %}
+                {% if loop.first %}
+                    AND (
+                {% else %}
+                    OR
+                {% endif %}
 
                {% if col.dataType == 'GEOGRAPHY' %}
                     (
                         ST_DISTANCE(
                             (CASE 
-                                WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
-                                ELSE "SRC"."{{ col.name }}" 
+                                WHEN "("SRC"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "("SRC"."{{ col.name }}" 
                             END),
                             (CASE 
-                                WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
-                                ELSE "TGT"."{{ col.name }}" 
+                                WHEN "("TGT"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
+                                ELSE "("TGT"."{{ col.name }}" 
                             END)
                         ) > 0
                     )
@@ -568,12 +491,12 @@ does not permit copying or modification for any other purpose.
                         ST_DISTANCE(
 							
 								(CASE 
-									WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
-									ELSE "SRC"."{{ col.name }}" 
+									WHEN "("SRC"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+									ELSE "("SRC"."{{ col.name }}" 
 								END),
 								(CASE 
-									WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
-									ELSE "TGT"."{{ col.name }}" 
+									WHEN "("TGT"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+									ELSE "("TGT"."{{ col.name }} 
                             END)
                         ) > 0
                     )
@@ -588,7 +511,6 @@ does not permit copying or modification for any other purpose.
                         )
                     {% endif %}
                 {% endfor %}
-
             THEN UPDATE SET
             {%- for col in columns if not (  col.isBusinessKey or
                                                     col.isSurrogateKey or
@@ -613,18 +535,63 @@ does not permit copying or modification for any other purpose.
                 {% if not loop.last %}, {% endif %}
             {% endfor -%}
             )
-	 
+
+    {% else %}
+
+        {# == Executed if neither business key or change tracking is not specified  == #}
+
+
+            {{ stage('Insert ' + 'Sources' | string ) }}
+            INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            (
+                {% for col in columns if not col.isSurrogateKey %}
+                    "{{ col.name }}"
+                    {%- if not loop.last -%},{% endif %}
+                {% endfor %}
+            )
+
+
+        {% for source in sources %}
+
+
+            (SELECT
+            {% if config.selectDistinct %}
+            DISTINCT
+            {% endif %}
+            {% for col in source.columns if not col.isSurrogateKey %}
+
+                {% if col.isSystemVersion %}
+                    1
+                {% elif col.isSystemCurrentFlag %}
+                    'Y'
+                {% else %}
+                    {{ get_source_transform(col) }}
+                {% endif %}
+                AS "{{ col.name }}"
+                {%- if not loop.last -%}, {% endif %}
+                
+            {% endfor %}
+            {{ source.join }}
+            {% if config.groupByAll %}
+            GROUP BY ALL
+            {% endif %}
+            {{ sortorder_by_colv() }} ) 
+            {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                {{config.insertStrategy}}
+            {% endif %}
+        {% endfor %}            
     {% endif %}
 
 {# == Queries to be excuted post data insertion  == #}
-
-	{% if config.postSQL %}			
+	
+	{% if config.postSQL %}
 		{{ stage('Post-SQL') }}
 		{{ config.postSQL }}
 	{% endif %}
+	
 {% endif %}
 
-{# == To run data quality tests after data insertion == #}
+ {# == To run data quality tests after data insertion == #}
 
 {% if config.testsEnabled %}
 	{% for test in node.tests %}

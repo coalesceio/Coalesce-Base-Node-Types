@@ -1,6 +1,6 @@
 fileVersion: 1
-id: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
-name: REGION
+id: bad81e3d-15f0-4306-8f37-696b261de62c
+name: GEOSPATIAL_TABLE
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: a696ebe7-ae19-4e1a-8a42-9327b454f74c
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: 3694e03f-9b40-44dc-b4c6-0d54875ca045
+          stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: R_REGIONKEY
+        name: ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 515eb7bb-d9e8-46e7-a9b8-2799eb7ab3aa
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: 43aa3261-f51f-4135-b972-a79444087286
+          stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
         config: {}
-        dataType: VARCHAR(25)
+        dataType: GEOGRAPHY
         defaultValue: ""
         description: ""
-        name: R_NAME
+        name: G
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7e7a1495-628f-4687-aa7c-126b5118fd7a
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: e172d55c-4b53-4382-a11c-ba21c5b1157c
+          stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
         config: {}
-        dataType: VARCHAR(152)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: R_COMMENT
+        name: DESCRIPTION
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -65,26 +65,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 03a033d6-943e-45cb-8b0d-03c917c1fbbe
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
-        config: {}
-        dataType: TIMESTAMP_LTZ(9)
-        defaultValue: ""
-        description: ""
-        name: R_LOAD_TIMESTAMP
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-  name: REGION
+  name: GEOSPATIAL_TABLE
   schema: ""
   sqlType: Source
   type: sourceInput

@@ -1,0 +1,203 @@
+fileVersion: 1
+id: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+name: DIM_GEOMETRY_VIEW1
+operation:
+  config:
+    customZeroKeyValues:
+      items:
+        - {}
+    groupByAll: false
+    insertStrategy: UNION ALL
+    insertZeroKey: false
+    insertZeroKeyAdvanced: false
+    insertZeroKeyBol: "TRUE"
+    insertZeroKeyDate: 01-01-1900
+    insertZeroKeyStr: UNKNOWN
+    insertZeroKeySurrogateKey: "0"
+    insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 509e952b-9d07-4c9e-b163-3c0b6e17ae27
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_GEOMETRY_TABLE1_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 28a5bfba-7af7-441b-9b8c-72619d990b37
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: GEOMETRY
+        description: ""
+        name: G
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ab4c96f-ab91-4554-a0c9-c66688004810
+                stepCounter: ec177839-3aee-44f2-bd95-4e3c9fb49259
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43478831-a037-45ef-a8d8-911bd7695b29
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        isBusinessKey: true
+        name: DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 52f51809-4c95-4031-84cc-4f0a7fba528f
+                stepCounter: ec177839-3aee-44f2-bd95-4e3c9fb49259
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: be5a0c14-ccba-4795-9c72-97266bb1431e
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc2f2655-cee4-41f8-b3ee-caa1a3d99e87
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77e6aeab-393d-4a93-a54a-e9b4557b05ca
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fdeeeaf3-cc19-4ffb-bd82-ff43d24d5c3f
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6e29565-84a7-4208-b530-55ee41757c1b
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 771bbccf-5300-4805-ba53-85738d1fd043
+          stepCounter: 2ccc4ebd-57f5-4806-86a3-1e99a011675a
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: GEOMETRY_TABLE
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOMETRY_TABLE') }} "GEOMETRY_TABLE"
+        name: DIM_GEOMETRY_VIEW1
+        noLinkRefs: []
+  name: DIM_GEOMETRY_VIEW1
+  overrideSQL: false
+  schema: ""
+  sqlType: "194"
+  type: sql
+  version: 1
+type: Node

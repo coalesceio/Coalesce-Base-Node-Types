@@ -1,6 +1,6 @@
 fileVersion: 1
-id: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
-name: REGION
+id: e3930854-591f-4251-b78a-c524a8331b39
+name: GEOMETRY_RAIL_LARGEDATA
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,32 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: a696ebe7-ae19-4e1a-8a42-9327b454f74c
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: d21ba498-44e7-4545-875b-8b04fc099bbb
+          stepCounter: e3930854-591f-4251-b78a-c524a8331b39
+        config: {}
+        dataType: GEOGRAPHY
+        defaultValue: ""
+        description: ""
+        name: C1
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: fc0cf563-400e-4205-b4a1-c8a2da77edad
+          stepCounter: e3930854-591f-4251-b78a-c524a8331b39
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: R_REGIONKEY
+        name: C2
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 515eb7bb-d9e8-46e7-a9b8-2799eb7ab3aa
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: 93092c6a-01cb-4051-87d0-ab5e3e492c16
+          stepCounter: e3930854-591f-4251-b78a-c524a8331b39
         config: {}
-        dataType: VARCHAR(25)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: R_NAME
+        name: C3
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +70,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7e7a1495-628f-4687-aa7c-126b5118fd7a
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
+          columnCounter: 955b989f-7748-4fe4-95b3-69ccb4e21bf4
+          stepCounter: e3930854-591f-4251-b78a-c524a8331b39
         config: {}
-        dataType: VARCHAR(152)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: R_COMMENT
+        name: C4
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -65,26 +84,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 03a033d6-943e-45cb-8b0d-03c917c1fbbe
-          stepCounter: cba09362-bbe0-4a39-8d8e-86b4f4b659e5
-        config: {}
-        dataType: TIMESTAMP_LTZ(9)
-        defaultValue: ""
-        description: ""
-        name: R_LOAD_TIMESTAMP
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-  name: REGION
+  name: GEOMETRY_RAIL_LARGEDATA
   schema: ""
   sqlType: Source
   type: sourceInput

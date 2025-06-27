@@ -1,0 +1,218 @@
+fileVersion: 1
+id: 6044833b-458a-4575-ad90-98bd4f5aae6f
+name: DIM_GEOSPATIAL_TABLE
+operation:
+  config:
+    customZeroKeyValues:
+      items:
+        - {}
+    groupByAll: false
+    insertStrategy: UNION ALL
+    insertZeroKey: false
+    insertZeroKeyAdvanced: false
+    insertZeroKeyBol: "TRUE"
+    insertZeroKeyDate: 01-01-1900
+    insertZeroKeyStr: UNKNOWN
+    insertZeroKeySurrogateKey: "0"
+    insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4be1e8f1-40aa-471b-97cc-bd7d7258ae94
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_GEOSPATIAL_TABLE_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 401be73b-0431-40f2-b1f4-76830b943cb8
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3694e03f-9b40-44dc-b4c6-0d54875ca045
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22c48751-e911-4b91-a2ed-b57ebbd7febb
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: GEOGRAPHY
+        description: ""
+        isChangeTracking: true
+        name: G
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 43aa3261-f51f-4135-b972-a79444087286
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8ae6635e-af59-400c-9300-a63c99e28da8
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e172d55c-4b53-4382-a11c-ba21c5b1157c
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2985d154-2ce7-4582-a6f1-a32e39b07669
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8d659a5b-1c61-44e8-bb5c-856ac2b5ff2c
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 43efc83a-9537-430e-ab3f-545eff040db9
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 148778c3-7015-4320-8bdc-367967cf4d04
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0dea7c19-7585-4730-b923-1bd891ab777f
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49b836ff-fdf8-4887-95c7-1871f3f6b2b8
+          stepCounter: 6044833b-458a-4575-ad90-98bd4f5aae6f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: GEOSPATIAL_TABLE
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOSPATIAL_TABLE') }} "GEOSPATIAL_TABLE"
+        name: DIM_GEOSPATIAL_TABLE
+        noLinkRefs: []
+  name: DIM_GEOSPATIAL_TABLE
+  overrideSQL: false
+  schema: ""
+  sqlType: "194"
+  type: sql
+  version: 1
+type: Node

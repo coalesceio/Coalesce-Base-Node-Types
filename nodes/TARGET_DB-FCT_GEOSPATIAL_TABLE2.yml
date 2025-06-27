@@ -1,0 +1,142 @@
+fileVersion: 1
+id: 4bed1d1e-10a6-440f-a647-504679ae1298
+name: FCT_GEOSPATIAL_TABLE2
+operation:
+  config:
+    groupByAll: false
+    insertStrategy: UNION ALL
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: true
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c03391b6-6cd1-4acb-98ba-ae48f1f4eebe
+          stepCounter: 4bed1d1e-10a6-440f-a647-504679ae1298
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+          - columnReferences:
+              - columnCounter: 3694e03f-9b40-44dc-b4c6-0d54875ca045
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 82ca7e06-323e-403b-bc04-ba40bf9914e8
+          stepCounter: 4bed1d1e-10a6-440f-a647-504679ae1298
+        config: {}
+        dataType: GEOGRAPHY
+        description: ""
+        name: G
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+          - columnReferences:
+              - columnCounter: 43aa3261-f51f-4135-b972-a79444087286
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 369b9962-7088-4c5d-8378-929ff0035dcd
+          stepCounter: 4bed1d1e-10a6-440f-a647-504679ae1298
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+          - columnReferences:
+              - columnCounter: e172d55c-4b53-4382-a11c-ba21c5b1157c
+                stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 383d626f-0392-4e61-b6ef-43b406df8188
+          stepCounter: 4bed1d1e-10a6-440f-a647-504679ae1298
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a3d57c8-8844-4317-9ad2-ae34ed359d77
+          stepCounter: 4bed1d1e-10a6-440f-a647-504679ae1298
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: GEOSPATIAL_TABLE
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOSPATIAL_TABLE') }} "GEOSPATIAL_TABLE"
+        name: FCT_GEOSPATIAL_TABLE2
+        noLinkRefs: []
+      - aliases:
+          GEOSPATIAL_TABLE: bad81e3d-15f0-4306-8f37-696b261de62c
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: GEOSPATIAL_TABLE
+        join:
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOSPATIAL_TABLE') }} "GEOSPATIAL_TABLE"
+        name: NEW_SOURCE
+        noLinkRefs: []
+  name: FCT_GEOSPATIAL_TABLE2
+  overrideSQL: false
+  schema: ""
+  sqlType: "205"
+  type: sql
+  version: 1
+type: Node

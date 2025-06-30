@@ -6,6 +6,9 @@ mappingDefinitions:
     schema: SOURCE_DATA
   TARGET_DB:
     database: RUHULAMIN_QA
-    schema: TARGET
+    schema: TARGE4
+  TARGET_DB1:
+    database: ""
+    schema: ""
 name: New Environment1
 type: Environment

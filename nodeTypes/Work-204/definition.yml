@@ -166,7 +166,7 @@ metadata:
            attributeName: usingColumnName
            isRequired: false
            enableIf: "{%- if (config.asofJoin and config.asofJoinUSING) -%} true {%- else -%} false {%- endif -%}"
-      enableIf: "{% if node.materializationType == 'table' or (node.materializationType == 'view' and not node.override.create.enabled) %} true {% else %} false {% endif %}"
+      enableIf: "{% if (node.materializationType == 'table' or (node.materializationType == 'view' and not node.override.create.enabled)) and config.asofJoinMain  %} true {% else %} false {% endif %}"
 
       
     joinTemplate: |

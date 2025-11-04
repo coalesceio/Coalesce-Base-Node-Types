@@ -3,6 +3,17 @@ id: cab4f9e3-e7ea-400f-86c1-a2690115926d
 name: WRK_CUSTOMER21
 operation:
   config:
+    asofColumn:
+      items:
+        - matchCondition: null
+          onCondition: null
+          rightTable: null
+          rightTableSL: null
+          usingColumnName: null
+    asofJoin: true
+    asofJoinMain: true
+    asofJoinON: true
+    asofJoinUSING: true
     groupByAll: false
     insertStrategy: INSERT
     orderby: false
@@ -12,12 +23,12 @@ operation:
     postSQL: ""
     preSQL: ""
     selectDistinct: false
-    testsEnabled: false
+    testsEnabled: true
     truncateBefore: true
   database: ""
   deployEnabled: false
   description: ""
-  isMultisource: false
+  isMultisource: true
   locationName: TARGET_DB
   materializationType: table
   metadata:

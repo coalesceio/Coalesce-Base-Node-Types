@@ -67,8 +67,9 @@ You can create the node as:
 
 | **Setting** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
 | **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
 | **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 | **ASOF Join** | Toggle: True/False<br/>**True**: ASOF Join Options will be visible. <br/>**False**: ASOF Join Options will be invisible |
@@ -342,9 +343,10 @@ The Dimension node type has two configuration groups:
 
 | **Options** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions |
+| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
 | **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
 | **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 
@@ -477,8 +479,9 @@ The Fact node has two configuration groups:
 
 | **Setting** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
 | **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
 | **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
 | **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 

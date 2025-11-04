@@ -91,7 +91,7 @@ metadata:
         attributeName: asofJoinMain
         type: toggleButton
         default: false
-        enableIf: "{% if node.materializationType != 'view' %} true {% else %} false {% endif %}"
+        enableIf: "{% if node.materializationType == 'table' or (node.materializationType == 'view' and not node.override.create.enabled) %} true {% else %} false {% endif %}"
 
       - displayName: Pre-SQL
         attributeName: preSQL
@@ -166,7 +166,8 @@ metadata:
            attributeName: usingColumnName
            isRequired: false
            enableIf: "{%- if (config.asofJoin and config.asofJoinUSING) -%} true {%- else -%} false {%- endif -%}"
-      enableIf: "{% if node.materializationType != 'view' and config.asofJoinMain %} true {% else %} false {% endif %}"
+      enableIf: "{% if node.materializationType == 'table' or (node.materializationType == 'view' and not node.override.create.enabled) %} true {% else %} false {% endif %}"
+
       
     joinTemplate: |
      {%- if config.asofJoinMain and config.asofJoin -%} 

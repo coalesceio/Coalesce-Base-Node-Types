@@ -5,20 +5,28 @@ operation:
   config:
     groupByAll: false
     insertStrategy: UNION ALL
-    insertZeroKey: true
+    insertZeroKey: false
+    insertZeroKeyAdvanced: false
+    insertZeroKeyBol: "TRUE"
     insertZeroKeyDate: 01-01-1900
     insertZeroKeyStr: NEW
     insertZeroKeySurrogateKey: "-1"
-    orderby: false
+    orderby: true
+    orderbycolumn:
+      items:
+        - sortColName:
+            columnCounter: 2f6b99e5-3077-43b8-8663-d1db04c187ed
+            stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          sortOrder: desc
     postSQL: ""
     preSQL: ""
     selectDistinct: true
-    testsEnabled: true
+    testsEnabled: false
     truncateBefore: true
   database: ""
   deployEnabled: false
   description: Customer data as defined by TPC-H
-  isMultisource: false
+  isMultisource: true
   locationName: TARGET_DB
   materializationType: table
   metadata:
@@ -41,6 +49,8 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
+          - columnReferences: []
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 3f82846b-3c06-4d7a-8d78-dbc5073f2d5d
@@ -56,6 +66,8 @@ operation:
           - columnReferences:
               - columnCounter: 0a6f6eed-7f27-4ddd-a965-c43c9c98c07b
                 stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
+            transform: ""
+          - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -73,6 +85,8 @@ operation:
               - columnCounter: 668616f2-09e6-450e-b2b1-639d33ec96e3
                 stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
             transform: ""
+          - columnReferences: []
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 46cf3b56-8e46-4d81-b738-7a923fece3fa
@@ -89,6 +103,8 @@ operation:
               - columnCounter: 98337c57-7992-4376-b192-d2cdc3a95bf9
                 stepCounter: 0c7dc8d3-39f6-4548-b7dc-ee80fee0ddfa
             transform: ""
+          - columnReferences: []
+            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
@@ -104,6 +120,8 @@ operation:
         name: SYSTEM_VERSION
         nullable: true
         sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
           - columnReferences: []
             transform: ""
       - acceptedValues:
@@ -123,6 +141,8 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
+          - columnReferences: []
+            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
@@ -138,6 +158,8 @@ operation:
         name: SYSTEM_START_DATE
         nullable: true
         sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
       - acceptedValues:
@@ -157,6 +179,8 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
       - acceptedValues:
           strictMatch: true
           values: []
@@ -172,6 +196,8 @@ operation:
         name: SYSTEM_CREATE_DATE
         nullable: true
         sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
       - acceptedValues:
@@ -191,6 +217,8 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -207,8 +235,16 @@ operation:
             where "WRK_CUSTOMER"."C_CUSTKEY">10
         name: DIM_CUSTOMER
         noLinkRefs: []
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: NEW_SOURCE
+        noLinkRefs: []
   name: DIM_CUSTOMER
-  overrideSQL: false
+  overrideSQL: true
   schema: ""
   sqlType: "194"
   type: sql

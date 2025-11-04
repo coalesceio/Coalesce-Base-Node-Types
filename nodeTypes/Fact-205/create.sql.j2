@@ -9,13 +9,8 @@ does not permit copying or modification for any other purpose.
 {# == Node Type Name           : Fact  == #}
 {# == Node Type Description    : This node creates fact table,view and also override create sql for view  == #}
 
-{# Override CreateSQL for view #}
 
-{% if node.override.create.enabled %}
-	
-	{{ node.override.create.script }}
-
-{% elif node.materializationType == 'table' %}
+{% if node.materializationType == 'table' %}
         {{ stage('Create Fact Table') }}
 
 {# CreateSQL for Table #}  
@@ -35,10 +30,15 @@ does not permit copying or modification for any other purpose.
     
     
     {% elif node.materializationType == 'view' %}
+    {# Override CreateSQL for view #}
+
+    {% if node.override.create.enabled %}
+	
+	{{ node.override.create.script }}
+    {% else %}
+    {# CreateSQL for View #}
         {{ stage('Create Fact View') }}
 
-{# CreateSQL for View #}
-    
         CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
         (
             {% for col in columns %}
@@ -63,4 +63,4 @@ does not permit copying or modification for any other purpose.
         {% endfor %}
     
     {% endif %}
-    
+{% endif %}   

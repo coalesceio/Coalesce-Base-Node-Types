@@ -24,7 +24,7 @@ metadata:
         enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
     	
       - type: multisourceToggle
-        enableIf: "{% if node.override.create.enabled %} false {% else %} true {% endif %}"
+        enableIf: "{% if node.materializationType == 'view' and node.override.create.enabled %} false {% else %} true {% endif %}"
     	
       - displayName: Multi Source Strategy
         attributeName: insertStrategy
@@ -34,7 +34,7 @@ metadata:
         - "UNION"
         - "UNION ALL"
         isRequired: false
-        enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+        enableIf: "{% if not(node.materializationType == 'view' and node.override.create.enabled) and node.isMultisource %} true{% else %} false {% endif %}"
 
       - type: businessKeyColumns
         isRequired: true
@@ -57,7 +57,7 @@ metadata:
       - displayName: Distinct
         attributeName: selectDistinct
         type: toggleButton
-        enableIf: "{% if config.groupByAll or  node.override.create.enabled %} false {% else %} true {% endif %}"
+        enableIf: "{% if config.groupByAll or  (node.materializationType == 'view' and node.override.create.enabled) %} false {% else %} true {% endif %}"
         default: false
         
 
@@ -65,7 +65,7 @@ metadata:
         attributeName: groupByAll
         type: toggleButton
         default: false
-        enableIf: "{% if config.selectDistinct or  node.override.create.enabled %} false {% else %} true {% endif %}"    
+        enableIf: "{% if config.selectDistinct or  (node.materializationType == 'view' and node.override.create.enabled) %} false {% else %} true {% endif %}"
 
       - displayName: Order By
         attributeName: orderby
@@ -91,8 +91,8 @@ metadata:
              - asc
            
         isRequired: true
-        enableIf: "{% if config.orderby %} true {% else %} false {% endif %}"
-
+        enableIf:  "{% if node.materializationType != 'view' and config.orderby %} true {% else %} false {% endif %}"
+        
       - type: toggleButton
         attributeName: insertZeroKey
         displayName: Insert Zero Key Record

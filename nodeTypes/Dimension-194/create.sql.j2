@@ -10,13 +10,7 @@ does not permit copying or modification for any other purpose.
 {# == Node Type Description    : This node creates dimension table,view and also override create sql for view  == #}
 
 
-{# Override CreateSQL for view #}
-
-{% if node.override.create.enabled %}
-	
-	{{ node.override.create.script }}
-
-{% elif node.materializationType == 'table' %}
+{% if node.materializationType == 'table' %}
 	{{ stage('Create Dimension Table') }}
 
 {# CreateSQL for Table #}
@@ -39,9 +33,16 @@ does not permit copying or modification for any other purpose.
 
 
 {% elif node.materializationType == 'view' %}
-	{{ stage('Create Dimension View') }}
 
-{# CreateSQL for View #}
+{# Override CreateSQL for view #}
+
+{% if node.override.create.enabled %}
+	
+	{{ node.override.create.script }}
+
+{% else %}
+	{# CreateSQL for View #}
+	{{ stage('Create Dimension View') }}
 
 	CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
 	(
@@ -71,5 +72,5 @@ does not permit copying or modification for any other purpose.
         {% if config.groupByAll %} GROUP BY ALL {% endif %}
 		{% if not loop.last %} UNION ALL {% endif %}
 	{% endfor %}
-
+{% endif %}
 {% endif %}

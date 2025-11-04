@@ -8,7 +8,7 @@ operation:
         - {}
     groupByAll: false
     insertStrategy: UNION ALL
-    insertZeroKey: false
+    insertZeroKey: true
     insertZeroKeyAdvanced: false
     insertZeroKeyBol: "TRUE"
     insertZeroKeyDate: 01-01-1900

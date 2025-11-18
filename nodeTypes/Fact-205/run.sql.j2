@@ -176,6 +176,10 @@ WHEN MATCHED
             {{ stage('Post-SQL') }}
             {{ config.postSQL }}
         {% endif %}
+    {% else %}
+        {{ stage('Load Skipped for View') }}
+        -- The node {{node.name}} is materialized as View. Therefore, a Load operation is not supported.
+        SELECT 1 AS INFO_MESSAGE WHERE FALSE
     {% endif %}
 
 {# == To run data quality tests after data insertion == #}
@@ -194,4 +198,5 @@ WHEN MATCHED
                 {{ test.templateString }}
             {% endfor %}
         {% endfor %}
+
     {% endif %}

@@ -14,9 +14,7 @@ operation:
     orderby: true
     orderbycolumn:
       items:
-        - sortColName:
-            columnCounter: 2f6b99e5-3077-43b8-8663-d1db04c187ed
-            stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+        - sortColName: null
           sortOrder: desc
     postSQL: ""
     preSQL: ""
@@ -26,9 +24,9 @@ operation:
   database: ""
   deployEnabled: false
   description: Customer data as defined by TPC-H
-  isMultisource: true
+  isMultisource: false
   locationName: TARGET_DB
-  materializationType: table
+  materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
@@ -244,7 +242,7 @@ operation:
         name: NEW_SOURCE
         noLinkRefs: []
   name: DIM_CUSTOMER
-  overrideSQL: true
+  overrideSQL: false
   schema: ""
   sqlType: "194"
   type: sql

@@ -105,6 +105,10 @@ does not permit copying or modification for any other purpose.
 		{{ stage('Post-SQL') }}
 		{{ config.postSQL }}
 	{% endif %}
+{% else %}
+	{{ stage('Load Skipped for View') }}
+	-- The node {{node.name}} is materialized as View. Therefore, a Load operation is not supported.
+	SELECT 1 AS INFO_MESSAGE WHERE FALSE
 {% endif %}
  
 {# == To run data quality tests after data insertion == #}
@@ -123,4 +127,5 @@ does not permit copying or modification for any other purpose.
 			{{ test.templateString }}
 		{% endfor %}
 	{% endfor %}
+
 {% endif %}

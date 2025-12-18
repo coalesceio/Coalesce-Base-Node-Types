@@ -77,7 +77,7 @@ metadata:
 
       - type: changeTrackingColumns
         isRequired: false
-        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+        enableIf: "{% if node.materializationType != 'view' %} false {% else %} true {% endif %}"
 
       - displayName: Truncate Before
         attributeName: truncateBefore

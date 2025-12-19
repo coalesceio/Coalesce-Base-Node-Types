@@ -547,6 +547,7 @@ does not permit copying or modification for any other purpose.
             USING (
 
         {% for source in sources %}
+              {%set joinclause= source.join%}
                ( SELECT
                 {% if config.selectDistinct %}
                 DISTINCT
@@ -658,7 +659,7 @@ does not permit copying or modification for any other purpose.
                     OR "SRC".MAX_TARGET_VALUE IS NULL)
              {%endif%}
             THEN UPDATE SET
-            {%- for col in includeColList if not (  col.isBusinessKey or
+            {%- for col in columns if not (  col.isBusinessKey or
                                                     col.isSurrogateKey or
                                                     col.isSystemVersion or
                                                     col.isSystemCurrentFlag or

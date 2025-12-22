@@ -491,10 +491,23 @@ does not permit copying or modification for any other purpose.
                     {% else %}
                         {{ get_source_transform(col) }}
                     {% endif %}
-                    AS "{{ col.name }}"
+                    {%if col.name != last_modified_col %} AS "{{ col.name }}" {%endif%}
                     {%- if not loop.last %}, {% endif %}
                 {% endfor %}
-                {{ source.join }}
+                {{ get_clause(source.join,'from')}}
+                  {%if config.lastModifiedComparison%}
+                   LEFT JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                   {% for col in source.columns if col.isBusinessKey -%}
+                                {% if not loop.first %}
+                                    AND
+                                {% endif %}
+                                {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                            {% endfor %}
+                  {%endif%}
+                   {% set clause = get_clause(source.join) %}
+                   {% if clause %}
+                      {{ ("WHERE " ~ clause.strip()[3:].strip()) if clause.strip().upper().startswith('AND') else clause }}
+                   {% endif %}
                  {% if config.groupByAll or config.lastModifiedComparison %}
                  GROUP BY ALL
                  {% endif %}

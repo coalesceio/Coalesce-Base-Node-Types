@@ -196,6 +196,7 @@ does not permit copying or modification for any other purpose.
             {% endif %}
             {{ sortorder_by_colv() }}
             )
+            UNION ALL
             {%if config.lastModifiedComparison %}
                    /* Rows Needing To Be Expired 
                     In this case, only two columns are merged (version and end date) */

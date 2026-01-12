@@ -38,7 +38,37 @@ metadata:
       - type: businessKeyColumns
         isRequired: false
         enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+      
+      - type: toggleButton
+        attributeName: lastModifiedComparison
+        displayName: Last Modified Comparison
+        default: false
+        enableIf: "{% if node.materializationType != 'view' and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
 
+      - type: label
+        attributeName: l1
+        displayName: Column chosen can either be a timestamp or incremental id column
+        enableIf: "{% if config.lastModifiedComparison  %} true {% else %} false {% endif %}"
+      
+      - type: columnDropdownSelector
+        attributeName: lastModifiedColumn
+        displayName: Last Modified Column
+        enableIf: "{% if config.lastModifiedComparison  %} true {% else %} false {% endif %}"
+      
+      - type: label
+        attributeName: l2
+        displayName: The below toggle is applicable only for timestamp column
+        enableIf: "{% if config.lastModifiedComparison  %} true {% else %} false {% endif %}"
+
+      - type: toggleButton
+        attributeName: treatNullAsCurrentTimestamp
+        displayName: Treat NULL as Current Timestamp
+        default: false
+        enableIf: "{% if config.lastModifiedComparison %} true {% else %} false {% endif %}"
+      
       - displayName: Truncate Before
         attributeName: truncateBefore
         type: toggleButton

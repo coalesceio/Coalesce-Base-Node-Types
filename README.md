@@ -204,8 +204,6 @@ The Persistent node type has two configuration groups:
 
 #### Persistent Stage Options
 
-![pstage_options1](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/3914feb3-1db7-452b-8590-7c657b99c0eb)
-
 | **Option** | **Description** |
 |---------|-------------|
 | **Create As** | Table is the only option at this time |
@@ -321,8 +319,6 @@ The Dimension node type has two configuration groups:
 #### Dimension Options
 
 ##### Dimension Table Options
-
-![Dimension](https://github.com/user-attachments/assets/8f65ee5c-ce09-457e-b4de-9e6c94038795)
 
 | **Options** | **Description** |
 |---------|-------------|
@@ -466,8 +462,6 @@ The Fact node has two configuration groups:
 | **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
 
 #### Fact Options
-
-![fact_options](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/fe15f4d1-fccc-4522-a75b-71682a8ef493)
 
 | **Options** | **Description** |
 |---------|-------------|

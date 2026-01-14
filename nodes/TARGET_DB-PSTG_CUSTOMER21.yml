@@ -199,8 +199,8 @@ operation:
                 stepCounter: cab4f9e3-e7ea-400f-86c1-a2690115926d
             transform: ""
           - columnReferences:
-              - columnCounter: c31208c2-2193-4f75-b3fd-b22a0188fce9
-                stepCounter: 5aab4bd9-a0e3-4d4b-a12e-f41f49c6b4cf
+              - columnCounter: ecea03db-7dce-4db8-894b-44a49ccf82d7
+                stepCounter: cab4f9e3-e7ea-400f-86c1-a2690115926d
             transform: ""
       - acceptedValues:
           strictMatch: true
@@ -332,17 +332,23 @@ operation:
             where "WRK_CUSTOMER21"."C_COMMENT" like '%a%'
         name: PSTG_CUSTOMER21
         noLinkRefs: []
-      - aliases:
-          WRK_CUSTOMER_1: 5aab4bd9-a0e3-4d4b-a12e-f41f49c6b4cf
+      - aliases: {}
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: WRK_CUSTOMER_1
+          - locationName: TARGET_DB
+            nodeName: WRK_CUSTOMER_1_VIEW
+          - locationName: TARGET_DB
+            nodeName: WRK_CUSTOMER21
         join:
           joinCondition: |-
             FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER_1') }} "WRK_CUSTOMER_1"
             where "WRK_CUSTOMER_1"."C_COMMENT" like '%a'
+            FROM {{ ref('TARGET_DB', 'WRK_CUSTOMER_1_VIEW') }} "WRK_CUSTOMER_1_VIEW"
+            INNER JOIN {{ ref('TARGET_DB', 'WRK_CUSTOMER21') }} "WRK_CUSTOMER21"
+            ON "WRK_CUSTOMER_1_VIEW"./*COLUMN*/ = "WRK_CUSTOMER21"./*COLUMN*/
         name: NEW_SOURCE
         noLinkRefs: []
   name: PSTG_CUSTOMER21

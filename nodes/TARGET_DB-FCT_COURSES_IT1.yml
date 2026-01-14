@@ -1,14 +1,14 @@
 fileVersion: 1
-id: 8bb9469a-5c75-446f-a72a-4d5407afd247
-name: FCT_COURSES_IT
+id: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
+name: FCT_COURSES_IT1
 operation:
   config:
     groupByAll: false
     insertStrategy: UNION ALL
     lastModifiedColumn:
-      columnCounter: e0a0616d-d368-4007-85be-5c1c0c6c6c00
-      stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
-    lastModifiedComparison: false
+      columnCounter: a0726eb8-2ffd-461c-81b3-c2fd1e80f570
+      stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
+    lastModifiedComparison: true
     orderby: false
     orderbycolumn:
       items:
@@ -17,8 +17,9 @@ operation:
     preSQL: ""
     selectDistinct: false
     testsEnabled: false
-    treatNullAsCurrentTimestamp: false
+    treatNullAsCurrentTimestamp: true
     truncateBefore: false
+    type2Dimension: false
   database: ""
   deployEnabled: true
   description: ""
@@ -30,8 +31,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e0a0616d-d368-4007-85be-5c1c0c6c6c00
-          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+          columnCounter: a0726eb8-2ffd-461c-81b3-c2fd1e80f570
+          stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -49,8 +50,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 373e1594-7154-404c-a12a-cff4fa2b7a2f
-          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+          columnCounter: aa6c7764-90f8-42a8-b120-643c90606f4f
+          stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -67,8 +68,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ca2db0f6-e734-4d4d-b4d4-1ce2a402ef75
-          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+          columnCounter: 0af87636-25ce-4af8-9053-edcb5a378b01
+          stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
@@ -88,8 +89,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9cbe4cf8-2323-4449-a7cc-13bcb264642f
-          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+          columnCounter: ec77ce5c-66e5-40ad-a1a5-61a0a08e1889
+          stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -107,8 +108,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 783a35f3-8279-4ec1-bf5c-b8a33c04027a
-          stepCounter: 8bb9469a-5c75-446f-a72a-4d5407afd247
+          columnCounter: ab48dea9-9249-4fba-a961-d56f593424e6
+          stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -121,6 +122,50 @@ operation:
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6ca62a5-2d41-4c99-a830-b888de16efde
+          stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
+        config: {}
+        dataType: NUMERIC
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+          - columnReferences: []
+            transform: ""
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77c1a1ee-4d52-415d-85f2-de7527505d3d
+          stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
+        config: {}
+        dataType: VARCHAR(1)
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+          - columnReferences: []
+            transform: ""
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -148,10 +193,10 @@ operation:
           joinCondition: FROM {{ ref('SOURCE_DATA', 'COURSES_SC') }} "COURSES_SC"
         name: NEW_SOURCE
         noLinkRefs: []
-  name: FCT_COURSES_IT
+  name: FCT_COURSES_IT1
   overrideSQL: false
   schema: ""
-  sqlType: "205"
+  sqlType: "173"
   type: sql
   version: 1
 type: Node

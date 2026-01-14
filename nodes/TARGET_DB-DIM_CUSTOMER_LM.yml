@@ -32,7 +32,7 @@ operation:
     testsEnabled: false
     treatNullAsCurrentTimestamp: true
     truncateBefore: false
-    type2Dimension: true
+    type2Dimension: false
   database: ""
   deployEnabled: true
   description: ""

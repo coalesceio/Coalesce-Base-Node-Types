@@ -39,7 +39,10 @@ metadata:
         attributeName: lastModifiedComparison
         displayName: Last Modified Comparison
         default: false
-        enableIf: "{% if node.materializationType != 'view'%} true {%else%} false {%endif%}"
+        enableIf: "{% if node.materializationType != 'view' and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {%else%} false {%endif%}"
         
 
       - type: label
@@ -51,10 +54,7 @@ metadata:
       - type: columnDropdownSelector
         attributeName: lastModifiedColumn
         displayName: Last Modified Column
-        enableIf: " {% if node.materializationType != 'view' and (columns 
-                      | selectattr('isBusinessKey')
-                      | list
-                      | length > 0) %} true {% else %} false {% endif %}"
+        enableIf: " {% if node.materializationType != 'view' and config.lastModifiedComparison  %} true {% else %} false {% endif %}"
 
       - type: label
         attributeName: l2

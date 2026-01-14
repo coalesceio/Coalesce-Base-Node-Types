@@ -1,6 +1,6 @@
 fileVersion: 1
-id: bc4d3a40-bd79-4694-b114-1c970addadee
-name: DIM_CUSTOMER1
+id: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
+name: DIM_COURSES_IT
 operation:
   config:
     customZeroKeyValues:
@@ -15,6 +15,10 @@ operation:
     insertZeroKeyStr: UNKNOWN
     insertZeroKeySurrogateKey: "0"
     insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
+    lastModifiedColumn:
+      columnCounter: 374114b9-b6b4-47f8-8d95-b2b6503561af
+      stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
+    lastModifiedComparison: true
     orderby: false
     orderbycolumn:
       items:
@@ -23,11 +27,13 @@ operation:
     preSQL: ""
     selectDistinct: false
     testsEnabled: false
-    truncateBefore: true
+    treatNullAsCurrentTimestamp: false
+    truncateBefore: false
+    type2Dimension: true
   database: ""
   deployEnabled: true
-  description: Customer data as defined by TPC-H
-  isMultisource: false
+  description: ""
+  isMultisource: true
   locationName: TARGET_DB
   materializationType: table
   metadata:
@@ -38,82 +44,82 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 619d6283-bcc7-4d28-8d21-147c7882d000
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: ebb4cfc9-1d80-4ea4-bdc0-851aa384de6e
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
         dataType: NUMBER
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        name: DIM_CUSTOMER1_KEY
+        name: DIM_COURSES_IT_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: b6182cba-827b-438c-9b50-81d0d82bd470
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
-        config: {}
-        dataType: NUMBER
-        description: ""
-        name: DIM_CUSTOMER_KEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 490b4a64-8099-4995-8c69-037c2c86f2a9
-                stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+          - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: d1cd7e04-6ca7-47b0-8a90-ceea23b2aba2
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: 374114b9-b6b4-47f8-8d95-b2b6503561af
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
         dataType: NUMBER(38,0)
         description: ""
         isBusinessKey: true
-        name: C_CUSTKEY
-        nullable: false
+        name: COURSE_ID
+        nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 3f82846b-3c06-4d7a-8d78-dbc5073f2d5d
-                stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+              - columnCounter: fd094a73-85e2-4833-a177-4ef7d7c2f27c
+                stepCounter: f9a0ad54-aa29-470f-8752-eb459a71f206
+            transform: ""
+          - columnReferences:
+              - columnCounter: d0d57247-f6cf-4f99-b11b-4df4bd61af4a
+                stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 4556d6f9-ea6d-4894-8825-bc0a20ee9190
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: 4d4196c9-ff1f-4000-a9a2-34b610f64527
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
-        dataType: VARCHAR(25)
-        description: Customer Name
-        name: C_NAME
-        nullable: false
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 2f6b99e5-3077-43b8-8663-d1db04c187ed
-                stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 3d435284-8029-4d2a-8d2f-8bf39e8a294b
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
-        config: {}
-        dataType: VARCHAR(40)
+        dataType: VARCHAR(16777216)
         description: ""
-        name: C_ADDRESS
-        nullable: false
+        name: COURSE_NAME
+        nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 46cf3b56-8e46-4d81-b738-7a923fece3fa
-                stepCounter: 121a6ff0-792c-49a8-8e90-99f16f206974
+              - columnCounter: 95619e2b-c184-4614-9ccc-882b7759ee5d
+                stepCounter: f9a0ad54-aa29-470f-8752-eb459a71f206
+            transform: ""
+          - columnReferences:
+              - columnCounter: 16df3fc9-1f25-4c0f-90c9-c511656fee09
+                stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0ea34b49-ad52-4977-a9aa-ee8bb3b9c85a
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: INSTRUCTOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 98c24c81-f60c-4999-bac8-1345c9aacec0
+                stepCounter: f9a0ad54-aa29-470f-8752-eb459a71f206
+            transform: ""
+          - columnReferences:
+              - columnCounter: 1c00fef9-9eb0-4ac9-a554-b7a8e6168464
+                stepCounter: 2b91a193-34a5-4829-a30d-90658b25d3fb
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f59064e6-628d-4c6c-93a3-74c10a04d3b6
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: 75cc7313-087b-44c3-879d-ed1d138b6903
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -124,13 +130,15 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
+          - columnReferences: []
+            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 8c372219-f595-458f-b206-a3aa5a62c7b4
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: d1d79d6a-4b07-4d13-8ded-01acae724d7d
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
         dataType: VARCHAR
         defaultValue: ""
@@ -141,13 +149,15 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
+          - columnReferences: []
+            transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 202142e0-c5a5-4f70-a038-f6a5be73a64b
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: 08a77320-6267-49ee-ad0a-81298311ce16
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -158,13 +168,15 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 122d5100-f838-4b73-a564-abb61c7066c5
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: 4f66359a-8400-4621-a10a-8761b2ca810a
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -175,13 +187,15 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b60301af-b116-4720-8828-2c7c1a187638
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: cc48c754-6ecb-455e-9a38-36c80c15aadf
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -192,13 +206,15 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2b21e3aa-4f87-4227-82f6-7202ed39ffad
-          stepCounter: bc4d3a40-bd79-4694-b114-1c970addadee
+          columnCounter: 6894a46e-1620-4222-b963-4189cd6b328c
+          stepCounter: cbdf42f5-f04a-4493-9738-b51b1b3a13c5
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -209,21 +225,36 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
-          DIM_CUSTOMER: 121a6ff0-792c-49a8-8e90-99f16f206974
+          COURSES_IT: f9a0ad54-aa29-470f-8752-eb459a71f206
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: TARGET_DB
-            nodeName: DIM_CUSTOMER
+          - locationName: SOURCE_DATA
+            nodeName: COURSES_IT
         join:
-          joinCondition: FROM {{ ref('TARGET_DB', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
-        name: DIM_CUSTOMER1
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'COURSES_IT') }} "COURSES_IT"
+        name: DIM_COURSES_IT
         noLinkRefs: []
-  name: DIM_CUSTOMER1
+      - aliases:
+          COURSES_SC: 2b91a193-34a5-4829-a30d-90658b25d3fb
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: COURSES_SC
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE_DATA', 'COURSES_SC') }} "COURSES_SC"
+            where "COURSES_SC". "COURSE_ID" < 2
+        name: NEW_SOURCE
+        noLinkRefs: []
+  name: DIM_COURSES_IT
   overrideSQL: false
   schema: ""
   sqlType: "194"

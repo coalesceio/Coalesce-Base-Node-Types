@@ -11,9 +11,9 @@ operation:
         - {}
     postSQL: ""
     preSQL: ""
-    selectDistinct: false
+    selectDistinct: true
     testsEnabled: false
-    truncateBefore: false
+    truncateBefore: true
   database: ""
   deployEnabled: false
   description: ""
@@ -363,14 +363,16 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          DIM_LINEITEM12: b14a1b5a-f238-40b6-a765-75e058ddb974
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: DIM_LINEITEM12
         join:
-          joinCondition: FROM {{ ref('TARGET_DB', 'DIM_LINEITEM12') }} "DIM_LINEITEM12"
+          joinCondition: |
+            FROM {{ ref('TARGET_DB', 'DIM_LINEITEM12') }} "DIM_LINEITEM12"
         name: FCT_LINEITEM12
         noLinkRefs: []
   name: FCT_LINEITEM12

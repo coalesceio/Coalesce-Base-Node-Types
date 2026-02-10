@@ -1,0 +1,191 @@
+fileVersion: 1
+id: 6b953264-7ac1-4671-9bc1-7795253b263f
+name: FSQL_ORDERS1
+operation:
+  config:
+    enableCTESupport: true
+    postSQL: ""
+    preSQL: ""
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Orders data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_CUSTKEY
+          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: O_CUSTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: f.O_CUSTKEY
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: FIRST_ORDER_ID
+          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: FIRST_ORDER_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: f.first_order_id
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: FIRST_PURCHASE_DATE
+          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: FIRST_PURCHASE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: f.first_purchase_date
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: FIRST_ORDER_VALUE
+          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        name: FIRST_ORDER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: f.first_order_value
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERSTATUS
+          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        name: O_ORDERSTATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: f.O_ORDERSTATUS
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: REFRESHED_AT
+          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        name: REFRESHED_AT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP()
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: RECORD_TYPE
+          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        name: RECORD_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "'Initial Customer Purchase'"
+    cteString: |
+      WITH ordered_orders AS (
+      -- CTE 1: Rank every order for each customer by date
+      SELECT
+      O_CUSTKEY,
+      O_ORDERKEY,
+      O_ORDERDATE,
+      O_TOTALPRICE,
+      O_ORDERSTATUS,
+      ROW_NUMBER() OVER (
+      PARTITION BY O_CUSTKEY
+      ORDER BY O_ORDERDATE ASC, O_ORDERKEY ASC
+      ) AS order_rank
+      FROM {{ ref('SOURCE_DATA', 'ORDERS') }}
+      ),
+      first_orders AS (
+      -- CTE 2: Filter to keep only the first order (rank 1) for each customer
+      SELECT
+      O_CUSTKEY,
+      O_ORDERKEY AS first_order_id,
+      O_ORDERDATE AS first_purchase_date,
+      O_TOTALPRICE AS first_order_value,
+      O_ORDERSTATUS
+      FROM ordered_orders
+      WHERE order_rank = 1
+      )
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+
+            WITH ordered_orders AS (
+            -- CTE 1: Rank every order for each customer by date
+            SELECT
+            O_CUSTKEY,
+            O_ORDERKEY,
+            O_ORDERDATE,
+            O_TOTALPRICE,
+            O_ORDERSTATUS,
+            ROW_NUMBER() OVER (
+            PARTITION BY O_CUSTKEY
+            ORDER BY O_ORDERDATE ASC, O_ORDERKEY ASC
+            ) AS order_rank
+            FROM {{ ref('SOURCE_DATA', 'ORDERS') }}
+            ),
+            first_orders AS (
+            -- CTE 2: Filter to keep only the first order (rank 1) for each customer
+            SELECT
+            O_CUSTKEY,
+            O_ORDERKEY AS first_order_id,
+            O_ORDERDATE AS first_purchase_date,
+            O_TOTALPRICE AS first_order_value,
+            O_ORDERSTATUS
+            FROM ordered_orders
+            WHERE order_rank = 1
+            )
+            -- Final Select: Add metadata and return the results
+            SELECT
+            f.O_CUSTKEY,
+            f.first_order_id,
+            f.first_purchase_date,
+            f.first_order_value,
+            f.O_ORDERSTATUS,
+            CURRENT_TIMESTAMP() AS refreshed_at,
+            'Initial Customer Purchase' AS record_type
+            FROM first_orders f;
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: ORDERS
+        join:
+          joinCondition: |
+            FROM first_orders f
+        name: FSQL_ORDERS1
+        noLinkRefs: []
+  name: FSQL_ORDERS1
+  overrideSQL: false
+  schema: ""
+  sqlType: eb41edb0-7fd7-477a-be93-ba669aa6193d
+  type: sql
+  version: 1
+type: Node

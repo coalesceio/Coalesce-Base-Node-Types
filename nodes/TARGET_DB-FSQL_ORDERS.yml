@@ -133,6 +133,63 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_COMMENT\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ORDER_DATE
+          stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: ORDER_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_DATE()
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: CREATED_AT
+          stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        name: CREATED_AT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CURRENT_TIMESTAMP()
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: DEMO_COL
+          stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        name: DEMO_COL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "'COALESCE'"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: CASE_COL
+          stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
+        config: {}
+        dataType: BOOLEAN
+        defaultValue: ""
+        description: ""
+        name: CASE_COL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: |-
+              CASE
+                        WHEN O_ORDERPRIORITY = '4-NOT SPECIFIED'
+                        THEN true
+                        ELSE false
+                   END
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -140,21 +197,24 @@ operation:
         customSQL:
           customSQL: |-
             SELECT
-                 "O_ORDERKEY" AS "O_ORDERKEY",
-                 "O_CUSTKEY" AS "O_CUSTKEY",
-                 UPPER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
-                COALESCE("O_TOTALPRICE",0) AS "O_TOTALPRICE",
-                 DATE_TRUNC('day',"O_ORDERDATE") AS "O_ORDERDATE",
+                 CURRENT_DATE() AS ORDER_DATE,
+                 CURRENT_TIMESTAMP() AS CREATED_AT,
+                 'COALESCE' AS DEMO_COL,
+                 CASE
+                      WHEN O_ORDERPRIORITY = '4-NOT SPECIFIED'
+                      THEN true
+                      ELSE false
+                 END AS CASE_COL,
                  *
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
-            WHERE O_ORDERKEY = 136227620
+            WHERE O_ORDERKEY = 33338469
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: ORDERS
         join:
           joinCondition: |
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
-            WHERE O_ORDERKEY = 136227620
+            WHERE O_ORDERKEY = 33338469
         name: FSQL_ORDERS
         noLinkRefs: []
   name: FSQL_ORDERS

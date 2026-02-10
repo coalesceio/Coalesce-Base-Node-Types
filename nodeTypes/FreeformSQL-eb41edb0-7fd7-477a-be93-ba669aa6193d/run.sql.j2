@@ -21,7 +21,7 @@
 
 		{% if config.truncateBefore %}
 	
-			{{ stage('Truncate Stage Table') }}
+			{{ stage('Truncate Table') }}
 			TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
 	
 		{% endif %}

@@ -73,7 +73,7 @@ operation:
       SELECT
            "O_ORDERKEY" AS "O_ORDERKEY",
            "O_CUSTKEY" AS "O_CUSTKEY",
-           UPPER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
+           LOWER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
            COALESCE("O_TOTALPRICE", 0) AS "O_TOTALPRICE"
       FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
       )
@@ -86,7 +86,7 @@ operation:
             SELECT
                  "O_ORDERKEY" AS "O_ORDERKEY",
                  "O_CUSTKEY" AS "O_CUSTKEY",
-                 UPPER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
+                 LOWER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
                  COALESCE("O_TOTALPRICE", 0) AS "O_TOTALPRICE"
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
             )

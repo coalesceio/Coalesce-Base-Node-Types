@@ -140,8 +140,7 @@ operation:
            "O_CUSTKEY" AS "O_CUSTKEY",
            "O_ORDERSTATUS" AS "O_ORDERSTATUS",
            "O_TOTALPRICE" AS "O_TOTALPRICE",
-           "O_ORDERDATE" AS "O_ORDERDATE",
-           "O_ORDERPRIORITY" AS "O_ORDERPRIORITY"
+           "O_ORDERDATE" AS "O_ORDERDATE"
       FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
       )
     enabledColumnTestIDs: []
@@ -155,8 +154,7 @@ operation:
                  "O_CUSTKEY" AS "O_CUSTKEY",
                  "O_ORDERSTATUS" AS "O_ORDERSTATUS",
                  "O_TOTALPRICE" AS "O_TOTALPRICE",
-                 "O_ORDERDATE" AS "O_ORDERDATE",
-                 "O_ORDERPRIORITY" AS "O_ORDERPRIORITY"
+                 "O_ORDERDATE" AS "O_ORDERDATE"
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
             )
             SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"

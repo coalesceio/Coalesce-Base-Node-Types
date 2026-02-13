@@ -63,7 +63,7 @@ operation:
            "O_ORDERSTATUS" AS "O_ORDERSTATUS"
       FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
       LEFT JOIN {{ ref('SOURCE_DATA', 'NATION') }} "NATION"
-      WHERE "ORDERS"."O_ORDERKEY" = 32147872
+      WHERE "NATION"."N_NATIONKEY" > 2
       )
     enabledColumnTestIDs: []
     sourceMapping:
@@ -77,14 +77,14 @@ operation:
                  "O_ORDERSTATUS" AS "O_ORDERSTATUS"
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
             LEFT JOIN {{ ref('SOURCE_DATA', 'NATION') }} "NATION"
-            WHERE "ORDERS"."O_ORDERKEY" = 32147872
+            WHERE "NATION"."N_NATIONKEY" > 2
             )
             SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
         dependencies:
           - locationName: SOURCE_DATA
-            nodeName: NATION
-          - locationName: SOURCE_DATA
             nodeName: ORDERS
+          - locationName: SOURCE_DATA
+            nodeName: NATION
         join:
           joinCondition: |
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"

@@ -76,7 +76,7 @@ operation:
            "N_REGIONKEY" AS "N_REGIONKEY",
            "N_COMMENT" AS "N_COMMENT"
       FROM {{ ref('SOURCE_DATA', 'NATION') }} "NATION"
-      WHERE "NATION"."N_NATIONKEY" > 1
+      WHERE "NATION"."N_NATIONKEY" > 3
       )
     enabledColumnTestIDs: []
     sourceMapping:
@@ -90,7 +90,7 @@ operation:
                  "N_REGIONKEY" AS "N_REGIONKEY",
                  "N_COMMENT" AS "N_COMMENT"
             FROM {{ ref('SOURCE_DATA', 'NATION') }} "NATION"
-            WHERE "NATION"."N_NATIONKEY" > 1
+            WHERE "NATION"."N_NATIONKEY" > 3
             )
             SELECT * FROM NATION_CTE1
         dependencies:

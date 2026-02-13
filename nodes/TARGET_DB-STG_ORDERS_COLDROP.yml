@@ -141,10 +141,7 @@ operation:
            "O_ORDERSTATUS" AS "O_ORDERSTATUS",
            "O_TOTALPRICE" AS "O_TOTALPRICE",
            "O_ORDERDATE" AS "O_ORDERDATE",
-           "O_ORDERPRIORITY" AS "O_ORDERPRIORITY",
-           "O_CLERK" AS "O_CLERK",
-           "O_SHIPPRIORITY" AS "O_SHIPPRIORITY",
-           "O_COMMENT" AS "O_COMMENT"
+           "O_ORDERPRIORITY" AS "O_ORDERPRIORITY"
       FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
       )
     enabledColumnTestIDs: []
@@ -159,10 +156,7 @@ operation:
                  "O_ORDERSTATUS" AS "O_ORDERSTATUS",
                  "O_TOTALPRICE" AS "O_TOTALPRICE",
                  "O_ORDERDATE" AS "O_ORDERDATE",
-                 "O_ORDERPRIORITY" AS "O_ORDERPRIORITY",
-                 "O_CLERK" AS "O_CLERK",
-                 "O_SHIPPRIORITY" AS "O_SHIPPRIORITY",
-                 "O_COMMENT" AS "O_COMMENT"
+                 "O_ORDERPRIORITY" AS "O_ORDERPRIORITY"
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
             )
             SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"

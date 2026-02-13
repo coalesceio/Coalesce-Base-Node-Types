@@ -47,7 +47,7 @@ operation:
           columnCounter: O_ORDERSTATUS
           stepCounter: 0da31720-3957-4249-a9cf-42af63a7020d
         config: {}
-        dataType: VARCHAR(1)
+        dataType: VARCHAR
         defaultValue: ""
         description: ""
         name: O_ORDERSTATUS
@@ -55,12 +55,26 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERSTATUS\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_TOTALPRICE
+          stepCounter: 0da31720-3957-4249-a9cf-42af63a7020d
+        config: {}
+        dataType: NUMBER(12,2)
+        defaultValue: ""
+        description: ""
+        name: O_TOTALPRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_TOTALPRICE\""
     cteString: |
       WITH ORDERS AS(
       SELECT
            "O_ORDERKEY" AS "O_ORDERKEY",
            "O_CUSTKEY" AS "O_CUSTKEY",
-           "O_ORDERSTATUS" AS "O_ORDERSTATUS"
+           UPPER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
+           COALESCE("O_TOTALPRICE", 0) AS "O_TOTALPRICE"
       FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
       )
     enabledColumnTestIDs: []
@@ -72,7 +86,8 @@ operation:
             SELECT
                  "O_ORDERKEY" AS "O_ORDERKEY",
                  "O_CUSTKEY" AS "O_CUSTKEY",
-                 "O_ORDERSTATUS" AS "O_ORDERSTATUS"
+                 UPPER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
+                 COALESCE("O_TOTALPRICE", 0) AS "O_TOTALPRICE"
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
             )
             SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"

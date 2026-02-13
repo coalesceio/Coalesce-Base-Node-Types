@@ -1,0 +1,183 @@
+fileVersion: 1
+id: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+name: STG_ORDERS_COLDROP
+operation:
+  config:
+    enableCTESupport: true
+    postSQL: ""
+    preSQL: ""
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Orders data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERKEY
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: O_ORDERKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_ORDERKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_CUSTKEY
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: O_CUSTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_CUSTKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERSTATUS
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: VARCHAR(1)
+        defaultValue: ""
+        description: ""
+        name: O_ORDERSTATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_ORDERSTATUS\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_TOTALPRICE
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: NUMBER(12,2)
+        defaultValue: ""
+        description: ""
+        name: O_TOTALPRICE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_TOTALPRICE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERDATE
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: O_ORDERDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_ORDERDATE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERPRIORITY
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: VARCHAR(15)
+        defaultValue: ""
+        description: ""
+        name: O_ORDERPRIORITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_ORDERPRIORITY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_CLERK
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: VARCHAR(15)
+        defaultValue: ""
+        description: ""
+        name: O_CLERK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_CLERK\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_SHIPPRIORITY
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: O_SHIPPRIORITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_SHIPPRIORITY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_COMMENT
+          stepCounter: 9e4b1aa9-0597-4f30-a546-cde9f3b2dc22
+        config: {}
+        dataType: VARCHAR(79)
+        defaultValue: ""
+        description: ""
+        name: O_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_COMMENT\""
+    cteString: |
+      WITH ORDERS2 AS(
+      SELECT
+           "O_ORDERKEY" AS "O_ORDERKEY",
+           "O_CUSTKEY" AS "O_CUSTKEY",
+           "O_ORDERSTATUS" AS "O_ORDERSTATUS",
+           "O_TOTALPRICE" AS "O_TOTALPRICE",
+           "O_ORDERDATE" AS "O_ORDERDATE",
+           "O_ORDERPRIORITY" AS "O_ORDERPRIORITY",
+           "O_CLERK" AS "O_CLERK",
+           "O_SHIPPRIORITY" AS "O_SHIPPRIORITY",
+           "O_COMMENT" AS "O_COMMENT"
+      FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+      )
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            WITH ORDERS2 AS(
+            SELECT
+                 "O_ORDERKEY" AS "O_ORDERKEY",
+                 "O_CUSTKEY" AS "O_CUSTKEY",
+                 "O_ORDERSTATUS" AS "O_ORDERSTATUS",
+                 "O_TOTALPRICE" AS "O_TOTALPRICE",
+                 "O_ORDERDATE" AS "O_ORDERDATE",
+                 "O_ORDERPRIORITY" AS "O_ORDERPRIORITY",
+                 "O_CLERK" AS "O_CLERK",
+                 "O_SHIPPRIORITY" AS "O_SHIPPRIORITY",
+                 "O_COMMENT" AS "O_COMMENT"
+            FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+            )
+            SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: ORDERS
+        join:
+          joinCondition: |
+            FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+        name: STG_ORDERS_COLDROP
+        noLinkRefs: []
+  name: STG_ORDERS_COLDROP
+  overrideSQL: false
+  schema: ""
+  sqlType: eb41edb0-7fd7-477a-be93-ba669aa6193d
+  type: sql
+  version: 1
+type: Node

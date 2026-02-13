@@ -1,0 +1,99 @@
+fileVersion: 1
+id: 2d262574-2807-4abe-9c07-c8cf9bf8cfa1
+name: STG_ORDERS_JOIN
+operation:
+  config:
+    enableCTESupport: true
+    postSQL: ""
+    preSQL: ""
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Orders data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERKEY
+          stepCounter: 2d262574-2807-4abe-9c07-c8cf9bf8cfa1
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: O_ORDERKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_ORDERKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_CUSTKEY
+          stepCounter: 2d262574-2807-4abe-9c07-c8cf9bf8cfa1
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: O_CUSTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_CUSTKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERSTATUS
+          stepCounter: 2d262574-2807-4abe-9c07-c8cf9bf8cfa1
+        config: {}
+        dataType: VARCHAR(1)
+        defaultValue: ""
+        description: ""
+        name: O_ORDERSTATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_ORDERSTATUS\""
+    cteString: |
+      WITH ORDERS AS(
+      SELECT
+           "O_ORDERKEY" AS "O_ORDERKEY",
+           "O_CUSTKEY" AS "O_CUSTKEY",
+           "O_ORDERSTATUS" AS "O_ORDERSTATUS"
+      FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+      LEFT JOIN {{ ref('SOURCE_DATA', 'NATION') }} "NATION"
+      WHERE "ORDERS"."O_ORDERKEY" = 33338469
+      )
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            WITH ORDERS AS(
+            SELECT
+                 "O_ORDERKEY" AS "O_ORDERKEY",
+                 "O_CUSTKEY" AS "O_CUSTKEY",
+                 "O_ORDERSTATUS" AS "O_ORDERSTATUS"
+            FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+            LEFT JOIN {{ ref('SOURCE_DATA', 'NATION') }} "NATION"
+            WHERE "ORDERS"."O_ORDERKEY" = 33338469
+            )
+            SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: NATION
+          - locationName: SOURCE_DATA
+            nodeName: ORDERS
+        join:
+          joinCondition: |
+            FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+        name: STG_ORDERS_JOIN
+        noLinkRefs: []
+  name: STG_ORDERS_JOIN
+  overrideSQL: false
+  schema: ""
+  sqlType: eb41edb0-7fd7-477a-be93-ba669aa6193d
+  type: sql
+  version: 1
+type: Node

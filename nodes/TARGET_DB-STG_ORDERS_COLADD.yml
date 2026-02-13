@@ -1,0 +1,93 @@
+fileVersion: 1
+id: 3e21eb84-5fe5-499d-87a6-e526c45d03d8
+name: STG_ORDERS_COLADD
+operation:
+  config:
+    enableCTESupport: true
+    postSQL: ""
+    preSQL: ""
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Orders data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERKEY
+          stepCounter: 3e21eb84-5fe5-499d-87a6-e526c45d03d8
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: O_ORDERKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_ORDERKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_CUSTKEY
+          stepCounter: 3e21eb84-5fe5-499d-87a6-e526c45d03d8
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: O_CUSTKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_CUSTKEY\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: O_ORDERSTATUS
+          stepCounter: 3e21eb84-5fe5-499d-87a6-e526c45d03d8
+        config: {}
+        dataType: VARCHAR(1)
+        defaultValue: ""
+        description: ""
+        name: O_ORDERSTATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDERS\".\"O_ORDERSTATUS\""
+    cteString: |
+      WITH ORDERS AS(
+      SELECT
+           "O_ORDERKEY" AS "O_ORDERKEY",
+           "O_CUSTKEY" AS "O_CUSTKEY",
+           "O_ORDERSTATUS" AS "O_ORDERSTATUS"
+      FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+      )
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            WITH ORDERS AS(
+            SELECT
+                 "O_ORDERKEY" AS "O_ORDERKEY",
+                 "O_CUSTKEY" AS "O_CUSTKEY",
+                 "O_ORDERSTATUS" AS "O_ORDERSTATUS"
+            FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+            )
+            SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: ORDERS
+        join:
+          joinCondition: |
+            FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+        name: STG_ORDERS_COLADD
+        noLinkRefs: []
+  name: STG_ORDERS_COLADD
+  overrideSQL: false
+  schema: ""
+  sqlType: eb41edb0-7fd7-477a-be93-ba669aa6193d
+  type: sql
+  version: 1
+type: Node

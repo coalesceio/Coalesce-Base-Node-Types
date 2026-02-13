@@ -55,40 +55,12 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERSTATUS\""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: O_TOTALPRICE
-          stepCounter: 3e21eb84-5fe5-499d-87a6-e526c45d03d8
-        config: {}
-        dataType: NUMBER(12,2)
-        defaultValue: ""
-        description: ""
-        name: O_TOTALPRICE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: "\"ORDERS\".\"O_TOTALPRICE\""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: O_ORDERDATE
-          stepCounter: 3e21eb84-5fe5-499d-87a6-e526c45d03d8
-        config: {}
-        dataType: DATE
-        defaultValue: ""
-        description: ""
-        name: O_ORDERDATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: "\"ORDERS\".\"O_ORDERDATE\""
     cteString: |
       WITH ORDERS AS(
       SELECT
            "O_ORDERKEY" AS "O_ORDERKEY",
            "O_CUSTKEY" AS "O_CUSTKEY",
-           "O_ORDERSTATUS" AS "O_ORDERSTATUS",
-           "O_TOTALPRICE" AS "O_TOTALPRICE",
-           "O_ORDERDATE" AS "O_ORDERDATE"
+           "O_ORDERSTATUS" AS "O_ORDERSTATUS"
       FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
       )
     enabledColumnTestIDs: []
@@ -100,9 +72,7 @@ operation:
             SELECT
                  "O_ORDERKEY" AS "O_ORDERKEY",
                  "O_CUSTKEY" AS "O_CUSTKEY",
-                 "O_ORDERSTATUS" AS "O_ORDERSTATUS",
-                 "O_TOTALPRICE" AS "O_TOTALPRICE",
-                 "O_ORDERDATE" AS "O_ORDERDATE"
+                 "O_ORDERSTATUS" AS "O_ORDERSTATUS"
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
             )
             SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"

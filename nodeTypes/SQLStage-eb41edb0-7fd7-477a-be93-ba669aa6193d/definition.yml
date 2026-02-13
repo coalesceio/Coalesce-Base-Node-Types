@@ -5,9 +5,9 @@ metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |-
-    capitalized: Freeform SQL
-    short: FSQL
-    plural: Freeform SQLS
+    capitalized: SQL Stage
+    short: STG
+    plural: SQL Stages
     tagColor: '#3ACFC1'
 
     enableCTESupport: true
@@ -46,5 +46,5 @@ metadata:
         syntax: sql
         isRequired: false
         enableIf:  "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
-name: Freeform SQL
+name: SQL Stage
 type: NodeType

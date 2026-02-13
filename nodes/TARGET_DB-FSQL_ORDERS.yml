@@ -16,59 +16,86 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERKEY
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_ORDERKEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERKEY\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_ORDERKEY\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_CUSTKEY
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_CUSTKEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_CUSTKEY\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_CUSTKEY\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERSTATUS
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(1)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_ORDERSTATUS
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERSTATUS\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_ORDERSTATUS\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_TOTALPRICE
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(12,2)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_TOTALPRICE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_TOTALPRICE\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_TOTALPRICE\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERDATE
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
@@ -76,64 +103,94 @@ operation:
         dataType: DATE
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_ORDERDATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERDATE\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_ORDERDATE\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERPRIORITY
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(15)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_ORDERPRIORITY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERPRIORITY\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_ORDERPRIORITY\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_CLERK
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(15)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_CLERK
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_CLERK\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_CLERK\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_SHIPPRIORITY
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_SHIPPRIORITY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_SHIPPRIORITY\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_SHIPPRIORITY\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_COMMENT
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(79)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_COMMENT\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"ORDERS\".\"O_COMMENT\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: ORDER_DATE
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
@@ -141,12 +198,18 @@ operation:
         dataType: DATE
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: ORDER_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: CURRENT_DATE()
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: CURRENT_DATE()
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: CREATED_AT
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
@@ -154,12 +217,18 @@ operation:
         dataType: TIMESTAMP
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: CREATED_AT
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: CURRENT_TIMESTAMP()
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: CURRENT_TIMESTAMP()
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: DEMO_COL
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
@@ -167,12 +236,18 @@ operation:
         dataType: VARCHAR
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: DEMO_COL
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "'COALESCE'"
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "'COALESCE'"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: CASE_COL
           stepCounter: 13ee2bf4-2c2e-47dd-9ed2-f6ea5d9eaf26
@@ -180,6 +255,7 @@ operation:
         dataType: BOOLEAN
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: CASE_COL
         nullable: true
         sourceColumnReferences:
@@ -190,6 +266,13 @@ operation:
                         THEN true
                         ELSE false
                    END
+        systemColumnType: None
+        transform: |-
+          CASE
+                    WHEN O_ORDERPRIORITY = '4-NOT SPECIFIED'
+                    THEN true
+                    ELSE false
+               END
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

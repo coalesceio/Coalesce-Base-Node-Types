@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 6b953264-7ac1-4671-9bc1-7795253b263f
-name: FSQL_ORDERS1
+id: 4906415f-2383-4514-8ff1-19457012ae17
+name: STG_ORDERS
 operation:
   config:
     enableCTESupport: true
@@ -16,217 +16,165 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERKEY
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_ORDERKEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERKEY\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_ORDERKEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_CUSTKEY
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_CUSTKEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_CUSTKEY\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_CUSTKEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERSTATUS
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: VARCHAR(1)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_ORDERSTATUS
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERSTATUS\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_ORDERSTATUS\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_TOTALPRICE
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: NUMBER(12,2)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_TOTALPRICE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_TOTALPRICE\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_TOTALPRICE\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERDATE
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: DATE
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_ORDERDATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERDATE\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_ORDERDATE\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERPRIORITY
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: VARCHAR(15)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_ORDERPRIORITY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_ORDERPRIORITY\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_ORDERPRIORITY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_CLERK
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: VARCHAR(15)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_CLERK
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_CLERK\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_CLERK\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_SHIPPRIORITY
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_SHIPPRIORITY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_SHIPPRIORITY\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_SHIPPRIORITY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: O_COMMENT
-          stepCounter: 6b953264-7ac1-4671-9bc1-7795253b263f
+          stepCounter: 4906415f-2383-4514-8ff1-19457012ae17
         config: {}
         dataType: VARCHAR(79)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: O_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"ORDERS\".\"O_COMMENT\""
-        systemColumnType: None
-        transform: "\"ORDERS\".\"O_COMMENT\""
     cteString: |
-      WITH ordered_orders AS (
+      WITH ORDERS_CTE1 AS(
       SELECT
            "O_ORDERKEY" AS "O_ORDERKEY",
            "O_CUSTKEY" AS "O_CUSTKEY",
-           UPPER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
-          COALESCE("O_TOTALPRICE",0) AS "O_TOTALPRICE",
-           DATE_TRUNC('day',"O_ORDERDATE") AS "O_ORDERDATE",
-          *
+           "O_ORDERSTATUS" AS "O_ORDERSTATUS",
+           "O_TOTALPRICE" AS "O_TOTALPRICE",
+           "O_ORDERDATE" AS "O_ORDERDATE",
+           "O_ORDERPRIORITY" AS "O_ORDERPRIORITY",
+           "O_CLERK" AS "O_CLERK",
+           "O_SHIPPRIORITY" AS "O_SHIPPRIORITY",
+           "O_COMMENT" AS "O_COMMENT"
       FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
-      WHERE O_ORDERSTATUS != 'F'
       )
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases: {}
         customSQL:
           customSQL: |-
-
-
-            WITH ordered_orders AS (
+            WITH ORDERS_CTE1 AS(
             SELECT
                  "O_ORDERKEY" AS "O_ORDERKEY",
                  "O_CUSTKEY" AS "O_CUSTKEY",
-                 UPPER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
-                COALESCE("O_TOTALPRICE",0) AS "O_TOTALPRICE",
-                 DATE_TRUNC('day',"O_ORDERDATE") AS "O_ORDERDATE",
-                *
+                 "O_ORDERSTATUS" AS "O_ORDERSTATUS",
+                 "O_TOTALPRICE" AS "O_TOTALPRICE",
+                 "O_ORDERDATE" AS "O_ORDERDATE",
+                 "O_ORDERPRIORITY" AS "O_ORDERPRIORITY",
+                 "O_CLERK" AS "O_CLERK",
+                 "O_SHIPPRIORITY" AS "O_SHIPPRIORITY",
+                 "O_COMMENT" AS "O_COMMENT"
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
-            WHERE O_ORDERSTATUS != 'F'
             )
-            SELECT * FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
+            SELECT * FROM  {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: ORDERS
         join:
           joinCondition: |
             FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"
-        name: FSQL_ORDERS1
+        name: STG_ORDERS
         noLinkRefs: []
-  name: FSQL_ORDERS1
+  name: STG_ORDERS
   overrideSQL: false
   schema: ""
   sqlType: eb41edb0-7fd7-477a-be93-ba669aa6193d

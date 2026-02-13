@@ -16,59 +16,86 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERKEY
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_ORDERKEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_ORDERKEY\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_ORDERKEY\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_CUSTKEY
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_CUSTKEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_CUSTKEY\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_CUSTKEY\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERSTATUS
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(1)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_ORDERSTATUS
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_ORDERSTATUS\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_ORDERSTATUS\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_TOTALPRICE
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(12,2)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_TOTALPRICE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_TOTALPRICE\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_TOTALPRICE\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERDATE
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
@@ -76,63 +103,90 @@ operation:
         dataType: DATE
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_ORDERDATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_ORDERDATE\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_ORDERDATE\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_ORDERPRIORITY
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(15)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_ORDERPRIORITY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_ORDERPRIORITY\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_ORDERPRIORITY\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_CLERK
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(15)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_CLERK
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_CLERK\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_CLERK\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_SHIPPRIORITY
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_SHIPPRIORITY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_SHIPPRIORITY\""
-      - appliedColumnTests: {}
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_SHIPPRIORITY\""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
           columnCounter: O_COMMENT
           stepCounter: cc5026eb-0450-43c5-b958-1d23a566519b
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(79)
         defaultValue: ""
         description: ""
+        keyColumnType: None
         name: O_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"WRK_ORDERS\".\"O_COMMENT\""
+        systemColumnType: None
+        transform: "\"WRK_ORDERS\".\"O_COMMENT\""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

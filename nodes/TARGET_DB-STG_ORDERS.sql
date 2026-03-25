@@ -1,0 +1,8 @@
+@id("7f88f50f-f8fb-4136-b7ae-289afc094a73")
+@nodeType("eb41edb0-7fd7-477a-be93-ba669aa6193d")
+SELECT
+     "ORDER_KEY" AS "ORDER_KEY",
+     "ORDER_NAME" AS "ORDER_NAME",
+     "ORDER_DATE" AS "ORDER_DATE",
+     "CREATED_AT" AS "CREATED_AT"
+FROM {{ ref('SOURCE_DATA', 'ORDERS') }} "ORDERS"

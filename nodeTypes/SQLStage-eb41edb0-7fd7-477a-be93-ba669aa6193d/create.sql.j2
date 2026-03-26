@@ -5,9 +5,8 @@ Unauthorized reproduction, distribution, or disclosure of this material is stric
 Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
 does not permit copying or modification for any other purpose.  
 #}
-{# == Node Type Version        : 1  == #}
 {# == Node Type Name           : SQL Stage  == #}
-{# == Node Type Description    : This node creates work table,view and also override create sql for view  == #}
+{# == Node Type Description    : Creates a table with custome SQL logic  == #}
 
 
 {% if node.materializationType == 'table' %}
@@ -15,7 +14,7 @@ does not permit copying or modification for any other purpose.
 
 {# CreateSQL for Table #}
 
-	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+	CREATE OR REPLACE TABLE  {{ ref_no_link(node.location.name, node.name) }}
 	(
 		{% for col in columns %}
 			"{{ col.name }}" {{ col.dataType }}

@@ -17,10 +17,9 @@ metadata:
     - groupName: Options
       items:
       - type: metrializationSelector  
-        default: table
+        default: view
         options:
-        - table
-        - view 
+        - view
 
       - displayName: CTE Support Toggle
         attributeName: enableCTESupport
@@ -30,8 +29,13 @@ metadata:
       - displayName: Truncate Before
         attributeName: truncateBefore
         type: toggleButton
-        default: true
+        default: false
         enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+      - displayName: Enable Tests
+        attributeName: testsEnabled
+        type: toggleButton
+        default: false
 
       - displayName: Pre-SQL
         attributeName: preSQL

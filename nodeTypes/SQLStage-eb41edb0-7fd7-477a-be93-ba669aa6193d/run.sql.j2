@@ -5,6 +5,8 @@ Unauthorized reproduction, distribution, or disclosure of this material is stric
 Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
 does not permit copying or modification for any other purpose.  
 #}
+{# == Node Type Name           : SQL Stage  == #}
+{# == Node Type Description    : Creates a table with custome SQL logic  == #}
 
 {# == To run data quality tests before data insertion == #}
 
@@ -50,28 +52,15 @@ does not permit copying or modification for any other purpose.
 				)
 			{{source.cteString}}
  			(SELECT
-			{% if config.selectDistinct %}
-			DISTINCT
-			{% endif %}
 			{% for col in source.columns %}
                 {{ get_source_transform(col) }} AS "{{ col.name }}"
 				{%- if not loop.last -%}, {% endif %}
 			{% endfor %}
 	
                 {{ source.join }}
-                 {% if config.groupByAll %}
-                 GROUP BY ALL
-                 {% endif %}
                  {{ sortorder_by_colv() }} )     
 
-	
-			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
-				{{config.insertStrategy}}
-			{% endif %}
-	
 		{% endfor %}
-
-		
 
 {# == Queries to be excuted post data insertion  == #}
 

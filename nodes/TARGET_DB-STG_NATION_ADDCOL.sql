@@ -1,0 +1,10 @@
+@id("c03b249c-bb6f-431d-b92b-2b496c7a2389")
+@nodeType("eb41edb0-7fd7-477a-be93-ba669aa6193d")
+WITH NATIONS_CTE AS (
+     SELECT
+     "N_NATIONKEY" AS "N_NATIONKEY",
+     "N_NAME" AS "N_NAME",
+     "N_REGIONKEY" AS "N_REGIONKEY"
+FROM {{ ref('SRC', 'NATION') }} "NATION"
+)
+SELECT * FROM NATIONS_CTE

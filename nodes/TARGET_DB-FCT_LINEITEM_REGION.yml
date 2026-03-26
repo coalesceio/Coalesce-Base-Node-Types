@@ -5,6 +5,10 @@ operation:
   config:
     groupByAll: false
     insertStrategy: UNION ALL
+    lastModifiedColumn:
+      columnCounter: 975f78c1-59cd-46fd-b336-94e373835adb
+      stepCounter: 73ff41cc-bf64-4cd7-bd99-788ba80c6c45
+    lastModifiedComparison: true
     orderby: true
     orderbycolumn:
       items:
@@ -16,6 +20,7 @@ operation:
     preSQL: ""
     selectDistinct: false
     testsEnabled: false
+    treatNullAsCurrentTimestamp: false
     truncateBefore: false
   database: ""
   deployEnabled: true
@@ -33,6 +38,7 @@ operation:
         config: {}
         dataType: NUMBER(38,0)
         description: ""
+        isBusinessKey: true
         name: L_ORDERKEY
         nullable: true
         sourceColumnReferences:
@@ -358,12 +364,14 @@ operation:
             FROM {{ ref('SOURCE_DATA', 'LINEITEM') }} "LINEITEM"
             INNER JOIN {{ ref('SOURCE_DATA', 'REGION') }} "REGION"
             ON "LINEITEM"."L_ORDERKEY" = "REGION"."R_REGIONKEY"
+            WHERE "LINEITEM"."L_COMMENT" like 'abcd%' -- WHERE CLAUSE
+            /*QUALIFY ADDED */
         name: FCT_LINEITEM_REGION
         noLinkRefs: []
   name: FCT_LINEITEM_REGION
   overrideSQL: false
   schema: ""
-  sqlType: "248"
+  sqlType: "205"
   type: sql
   version: 1
 type: Node

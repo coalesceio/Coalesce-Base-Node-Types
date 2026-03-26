@@ -27,23 +27,6 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: b1616612-264c-4ce0-b07e-52593696417e
-          stepCounter: ba01002c-4c5d-4750-8b18-e9fadcec1cbf
-        config: {}
-        dataType: NUMBER
-        defaultValue: ""
-        description: ""
-        isSurrogateKey: true
-        name: DIM_CUSTOMER1_KEY
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 56c79c2c-149e-4f39-be3d-913165390ce2

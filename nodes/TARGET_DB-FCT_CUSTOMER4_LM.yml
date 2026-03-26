@@ -200,7 +200,10 @@ operation:
           - locationName: SOURCE_DATA
             nodeName: CUSTOMER
         join:
-          joinCondition: FROM {{ ref('SOURCE_DATA', 'CUSTOMER') }} "CUSTOMER"
+          joinCondition: |-
+            FROM {{ ref('SOURCE_DATA', 'CUSTOMER') }} "CUSTOMER"
+            WHERE "CUSTOMER"."C_CUSTKEY"  = 105 --WHERE CLAUSE
+            /* order by */
         name: FCT_CUSTOMER4_LM
         noLinkRefs: []
   name: FCT_CUSTOMER4_LM

@@ -1,0 +1,84 @@
+fileVersion: 1
+id: e5f0ac60-5bfc-43bb-9b14-5b5abf044cc7
+name: NATION_COPY1
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE_DATA
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ce528a99-71ff-4209-ae97-8492d775d1a4
+          stepCounter: e5f0ac60-5bfc-43bb-9b14-5b5abf044cc7
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: N_NATIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6fa8f916-a706-48bd-afe8-20bcbb0c1445
+          stepCounter: e5f0ac60-5bfc-43bb-9b14-5b5abf044cc7
+        config: {}
+        dataType: VARCHAR(25)
+        defaultValue: ""
+        description: ""
+        name: N_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: df9b64a6-90c7-45eb-8ea3-48a30bb836ab
+          stepCounter: e5f0ac60-5bfc-43bb-9b14-5b5abf044cc7
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: N_REGIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 74dc8ccf-b997-4654-89b8-6727d1e5f5ce
+          stepCounter: e5f0ac60-5bfc-43bb-9b14-5b5abf044cc7
+        config: {}
+        dataType: VARCHAR(152)
+        defaultValue: ""
+        description: ""
+        name: N_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+  name: NATION_COPY1
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

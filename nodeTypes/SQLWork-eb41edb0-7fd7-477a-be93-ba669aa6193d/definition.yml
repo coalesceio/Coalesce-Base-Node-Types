@@ -1,0 +1,16 @@
+fileVersion: 1
+id: eb41edb0-7fd7-477a-be93-ba669aa6193d
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: SQL Work
+    short: WRK
+    plural: Works
+    tagColor: '#2EB67D'
+
+    enableCTESupport: true
+    inputMode: 'sql'
+name: SQL Work
+type: NodeType

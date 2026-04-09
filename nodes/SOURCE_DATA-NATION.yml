@@ -76,6 +76,23 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 37e09cce-934f-4379-8b8f-c60af0a2f2b4
+          stepCounter: cf902ee7-2ad3-4969-a6db-bc24f72f2755
+        config: {}
+        dataType: TIMESTAMP_LTZ(9)
+        defaultValue: ""
+        description: ""
+        name: N_LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
   name: NATION
   schema: ""
   sqlType: Source

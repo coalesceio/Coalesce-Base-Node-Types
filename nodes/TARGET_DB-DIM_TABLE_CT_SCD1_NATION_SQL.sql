@@ -1,0 +1,27 @@
+@id("03310eb4-2e09-4bb4-bc52-1cc8f625ddb9")
+@nodeType("932f2d25-0815-4c57-8e77-4a7d2c9a4c75")
+@materializationType("table")
+@truncateBefore("false")
+@selectDistinct("true")
+@lastModifiedComparison("false")
+@treatNullAsCurrentTimestamp("true")
+@type2Dimension("false")
+@preSQL(" ")
+@postSQL(" ")
+
+SELECT
+     0 AS "{{ node.name }}_KEY" @isSurrogateKey @nullable("false") @description("System generated value"),
+     nation."N_NATIONKEY" AS "N_NATIONKEY" @isBusinessKey @defaultValue("0"),
+     nation."N_NAME" AS "N_NAME" @defaultValue("John-Doe"),
+     nation."N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0"),
+     nation."N_COMMENT" AS "N_COMMENT" @description("Add comments") @nullable("true") @defaultValue("NA"),
+     nation."N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @isLastModifiedColumn,
+     0 AS "SYSTEM_VERSION" @isSystemVersion @defaultValue("1"),
+     '' AS "SYSTEM_CURRENT_FLAG" @isSystemCurrentFlag @defaultValue("Y"),
+     CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_START_DATE" @isSystemStartDate,
+     CAST('2999-12-31 00:00:00' AS TIMESTAMP) AS "SYSTEM_END_DATE" @isSystemEndDate,
+     CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_CREATE_DATE" @isSystemCreateDate,
+     CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_UPDATE_DATE" @isSystemUpdateDate
+FROM {{ ref('SOURCE_DATA', 'NATION') }} nation
+    
+

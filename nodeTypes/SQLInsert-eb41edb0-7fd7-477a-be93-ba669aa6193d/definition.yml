@@ -5,12 +5,12 @@ metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |-
-    capitalized: SQL Work
-    short: WRK
-    plural: Works
+    capitalized: SQL Insert
+    short: INS
+    plural: Inserts
     tagColor: '#2EB67D'
 
     enableCTESupport: true
     inputMode: 'sql'
-name: SQL Work
+name: SQL Insert
 type: NodeType

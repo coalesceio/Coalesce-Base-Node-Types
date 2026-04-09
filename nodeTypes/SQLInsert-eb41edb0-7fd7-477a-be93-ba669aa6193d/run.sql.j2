@@ -9,56 +9,57 @@ does not permit copying or modification for any other purpose.
 {# == Node Type Description    : Creates a table with custome SQL logic  == #}
 {#---------------------------------------------------------------------------------------------#}
 
-{% set mat = get_param(config, 'materializationType') | lower %}
-{% set materializationType = 'view' if mat == 'view' else 'table' %}
+{%- set mat = get_param(config, 'materializationType') | lower %}
+{%- set materializationType = 'view' if mat == 'view' else 'table' %}
 
-{% if materializationType == 'table' %}
+{%- if materializationType == 'table' %}
 
-    {% set preSQL = get_param(config, 'preSQL', true) %}
-    {% set postSQL = get_param(config, 'postSQL', true) %}
-    {% set truncateBefore = get_param(config, 'truncateBefore', true) %}
+    {%- set preSQL = get_param(config, 'preSQL', true) %}
+    {%- set postSQL = get_param(config, 'postSQL', true) %}
+    {%- set truncateBefore = get_param(config, 'truncateBefore', true) %}
+    {%- set selectDistinct = get_param(config, 'selectDistinct', true) %}
 
     {# == Queries to be excuted before data insertion  == #}
-    {% if preSQL %}
+    {%- if preSQL %}
         {{ stage('Pre-SQL') }}
         {{ preSQL }}
-    {% endif %}
+    {%- endif %}
 
 	{# == Truncate data before data insertion  == #}
-    {% if truncateBefore and truncateBefore | lower == 'true' %}
-        {{ stage('Truncate Work Table') }}
+    {%- if truncateBefore and truncateBefore | lower == 'true' %}
+        {{ stage('Truncate Table') }}
         TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
-    {% endif %}
+    {%- endif %}
 
 	{# == Insert data from sources into Work table  == #}
 	
-    {{ stage('Load Work Table Using Insert') }}
+    {{ stage('Load Table Using Insert') }}
     INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
     (
-        {% for col in sources[0].columns %}
+        {%- for col in sources[0].columns %}
             "{{ col.name }}"
-            {%- if not loop.last -%},{% endif %}
-        {% endfor %}
+            {%- if not loop.last -%},{%- endif %}
+        {%- endfor %}
     )
     {{ sources[0].cteString }}
     (
-        SELECT
-        {% for col in sources[0].columns %}
+        SELECT {%- if selectDistinct and selectDistinct | lower == 'true' %} DISTINCT {%- endif %}
+        {%- for col in sources[0].columns %}
             {{ get_source_transform(col) }} AS "{{ col.name }}"
-            {%- if not loop.last -%}, {% endif %}
-        {% endfor %}
+            {%- if not loop.last -%}, {%- endif %}
+        {%- endfor %}
 
         {{ sources[0].join }}
     )
 
     {# == Queries to be excuted post data insertion  == #}
-    {% if postSQL %}
+    {%- if postSQL %}
         {{ stage('Post-SQL') }}
         {{ postSQL }}
-    {% endif %}
+    {%- endif %}
 
-{% else %}
+{%- else %}
 	{{ stage('Load Skipped for View') }}
 	-- The node {{node.name}} is materialized as View. Therefore, a Load operation is not supported.
 	SELECT 1 AS INFO_MESSAGE WHERE FALSE
-{% endif %}
+{%- endif %}

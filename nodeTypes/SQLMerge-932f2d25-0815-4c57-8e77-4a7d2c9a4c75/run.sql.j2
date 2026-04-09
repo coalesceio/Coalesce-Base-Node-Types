@@ -12,51 +12,60 @@ does not permit copying or modification for any other purpose.
 {%- set hasBusinessKey = columns | selectattr("isBusinessKey") | list | length > 0 | default(false) %}
 
 {%- if hasBusinessKey %}
-    {%- set lastModifiedComparison = get_param(config, 'lastModifiedComparison') | lower | default('false') %}
-    {%- if lastModifiedComparison == 'true' %}
-        {%- if columns | selectattr("isLastModifiedColumn") | list | length == 1 %}
 
+    {%- set lastModifiedComparison = config.lastModifiedComparison | default(false) %}
+    {%- if lastModifiedComparison %}
+        {%- if columns | selectattr("isLastModifiedColumn") | list | length == 1 %}
             {%- set lastModifiedCol = columns | selectattr('isLastModifiedColumn') | list | first %}
             {%- set lastModifiedColName = lastModifiedCol.name %}
             {%- set isTimeStamp = lastModifiedCol 
                 and lastModifiedCol.dataType is defined 
-                and (lastModifiedCol.dataType | upper).startswith('TIME') %}
-            {%- set configVal = get_param(config, 'treatNullAsCurrentTimestamp') | lower | default('false') %}
-            {%- set treatNullAsCurrentTimestamp = isTimeStamp and (configVal == 'true') %}
-
-            {%- set type2Dimension = get_param(config, 'type2Dimension') | lower | default('false') %}
+                and (lastModifiedCol.dataType | upper).startswith('TIME') | default(false) %}
+            {%- set treatNullAsCurrentTimestamp = isTimeStamp and config.treatNullAsCurrentTimestamp | default(false) %}
+            {%- set type2Dimension = config.type2Dimension | default(false) %}
         {%- else %}
-            {{ stage('Warning! Count mismatch for Last comparison') }}
-            -- Last modified column can be only one. More than one can result in incosistent result
-            -- select 1=0
+            {{ stage('Warning! Count mismatch for last comparison') }}
+            -- Only one last modified column is allowed. Multiple columns may lead to inconsistent results.
+            select 1=0
         {%- endif %}
     {%- else %}
         {%- set type2Dimension = columns | selectattr("isChangeTracking") | list | length > 0 | default(false) %}
     {%- endif %}
 {%- else %}
-    {{ stage('Warning! Merge requires a business key') }}
-    -- Last modified column can be only one. More than one can result in incosistent result
-    -- select 1=0
+    {{ test_stage('Warning! Merge requires a business key', false) }}
+    -- A business key must be provided for the MERGE statement to run successfully.
+    -- Please specify it using @isBusinessKey at the column level in SQL.
+    SELECT CAST('FAIL' AS INT)
 {%- endif %}
 
-{%- set mat = get_param(config, 'materializationType') | lower %}
-{%- set materializationType = 'view' if mat == 'view' else 'table' %}
+{%- if node.materializationType == 'table' %}
 
-{%- if materializationType == 'table' %}
+    {% set preSQL = (
+                    config.preSQL.parameters[0] | string | trim
+                    if config.preSQL is defined
+                    and config.preSQL.parameters is defined
+                    and config.preSQL.parameters
+                    else '' 
+                    ) 
+    %}
 
-    {%- set preSQL = get_param(config, 'preSQL', true) %}
-    {%- set postSQL = get_param(config, 'postSQL', true) %}
-    {%- set truncateBefore = get_param(config, 'truncateBefore', true) %}
-    {%- set selectDistinct = get_param(config, 'selectDistinct', true) %}
+    {% set postSQL = (
+                    config.postSQL.parameters[0] | string | trim
+                    if config.postSQL is defined
+                    and config.postSQL.parameters is defined
+                    and config.postSQL.parameters
+                    else '' 
+                    ) 
+    %}
 
     {# == Queries to be excuted before data insertion  == #}
-    {%- if preSQL %}
+    {%- if preSQL | length > 0 %}
         {{ stage('Pre-SQL') }}
         {{ preSQL }}
     {%- endif %}
 
 	{# == Truncate data before data insertion  == #}
-    {%- if truncateBefore and truncateBefore | lower == 'true' %}
+    {%- if config.truncateBefore %}
         {{ stage('Truncate Table') }}
         TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
     {%- endif %}
@@ -64,20 +73,30 @@ does not permit copying or modification for any other purpose.
     {%- set source = sources[0] %}
     {%- set joinclause = source.join %}
 
-    {# SCD-Type 2 Dimension == #}
-    {{ stage('Load Table Using Merge') }}
+    {%- if lastModifiedComparison %}
+        {%- if type2Dimension %}
+            {{ stage('Load Table Using Merge - Last Modified Comparison - SCD2') }}
+        {%- else %}
+            {{ stage('Load Table Using Merge - Last Modified Comparison - SCD1') }}
+        {%- endif %}
+    {%- else %}
+        {%- if type2Dimension %}
+            {{ stage('Load Table Using Merge - Change Tracking - SCD2') }}
+        {%- else %}
+            {{ stage('Load Table Using Merge - Change Tracking - SCD1') }}
+        {%- endif %}
+    {%- endif %}
 
     MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
     USING (
 
-        {{ sources[0].cteString }}
+        {{ source.cteString }}
 
-        {%- if type2Dimension | string | lower == 'true' %}
+        {%- if type2Dimension %}
     
             /* New Rows That Don't Exist */
             (
-                SELECT
-                {%- if selectDistinct and selectDistinct | lower == 'true' %} DISTINCT {%- endif %}
+                SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
                 {%- for col in source.columns if not col.isSurrogateKey %}
                     {%- if col.isSystemVersion %}
                     1
@@ -110,13 +129,13 @@ does not permit copying or modification for any other purpose.
 
             UNION ALL
 
-            {%- if lastModifiedComparison == 'true' %}
+            {%- if lastModifiedComparison %}
                 /* Insert new records with incremented version/latest timestamp based on last modified column */
             {%- else %}
                 /* New Row Needing To Be Inserted Due To Type-2 Column Changes */
             {%- endif %}
             (
-                SELECT {%- if selectDistinct and selectDistinct | lower == 'true' %} DISTINCT {%- endif %}
+                SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
                 {%- for col in source.columns if not col.isSurrogateKey %}
                     {%- if col.isSystemVersion %}
                         "DIM"."{{ col.name }}" + 1
@@ -142,7 +161,7 @@ does not permit copying or modification for any other purpose.
 
                 WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
 
-                {%- if lastModifiedComparison == 'true' %}
+                {%- if lastModifiedComparison %}
                     {%- for col in source.columns if col.name == lastModifiedColName %}
                         AND
                         {%- if treatNullAsCurrentTimestamp %}
@@ -201,13 +220,13 @@ does not permit copying or modification for any other purpose.
 
             UNION ALL
 
-            {%- if lastModifiedComparison == 'true' %}
+            {%- if lastModifiedComparison %}
                 /* Rows Needing To Be Expired - In this case, only two columns are merged (version and end date) */
             {%- else %}
                 /*Rows Needing To Be Expired Due To Type-2 Column Changes - In this case, only two columns are merged (version and end date) */
             {%- endif %} 
             (
-                SELECT {%- if selectDistinct and selectDistinct | lower == 'true' %} DISTINCT {%- endif %}
+                SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
                 {%- for col in source.columns if not col.isSurrogateKey %}
                     {%- if col.isSystemEndDate %}
                         DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP))
@@ -233,11 +252,11 @@ does not permit copying or modification for any other purpose.
 
                 WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
 
-                {%- if lastModifiedComparison == 'true' %}
+                {%- if lastModifiedComparison %}
                     {%- for col in source.columns if col.name == lastModifiedColName %}
                             AND
                         {%- if treatNullAsCurrentTimestamp %}
-                        COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP())> "DIM"."{{lastModifiedColName}}"
+                        COALESCE({{ get_source_transform(col) }}, CURRENT_TIMESTAMP()) > "DIM"."{{lastModifiedColName}}"
                         {%- else %}
                         {{ get_source_transform(col) }} > "DIM"."{{lastModifiedColName}}"
                         {%- endif %}
@@ -291,7 +310,7 @@ does not permit copying or modification for any other purpose.
                 {{  get_clause(joinclause)  }}
             )
 
-            {%- if lastModifiedComparison != 'true' %}
+            {%- if not lastModifiedComparison %}
                 {# The if-block below avoids unnecessary updates when no type 2 column changes are present #}
                 {%- if source.columns 
                         | rejectattr('isSurrogateKey')
@@ -312,7 +331,7 @@ does not permit copying or modification for any other purpose.
                     This case merges only when there are changes in non-type-2 column updates, but no changes in type-2 columns*/
 
                     (
-                        SELECT {%- if selectDistinct and selectDistinct | lower == 'true' %} DISTINCT {%- endif %}
+                        SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
                         {%- for col in source.columns if not col.isSurrogateKey %}
                             {%- if col.isSystemVersion or col.isSystemCreateDate or col.isSystemStartDate or col.isSystemEndDate %}
                                 "DIM"."{{ col.name }}"
@@ -430,7 +449,7 @@ does not permit copying or modification for any other purpose.
             {%- endif %}
         {%- else %}
             (
-                SELECT {%- if selectDistinct and selectDistinct | lower == 'true' %} DISTINCT {%- endif %}
+                SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
                 {%- for col in source.columns if not col.isSurrogateKey %}
                     {%- if col.isSystemVersion %}
                         1
@@ -452,7 +471,7 @@ does not permit copying or modification for any other purpose.
                 {%- endfor %}
                 {{ get_clause(joinclause,'from')}}
 
-                {%- if lastModifiedComparison == 'true' %}
+                {%- if lastModifiedComparison %}
                     LEFT JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
                     {%- for col in source.columns if col.isBusinessKey -%}
                         {%- if not loop.first %}
@@ -465,7 +484,7 @@ does not permit copying or modification for any other purpose.
                 {%- if clause %}
                     {{ ("WHERE " ~ clause.strip()[3:].strip()) if clause.strip().upper().startswith('AND') else clause }}
                 {%- endif %}
-                {%- if lastModifiedComparison == 'true' %} GROUP BY ALL {%- endif %}
+                {%- if lastModifiedComparison %} GROUP BY ALL {%- endif %}
             )
         {%- endif %}
 
@@ -477,75 +496,76 @@ does not permit copying or modification for any other purpose.
         "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
     {%- endfor %}
 
-    {%- if  type2Dimension | string | lower == 'true' %}
+    {%- if type2Dimension %}
         AND "TGT"."{{ get_value_by_column_attribute("isSystemVersion") }}" = "SRC"."{{ get_value_by_column_attribute("isSystemVersion") }}"
     {%- endif %}
 
-    {%- if type2Dimension | string | lower == 'true' %}
-    WHEN MATCHED THEN UPDATE SET
+    {%- if type2Dimension %}
+        WHEN MATCHED THEN UPDATE SET
         {%- for col in columns if not (col.isBusinessKey or col.isSurrogateKey or col.isSystemCreateDate) %}
             "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
             {%- if not loop.last %}, {%- endif %}
         {%- endfor %}
-    {%- else %}
-        
-    WHEN MATCHED 
-    {%- if lastModifiedComparison == 'true' %}
-        AND ("SRC".COMPARISON_VALUE > "SRC".MAX_TARGET_VALUE 
-        OR "SRC".MAX_TARGET_VALUE IS NULL)
-    {%- else %}  
-        {%- for col in columns if not ( col.isBusinessKey or
-                                        col.isSurrogateKey or
-                                        col.isSystemVersion or
-                                        col.isSystemCurrentFlag or
-                                        col.isSystemStartDate or
-                                        col.isSystemEndDate or
-                                        col.isSystemUpdateDate or
-                                        col.isSystemCreateDate) %}
-            {%- if loop.first %}
-                AND (
-            {%- else %}
-                OR
-            {%- endif %}
 
-            {%- if col.dataType == 'GEOGRAPHY' %}
-                (
-                    ST_DISTANCE(
-                        (CASE 
-                            WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
-                            ELSE "SRC"."{{ col.name }}" 
-                        END),
-                        (CASE 
-                            WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
-                            ELSE "TGT"."{{ col.name }}" 
-                        END)
-                    ) > 0
-                )
-            {%- elif col.dataType == 'GEOMETRY' %}
-                (
-                    ST_DISTANCE(
+    {%- else %}
+
+        WHEN MATCHED 
+        {%- if lastModifiedComparison %}
+            AND ("SRC".COMPARISON_VALUE > "SRC".MAX_TARGET_VALUE 
+            OR "SRC".MAX_TARGET_VALUE IS NULL)
+        {%- else %}  
+            {%- for col in columns if not ( col.isBusinessKey or
+                                            col.isSurrogateKey or
+                                            col.isSystemVersion or
+                                            col.isSystemCurrentFlag or
+                                            col.isSystemStartDate or
+                                            col.isSystemEndDate or
+                                            col.isSystemUpdateDate or
+                                            col.isSystemCreateDate) %}
+                {%- if loop.first %}
+                    AND (
+                {%- else %}
+                    OR
+                {%- endif %}
+
+                {%- if col.dataType == 'GEOGRAPHY' %}
+                    (
+                        ST_DISTANCE(
                             (CASE 
-                                WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
                                 ELSE "SRC"."{{ col.name }}" 
                             END),
                             (CASE 
-                                WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOGRAPHY('POINT(0 0)') 
                                 ELSE "TGT"."{{ col.name }}" 
-                        END)
-                    ) > 0
-                )
-            {%- else %}
-                (
-                    NVL(CAST("SRC"."{{ col.name }}" AS STRING), '**NULL**') <> 
-                    NVL(CAST("TGT"."{{ col.name }}" AS STRING), '**NULL**')
-                )
-            {%- endif %}
+                            END)
+                        ) > 0
+                    )
+                {%- elif col.dataType == 'GEOMETRY' %}
+                    (
+                        ST_DISTANCE(
+                                (CASE 
+                                    WHEN "SRC"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                    ELSE "SRC"."{{ col.name }}" 
+                                END),
+                                (CASE 
+                                    WHEN "TGT"."{{ col.name }}" IS NULL THEN TO_GEOMETRY('POINT(0 0)') 
+                                    ELSE "TGT"."{{ col.name }}" 
+                            END)
+                        ) > 0
+                    )
+                {%- else %}
+                    (
+                        NVL(CAST("SRC"."{{ col.name }}" AS STRING), '**NULL**') <> 
+                        NVL(CAST("TGT"."{{ col.name }}" AS STRING), '**NULL**')
+                    )
+                {%- endif %}
 
-            {%- if loop.last %}
-                )
-            {%- endif %}
-        {%- endfor %}
-    {%- endif %}
+                {%- if loop.last %}
+                    )
+                {%- endif %}
+            {%- endfor %}
+        {%- endif %}
 
         THEN UPDATE SET
         {%- for col in columns if not (  col.isBusinessKey or
@@ -573,4 +593,15 @@ does not permit copying or modification for any other purpose.
             {%- if not loop.last %}, {%- endif %}
         {%- endfor %}
     )
+
+    {# == Queries to be excuted post data insertion  == #}
+    {%- if postSQL | length > 0 %}
+        {{ stage('Post-SQL') }}
+        {{ postSQL }}
+    {%- endif %}
+
+{%- else %}
+	{{ stage('Load Skipped for View') }}
+	-- The node {{node.name}} is materialized as View. Therefore, a Load operation is not supported.
+	SELECT 1 AS INFO_MESSAGE WHERE FALSE
 {%- endif %}

@@ -1,13 +1,8 @@
-@id("1410c94f-f477-45d2-9e0f-e3fc706ffdc1")
+@id("816ac881-dc04-4873-a5ef-b064e227c8fb")
 @nodeType("932f2d25-0815-4c57-8e77-4a7d2c9a4c75")
 @materializationType("table")
-@truncateBefore("false")
-@selectDistinct("true")
-@lastModifiedComparison("false")
-@treatNullAsCurrentTimestamp("true")
-@type2Dimension("true")
-@preSQL(" ")
-@postSQL(" ")
+@truncateBefore
+@selectDistinct
 
 SELECT
      0 AS "{{ node.name }}_KEY" @isSurrogateKey @nullable("false") @description("System generated value"),
@@ -23,6 +18,4 @@ SELECT
      CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_CREATE_DATE" @isSystemCreateDate,
      CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_UPDATE_DATE" @isSystemUpdateDate
 FROM {{ ref('SOURCE_DATA', 'NATION') }} nation
-
-    
-
+GROUP BY ALL

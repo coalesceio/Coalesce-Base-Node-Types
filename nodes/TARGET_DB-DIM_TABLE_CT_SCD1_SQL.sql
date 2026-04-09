@@ -1,13 +1,8 @@
 @id("03310eb4-2e09-4bb4-bc52-1cc8f625ddb9")
 @nodeType("932f2d25-0815-4c57-8e77-4a7d2c9a4c75")
 @materializationType("table")
-@truncateBefore("false")
-@selectDistinct("true")
-@lastModifiedComparison("false")
-@treatNullAsCurrentTimestamp("true")
-@type2Dimension("false")
-@preSQL(" ")
-@postSQL(" ")
+@truncateBefore
+@selectDistinct
 
 SELECT
      0 AS "{{ node.name }}_KEY" @isSurrogateKey @nullable("false") @description("System generated value"),

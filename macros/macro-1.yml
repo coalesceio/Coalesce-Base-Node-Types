@@ -168,29 +168,5 @@ macroString: |-
           {%- endif %}
       {%- endif %}
   {%- endmacro -%}
-
-  {% macro get_param(config, key, check_empty=false) -%}
-
-      {%- set result = '' -%}
-
-      {%- if config[key] is defined 
-          and config[key].parameters is defined 
-          and config[key].parameters -%}
-
-          {%- set val = config[key].parameters[0] | string | trim -%}
-
-          {%- if check_empty -%}
-              {%- if val | length > 0 -%}
-                  {%- set result = val -%}
-              {%- endif -%}
-          {%- else -%}
-              {%- set result = val -%}
-          {%- endif -%}
-
-      {%- endif -%}
-
-      {{- result -}}
-
-  {%- endmacro %}
 name: macro
 type: Macro

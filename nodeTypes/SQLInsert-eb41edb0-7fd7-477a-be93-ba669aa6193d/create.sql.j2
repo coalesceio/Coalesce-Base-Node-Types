@@ -2,18 +2,14 @@
     Copyright (c) 2026 Coalesce. All rights reserved.
 This script and its associated documentation are confidential and proprietary to Coalesce.
 Unauthorized reproduction, distribution, or disclosure of this material is strictly prohibited.
-Coalesce permits you to copy and modify this script for the purposes of using with Coalsce but
+Coalesce permits you to copy and modify this script for the purposes of using with Coalesce but
 does not permit copying or modification for any other purpose.  
 #}
-{# == Node Type Name           : Work  == #}
+{# == Node Type Name           : SQL Insert  == #}
 {# == Node Type Description    : This node creates work table or view  == #}
 {#---------------------------------------------------------------------------------------------#}
 
-{% set mat = get_param(config, 'materializationType') | lower %}
-{% set materializationType = 'view' if mat == 'view' else 'table' %}
-{%- set selectDistinct = get_param(config, 'selectDistinct', true) %}
-
-{%- if materializationType == 'table' %}
+{%- if node.materializationType == 'table' %}
 	{{ stage('Create Table') }}
 
     {# CreateSQL for Table #}
@@ -34,7 +30,7 @@ does not permit copying or modification for any other purpose.
 	)
 	{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}' {%- endif %}
 
-{%- elif materializationType == 'view' %}
+{%- elif node.materializationType == 'view' %}
 
     {# CreateSQL for View #}
     {{ stage('Create View') }}
@@ -42,15 +38,18 @@ does not permit copying or modification for any other purpose.
     CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
     (
         {%- for col in columns %}
+
+            {%- set descriptionParams = col.description.parameters | default([]) %}
+
             "{{ col.name }}"
-            {%- if col.description | length > 0 %} COMMENT '{{ col.description.parameters[0] | escape }}' {%- endif %}
+            {%- if descriptionParams and descriptionParams[0] | length > 0 %} COMMENT '{{ descriptionParams[0] | escape }}' {%- endif %}
             {%- if not loop.last -%}, {%- endif %}
         {%- endfor %}
     )
-    {%- if config.description | length > 0 %} COMMENT = '{{ config.description.parameters[0] | escape }}' {%- endif %}
+    {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}' {%- endif %}
     AS    
     {{ sources[0].cteString }}
-    SELECT {%- if selectDistinct and selectDistinct | lower == 'true' %} DISTINCT {%- endif %}
+    SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
     {%- for col in sources[0].columns %}
         {{ get_source_transform(col) }} AS "{{ col.name }}"
         {%- if not loop.last -%}, {%- endif %}

@@ -1,7 +1,9 @@
 @id("332835b5-8959-4d7e-ae6f-225ffad4ff5d")
 @nodeType("eb41edb0-7fd7-477a-be93-ba669aa6193d")
 @materializationType("table")
-@truncateBefore("true")
+@truncateBefore
+@selectDistinct
+@preSQL("SELECT count(*) FROM TANVI_DEV.SOURCE.NATION")
 
 WITH ALL_NATIONS AS (
 

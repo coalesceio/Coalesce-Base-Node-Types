@@ -1,6 +1,7 @@
 @id("e7a0bed5-1b61-4dc2-916c-56451eacafc1")
 @nodeType("eb41edb0-7fd7-477a-be93-ba669aa6193d")
 @materializationType("view")
+@selectDistinct
 
 WITH ALL_NATIONS AS (
 

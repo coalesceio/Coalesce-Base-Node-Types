@@ -1,18 +1,13 @@
-@id("58548972-aa58-4a55-be1e-69d4d9fe0979")
+@id("1410c94f-f477-45d2-9e0f-e3fc706ffdc1")
 @nodeType("932f2d25-0815-4c57-8e77-4a7d2c9a4c75")
 @materializationType("table")
 @truncateBefore("false")
 @selectDistinct("true")
-@lastModifiedComparison("true")
-@treatNullAsCurrentTimestamp("true")
-@type2Dimension("true")
-@preSQL(" ")
-@postSQL(" ")
 
 SELECT
      0 AS "{{ node.name }}_KEY" @isSurrogateKey @nullable("false") @description("System generated value"),
      nation."N_NATIONKEY" AS "N_NATIONKEY" @isBusinessKey @defaultValue("0"),
-     nation."N_NAME" AS "N_NAME" @defaultValue("John-Doe"),
+     nation."N_NAME" AS "N_NAME" @isChangeTracking @defaultValue("John-Doe"),
      nation."N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0"),
      nation."N_COMMENT" AS "N_COMMENT" @description("Add comments") @nullable("true") @defaultValue("NA"),
      nation."N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @isLastModifiedColumn,
@@ -23,7 +18,6 @@ SELECT
      CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_CREATE_DATE" @isSystemCreateDate,
      CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_UPDATE_DATE" @isSystemUpdateDate
 FROM {{ ref('SOURCE_DATA', 'NATION') }} nation
-GROUP BY ALL
 
     
 

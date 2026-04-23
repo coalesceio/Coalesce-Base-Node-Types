@@ -1,6 +1,6 @@
 fileVersion: 1
-id: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
-name: CUSTOMER
+id: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
+name: HR_DATA_MNC
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 643870b7-86c6-444f-bee0-ecf06d89e506
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 7d2e27e7-a83b-44e4-beab-58fe56574eeb
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: C_CUSTKEY
+        name: SL_NO
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 8c487a4c-a779-48d6-9257-ecb07001bad2
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: afa60b6b-3943-4022-9859-3d6788fe7996
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
         config: {}
-        dataType: VARCHAR(25)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: C_NAME
+        name: EMPLOYEE_ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: e13b536b-4c62-492c-b785-58798f00a664
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 1e672289-79eb-4f82-bb0c-6ccc2d9f2a15
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
         config: {}
-        dataType: VARCHAR(40)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: C_ADDRESS
+        name: FULL_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +70,89 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 796dcbe6-58bf-4302-9226-822cac6e98bb
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 4cd94b05-e619-436f-874d-b9fde25955b8
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: DEPARTMENT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 62382d99-e02f-4450-bc28-49a73d841d97
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: JOB_TITLE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a4f7459-1d7b-4b62-94fd-399d4070e1f9
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: HIRE_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 67e1b74f-e50c-48d5-a9cd-d682c03e708a
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: LOCATION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb6c7e86-2099-4bd0-89a2-d23cb1f1c1fa
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: C_NATIONKEY
+        name: PERFORMANCE_RATING
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -89,13 +165,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f8a63527-d454-432d-b454-2027553f5584
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 9d3a7382-a283-46ce-b303-39adaba71c9a
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
         config: {}
-        dataType: VARCHAR(15)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: C_PHONE
+        name: EXPERIENCE_YEARS
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -108,13 +184,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 3e070b5e-cbd4-431a-8088-0a85827112e7
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: d3151744-fad7-44a8-b76f-5b9bf24f2d8e
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
         config: {}
-        dataType: NUMBER(12,2)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: C_ACCTBAL
+        name: STATUS
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -127,13 +203,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 688a52ea-511b-415b-9119-158db0c25cc8
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 49af103a-1268-4a17-bc56-bc673e204011
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
         config: {}
-        dataType: VARCHAR(10)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: C_MKTSEGMENT
+        name: WORK_MODE
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -146,13 +222,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 87b87e34-b585-4425-b9ed-a3bdf7de21d0
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: cbaf2fd6-f29c-4c04-90e2-ae832df89af0
+          stepCounter: 1374415b-e2e8-4f5e-b694-fe9fc83bc908
         config: {}
-        dataType: VARCHAR(117)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: C_COMMENT
+        name: SALARY_INR
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -160,26 +236,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: d6b2e4bd-dfc1-4f41-8257-e009fb43694b
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
-        config: {}
-        dataType: TIMESTAMP_LTZ(9)
-        defaultValue: ""
-        description: ""
-        name: C_LOAD_TIMESTAMP
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-  name: CUSTOMER
+  name: HR_DATA_MNC
   schema: ""
   sqlType: Source
   type: sourceInput

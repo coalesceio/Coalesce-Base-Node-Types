@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "93"
+includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CLIENTS_SCD1_NTSTAMP\" }"
+name: Job13
+type: Job

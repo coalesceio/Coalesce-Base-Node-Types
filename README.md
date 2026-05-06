@@ -14,33 +14,33 @@ The Coalesce Base Node Types Package includes:
 
 ## Work
 
-The Coalesce work node is a versatile node that allows you to develop and deploy a Work table/view in Snowflake.
+The Coalesce Work Node lets you develop and deploy a Work table or view in Snowflake.
 
-A Work node serves as an intermediary object and is commonly employed to store raw data before undergoing the crucial phases of transformation and loading into the main tables of the data warehouse.
+A Work Node serves as an intermediary object and is commonly employed to store raw data before undergoing the crucial phases of transformation and loading into the main tables of the data warehouse.
 
 This pivotal step ensures that the raw data is processed and structured effectively.
 
 ### Work Node Configuration
 
-The Work node type has two configuration groups:
+The Work Node type has two configuration groups:
 
 * [Node Properties](#work-node-properties)
 * [Options](#work-options)
 
-![Fact_config](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
+![Work Node configuration](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
 
 #### Work Node Properties
 
 | **Property** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
-| **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Storage Location** | Storage Location where the Work table or view will be created |
+| **Node Type** | Name of template used to create Node objects |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the Node will be deployed or redeployed when changes are detected<br/> If FALSE the Node will not be deployed or will be dropped during redeployment |
 
 #### Work Options
 
-You can create the node as:
+You can create the Node as:
 
 * [Table](#work-options-table)
 * [View](#work-options-view)
@@ -51,13 +51,13 @@ You can create the node as:
 
 | **Property** | **Description** |
 |---------|-------------|
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>- **INSERT**: Individual insert for each source<br/>**False**: Single source node or multiple sources combined using a join |
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
-| **Order By** | Toggle: True/False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
-| **ASOF Join** | Toggle: True/False<br/>**True**: ASOF Join Options will be visible. <br/>**False**: ASOF Join Options will be invisible |
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>- **INSERT**: Individual insert for each source<br/>**False**: single-source Node or multiple sources combined using a join |
+| **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
+| **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Order By** | Toggle: True or False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
+| **ASOF Join** | Toggle: True or False<br/>**True**: ASOF Join Options will be visible. <br/>**False**: ASOF Join Options will be invisible |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
@@ -67,24 +67,24 @@ You can create the node as:
 
 | **Setting** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
-| **ASOF Join** | Toggle: True/False<br/>**True**: ASOF Join Options will be visible. <br/>**False**: ASOF Join Options will be invisible |
+| **Override Create SQL** | Toggle: True or False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
+| **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **ASOF Join** | Toggle: True or False<br/>**True**: ASOF Join Options will be visible. <br/>**False**: ASOF Join Options will be invisible |
 
 ##### ASOF Join Options
 
 | **Setting** | **Description** |
 |---------|-------------|
-| **Match Condition** | Toggle: True/False <br/> Match Condition Clause from Snowflake ASOF join <br/> **True**: Allows you to specify the Match Condtion.<br/>- **Right Table Storage Location**: Add right table storage location<br/>- **Right Table Name**: Add name of the right table<br/>- **Match Condition**: Add a match condition in the format "Left Table Name"."Column Name" Condition Operator "Right Table Name"."Column Name"<br/> **False** : No Match Condition Added|
-| **On** | Toggle: True/False <br/>ON Clause with Match Condition from Snowflake ASOF join.Using will be invisible <br/> **True**: Allows you to add the ON Clause.<br/> **ON Condition**: Add a match condition in the format "Left Table Name"."Column Name" = "Right Table Name"."Column Name" <br/> **False**: No ON Clause Added.Using will be visible|
-| **Using** | Toggle: True/False <br/>Using Clause with Match Condition from Snowflake ASOF join.On will be invisible <br/> **True**: Allows you to add the Using Clause.<br/> **Using Column Name** : Add a Column Name for Using clause<br/> **False**: No Using Clause Added.On will be visible|
+| **Match Condition** | Toggle: True or False <br/> Match Condition Clause from Snowflake ASOF join <br/> **True**: Allows you to specify the match condition.<br/>- **Right Table Storage Location**: Add right table storage location<br/>- **Right Table Name**: Add name of the right table<br/>- **Match Condition**: Add a match condition in the format "Left Table Name"."Column Name" Condition Operator "Right Table Name"."Column Name"<br/> **False** : No Match Condition Added|
+| **On** | Toggle: True or False <br/> ON Clause with Match Condition from Snowflake ASOF join. **Using** will be invisible <br/> **True**: Allows you to add the ON Clause.<br/> **ON Condition**: Add a match condition in the format "Left Table Name"."Column Name" = "Right Table Name"."Column Name" <br/> **False**: No ON Clause Added. **Using** will be visible |
+| **Using** | Toggle: True or False <br/> Using Clause with Match Condition from Snowflake ASOF join. **On** will be invisible <br/> **True**: Allows you to add the Using Clause.<br/> **Using Column Name** : Add a Column Name for Using clause<br/> **False**: No Using Clause Added. **On** will be visible |
 
 ### Work Joins
 
-Join conditions and other clauses can be specified in the join space next to mapping of columns in the UI.
+Join conditions and other clauses can be specified in the join space next to mapping of columns in the Coalesce App.
 
 ![work_join](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/2dc81bb8-2285-46e1-8b93-ce7082800fc5)
 
@@ -93,27 +93,27 @@ Join conditions and other clauses can be specified in the join space next to map
 > You should specify group by and order by clauses in this space if you are not opting for the group by all and order by provided in OPTIONS config.
 
 ### Work ASOF Joins
-After selecting options for ASOF Join,Click on Generate join, use the 'Copy To Editor' to add the new ASOF join.
-<img width="256" alt="image" src="https://github.com/user-attachments/assets/f87a6b11-8c3f-4226-8d5f-fdcd1e3a1c6e" />
+After selecting options for ASOF Join, click **Generate join**, then use **Copy To Editor** to add the new ASOF join.
+<img width="256" alt="ASOF Join: Generate join and Copy To Editor actions in the Coalesce App" src="https://github.com/user-attachments/assets/f87a6b11-8c3f-4226-8d5f-fdcd1e3a1c6e" />
 
 ### Work Deployment
 
 #### Work Initial Deployment
 
-When deployed for the first time into an environment the Work node of materialization type table will execute the below stage:
+When deployed for the first time into an Environment the Work Node of materialization type table will execute the below stage:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Work Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
-| **Create Work View** | This will execute a CREATE OR REPLACE statement and create a view in the target environment |
+| **Create Work Table** | This will execute a CREATE OR REPLACE statement and create a table in the target Environment |
+| **Create Work View** | This will execute a CREATE OR REPLACE statement and create a view in the target Environment |
 
 #### Work Redeployment
 
-After the WORK node with materialization type table has been deployed for the first time into a target environment, subsequent deployments may result in either altering the WORK Table or recreating the WORK table.
+After the Work Node with materialization type table has been deployed for the first time into a target Environment, subsequent deployments may result in either altering the Work Table or recreating the Work table.
 
 #### Altering the Work Tables
 
-A few types of column or table changes will result in an ALTER statement to modify the Work Table in the target environment, whether these changes are made individually or all together:
+A few types of column or table changes will result in an ALTER statement to modify the Work Table in the target Environment, whether these changes are made individually or all together:
 
 * Changing table names
 * Dropping existing columns
@@ -131,13 +131,13 @@ The following stages are executed:
 
 #### Recreating the Work Tables
 
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following changes are detected, then the table will be recreated using a CREATE OR REPLACE.
 
 * Join clause
 * Adding transformation
 * Changes in configuration like adding distinct, group by, or order by
 
-One of the following stages are executed:
+One of the following stages is executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
@@ -146,7 +146,7 @@ One of the following stages are executed:
 
 #### Recreating the Work Views
 
-The subsequent deployment of Work node of materialization type view with changes in view definition, adding table description or renaming view results in deleting the existing view and recreating the view.
+The subsequent deployment of the Work Node of materialization type view with changes in view definition, adding table description or renaming view results in deleting the existing view and recreating the view.
 
 The following stages are executed:
 
@@ -155,9 +155,9 @@ The following stages are executed:
 | **Delete View** | Removes existing view |
 | **Create View** | Creates new view with updated definition |
 
-### Work Undeployment
+### Removing a Work Node
 
-If a Work Node of materialization type table is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the WorkTable in the target environment will be dropped.
+If a Work Node of materialization type table is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the WorkTable in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -166,19 +166,19 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-If a Work Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the WorkView in the target environment will be dropped.
+If a Work Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the WorkView in the target Environment will be dropped.
 
 The stage executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Delete View** | Drops the existing Work view from target environment |
+| **Delete View** | Drops the existing Work view from the target Environment |
 
 ---
 
-## Persistent Stage 
+## Persistent Stage
 
-The Coalesce Persistent Stage Nodes element, serving as an intermediary object, is frequently utilized to maintain data persistence across multiple execution cycles.
+The Persistent Stage Node serves as an intermediary object and is commonly used to persist data across multiple execution cycles.
 
 It plays a crucial role in tracking the historical changes of columns linked to business keys.
 
@@ -186,45 +186,45 @@ This functionality is particularly beneficial when the objective is to retain ra
 
 ### Persistent Stage Node Configuration
 
-The Persistent node type has two configuration groups:
+The Persistent Stage Node type has two configuration groups:
 
 * [Node Properties](#persistent-stage-node-properties)
 * [Options](#persistent-stage-options)
 
-![Fact_config](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
+![Persistent Stage Node configuration](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
 
 #### Persistent Stage Node Properties
 
 | **Property** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
-| **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Storage Location** | Storage Location where the Persistent Stage table will be created |
+| **Node Type** | Name of template used to create Node objects |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the Node will be deployed or redeployed when changes are detected<br/> If FALSE the Node will not be deployed or will be dropped during redeployment |
 
 #### Persistent Stage Options
 
 | **Option** | **Description** |
 |---------|-------------|
 | **Create As** | Table is the only option at this time |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2.<br/>**Note:** Geometry and Geography data type columns are not supported as business key columns. |
 | **Last Modified Comparison** | **True**:When enabled we can do timestamp based CDC<br/>**False**:Regular CDC based on Change tracking columns is done |
 | **Last Modified Column(Enabled for Last Modified Comparison)** | Timestamp/Incremental ID column can be chosen.Based on which CDC is done |
 | **Treat Null as Current timestamp(Enabled for Last Modified Comparison)**| Records with NULL timestamp are updated in target|
 | **Type 2 Dimension(Enabled for Last Modified Comparison)**|CDC is based on timestamp/ID column chosen above.Change tracking columns are not enabled for this scenario|
 | **Change tracking** | Required column for Type 2 |
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
-| **Order By** | Toggle: True/False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
+| **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
+| **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Order By** | Toggle: True or False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
 ### Persistent Stage Joins
 
-Join conditions and other clauses can be specified in the join space next to mapping of columns in the UI.
+Join conditions and other clauses can be specified in the join space next to mapping of columns in the Coalesce App.
 
 ![pstage_join](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/84ce06c9-103c-4700-ad3d-2e8222995b31)
 
@@ -236,19 +236,19 @@ Join conditions and other clauses can be specified in the join space next to map
 
 #### Persistent Stage Initial Deployment
 
-When deployed for the first time into an environment the Persistent node will execute the below stage:
+When deployed for the first time into an Environment the Persistent Stage Node will execute the below stage:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Persistent Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
+| **Create Persistent Table** | This will execute a CREATE OR REPLACE statement and create a table in the target Environment |
 
 #### Persistent Stage Redeployment
 
-After the Persistent node has been deployed for the first time into a target environment, subsequent deployments may result in either altering the Persistent Table or recreating the Persistent table.
+After the Persistent Stage Node has been deployed for the first time into a target Environment, subsequent deployments may result in either altering the Persistent Table or recreating the Persistent table.
 
 #### Altering the Persistent Tables
 
-A few types of column or table changes will result in an ALTER statement to modify the Persistent Table in the target environment, whether these changes are made individually or all together:
+A few types of column or table changes will result in an ALTER statement to modify the Persistent Table in the target Environment, whether these changes are made individually or all together:
 
 * Changing table names
 * Dropping existing columns
@@ -264,24 +264,24 @@ The following stages are executed:
 | **Swap Cloned Table** | Upon successful completion of all updates, the clone replaces the main table ensuring that no data is lost |
 | **Delete Table** | Drops the internal table |
 
-### Recreating the Persistent Tables
+#### Recreating the Persistent Tables
 
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following changes are detected, then the table will be recreated using a CREATE OR REPLACE.
 
 * Join clause
 * Adding transformation
 * Changes in configuration like adding distinct, group by, or order by
 
-One of the following stages are executed:
+One of the following stages is executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
 | **Create Table** | Creates a new table |
 | **Replace Table** | Replaces an existing table|
 
-### Persistent Stage Undeployment
+### Removing a Persistent Stage Node
 
-If a Persistent Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Persistent Table in the target environment will be dropped.
+If a Persistent Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Persistent Table in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -294,27 +294,27 @@ This is executed in two stages:
 
 ## Dimension
 
-The Coalesce Dimension UDN is a versatile node that allows you to develop and deploy a Dimension table in Snowflake.
+The Coalesce Dimension UDN lets you develop and deploy a Dimension table in Snowflake.
 
 A dimension table or dimension entity is a table or entity in a star, snowflake, or starflake schema that stores details about the facts. Dimension tables describe the different aspects of a business process.
 
 ### Dimension Node Configuration
 
-The Dimension node type has two configuration groups:
+The Dimension Node type has two configuration groups:
 
 * [Node Properties](#dimension-node-properties)
 * [Options](#dimension-options)
 
-![Fact_config](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
+![Dimension Node configuration](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
 
 #### Dimension Node Properties
 
 | **Property** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
-| **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Storage Location** | Storage Location where the dimension table or view will be created |
+| **Node Type** | Name of template used to create Node objects |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the Node will be deployed or redeployed when changes are detected<br/> If FALSE the Node will not be deployed or will be dropped during redeployment |
 
 #### Dimension Options
 
@@ -323,21 +323,21 @@ The Dimension node type has two configuration groups:
 | **Options** | **Description** |
 |---------|-------------|
 | **Create As** | Table or View |
-| **Insert Zero Key Record** | Toggle: True/False<br/>Insert Zero Key Record to Dimention<br/>**True**:  Zero Key Record Options enabled.<br/>**False**: Zero Key Record not added|
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Insert Zero Key Record** | Toggle: True or False<br/>Insert Zero Key Record to Dimension<br/>**True**:  Zero Key Record Options enabled.<br/>**False**: Zero Key Record not added|
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions.<br/>**Note:** Geometry and Geography data type columns are not supported as business key columns. |
 | **Last Modified Comparison** | **True**:When enabled we can do timestamp based CDC<br/>**False**:Regular CDC based on Change tracking columns is done |
 | **Last Modified Column(Enabled for Last Modified Comparison)** | Timestamp/Incremental ID column can be chosen.Based on which CDC is done |
 | **Treat Null as Current timestamp(Enabled for Last Modified Comparison)**| Records with NULL timestamp are updated in target|
 | **Type 2 Dimension(Enabled for Last Modified Comparison)**|CDC is based on timestamp/ID column chosen above.Change tracking columns are not enabled for this scenario|
 | **Change tracking** | Required column for Type 2 Dimension |
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
-| **Order By** | Toggle: True/False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
+| **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
+| **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Order By** | Toggle: True or False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
 | **Zero Key Record Options** |Add custom zero key record values for : <br/> -Default Surrogate Key Value<br/>  -Default String Value <br/> -Default Date Value (Date Format DD-MM-YYYY) <br/>-Default Timestamp Value (Timestamp Format YYYY-MM-DD HH24:MI:SS.FF) <br/> -Default Boolean Value|
-| **Advanced Zero Key Record Options** | Toggle: True/False<br/>**True**: Select Columns and the default value of the column for zero key record <br/>**False**: Advanced Zero Key Record Options not enabled|
+| **Advanced Zero Key Record Options** | Toggle: True or False<br/>**True**: Select Columns and the default value of the column for zero key record <br/>**False**: Advanced Zero Key Record Options not enabled|
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
@@ -347,16 +347,16 @@ The Dimension node type has two configuration groups:
 
 | **Options** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Override Create SQL** | Toggle: True or False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 
 ### Dimension Joins
 
-Join conditions and other clauses can be specified in the join space next to mapping of columns in the UI.
+Join conditions and other clauses can be specified in the join space next to mapping of columns in the Coalesce App.
 
 ![Dimension_join](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/5c3df3b0-f56d-4276-a51f-22364206b3c3)
 
@@ -368,20 +368,20 @@ Join conditions and other clauses can be specified in the join space next to map
 
 #### Dimension Initial Deployment
 
-When deployed for the first time into an environment the Dimension node of materialization type table will execute the Create Dimension Table stage.
+When deployed for the first time into an Environment the Dimension Node of materialization type table will execute the Create Dimension Table stage.
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Dimension Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
-| **Create Dimension View** | This will execute a CREATE OR REPLACE statement and create a view in the target environment |
+| **Create Dimension Table** | This will execute a CREATE OR REPLACE statement and create a table in the target Environment |
+| **Create Dimension View** | This will execute a CREATE OR REPLACE statement and create a view in the target Environment |
 
 #### Dimension Redeployment
 
-After the Dimension node of materialization type table has been deployed for the first time into a target environment, subsequent deployments may result in either altering the Dimension Table or recreating the Dimension table.
+After the Dimension Node of materialization type table has been deployed for the first time into a target Environment, subsequent deployments may result in either altering the Dimension Table or recreating the Dimension table.
 
 #### Altering the Dimension Tables
 
-A few types of column or table changes will result in an ALTER statement to modify the Dimension Table in the target environment, whether these changes are made individually or all together:
+A few types of column or table changes will result in an ALTER statement to modify the Dimension Table in the target Environment, whether these changes are made individually or all together:
 
 * Changing table names
 * Dropping existing columns
@@ -399,13 +399,13 @@ The following stages are executed:
 
 #### Recreating the Dimension Tables
 
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following changes are detected, then the table will be recreated using a CREATE OR REPLACE.
 
 * Join clause
 * Adding transformation
 * Changes in configuration like adding distinct, group by, or order by
 
-One of the following stages are executed:
+One of the following stages is executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
@@ -416,13 +416,13 @@ One of the following stages are executed:
 
 Any of the following changes to views will result in deleting and recreating the Dimension view.
 
-* View defintion
+* View definition
 * Adding table description
-* Renaming view results
+* Renaming the view
 
-### Dimension Undeployment
+### Removing a Dimension Node
 
-If a Dimension Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Dimension Table in the target environment will be dropped.
+If a Dimension Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Dimension Table in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -431,50 +431,52 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-If a Dimension Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Dimension View in the target environment will be dropped.
+If a Dimension Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Dimension View in the target Environment will be dropped.
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Delete View** | Drops the existing Dimension view from target environment. |
+| **Delete View** | Drops the existing Dimension view from the target Environment. |
+
+---
 
 ## Fact
 
-The Coalesce Fact UDN is a versatile node that allows you to develop and deploy a Fact table in Snowflake.
+The Coalesce Fact UDN lets you develop and deploy a Fact table in Snowflake.
 
 A fact table or a fact entity is a table or entity in a star or snowflake schema that stores measures that measure the business, such as sales, cost of goods, or profit. Fact tables and entities aggregate measures, or the numerical data of a business.
 
 ### Fact Node Configuration
 
-The Fact node has two configuration groups:
+The Fact Node has two configuration groups:
 
 * [Node Properties](#fact-node-properties)
 * [Options](#fact-options)
 
-![Fact_config](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
+![Fact Node configuration](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
 
 #### Fact Node Properties
 
 | **Properties** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
-| **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Storage Location** | Storage Location where the fact table will be created |
+| **Node Type** | Name of template used to create Node objects |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the Node will be deployed or redeployed when changes are detected<br/> If FALSE the Node will not be deployed or will be dropped during redeployment |
 
 #### Fact Options
 
 | **Options** | **Description** |
 |---------|-------------|
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
 | **Business key** | Required column for Fact table creation.<br/>**Note:** Geometry and Geography data type columns are not supported as business key columns. |
 | **Last Modified Comparison** | **True**:When enabled we can do timestamp based CDC<br/>**False**:Regular CDC based on Change tracking columns is done |
 | **Last Modified Column(Enabled for Last Modified Comparison)** | Timestamp/Incremental ID column can be chosen.Based on which CDC is done |
 | **Treat Null as Current timestamp(Enabled for Last Modified Comparison)**| Records with NULL timestamp are updated in target|
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
-| **Order By** | Toggle: True/False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
+| **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
+| **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Order By** | Toggle: True or False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
@@ -484,15 +486,15 @@ The Fact node has two configuration groups:
 
 | **Setting** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Override Create SQL** | Toggle: True or False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible except 'Enable Tests'<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
+| **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
 
 ### Fact Joins
 
-Join conditions and other clauses like where, qualify can be specified in the join space next to mapping of columns in the UI.
+Join conditions and other clauses like where, qualify can be specified in the join space next to mapping of columns in the Coalesce App.
 
 ![fact_join](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/e540d2d0-2623-4b99-a435-a26df5fe3306)
 
@@ -504,20 +506,20 @@ Join conditions and other clauses like where, qualify can be specified in the jo
 
 #### Fact Initial Deployment
 
-When deployed for the first time into an environment the Fact node of materialization type table will execute the Create Fact Table stage.
+When deployed for the first time into an Environment the Fact Node of materialization type table will execute the Create Fact Table stage.
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Fact Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
-| **Create Fact View** | This will execute a CREATE OR REPLACE statement and create a view in the target environment |
+| **Create Fact Table** | This will execute a CREATE OR REPLACE statement and create a table in the target Environment |
+| **Create Fact View** | This will execute a CREATE OR REPLACE statement and create a view in the target Environment |
 
 #### Fact Redeployment
 
-After the Fact node has been deployed for the first time into a target environment, subsequent deployments may result in either altering the Fact Table or recreating the Fact table.
+After the Fact Node has been deployed for the first time into a target Environment, subsequent deployments may result in either altering the Fact Table or recreating the Fact table.
 
 #### Altering the Fact Tables
 
-A few types of column or table changes will result in an ALTER statement to modify the Fact Table in the target environment, whether these changes are made individually or all together:
+A few types of column or table changes will result in an ALTER statement to modify the Fact Table in the target Environment, whether these changes are made individually or all together:
 
 * Changing table names
 * Dropping existing columns
@@ -535,16 +537,14 @@ The following stages are executed:
 
 #### Recreating the Fact Tables
 
-If any changes like change in join clause, adding transformations, change in business key column, change in configs like adding distinct, group by or orderby, the Fact Table will be recreated by running a CREATE OR REPLACE statement.
-
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following changes are detected, the Fact table is recreated using `CREATE OR REPLACE`:
 
 * Join clause
 * Adding transformation
 * Change in business key
 * Changes in configuration like adding distinct, group by, or order by
 
-One of the following stages are executed:
+One of the following stages is executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
@@ -553,7 +553,7 @@ One of the following stages are executed:
 
 #### Recreating the Fact Views
 
-The subsequent deployment of Work node of materialization type view with changes in view definition, adding table description or renaming view results in deleting the existing view and recreating the view.
+The subsequent deployment of the Fact Node of materialization type view with changes in view definition, adding table description, or renaming the view results in deleting the existing view and recreating the view.
 
 The following stages are executed:
 
@@ -562,9 +562,9 @@ The following stages are executed:
 | **Delete View** | Removes existing view |
 | **Create View** | Creates new view with updated definition |
 
-### Fact Undeployment
+### Removing a Fact Node
 
-If a Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Fact Table in the target environment will be dropped.
+If a Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Fact Table in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -573,15 +573,17 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-## Factless Fact 
+---
 
-The Coalesce Fact UDN is a versatile node that allows you to develop and deploy a Fact table in Snowflake.
+## Factless Fact
+
+The Coalesce Factless Fact UDN lets you develop and deploy a factless fact table in Snowflake.
 
 A factless fact table is used to record events or situations that have no measures, and it has the same level of detail as the dimensions.
 
 ### Factless Fact Node Configuration
 
-The Fact node has two configuration groups:
+The Factless Fact Node has two configuration groups:
 
 * [Node Properties](#factless-fact-node-properties)
 * [Options](#factless-fact-options)
@@ -590,10 +592,10 @@ The Fact node has two configuration groups:
 
 | **Properties** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
-| **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Storage Location** | Storage Location where the factless fact table will be created |
+| **Node Type** | Name of template used to create Node objects |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the Node will be deployed or redeployed when changes are detected<br/> If FALSE the Node will not be deployed or will be dropped during redeployment |
 
 #### Factless Fact Options
 
@@ -602,18 +604,18 @@ The Fact node has two configuration groups:
 | **Options** | **Description** |
 |---------|-------------|
 | **Create As** | Table is the only option at this time |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Truncate Before** | Toggle: True/False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Enable tests** | Toggle: True/False<br/>Determines if tests are enabled |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
-| **Order By** | Toggle: True/False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
+| **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
+| **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Order By** | Toggle: True or False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
 | **Pre-SQL** | SQL to execute before data insert operation |
 | **Post-SQL** | SQL to execute after data insert operation |
 
 ### Factless Fact Joins
 
-Join conditions and other clauses like where, qualify can be specified in the join space next to mapping of columns in the UI.
+Join conditions and other clauses like where, qualify can be specified in the join space next to mapping of columns in the Coalesce App.
 
 ![fact_join](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/fc432c42-0315-4fb5-8f93-7836190086ff)
 
@@ -625,19 +627,19 @@ Join conditions and other clauses like where, qualify can be specified in the jo
 
 #### Factless Fact Initial Deployment
 
-When deployed for the first time into an environment the Factless Fact node of materialization type table will execute the Create Fact Table stage.
+When deployed for the first time into an Environment the Factless Fact Node of materialization type table will execute the Create Fact Table stage.
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create Fact Table** | This will execute a CREATE OR REPLACE statement and create a table in the target environment |
+| **Create Fact Table** | This will execute a CREATE OR REPLACE statement and create a table in the target Environment |
 
 #### Factless Fact Redeployment
 
-After the Fact node has been deployed for the first time into a target environment, subsequent deployments may result in either altering the Fact Table or recreating the Fact table.
+After the Factless Fact Node has been deployed for the first time into a target Environment, subsequent deployments may result in either altering the Factless Fact table or recreating the Factless Fact table.
 
 #### Altering the Factless Fact Tables
 
-A few types of column or table changes will result in an ALTER statement to modify the Factless Fact Table in the target environment, whether these changes are made individually or all together:
+A few types of column or table changes will result in an ALTER statement to modify the Factless Fact Table in the target Environment, whether these changes are made individually or all together:
 
 * Changing table names
 * Dropping existing columns
@@ -655,23 +657,22 @@ The following stages are executed:
 
 #### Recreating the Factless Fact Tables
 
-If any of the following change are detected, then the table will be recreated using a CREATE or REPLACE.
+If any of the following changes are detected, then the table will be recreated using a CREATE OR REPLACE.
 
 * Join clause
 * Adding transformations
-* Change in business key
 * Changes in configuration like adding distinct, group by, or order by
 
-One of the following stages are executed:
+One of the following stages is executed:
 
 | **Stage** | **Description** |
 |-----------|----------------|
 | **Create Table** | Creates a new table |
 | **Replace Table** | Replaces an existing table|
 
-### Factless Fact Undeployment
+### Removing a Factless Fact Node
 
-If a Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the Fact Table in the target environment will be dropped.
+If a Factless Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Factless Fact table in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -680,43 +681,45 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-## View 
+---
 
-The Coalesce View UDN is a versatile node that allows you to develop and deploy a View in Snowflake.
+## View
+
+The Coalesce View UDN lets you develop and deploy a View in Snowflake.
 
 A view allows the result of a query to be accessed as if it were a table. Views serve a variety of purposes, including combining, segregating, and protecting data.
 
 ### View Node Configuration
 
-The View node type has two configuration groups:
+The View Node type has two configuration groups:
 
 * [Node Properties](#view-node-properties)
 * [Options](#view-options)
 
-![Fact_config](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
+![View Node configuration](https://github.com/coalesceio/Coalesce-Base-Node-Types/assets/7216836/6f863c3b-3abd-4318-bd7e-ed50a829f911)
 
 #### View Node Properties
 
 | **Properties** | **Description** |
 |----------|-------------|
-| **Storage Location** | Storage Location where the WORK will be created |
-| **Node Type** | Name of template used to create node objects |
-| **Description** | A description of the node's purpose |
-| **Deploy Enabled** | If TRUE the node will be deployed / redeployed when changes are detected<br/> If FALSE the node will not be deployed or will be dropped during redeployment |
+| **Storage Location** | Storage Location where the view will be created |
+| **Node Type** | Name of template used to create Node objects |
+| **Description** | A description of the Node's purpose |
+| **Deploy Enabled** | If TRUE the Node will be deployed or redeployed when changes are detected<br/> If FALSE the Node will not be deployed or will be dropped during redeployment |
 
 #### View Options
 
 | **Options** | **Description** |
 |---------|-------------|
-| **Override Create SQL** | Toggle: True/False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible<br/>**False**: Create view SQL based on options chosen are framed and executed |
-| **Multi Source** | Toggle: True/False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: Single source node or multiple sources combined using a join |
-| **Distinct** | Toggle: True/False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True/False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
-| **Secure** | Toggle: True/False<br/>**True**: A secured view is created<br/>**False**: A normal view is created |
+| **Override Create SQL** | Toggle: True or False<br/>**True**: Customized Create SQL specified in the Create SQL space is executed. All other options are invisible<br/>**False**: Create view SQL based on options chosen are framed and executed |
+| **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
+| **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: DISTINCT is invisible. Data is grouped by all columns for processing<br/>**False**: DISTINCT is visible |
+| **Secure** | Toggle: True or False<br/>**True**: A secured view is created<br/>**False**: A normal view is created |
 
 ### View Joins
 
-Join conditions and other clauses like where, qualify can be specified in the join space next to mapping of columns in the Coalesce app.
+Join conditions and other clauses like where, qualify can be specified in the join space next to mapping of columns in the Coalesce App.
 
 > 📘 **Specify Group by Clauses**
 >
@@ -726,15 +729,15 @@ Join conditions and other clauses like where, qualify can be specified in the jo
 
 #### View Initial Deployment
 
-When deployed for the first time into an environment the View node will execute the Create View stage.
+When deployed for the first time into an Environment the View Node will execute the Create View stage.
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Create View** | This will execute a CREATE OR REPLACE statement and create a View in the target environment |
+| **Create View** | This will execute a CREATE OR REPLACE statement and create a View in the target Environment |
 
 #### View Redeployment
 
-The subsequent deployment of View node with changes in view definition, adding table description, adding secure option or renaming view results in deleting the existing view and recreating the view.
+The subsequent deployment of the View Node with changes in view definition, adding table description, adding secure option or renaming view results in deleting the existing view and recreating the view.
 
 The following stages are executed:
 
@@ -743,15 +746,17 @@ The following stages are executed:
 | **Delete View** | Removes existing view |
 | **Create View** | Creates new view with updated definition |
 
-#### View Undeployment
+#### Removing a View Node
 
-If a View Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher level environment then the View in the target environment will be dropped.
+If a View Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the View in the target Environment will be dropped.
 
 This is executed in the below stage:
 
 | **Stage** | **Description** |
 |-----------|----------------|
-| **Delete View** | Removes the view from the environment |
+| **Delete View** | Removes the view from the Environment |
+
+---
 
 ## Code
 
@@ -781,9 +786,9 @@ This is executed in the below stage:
 
 ### Factless Fact Code
 
-* [Node definition](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/Factlessfact-248/definition.yml)
-* [Create Template](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/Factlessfact-248/create.sql.j2)
-* [Run Template](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/Factlessfact-248/run.sql.j2)
+* [Node definition](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/FactlessFact-248/definition.yml)
+* [Create Template](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/FactlessFact-248/create.sql.j2)
+* [Run Template](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/FactlessFact-248/run.sql.j2)
 
 ### View Code
 
@@ -791,4 +796,6 @@ This is executed in the below stage:
 * [Create Template](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/View-188/create.sql.j2)
 * [Run Template](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/View-188/run.sql.j2)
 
-[Macros](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/macros/macro-1.yml)
+### Macros
+
+* [macro-1.yml](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/macros/macro-1.yml)

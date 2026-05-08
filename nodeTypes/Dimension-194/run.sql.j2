@@ -98,25 +98,25 @@ does not permit copying or modification for any other purpose.
 			)AS SOURCE_ZERO
 			ON
 			{%- for col in columns if col.isSurrogateKey %}
-				{{ node.name}}.{{ col.name}} ={{config.insertZeroKeySurrogateKey}}
+				"{{ node.name}}"."{{ col.name}}" ={{config.insertZeroKeySurrogateKey}}
 			{% endfor -%}			
 			WHEN MATCHED THEN UPDATE
 			SET
             {%- for col in columns if (not col.isSurrogateKey and not col.isBusinessKey) %}
-				{{ node.name}}.{{ col.name}} =SOURCE_ZERO.{{ col.name}}
+				"{{ node.name}}"."{{ col.name}}" =SOURCE_ZERO."{{ col.name}}"
 				{% if not loop.last %}, {% endif %}			
 			{% endfor -%}
             WHEN NOT MATCHED THEN INSERT
 			(
             {%- for col in columns %}
-				{{ col.name}}
+				"{{ col.name}}"
 				{% if not loop.last %}, {% endif %}			
 			{% endfor -%}
 			)
 			VALUES
 			(
             {%- for col in columns %}
-			 SOURCE_ZERO.{{ col.name}}			
+			 SOURCE_ZERO."{{ col.name}}"			
 				{% if not loop.last %}, {% endif %}			
 			{% endfor -%}
 			)

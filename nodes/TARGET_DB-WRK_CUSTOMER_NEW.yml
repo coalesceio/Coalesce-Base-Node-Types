@@ -5,12 +5,13 @@ operation:
   config:
     asofColumn:
       items:
-        - matchCondition: null
-          rightTable: null
-          rightTableSL: null
+        - matchCondition: CUSTOMER.c_custid  >=  DIM_CUSTOMER.c_custid
+          onCondition: ""
+          rightTable: DIM_CUSTOMER
+          rightTableSL: TARGET_DB
     asofJoin: true
     asofJoinMain: true
-    asofJoinON: false
+    asofJoinON: true
     asofJoinUSING: false
     groupByAll: false
     insertStrategy: INSERT
@@ -163,17 +164,23 @@ operation:
     sourceMapping:
       - aliases:
           CUSTOMER: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
+          DIM_CUSTOMER: 121a6ff0-792c-49a8-8e90-99f16f206974
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: CUSTOMER
+          - locationName: TARGET_DB
+            nodeName: DIM_CUSTOMER
         join:
           joinCondition: |2-
 
 
-             
-              FROM  {{ ref('SOURCE_DATA', 'CUSTOMER') }} CUSTOMER
+
+               FROM  {{ ref('SOURCE_DATA', 'CUSTOMER') }} "CUSTOMER"
+               ASOF JOIN {{ ref('TARGET_DB', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
+               MATCH_CONDITION (CUSTOMER.c_custid  >=  DIM_CUSTOMER.c_custid ) 
+               USING (c_custid)
         name: WRK_CUSTOMER_NEW
         noLinkRefs: []
   name: WRK_CUSTOMER_NEW

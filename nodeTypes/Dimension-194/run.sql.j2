@@ -140,10 +140,12 @@ does not permit copying or modification for any other purpose.
             DISTINCT
             {% endif %}
             {% for col in source.columns if not col.isSurrogateKey %}
-                {% if col.isSystemVersion %}
+               {% if col.isSystemVersion %}
                     1
                 {% elif col.isSystemCurrentFlag %}
                     'Y'
+				{% elif col.name == last_modified_col and useCurrentTimeStamp %}
+				COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP())
                 {% else %}
                    {{ get_source_transform(col) }}
                 {% endif %}
@@ -282,8 +284,6 @@ does not permit copying or modification for any other purpose.
                     DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP))
                 {% elif col.isSystemCurrentFlag %}
                     'N'
-                {% elif col.name == last_modified_col and useCurrentTimeStamp %}
-				    COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP())
                 {% else %}
                     "DIM"."{{ col.name }}"
                 {% endif %}

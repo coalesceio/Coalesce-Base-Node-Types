@@ -1,9 +1,9 @@
 fileVersion: 1
-id: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+id: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
 name: CUSTOMER
 operation:
   database: ""
-  deployEnabled: true
+  deployEnabled: false
   description: ""
   locationName: SOURCE_DATA
   metadata:
@@ -13,8 +13,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 643870b7-86c6-444f-bee0-ecf06d89e506
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 610a49d4-b1fc-48b1-a671-c0a6596f893b
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
@@ -22,18 +22,14 @@ operation:
         name: C_CUSTKEY
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 8c487a4c-a779-48d6-9257-ecb07001bad2
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: d2961d07-4d17-4a0f-add9-675a4857d077
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: VARCHAR(25)
         defaultValue: ""
@@ -41,18 +37,14 @@ operation:
         name: C_NAME
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: e13b536b-4c62-492c-b785-58798f00a664
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: e50504b9-f70d-4c88-8ebc-ac83fc89629c
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: VARCHAR(40)
         defaultValue: ""
@@ -60,18 +52,14 @@ operation:
         name: C_ADDRESS
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 796dcbe6-58bf-4302-9226-822cac6e98bb
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: f0b2af74-554a-43bb-9009-6966b4d9316e
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
@@ -79,18 +67,14 @@ operation:
         name: C_NATIONKEY
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f8a63527-d454-432d-b454-2027553f5584
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 8a56f70a-197a-4ce8-9a29-e45ae7ac9c64
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: VARCHAR(15)
         defaultValue: ""
@@ -98,18 +82,14 @@ operation:
         name: C_PHONE
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 3e070b5e-cbd4-431a-8088-0a85827112e7
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 5f42bd2b-f7cd-4ac4-a61a-6ac25e2fcde4
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: NUMBER(12,2)
         defaultValue: ""
@@ -117,18 +97,14 @@ operation:
         name: C_ACCTBAL
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 688a52ea-511b-415b-9119-158db0c25cc8
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 5beb778b-3564-4db6-8ff6-f320ed24d3cf
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: VARCHAR(10)
         defaultValue: ""
@@ -136,18 +112,14 @@ operation:
         name: C_MKTSEGMENT
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 87b87e34-b585-4425-b9ed-a3bdf7de21d0
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: 4b82bf70-1736-42e6-ab58-af2bb3c07c27
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: VARCHAR(117)
         defaultValue: ""
@@ -155,18 +127,14 @@ operation:
         name: C_COMMENT
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d6b2e4bd-dfc1-4f41-8257-e009fb43694b
-          stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
+          columnCounter: e35df485-0b9a-4d34-89d9-08e32f64cc3e
+          stepCounter: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
         config: {}
         dataType: TIMESTAMP_LTZ(9)
         defaultValue: ""
@@ -174,10 +142,6 @@ operation:
         name: C_LOAD_TIMESTAMP
         nullable: true
         primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
         uniqueKey: false
   name: CUSTOMER
   schema: ""

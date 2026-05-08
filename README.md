@@ -214,6 +214,9 @@ The Persistent Stage Node type has two configuration groups:
 | **Treat Null as Current timestamp(Enabled for Last Modified Comparison)**| Records with NULL timestamp are updated in target|
 | **Type 2 Dimension(Enabled for Last Modified Comparison)**|CDC is based on timestamp/ID column chosen above.Change tracking columns are not enabled for this scenario|
 | **Change tracking** | Required column for Type 2 |
+| **Delete Strategy** | Visible only when a Business Key is configured.<br/> **NO DELETE**: Deleted records are not processed.<br/>**SOFT DELETE**:  Deleted records are kept in the target but marked as inactive.<br/>**HARD DELETE**: Deleted records and all their version history are permanently removed from the target. |
+| **Column that Identifies DML Operations** | The column in the source table that tells whether a record is an Insert, Update or Delete. |
+| **Delete Value** | The value in the DML column that signals a record should be deleted. |
 | **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
 | **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
 | **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |

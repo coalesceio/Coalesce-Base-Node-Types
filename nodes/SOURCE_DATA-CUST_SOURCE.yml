@@ -1,6 +1,6 @@
 fileVersion: 1
-id: bad81e3d-15f0-4306-8f37-696b261de62c
-name: GEOSPATIAL_TABLE
+id: d0ba5d9d-2bb6-4522-af93-beda9599cf99
+name: CUST_SOURCE
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 3694e03f-9b40-44dc-b4c6-0d54875ca045
-          stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
+          columnCounter: 83eb7365-248e-49df-bc9b-7e5f40924c59
+          stepCounter: d0ba5d9d-2bb6-4522-af93-beda9599cf99
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: ID
+        name: CUST_ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,32 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 43aa3261-f51f-4135-b972-a79444087286
-          stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
-        config: {}
-        dataType: GEOGRAPHY
-        defaultValue: ""
-        description: ""
-        name: G
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: e172d55c-4b53-4382-a11c-ba21c5b1157c
-          stepCounter: bad81e3d-15f0-4306-8f37-696b261de62c
+          columnCounter: 83b770f3-9a95-4687-a6ae-b092519c0272
+          stepCounter: d0ba5d9d-2bb6-4522-af93-beda9599cf99
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: DESCRIPTION
+        name: CUST_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -65,7 +46,45 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: GEOSPATIAL_TABLE
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: becb1f1b-5dcd-4ba6-9051-3fb2dfaa149b
+          stepCounter: d0ba5d9d-2bb6-4522-af93-beda9599cf99
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: DML_FLAG
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a7168917-2cbe-49cc-8aff-a1d83b8e6d49
+          stepCounter: d0ba5d9d-2bb6-4522-af93-beda9599cf99
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: CREATED_AT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: CUST_SOURCE
   schema: ""
   sqlType: Source
   type: sourceInput

@@ -1,9 +1,9 @@
 fileVersion: 1
-id: 3ee0793d-5b13-4599-89b7-5df13fa16937
-name: PRODUCTS_GROCERY
+id: 570bb5d2-ca2d-46f8-9838-29f291d51d01
+name: NATION_COPY1
 operation:
   database: ""
-  deployEnabled: false
+  deployEnabled: true
   description: ""
   locationName: SOURCE_DATA
   metadata:
@@ -13,32 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 170b27df-a283-4675-9d84-0f102350d147
-          stepCounter: 3ee0793d-5b13-4599-89b7-5df13fa16937
+          columnCounter: d352bcf8-e204-4952-9cd8-d6fe20eaeb8e
+          stepCounter: 570bb5d2-ca2d-46f8-9838-29f291d51d01
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: PRODUCT_ID
-        nullable: false
-        primaryKey: true
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 8566bbe0-c2d1-4974-9078-0abc39454929
-          stepCounter: 3ee0793d-5b13-4599-89b7-5df13fa16937
-        config: {}
-        dataType: VARCHAR(255)
-        defaultValue: ""
-        description: ""
-        name: PRODUCT_NAME
+        name: N_NATIONKEY
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9d2053a5-dde6-4823-ae94-5e44b731206e
-          stepCounter: 3ee0793d-5b13-4599-89b7-5df13fa16937
+          columnCounter: 3d929f5d-ef34-4c02-9cca-c43cf968befc
+          stepCounter: 570bb5d2-ca2d-46f8-9838-29f291d51d01
         config: {}
-        dataType: VARCHAR(100)
+        dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        name: BRAND
+        name: N_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6a012205-b814-478f-8b9f-4799b4ea4c93
-          stepCounter: 3ee0793d-5b13-4599-89b7-5df13fa16937
+          columnCounter: 92e22270-5fa1-46a9-b741-239f4f3ffaf2
+          stepCounter: 570bb5d2-ca2d-46f8-9838-29f291d51d01
         config: {}
-        dataType: VARCHAR(50)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: COLOUR
+        name: N_REGIONKEY
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -84,7 +65,45 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: PRODUCTS_GROCERY
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e7ba7b0c-173b-41d1-9f88-1a21da75cb2b
+          stepCounter: 570bb5d2-ca2d-46f8-9838-29f291d51d01
+        config: {}
+        dataType: VARCHAR(152)
+        defaultValue: ""
+        description: ""
+        name: N_COMMENT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 555187f7-522d-42a3-a9a4-0361167512a2
+          stepCounter: 570bb5d2-ca2d-46f8-9838-29f291d51d01
+        config: {}
+        dataType: TIMESTAMP_LTZ(9)
+        defaultValue: ""
+        description: ""
+        name: N_LOAD_TIMESTAMP
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: NATION_COPY1
   schema: ""
   sqlType: Source
   type: sourceInput

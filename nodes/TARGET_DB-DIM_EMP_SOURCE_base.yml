@@ -1,10 +1,24 @@
 fileVersion: 1
-id: 65828bf3-8074-4d91-8b48-6eac05d68d32
-name: PSTG_GEOMETRY_TABLE
+id: 7cd70b73-008c-44da-ae21-3b3d210312f5
+name: DIM_EMP_SOURCE_base
 operation:
   config:
+    customZeroKeyValues:
+      items:
+        - {}
     groupByAll: false
     insertStrategy: UNION ALL
+    insertZeroKey: false
+    insertZeroKeyAdvanced: false
+    insertZeroKeyBol: "TRUE"
+    insertZeroKeyDate: 01-01-1900
+    insertZeroKeyStr: UNKNOWN
+    insertZeroKeySurrogateKey: "0"
+    insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
+    lastModifiedColumn:
+      columnCounter: 79670fcc-f4d3-4f3e-bca5-3014b743db26
+      stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
+    lastModifiedComparison: true
     orderby: false
     orderbycolumn:
       items:
@@ -13,7 +27,9 @@ operation:
     preSQL: ""
     selectDistinct: false
     testsEnabled: false
+    treatNullAsCurrentTimestamp: false
     truncateBefore: false
+    type2Dimension: true
   database: ""
   deployEnabled: true
   description: ""
@@ -28,55 +44,96 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: fd6391b4-6ffe-474e-914f-5e57eb4e1282
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: 83128a15-95a6-42ac-8396-217677ca1493
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
         dataType: NUMBER
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        name: PSTG_GEOMETRY_TABLE_KEY
+        name: DIM_EMP_SOURCE_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9d814308-add2-4859-8c8c-b438d3387caf
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: 830435b4-1c22-4a95-bdf5-cf151de955e3
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
-        dataType: GEOMETRY
+        dataType: NUMBER(38,0)
         description: ""
-        isChangeTracking: true
-        name: G
+        isBusinessKey: true
+        name: EMP_ID
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 4f861741-0235-498d-9933-18f6800071d9
-                stepCounter: 3438ebdf-b768-4e0a-8b4b-3d135c95b809
+              - columnCounter: b271d3ee-b57c-41aa-bdab-991839832b99
+                stepCounter: b47d8adf-001f-43e8-bdc5-4f6a0b829589
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3e59a666-3f5e-4117-b85a-5ab6fe421eeb
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: cdfc75fe-f3d2-4d5e-b34e-a4f87ebbf4af
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
-        isBusinessKey: true
-        name: DESCRIPTION
+        name: EMP_NAME
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 38fd7291-abe2-42dc-a734-8101c73a47d6
-                stepCounter: 3438ebdf-b768-4e0a-8b4b-3d135c95b809
+              - columnCounter: c6324d7b-881a-44ae-8a67-0b0170f0576c
+                stepCounter: b47d8adf-001f-43e8-bdc5-4f6a0b829589
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5fa7b6be-e48b-4777-ab89-45d8f96978ad
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: EMP_CITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cbb0bedf-f025-4cee-8bfa-ba6f49f89ad9
+                stepCounter: b47d8adf-001f-43e8-bdc5-4f6a0b829589
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 13854721-26f5-4ad1-88f3-dc7bfe52a8ac
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DML_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1e4ddfa-8185-46d4-93de-d34f8450ebbe
+                stepCounter: b47d8adf-001f-43e8-bdc5-4f6a0b829589
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 79670fcc-f4d3-4f3e-bca5-3014b743db26
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: CREATED_AT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8796b2a1-533c-419f-bc2c-8cc7fddaf86e
+                stepCounter: b47d8adf-001f-43e8-bdc5-4f6a0b829589
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d5f528fd-dbb8-407e-935b-875ee673c181
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: fb9be46e-882a-4465-ae90-34876af7b139
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -92,8 +149,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7cc5cb45-a406-4612-87d3-838746c12525
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: b5205b5b-5639-4381-ade0-02ccca5f9d5e
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
         dataType: VARCHAR
         defaultValue: ""
@@ -109,8 +166,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 805f770c-4ad2-4242-b85e-f2f7183db16b
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: 15a9f45e-a866-46ea-bbf4-ae78dac62791
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -126,8 +183,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 81c74d60-ef12-4ec4-9f7f-628072090333
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: d61834c4-79da-4f71-9d69-56be5cb462d5
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -143,8 +200,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2998f088-358f-455a-9093-5985b3f1c961
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: c3cfac95-4188-431e-9f66-873962243557
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -160,8 +217,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7f8ac489-ca71-4847-9efb-25285d4cbd26
-          stepCounter: 65828bf3-8074-4d91-8b48-6eac05d68d32
+          columnCounter: a0dac6be-003d-410d-a63e-10c0f8d386f6
+          stepCounter: 7cd70b73-008c-44da-ae21-3b3d210312f5
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -175,20 +232,21 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          EMP_SOURCE: b47d8adf-001f-43e8-bdc5-4f6a0b829589
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
-            nodeName: GEOMETRY_TABLE
+            nodeName: EMP_SOURCE
         join:
-          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOMETRY_TABLE') }} "GEOMETRY_TABLE"
-        name: PSTG_GEOMETRY_TABLE
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'EMP_SOURCE') }} "EMP_SOURCE"
+        name: DIM_EMP_SOURCE_base
         noLinkRefs: []
-  name: PSTG_GEOMETRY_TABLE
+  name: DIM_EMP_SOURCE_base
   overrideSQL: false
   schema: ""
-  sqlType: "173"
+  sqlType: "194"
   type: sql
   version: 1
 type: Node

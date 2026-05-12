@@ -1,20 +1,19 @@
 fileVersion: 1
-id: 92253772-f157-4d6b-b577-88e5f8538636
-name: DIM_GEOMETRY_VIEW
+id: 04799cb9-c957-4206-99ac-8c433bbfa460
+name: PSTG_CUST_SOURCE
 operation:
   config:
-    customZeroKeyValues:
-      items:
-        - {}
+    deleteStrategy: SOFT DELETE
+    dmlCol:
+      columnCounter: fac31321-9894-4b08-afea-3c06d9c46eeb
+      stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
+    dmlDelete: D
     groupByAll: false
     insertStrategy: UNION ALL
-    insertZeroKey: false
-    insertZeroKeyAdvanced: false
-    insertZeroKeyBol: "TRUE"
-    insertZeroKeyDate: 01-01-1900
-    insertZeroKeyStr: UNKNOWN
-    insertZeroKeySurrogateKey: "0"
-    insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
+    lastModifiedColumn:
+      columnCounter: e3192b1d-5cfa-4100-bc3b-f0c95235afac
+      stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
+    lastModifiedComparison: true
     orderby: false
     orderbycolumn:
       items:
@@ -23,13 +22,15 @@ operation:
     preSQL: ""
     selectDistinct: false
     testsEnabled: false
+    treatNullAsCurrentTimestamp: false
     truncateBefore: false
+    type2Dimension: false
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET_DB
-  materializationType: view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
@@ -38,54 +39,83 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4a4750c6-b793-4494-adbb-81b8bb16cced
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: 1bbef1f4-eed0-42e0-8872-87f84c1a3f8e
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
         dataType: NUMBER
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        name: DIM_GEOMETRY_TABLE1_KEY
+        name: PSTG_CUST_SOURCE_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 64ff28be-f32b-4d0d-b4ee-e1294d1040a3
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: 522debf5-1008-4dde-bcde-619b5b6fec1f
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
-        dataType: GEOMETRY
+        dataType: NUMBER(38,0)
         description: ""
-        name: G
+        isBusinessKey: true
+        name: CUST_ID
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 4f861741-0235-498d-9933-18f6800071d9
-                stepCounter: 3438ebdf-b768-4e0a-8b4b-3d135c95b809
+              - columnCounter: 83eb7365-248e-49df-bc9b-7e5f40924c59
+                stepCounter: d0ba5d9d-2bb6-4522-af93-beda9599cf99
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ea503234-fa5b-4400-9018-ec84bef446d7
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: 3f85aba4-773d-43f7-8694-46d26c933a4c
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
         dataType: VARCHAR(16777216)
         description: ""
-        isBusinessKey: true
-        name: DESCRIPTION
+        isChangeTracking: true
+        name: CUST_NAME
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 38fd7291-abe2-42dc-a734-8101c73a47d6
-                stepCounter: 3438ebdf-b768-4e0a-8b4b-3d135c95b809
+              - columnCounter: 83b770f3-9a95-4687-a6ae-b092519c0272
+                stepCounter: d0ba5d9d-2bb6-4522-af93-beda9599cf99
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fac31321-9894-4b08-afea-3c06d9c46eeb
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: DML_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: becb1f1b-5dcd-4ba6-9051-3fb2dfaa149b
+                stepCounter: d0ba5d9d-2bb6-4522-af93-beda9599cf99
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3192b1d-5cfa-4100-bc3b-f0c95235afac
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: CREATED_AT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7168917-2cbe-49cc-8aff-a1d83b8e6d49
+                stepCounter: d0ba5d9d-2bb6-4522-af93-beda9599cf99
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 97766b55-41c7-44db-b7f3-2d2172e5a239
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: 706f1c80-f9d3-4204-93ef-494030f3bbd8
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -101,8 +131,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 24037add-fa79-4ec3-a777-932cf0f3a152
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: baf92ee6-d3ed-41fa-907a-0cd23acd59c3
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
         dataType: VARCHAR
         defaultValue: ""
@@ -118,8 +148,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 41e4d557-c8c4-4bb2-a9de-f93555dd1f15
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: 6e8417a4-d256-4af3-bd42-d247c486e4de
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -135,8 +165,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 406bf2e8-2ac0-4c9a-9c1e-35ba8b61e78a
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: e35580c4-b52e-45b0-bc9d-8b38df10550c
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -152,8 +182,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2173d229-4352-4220-811e-16dfeab4c85d
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: daea2b37-68fd-4deb-91ae-ab8e0a3469c0
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -169,8 +199,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f8378c15-aff9-4da3-aff3-8688482a3529
-          stepCounter: 92253772-f157-4d6b-b577-88e5f8538636
+          columnCounter: 56a4bd03-b24c-456b-8004-b0fa5ce1daa5
+          stepCounter: 04799cb9-c957-4206-99ac-8c433bbfa460
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -184,20 +214,21 @@ operation:
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          CUST_SOURCE: d0ba5d9d-2bb6-4522-af93-beda9599cf99
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
-            nodeName: GEOMETRY_TABLE
+            nodeName: CUST_SOURCE
         join:
-          joinCondition: FROM {{ ref('SOURCE_DATA', 'GEOMETRY_TABLE') }} "GEOMETRY_TABLE"
-        name: DIM_GEOMETRY_VIEW
+          joinCondition: FROM {{ ref('SOURCE_DATA', 'CUST_SOURCE') }} "CUST_SOURCE"
+        name: PSTG_CUST_SOURCE
         noLinkRefs: []
-  name: DIM_GEOMETRY_VIEW
+  name: PSTG_CUST_SOURCE
   overrideSQL: false
   schema: ""
-  sqlType: "194"
+  sqlType: "173"
   type: sql
   version: 1
 type: Node

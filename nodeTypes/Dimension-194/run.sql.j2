@@ -22,10 +22,10 @@ does not permit copying or modification for any other purpose.
  {% set last_modified_col = config.lastModifiedColumn.name | default('') %}
 {%endif%}
 
-{%if config.treatNullAsCurrentTimestamp  and 'TIMESTAMP' in (config.lastModifiedColumn.dataType | upper)  %}
-     {%set useCurrentTimeStamp = true %}
+{%if config.lastModifiedComparison  and 'TIMESTAMP' in (config.lastModifiedColumn.dataType | upper)  %}
+     {%set isTimestampComparison = true %}
    {%else%}
-     {%set useCurrentTimeStamp = false %}
+     {%set isTimestampComparison = false %}
 {%endif%}
 
 {# == To run data quality tests before data insertion == #}
@@ -36,10 +36,46 @@ does not permit copying or modification for any other purpose.
             {{ test.templateString }}
         {% endif %}
     {% endfor %}
+{% if isTimestampComparison  %}
 
+{{ test_stage(
+    'Checking NULL values for ' ~ last_modified_col ~ ' column',
+    false
+) }}
 
-{% if node.materializationType == 'table' %}
+{% set ns = namespace(first=true) %}
 
+{% for source in sources %}
+
+    {% for col in source.columns if col.name == last_modified_col %}
+
+        {% set col_transform = get_source_transform(col) %}
+
+        {% if col_transform is not none and col_transform != 'NULL' %}
+
+            {% if not ns.first %}
+                UNION ALL
+            {% endif %}
+
+            SELECT 1
+
+            {{ get_clause(source.join,'from') }}
+
+            WHERE {{ col_transform }} IS NULL
+
+            {{ get_clause(source.join) }}
+
+            {% set ns.first = false %}
+			 /* If NULL values are detected, this stage will fail and execution will be terminated */
+			
+        {% endif %}
+
+    {% endfor %}
+
+{% endfor %}
+
+{% endif %}																														
+{% if node.materializationType == 'table' %}									 
 {# == Queries to be excuted before data insertion  == #}
 
 	{% if config.preSQL %}			
@@ -98,25 +134,25 @@ does not permit copying or modification for any other purpose.
 			)AS SOURCE_ZERO
 			ON
 			{%- for col in columns if col.isSurrogateKey %}
-				{{ node.name}}.{{ col.name}} ={{config.insertZeroKeySurrogateKey}}
+				"{{ node.name}}"."{{ col.name}}" ={{config.insertZeroKeySurrogateKey}}
 			{% endfor -%}			
 			WHEN MATCHED THEN UPDATE
 			SET
             {%- for col in columns if (not col.isSurrogateKey and not col.isBusinessKey) %}
-				{{ node.name}}.{{ col.name}} =SOURCE_ZERO.{{ col.name}}
+				"{{ node.name}}"."{{ col.name}}" =SOURCE_ZERO."{{ col.name}}"
 				{% if not loop.last %}, {% endif %}			
 			{% endfor -%}
             WHEN NOT MATCHED THEN INSERT
 			(
             {%- for col in columns %}
-				{{ col.name}}
+				"{{ col.name}}"
 				{% if not loop.last %}, {% endif %}			
 			{% endfor -%}
 			)
 			VALUES
 			(
             {%- for col in columns %}
-			 SOURCE_ZERO.{{ col.name}}			
+			 SOURCE_ZERO."{{ col.name}}"			
 				{% if not loop.last %}, {% endif %}			
 			{% endfor -%}
 			)
@@ -140,7 +176,7 @@ does not permit copying or modification for any other purpose.
             DISTINCT
             {% endif %}
             {% for col in source.columns if not col.isSurrogateKey %}
-                {% if col.isSystemVersion %}
+               {% if col.isSystemVersion %}
                     1
                 {% elif col.isSystemCurrentFlag %}
                     'Y'
@@ -187,8 +223,6 @@ does not permit copying or modification for any other purpose.
                     "DIM"."{{ col.name }}" + 1
                 {% elif col.isSystemCurrentFlag %}
                     'Y'
-                {% elif col.name == last_modified_col and useCurrentTimeStamp %}
-					     COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP())
                 {% else %}
                    {{ get_source_transform(col) }}
                 {% endif %}
@@ -207,11 +241,8 @@ does not permit copying or modification for any other purpose.
             {%if config.lastModifiedComparison %} 
             {% for col in source.columns if col.name == last_modified_col -%}
                 AND
-                {%if useCurrentTimeStamp %}
-                  COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP())> "DIM"."{{last_modified_col}}"
-                {%else%}
                   {{ get_source_transform(col) }} > "DIM"."{{last_modified_col}}"
-                {%endif%}
+
             {% endfor %}  
             {%endif%}
             {% if not config.lastModifiedComparison %}
@@ -282,8 +313,6 @@ does not permit copying or modification for any other purpose.
                     DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP))
                 {% elif col.isSystemCurrentFlag %}
                     'N'
-                {% elif col.name == last_modified_col and useCurrentTimeStamp %}
-				    COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP())
                 {% else %}
                     "DIM"."{{ col.name }}"
                 {% endif %}
@@ -302,11 +331,7 @@ does not permit copying or modification for any other purpose.
             {%if config.lastModifiedComparison %} 
             {% for col in source.columns if col.name == last_modified_col -%}
                     AND
-                {%if useCurrentTimeStamp %}
-                  COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP())> "DIM"."{{last_modified_col}}"
-                {%else%}
                   {{ get_source_transform(col) }} > "DIM"."{{last_modified_col}}"
-                {%endif%}
             {% endfor %}  
             {%endif%}
             {%if not config.lastModifiedComparison%}
@@ -553,12 +578,8 @@ does not permit copying or modification for any other purpose.
                     {% if col.isSystemVersion %}
                     	1
                     {% elif col.isSystemCurrentFlag %}
-                    	'Y'
-                    {% elif col.name == last_modified_col and useCurrentTimeStamp %}
-					     COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP()) AS "{{ col.name }}",
-						 COALESCE({{ get_source_transform(col) }},CURRENT_TIMESTAMP()) as COMPARISON_VALUE,
-						 MAX ("DIM"."{{last_modified_col}}") AS MAX_TARGET_VALUE		    
-                    {% elif col.name == last_modified_col and not useCurrentTimeStamp%}
+                    	'Y'	    
+                    {% elif col.name == last_modified_col%}
 					     {{ get_source_transform(col) }} AS "{{ col.name }}",
 						 {{ get_source_transform(col) }} AS COMPARISON_VALUE,
 					     MAX ("DIM"."{{last_modified_col}}") AS MAX_TARGET_VALUE
@@ -578,13 +599,14 @@ does not permit copying or modification for any other purpose.
                                 {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
                             {% endfor %}
                   {%endif%}
-                   {% set clause = get_clause(joinclause) %}
+				 {% set clause = get_clause(joinclause) %}
                    {% if clause %}
                       {{ ("WHERE " ~ clause.strip()[3:].strip()) if clause.strip().upper().startswith('AND') else clause }}
                    {% endif %}
                  {% if config.groupByAll or config.lastModifiedComparison %}
                  GROUP BY ALL
                  {% endif %}
+
                  {{ sortorder_by_colv() }} )     
                  {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
                      {{config.insertStrategy}}
@@ -655,8 +677,7 @@ does not permit copying or modification for any other purpose.
                     {% endif %}
                 {% endfor %}
              {%else%}  
-                    AND ("SRC".COMPARISON_VALUE > "SRC".MAX_TARGET_VALUE 
-                    OR "SRC".MAX_TARGET_VALUE IS NULL)
+                    AND ("SRC".COMPARISON_VALUE > "SRC".MAX_TARGET_VALUE)
              {%endif%}
             THEN UPDATE SET
             {%- for col in columns if not (  col.isBusinessKey or

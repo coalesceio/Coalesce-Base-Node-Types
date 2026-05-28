@@ -78,6 +78,38 @@ metadata:
         isRequired: false
         enableIf: "{% if config.lastModifiedComparison  or node.materializationType == 'view' %} false {% else %} true {% endif %}"
 
+      - displayName: Delete Strategy 
+        attributeName: deleteStrategy
+        type: dropdownSelector
+        default: "NO DELETE"
+        options:
+        - "NO DELETE"
+        - "SOFT DELETE"
+        - "HARD DELETE"
+        isRequired: false
+        enableIf: "{% if (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
+
+      - displayName: Column that Identifies DML Operations*(DELETE)
+        attributeName: dmlCol
+        type: columnDropdownSelector
+        enableIf: "{% if config.deleteStrategy != 'NO DELETE' and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
+
+      - displayName: Delete Value *
+        attributeName: dmlDelete
+        type: textBox
+        default: D
+        enableIf: "{% if config.deleteStrategy != 'NO DELETE' and (columns 
+                      | selectattr('isBusinessKey')
+                      | list
+                      | length > 0) %} true {% else %} false {% endif %}"
+
+
       - displayName: Truncate Before
         attributeName: truncateBefore
         type: toggleButton

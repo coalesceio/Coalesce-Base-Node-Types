@@ -5,7 +5,7 @@ metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |-
-    capitalized: Dimension 
+    capitalized: Copy of Dimension 
     short: DIM
     tagColor: '#1E339A'
     plural: Dimensions
@@ -57,17 +57,6 @@ metadata:
         displayName: Last Modified Column
         enableIf: "{% if node.materializationType != 'view' and config.lastModifiedComparison %} true {% else %} false {% endif %}"
 
-      - type: label
-        attributeName: l2
-        displayName: The below toggle is applicable only for timestamp column
-        enableIf: "{% if node.materializationType != 'view' and config.lastModifiedComparison %} true {% else %} false {% endif %}"
-
-
-      - type: toggleButton
-        attributeName: treatNullAsCurrentTimestamp
-        displayName: Treat NULL as Current Timestamp
-        default: false
-        enableIf: "{% if config.lastModifiedComparison %} true {% else %} false {% endif %}"
 
       - type: toggleButton
         attributeName: type2Dimension

@@ -209,9 +209,8 @@ The Persistent Stage Node type has two configuration groups:
 | **Create As** | Table is the only option at this time |
 | **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2.<br/>**Note:** Geometry and Geography data type columns are not supported as business key columns. |
-| **Last Modified Comparison** | **True**:When enabled we can do timestamp based CDC<br/>**False**:Regular CDC based on Change tracking columns is done |
+| **Last Modified Comparison** | **True**:When enabled, timestamp-based CDC is performed. A test condition validates the source data for NULL values in the selected Last Modified column before the merge operation. The merge is blocked if NULL values are found and proceeds only after they are resolved<br/>**False**:Regular CDC based on Change tracking columns is done |
 | **Last Modified Column(Enabled for Last Modified Comparison)** | Timestamp/Incremental ID column can be chosen.Based on which CDC is done |
-| **Treat Null as Current timestamp(Enabled for Last Modified Comparison)**| Records with NULL timestamp are updated in target|
 | **Type 2 Dimension(Enabled for Last Modified Comparison)**|CDC is based on timestamp/ID column chosen above.Change tracking columns are not enabled for this scenario|
 | **Change tracking** | Required column for Type 2 |
 | **Delete Strategy** | Visible only when a Business Key is configured.<br/> **NO DELETE**: Deleted records are not processed.<br/>**SOFT DELETE**:  Deleted records are kept in the target but marked as inactive.<br/>**HARD DELETE**: Deleted records and all their version history are permanently removed from the target. |
@@ -329,9 +328,8 @@ The Dimension Node type has two configuration groups:
 | **Insert Zero Key Record** | Toggle: True or False<br/>Insert Zero Key Record to Dimension<br/>**True**:  Zero Key Record Options enabled.<br/>**False**: Zero Key Record not added|
 | **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
 | **Business key** | Required column for both Type 1 and Type 2 Dimensions.<br/>**Note:** Geometry and Geography data type columns are not supported as business key columns. |
-| **Last Modified Comparison** | **True**:When enabled we can do timestamp based CDC<br/>**False**:Regular CDC based on Change tracking columns is done |
+| **Last Modified Comparison** | **True**:When enabled, timestamp-based CDC is performed. A test condition validates the source data for NULL values in the selected Last Modified column before the merge operation. The merge is blocked if NULL values are found and proceeds only after they are resolved<br/>**False**:Regular CDC based on Change tracking columns is performed |
 | **Last Modified Column(Enabled for Last Modified Comparison)** | Timestamp/Incremental ID column can be chosen.Based on which CDC is done |
-| **Treat Null as Current timestamp(Enabled for Last Modified Comparison)**| Records with NULL timestamp are updated in target|
 | **Type 2 Dimension(Enabled for Last Modified Comparison)**|CDC is based on timestamp/ID column chosen above.Change tracking columns are not enabled for this scenario|
 | **Change tracking** | Required column for Type 2 Dimension |
 | **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
@@ -472,9 +470,8 @@ The Fact Node has two configuration groups:
 |---------|-------------|
 | **Multi Source** | Toggle: True or False<br/>Implementation of SQL UNIONs<br/>**True**: Combine multiple sources in a single Node<br/>True Options:<br/>- **UNION**: Combines with duplicate elimination<br/>- **UNION ALL**: Combines without duplicate elimination<br/>**False**: single-source Node or multiple sources combined using a join |
 | **Business key** | Required column for Fact table creation.<br/>**Note:** Geometry and Geography data type columns are not supported as business key columns. |
-| **Last Modified Comparison** | **True**:When enabled we can do timestamp based CDC<br/>**False**:Regular CDC based on Change tracking columns is done |
+| **Last Modified Comparison** | **True**:When enabled, timestamp-based CDC is performed. A test condition validates the source data for NULL values in the selected Last Modified column before the merge operation. The merge is blocked if NULL values are found and proceeds only after they are resolved<br/>**False**:Regular CDC based on Change tracking columns is done |
 | **Last Modified Column(Enabled for Last Modified Comparison)** | Timestamp/Incremental ID column can be chosen.Based on which CDC is done |
-| **Treat Null as Current timestamp(Enabled for Last Modified Comparison)**| Records with NULL timestamp are updated in target|
 | **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
 | **Enable tests** | Toggle: True or False<br/>Determines if tests are enabled |
 | **Distinct** | Toggle: True or False<br/>**True**: Group by All is invisible. DISTINCT data is chosen for processing<br/>**False**: Group by All is visible |

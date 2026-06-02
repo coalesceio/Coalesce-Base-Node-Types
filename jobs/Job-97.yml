@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "97"
+includeSelector: "{ location: \"SOURCE_DATA\" name: \"CLIENTS\" } OR { location: \"SOURCE_DATA\" name: \"CLIENTS_1\" } OR { location: \"TARGET_DB\" name: \"DIM_CLIENTS1\" } OR { location: \"TARGET_DB\" name: \"DIM_CLIENTS\" }"
+name: Job
+type: Job

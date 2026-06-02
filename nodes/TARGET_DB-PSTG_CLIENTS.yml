@@ -1,0 +1,253 @@
+fileVersion: 1
+id: 8768261a-8a59-42dc-8b03-8698cca006c9
+name: PSTG_CLIENTS
+operation:
+  config:
+    deleteStrategy: NO DELETE
+    dmlDelete: D
+    groupByAll: false
+    insertStrategy: UNION ALL
+    lastModifiedColumn:
+      columnCounter: aaecf130-4935-4ec2-8ae4-1135d77e8918
+      stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+    lastModifiedComparison: true
+    orderby: true
+    orderbycolumn:
+      items:
+        - sortColName:
+            columnCounter: 063d4f24-6e74-4081-a65e-a517471b3d8d
+            stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+          sortOrder: desc
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+    type2Dimension: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3665e4d-424d-48a6-83f0-9165effbde35
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: PSTG_CLIENTS_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 063d4f24-6e74-4081-a65e-a517471b3d8d
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        isBusinessKey: true
+        name: CLIENT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 692263cc-2e29-4a18-b4eb-e9e59e6c004a
+                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 23d90c25-533f-4fee-84be-65d9e52fa947
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: CLIENT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ff37a43-d5e8-49ae-b612-39cdc3151b57
+                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6cde4c4e-69b2-492e-9ae7-fa2953207163
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: EMAIL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4541e5f4-2288-4b3f-abc9-1dbde8094ea4
+                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3b88e107-ca82-4ebf-a3ff-783d4e10547d
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9d4c0781-9b7c-4ebb-8201-4d09a5436175
+                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aaecf130-4935-4ec2-8ae4-1135d77e8918
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        name: UPDATE_TIME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f68cce5-141d-49d3-a881-53614d5c0125
+                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22cf5c73-cbfa-4876-8056-3babb3eda896
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44f623ee-a71e-4f98-b289-9ae9b7ac519c
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f953674a-900d-4477-aa4a-33e6c6f27cd9
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c72490d8-8683-4c5d-a4ff-f7afb2e6d9a9
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3510b0fc-f837-4ec4-bae6-dbc7b7949f5b
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65e8a524-f348-41f1-9c88-24d248d19ab7
+          stepCounter: 8768261a-8a59-42dc-8b03-8698cca006c9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CLIENTS: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+          CLIENTS_1: d5a52888-970e-4495-81ab-171efaf5ad9f
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: CLIENTS
+          - locationName: SOURCE_DATA
+            nodeName: CLIENTS_1
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE_DATA', 'CLIENTS') }} "CLIENTS"
+            INNER JOIN {{ ref('SOURCE_DATA', 'CLIENTS_1') }} "CLIENTS_1"
+            ON "CLIENTS"."CLIENT_ID" = "CLIENTS_1"."CLIENT_ID"
+            WHERE "CLIENTS"."CLIENT_NAME" LIKE 'John%'
+        name: PSTG_CLIENTS
+        noLinkRefs: []
+  name: PSTG_CLIENTS
+  overrideSQL: false
+  schema: ""
+  sqlType: "173"
+  type: sql
+  version: 1
+type: Node

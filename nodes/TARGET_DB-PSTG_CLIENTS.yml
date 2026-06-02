@@ -23,7 +23,7 @@ operation:
     selectDistinct: false
     testsEnabled: false
     truncateBefore: false
-    type2Dimension: false
+    type2Dimension: true
   database: ""
   deployEnabled: true
   description: ""
@@ -62,8 +62,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 692263cc-2e29-4a18-b4eb-e9e59e6c004a
-                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+              - columnCounter: e9fe9832-1339-41f5-8aab-6697d9c41b6c
+                stepCounter: da862e71-b476-476c-af9c-2b9ecdb72c97
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -76,8 +76,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 6ff37a43-d5e8-49ae-b612-39cdc3151b57
-                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+              - columnCounter: ca43117c-f311-4ac9-ba73-020252eae4da
+                stepCounter: da862e71-b476-476c-af9c-2b9ecdb72c97
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -90,8 +90,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 4541e5f4-2288-4b3f-abc9-1dbde8094ea4
-                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+              - columnCounter: c86ee41d-d073-478a-a7c8-34aaffd5ec33
+                stepCounter: da862e71-b476-476c-af9c-2b9ecdb72c97
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -104,8 +104,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 9d4c0781-9b7c-4ebb-8201-4d09a5436175
-                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+              - columnCounter: 20a423b9-accf-4ce2-9140-85b4878f59be
+                stepCounter: da862e71-b476-476c-af9c-2b9ecdb72c97
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -118,8 +118,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 1f68cce5-141d-49d3-a881-53614d5c0125
-                stepCounter: fceb2f8c-104f-42e4-8d0e-b865c1282d28
+              - columnCounter: 4ba62853-353b-4a8c-923c-f2748ea7d471
+                stepCounter: da862e71-b476-476c-af9c-2b9ecdb72c97
             transform: ""
       - acceptedValues:
           strictMatch: true

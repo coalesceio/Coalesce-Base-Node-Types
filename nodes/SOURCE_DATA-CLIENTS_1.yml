@@ -1,5 +1,5 @@
 fileVersion: 1
-id: d5a52888-970e-4495-81ab-171efaf5ad9f
+id: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
 name: CLIENTS_1
 operation:
   database: ""
@@ -13,8 +13,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: dff4031b-e6cb-45d7-8faf-0acd5bef06c5
-          stepCounter: d5a52888-970e-4495-81ab-171efaf5ad9f
+          columnCounter: 369c5e71-07bb-476d-b10d-21b32f6e3087
+          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
@@ -32,8 +32,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1c3e1b9e-678d-40e1-b2e5-46e3ff4c83bf
-          stepCounter: d5a52888-970e-4495-81ab-171efaf5ad9f
+          columnCounter: 37dd2801-7c61-4c10-a52b-169c2695d675
+          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -51,8 +51,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2d80ebbc-c3b9-4292-ad32-ed14fce52c34
-          stepCounter: d5a52888-970e-4495-81ab-171efaf5ad9f
+          columnCounter: 6a5e38c7-3a0c-471a-aed6-e38408ce53b1
+          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -70,8 +70,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b3f74d6f-42a2-47a0-9084-f1070ba33148
-          stepCounter: d5a52888-970e-4495-81ab-171efaf5ad9f
+          columnCounter: 4c64f5e2-f5af-4633-bad7-72f974cf3324
+          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
@@ -89,13 +89,32 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: fecb51ea-4bb1-4811-8fc1-ae146a2ae0a1
-          stepCounter: d5a52888-970e-4495-81ab-171efaf5ad9f
+          columnCounter: 6ad64ca0-0c61-4d7d-bd71-58824fd2fc75
+          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         defaultValue: ""
         description: ""
         name: UPDATE_TIME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7170f372-aa5d-416d-8ab8-d064f06aebd4
+          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:

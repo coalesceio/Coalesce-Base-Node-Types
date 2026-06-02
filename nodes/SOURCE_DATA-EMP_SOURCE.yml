@@ -1,0 +1,111 @@
+fileVersion: 1
+id: e8991f98-7f8f-4f20-97cb-064a7c9d94fc
+name: EMP_SOURCE
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE_DATA
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f22b7235-f584-46c2-8b25-57c497a91385
+          stepCounter: e8991f98-7f8f-4f20-97cb-064a7c9d94fc
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: EMP_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6bbb7ece-1f18-4948-8a91-cfd05d0ef49e
+          stepCounter: e8991f98-7f8f-4f20-97cb-064a7c9d94fc
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: EMP_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 422f0936-887a-4456-8c26-4811d7acdb7e
+          stepCounter: e8991f98-7f8f-4f20-97cb-064a7c9d94fc
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: EMP_CITY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a23ef9e-1438-44e8-a4a8-425644c2c0c4
+          stepCounter: e8991f98-7f8f-4f20-97cb-064a7c9d94fc
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: DML_FLAG
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 953b2299-3a85-4d44-b0c9-c3e1fb3850ec
+          stepCounter: e8991f98-7f8f-4f20-97cb-064a7c9d94fc
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: CREATED_AT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: EMP_SOURCE
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

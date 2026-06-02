@@ -24,7 +24,7 @@ does not permit copying or modification for any other purpose.
 {%if config.lastModifiedComparison  and 'TIMESTAMP' in (config.lastModifiedColumn.dataType | upper)  %}
      {%set isTimestampComparison = true %}
    {%else%}
-     {%set is8Comparison = false %}
+     {%set isTimestampComparison = false %}
 {%endif%}
 
 {%- if config.dmlCol %}
@@ -548,10 +548,16 @@ does not permit copying or modification for any other purpose.
                 )
                 {% endif %}
                 THEN UPDATE SET
-                "TGT"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'N',
-                    "TGT"."{{ get_value_by_column_attribute("isSystemVersion") }}" = 0,
-                    "TGT"."{{ dmlCol }}" = "SRC"."{{ dmlCol }}",
-                    "TGT"."{{ get_value_by_column_attribute("isSystemEndDate") }}" = DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP))
+                "TGT"."{{ dmlCol }}" = "SRC"."{{ dmlCol }}"
+                {%- for col in columns %}
+                    {% if col.isSystemVersion %}
+                        ,"TGT"."{{ col.name }}" = 0
+                    {% elif col.isSystemCurrentFlag %}
+                        ,"TGT"."{{ col.name }}" = 'N'
+                    {% elif col.isSystemEndDate %}
+                        ,"TGT"."{{ col.name }}" = DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP))
+                    {% endif %}
+                {%- endfor %}
                 /* Soft Delete - historical rows: expire flag and update system version */
                 WHEN MATCHED
                 AND "SRC"."DML_OPERATION" = 'DELETE_ROWS'
@@ -562,9 +568,15 @@ does not permit copying or modification for any other purpose.
                 )
                 {% endif %}
                 THEN UPDATE SET
-                    "TGT"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'N',
-                    "TGT"."{{ get_value_by_column_attribute("isSystemVersion") }}" = 0,
-                    "TGT"."{{ get_value_by_column_attribute("isSystemUpdateDate") }}" = CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+                    {%- for col in columns %}
+                    {% if col.isSystemVersion %}
+                        "TGT"."{{ col.name }}" = 0
+                    {% elif col.isSystemCurrentFlag %}
+                        ,"TGT"."{{ col.name }}" = 'N'
+                    {% elif col.isSystemUpdateDate %}
+                        ,"TGT"."{{ col.name }}" = CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+                    {% endif %}
+                {%- endfor %}
             {% elif config.dmlCol and deleteStrategy == 'HARD DELETE' %}
                 /* Hard Delete */
                 WHEN MATCHED
@@ -665,11 +677,19 @@ does not permit copying or modification for any other purpose.
                 )
                 {% endif %}
                 THEN UPDATE SET
-                    "TGT"."{{ get_value_by_column_attribute("isSystemVersion") }}" = 1,
-                    "TGT"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y',
-                    "TGT"."{{ get_value_by_column_attribute("isSystemEndDate") }}" = CAST('2999-12-31 00:00:00' AS TIMESTAMP),
-                    "TGT"."{{ get_value_by_column_attribute("isSystemStartDate") }}" = CAST(CURRENT_TIMESTAMP AS TIMESTAMP),
-                    "TGT"."{{ get_value_by_column_attribute("isSystemUpdateDate") }}" = CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+                    {%- for col in columns %}
+                            {% if col.isSystemVersion %}
+                                "TGT"."{{ col.name }}" = 1
+                            {% elif col.isSystemCurrentFlag %}
+                                ,"TGT"."{{ col.name }}" = 'Y'
+                            {% elif col.isSystemEndDate %}
+                                ,"TGT"."{{ col.name }}" = CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+                            {% elif col.isSystemUpdateDate %}
+                                ,"TGT"."{{ col.name }}" = CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+                            {% elif col.isSystemStartDate %}
+                                , "TGT"."{{col.name}}" = CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+                            {% endif %}
+                        {%- endfor %}
                     {%- for col in columns if not (col.isBusinessKey or
                                                     col.isSurrogateKey or
                                                     col.isSystemVersion or
@@ -696,11 +716,18 @@ does not permit copying or modification for any other purpose.
                         )
                         {% endif %}
                         THEN UPDATE SET
-                            "TGT"."SYSTEM_VERSION" = 0,
-                            "TGT"."SYSTEM_CURRENT_FLAG" = 'N',
-                            "TGT"."{{ dmlCol }}" = "SRC"."{{ dmlCol }}",
-                            "TGT"."{{ get_value_by_column_attribute("isSystemEndDate") }}" = DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP)),
-                            "TGT"."{{ get_value_by_column_attribute("isSystemUpdateDate") }}" = CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+                            "TGT"."{{ dmlCol }}" = "SRC"."{{ dmlCol }}"
+                        {%- for col in columns %}
+                            {% if col.isSystemVersion %}
+                                ,"TGT"."{{ col.name }}" = 0
+                            {% elif col.isSystemCurrentFlag %}
+                                ,"TGT"."{{ col.name }}" = 'N'
+                            {% elif col.isSystemEndDate %}
+                                ,"TGT"."{{ col.name }}" = DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP))
+                            {% elif col.isSystemUpdateDate %}
+                                ,"TGT"."{{ col.name }}" = CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+                            {% endif %}
+                        {%- endfor %}
                     {% elif deleteStrategy == 'HARD DELETE' %}
                         /* Hard Delete */
                         WHEN MATCHED

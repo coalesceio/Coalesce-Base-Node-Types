@@ -1,6 +1,6 @@
 excludeSelector: ""
 fileVersion: 1
 id: "93"
-includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CLIENTS_SCD1_NTSTAMP\" }"
+includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CLIENTS_SCD1_NTSTAMP\" } OR { location: \"TARGET_DB\" name: \"PSTG_CLIENTS\" } OR { location: \"SOURCE_DATA\" name: \"CLIENTS\" } OR { location: \"SOURCE_DATA\" name: \"CLIENTS_1\" }"
 name: Job13
 type: Job

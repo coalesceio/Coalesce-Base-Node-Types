@@ -6,6 +6,6 @@ mappingDefinitions:
     schema: SRC_UDN
   TARGET_DB:
     database: VINITHA_UDN
-    schema: TGT_UDN
+    schema: RETGT_UDN
 name: New Environment Deployment
 type: Environment

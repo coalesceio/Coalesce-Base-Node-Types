@@ -15,6 +15,8 @@ operation:
     insertZeroKeyStr: UNKNOWN
     insertZeroKeySurrogateKey: "0"
     insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
+    lastModifiedColumn: ""
+    lastModifiedComparison: false
     orderby: false
     orderbycolumn:
       items:
@@ -29,7 +31,7 @@ operation:
   description: ""
   isMultisource: false
   locationName: TARGET_DB
-  materializationType: view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
@@ -265,6 +267,27 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 47d43163-8e7c-49e9-81db-464898fcad85
+          stepCounter: f7716d66-48f5-44ab-893f-fa3a546b0c6f
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        hashDetails:
+          hashAlgorithm: SHA1
+        hashedColumns:
+          - columnCounter: ef00652e-1d14-421b-a233-d1c7ef5083b9
+            stepCounter: f7716d66-48f5-44ab-893f-fa3a546b0c6f
+          - columnCounter: a51b25ca-3928-402a-a3f1-2cc0e338a144
+            stepCounter: f7716d66-48f5-44ab-893f-fa3a546b0c6f
+        name: GH
+        nullable: true
+        sourceColumnReferences: []
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "92"
+includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CUSTOMER1_CUSTOMER3\" }"
+name: Job1
+type: Job

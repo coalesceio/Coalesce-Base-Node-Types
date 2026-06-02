@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 7619c2cd-cf54-49c7-bec2-eecd282615a0
-name: NATION
+id: dcff340c-4a47-4b11-905a-b1d8df7fd350
+name: EMP_SOURCE
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: c5443d84-3db1-45a7-902a-1bf3970429b5
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
+          columnCounter: 1c665214-2eb8-47fd-bf80-c400a8d008f6
+          stepCounter: dcff340c-4a47-4b11-905a-b1d8df7fd350
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_NATIONKEY
+        name: EMP_ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1187d185-653c-4c74-af5b-c92c75b9cd5a
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
+          columnCounter: 85260ccf-7c5a-493c-be77-f8de42fa04ca
+          stepCounter: dcff340c-4a47-4b11-905a-b1d8df7fd350
         config: {}
-        dataType: VARCHAR(25)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: N_NAME
+        name: EMP_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f1205c62-52d9-4e6c-ae13-9daefcee19a8
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
+          columnCounter: 23a3dd72-b1c3-4aee-b35f-698d7ae545e4
+          stepCounter: dcff340c-4a47-4b11-905a-b1d8df7fd350
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: N_REGIONKEY
+        name: EMP_CITY
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +70,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6a626186-8e1e-4842-9db4-542baf320299
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
+          columnCounter: dfce5a55-1415-4eba-97bd-42f9ba6bf02e
+          stepCounter: dcff340c-4a47-4b11-905a-b1d8df7fd350
         config: {}
-        dataType: VARCHAR(152)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: N_COMMENT
+        name: DML_FLAG
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -89,13 +89,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 472d72d1-3748-4085-8f07-de054b4d4061
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
+          columnCounter: dbf9beed-91f1-4ee9-a10f-b1b398182293
+          stepCounter: dcff340c-4a47-4b11-905a-b1d8df7fd350
         config: {}
-        dataType: TIMESTAMP_LTZ(9)
+        dataType: TIMESTAMP_NTZ(9)
         defaultValue: ""
         description: ""
-        name: N_LOAD_TIMESTAMP
+        name: CREATED_AT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -103,7 +103,26 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: NATION
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c167f8e4-3737-4b86-8302-544523ad22c5
+          stepCounter: dcff340c-4a47-4b11-905a-b1d8df7fd350
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: LAST_MODIFIED
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: EMP_SOURCE
   schema: ""
   sqlType: Source
   type: sourceInput

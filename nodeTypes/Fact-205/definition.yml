@@ -58,17 +58,6 @@ metadata:
         displayName: Last Modified Column
         enableIf: "{% if config.lastModifiedComparison  %} true {% else %} false {% endif %}"
       
-      - type: label
-        attributeName: l2
-        displayName: The below toggle is applicable only for timestamp column
-        enableIf: "{% if config.lastModifiedComparison  %} true {% else %} false {% endif %}"
-
-      - type: toggleButton
-        attributeName: treatNullAsCurrentTimestamp
-        displayName: Treat NULL as Current Timestamp
-        default: false
-        enableIf: "{% if config.lastModifiedComparison %} true {% else %} false {% endif %}"
-      
       - displayName: Truncate Before
         attributeName: truncateBefore
         type: toggleButton

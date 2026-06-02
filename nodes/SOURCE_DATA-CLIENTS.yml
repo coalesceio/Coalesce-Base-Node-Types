@@ -1,6 +1,6 @@
 fileVersion: 1
-id: 7619c2cd-cf54-49c7-bec2-eecd282615a0
-name: NATION
+id: dc72847b-374c-4f6e-9c78-4a1ffdb20bcb
+name: CLIENTS
 operation:
   database: ""
   deployEnabled: true
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: c5443d84-3db1-45a7-902a-1bf3970429b5
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
+          columnCounter: 9f60accd-90fb-4560-9d20-c056cc306ef7
+          stepCounter: dc72847b-374c-4f6e-9c78-4a1ffdb20bcb
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_NATIONKEY
+        name: CLIENT_ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1187d185-653c-4c74-af5b-c92c75b9cd5a
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
+          columnCounter: 3950ba91-3ba3-423e-85c3-be9aff5b1c4c
+          stepCounter: dc72847b-374c-4f6e-9c78-4a1ffdb20bcb
         config: {}
-        dataType: VARCHAR(25)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: N_NAME
+        name: CLIENT_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,70 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f1205c62-52d9-4e6c-ae13-9daefcee19a8
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
+          columnCounter: b41bb754-224c-4544-8904-16c0ca508fe5
+          stepCounter: dc72847b-374c-4f6e-9c78-4a1ffdb20bcb
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: EMAIL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cba1c1da-46ba-4a3a-a4bf-c94d311286d4
+          stepCounter: dc72847b-374c-4f6e-9c78-4a1ffdb20bcb
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: REGION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b8439f4c-ffe9-4b63-bf98-0bfcc543f6cd
+          stepCounter: dc72847b-374c-4f6e-9c78-4a1ffdb20bcb
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: UPDATE_TIME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83cdec1a-d3ad-42d1-9975-d1bec6769686
+          stepCounter: dc72847b-374c-4f6e-9c78-4a1ffdb20bcb
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_REGIONKEY
+        name: ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -65,45 +122,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 6a626186-8e1e-4842-9db4-542baf320299
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
-        config: {}
-        dataType: VARCHAR(152)
-        defaultValue: ""
-        description: ""
-        name: N_COMMENT
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 472d72d1-3748-4085-8f07-de054b4d4061
-          stepCounter: 7619c2cd-cf54-49c7-bec2-eecd282615a0
-        config: {}
-        dataType: TIMESTAMP_LTZ(9)
-        defaultValue: ""
-        description: ""
-        name: N_LOAD_TIMESTAMP
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-  name: NATION
+  name: CLIENTS
   schema: ""
   sqlType: Source
   type: sourceInput

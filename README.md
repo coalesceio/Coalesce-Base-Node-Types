@@ -157,7 +157,7 @@ The following stages are executed:
 
 ### Removing a Work Node
 
-If a Work Node of materialization type table is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the WorkTable in the target Environment will be dropped.
+If a Work Node of materialization type table is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the WorkTable in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -166,7 +166,7 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-If a Work Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the WorkView in the target Environment will be dropped.
+If a Work Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the WorkView in the target Environment will be dropped.
 
 The stage executed:
 
@@ -283,7 +283,7 @@ One of the following stages is executed:
 
 ### Removing a Persistent Stage Node
 
-If a Persistent Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Persistent Table in the target Environment will be dropped.
+If a Persistent Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the Persistent Table in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -423,7 +423,7 @@ Any of the following changes to views will result in deleting and recreating the
 
 ### Removing a Dimension Node
 
-If a Dimension Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Dimension Table in the target Environment will be dropped.
+If a Dimension Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the Dimension Table in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -432,7 +432,7 @@ This is executed in two stages:
 | **Delete Table** | Coalesce Internal table is dropped |
 | **Delete Table** | Target table in Snowflake is dropped |
 
-If a Dimension Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Dimension View in the target Environment will be dropped.
+If a Dimension Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the Dimension View in the target Environment will be dropped.
 
 | **Stage** | **Description** |
 |-----------|----------------|
@@ -564,7 +564,7 @@ The following stages are executed:
 
 ### Removing a Fact Node
 
-If a Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Fact Table in the target Environment will be dropped.
+If a Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the Fact Table in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -672,7 +672,7 @@ One of the following stages is executed:
 
 ### Removing a Factless Fact Node
 
-If a Factless Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the Factless Fact table in the target Environment will be dropped.
+If a Factless Fact Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the Factless Fact table in the target Environment will be dropped.
 
 This is executed in two stages:
 
@@ -748,7 +748,7 @@ The following stages are executed:
 
 #### Removing a View Node
 
-If a View Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment then the View in the target Environment will be dropped.
+If a View Node is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the View in the target Environment will be dropped.
 
 This is executed in the below stage:
 

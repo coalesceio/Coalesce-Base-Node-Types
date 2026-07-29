@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "104"
+includeSelector: "{ location: \"SOURCE_DATA\" name: \"NATION_TEST\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST1\" }"
+name: Test_Job
+type: Job

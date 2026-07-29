@@ -21,7 +21,7 @@ operation:
     truncateBefore: false
     type2Dimension: false
   database: ""
-  deployEnabled: true
+  deployEnabled: false
   description: ""
   isMultisource: false
   locationName: TARGET_DB

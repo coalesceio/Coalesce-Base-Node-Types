@@ -23,7 +23,7 @@ operation:
     treatNullAsCurrentTimestamp: false
     truncateBefore: false
   database: ""
-  deployEnabled: true
+  deployEnabled: false
   description: ""
   isMultisource: false
   locationName: TARGET_DB

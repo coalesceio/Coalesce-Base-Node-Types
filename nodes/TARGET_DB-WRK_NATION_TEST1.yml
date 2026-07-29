@@ -1,0 +1,139 @@
+fileVersion: 1
+id: 2a43c8ca-66ad-4b6b-9307-0a25116c1532
+name: WRK_NATION_TEST1
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: ""
+        name: Test
+        runOrder: After
+        templateString: SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1
+      - continueOnFailure: false
+        description: ""
+        name: Test 1
+        runOrder: Before
+        templateString: SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1
+    columns:
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 1636dd73-aac0-429b-b09c-2b67a839fc68
+          stepCounter: 2a43c8ca-66ad-4b6b-9307-0a25116c1532
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: N_NATIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 55699a5e-561b-48c9-bca4-46396cceb861
+                stepCounter: 0fcf72f4-f545-4aad-af3e-4499a539eae6
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: 38279b4c-6de0-4ee5-a802-da57f6bbd887
+          stepCounter: 2a43c8ca-66ad-4b6b-9307-0a25116c1532
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: N_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9111b806-744e-4230-b721-1e9c0aa51847
+                stepCounter: 0fcf72f4-f545-4aad-af3e-4499a539eae6
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: d0349183-8333-4947-9488-071af9ba0495
+          stepCounter: 2a43c8ca-66ad-4b6b-9307-0a25116c1532
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: N_REGIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9a58ee52-a723-46f9-aa3e-c7bfb6ef3e3b
+                stepCounter: 0fcf72f4-f545-4aad-af3e-4499a539eae6
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 32210c27-bfed-4711-8ea8-882601bb11a8
+          stepCounter: 2a43c8ca-66ad-4b6b-9307-0a25116c1532
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        name: N_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25d22315-7db4-448a-871e-1b6bb13e7374
+                stepCounter: 0fcf72f4-f545-4aad-af3e-4499a539eae6
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: ae95ff33-957e-4d49-b423-5ea0ddf40bce
+          stepCounter: 2a43c8ca-66ad-4b6b-9307-0a25116c1532
+        config: {}
+        dataType: TIMESTAMP_LTZ(9)
+        description: ""
+        name: N_LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f61aac4e-4ce2-417c-a18b-892788b3967e
+                stepCounter: 0fcf72f4-f545-4aad-af3e-4499a539eae6
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs:
+      - hasNull
+    sourceMapping:
+      - aliases:
+          NATION_TEST: 0fcf72f4-f545-4aad-af3e-4499a539eae6
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: NATION_TEST
+        join:
+          joinCondition: FROM  {{ ref('SOURCE_DATA', 'NATION_TEST') }} NATION_TEST
+        name: WRK_NATION_TEST1
+        noLinkRefs: []
+  name: WRK_NATION_TEST1
+  overrideSQL: false
+  schema: ""
+  sqlType: "204"
+  type: sql
+  version: 1
+type: Node

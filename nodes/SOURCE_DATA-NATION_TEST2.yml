@@ -1,9 +1,9 @@
 fileVersion: 1
-id: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
-name: CLIENTS_1
+id: e8d338d2-f4a3-4c36-a1fe-27b9a9327a56
+name: NATION_TEST2
 operation:
   database: ""
-  deployEnabled: false
+  deployEnabled: true
   description: ""
   locationName: SOURCE_DATA
   metadata:
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 369c5e71-07bb-476d-b10d-21b32f6e3087
-          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
+          columnCounter: c661d613-9c1e-431e-87e1-fa7d63b3e0f4
+          stepCounter: e8d338d2-f4a3-4c36-a1fe-27b9a9327a56
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: CLIENT_ID
+        name: N_NATIONKEY
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 37dd2801-7c61-4c10-a52b-169c2695d675
-          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
+          columnCounter: 7190f4fd-8e02-43d4-9487-1d326f277170
+          stepCounter: e8d338d2-f4a3-4c36-a1fe-27b9a9327a56
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        name: CLIENT_NAME
+        name: N_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6a5e38c7-3a0c-471a-aed6-e38408ce53b1
-          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
+          columnCounter: 03bdcd68-39d9-4729-8355-f32347aa21a3
+          stepCounter: e8d338d2-f4a3-4c36-a1fe-27b9a9327a56
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: EMAIL
+        name: N_REGIONKEY
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +70,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4c64f5e2-f5af-4633-bad7-72f974cf3324
-          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
+          columnCounter: eb038af5-75db-4a9f-8ab1-4990895a7b3e
+          stepCounter: e8d338d2-f4a3-4c36-a1fe-27b9a9327a56
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: VARCHAR(152)
         defaultValue: ""
         description: ""
-        name: REGION
+        name: N_COMMENT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -89,13 +89,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6ad64ca0-0c61-4d7d-bd71-58824fd2fc75
-          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
+          columnCounter: a9054614-24b2-4399-af6f-97104c409c59
+          stepCounter: e8d338d2-f4a3-4c36-a1fe-27b9a9327a56
         config: {}
         dataType: TIMESTAMP_NTZ(9)
         defaultValue: ""
         description: ""
-        name: UPDATE_TIME
+        name: CREATED_TIME
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -103,26 +103,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 7170f372-aa5d-416d-8ab8-d064f06aebd4
-          stepCounter: 01658dd8-62ee-43d5-bfd6-d00c7b214a90
-        config: {}
-        dataType: NUMBER(38,0)
-        defaultValue: ""
-        description: ""
-        name: ID
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-  name: CLIENTS_1
+  name: NATION_TEST2
   schema: ""
   sqlType: Source
   type: sourceInput

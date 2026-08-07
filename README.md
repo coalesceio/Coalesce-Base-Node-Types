@@ -8,6 +8,7 @@ The Coalesce Base Node Types Package includes:
 * [Fact](#fact)
 * [Factless Fact](#factless-fact)
 * [View](#view)
+* [SQL Work](#sql-work)
 * [Code](#code)
 
 ---
@@ -758,6 +759,390 @@ This is executed in the below stage:
 
 ---
 
+## SQL Work
+
+The SQL Work node is a powerful transformation tool within Coalesce that allows developers to write custom, hand-coded SQL instead of using the standard graphical column-mapping interface. It is ideal for complex transformations, advanced window functions, or multi-step logic that is difficult to represent with the standard UI. While it provides maximum flexibility, it shifts the responsibility of column definition and logic maintenance to the SQL author.
+
+### SQL Work Node Configuration
+
+The SQL Work Node type has two configuration groups:
+
+* [Node Properties](#sql-work-node-properties)
+* [General Options](#sql-work-general-options)
+* [Control Options](#sql-work-control-options)
+
+#### SQL Work Node Properties
+
+| **Property** | **Description** |
+|----------|-------------|
+| **Storage Location** | Storage Location where the SQL Work table or view will be created |
+
+#### SQL Work General Options
+
+You can create the Node as:
+
+* [Table](#sql-work-general-options-table)
+* [View](#sql-work-general-options-view)
+
+### SQL Work General Options - Table
+
+| **Property** | **Description** |
+|---------|-------------|
+| **Create As** | Table |
+| **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
+| **Distinct** | Toggle: True or False<br/>**True**: DISTINCT data is chosen for processing. Group by All is invisible.<br/>**False**: Group by All is visible |
+| **Group By All** | Toggle: True or False<br/>**True**: Data is grouped by all columns for processing. DISTINCT is invisible.<br/>**False**: DISTINCT is visible |
+| **Order By** | Toggle: True or False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
+
+### SQL Work Control Options
+
+| **Property** | **Description** |
+|---------|-------------|
+| **Enable tests ¹** | Toggle: True or False<br/>Determines if tests are enabled |
+| **Pre-SQL** | SQL to execute before data insert operation |
+| **Post-SQL** | SQL to execute after data insert operation |
+
+### Column-Level Annotations
+
+| **Property** | **Description** |
+|---------|-------------|
+| `@nullable("false")`<br/>`@nullable(false)` | Marks column as NOT NULL |
+| `@description("<text>")` | Adds column description |
+| `@defaultValue("<text>")`<br/>`@defaultValue(<number>)`<br/>`@defaultValue(<bool>)` | Adds default value |
+| `@tests("null", "unique")` | Column tests are more restrictive and apply directly to individual columns.<br/>**Supported Tests**<br/>- **null** → Checks for NULL values<br/>- **unique** → Checks to ensure all values are unique |
+| `@inHash("<hash_order>\|<hash_name>")` **²** | Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.<br/>**Default:** Uses `SHA1` algorithm. |
+
+### SQL Work General Options - View
+
+| **Setting** | **Description** |
+|---------|-------------|
+| **Create As** | View |
+| **Distinct** | Toggle: True or False<br/>**True**: DISTINCT data is chosen for processing. Group by All is invisible.<br/>**False**: Group by All is visible |
+| **Group by All** | Toggle: True or False<br/>**True**: Data is grouped by all columns for processing. DISTINCT is invisible.<br/>**False**: DISTINCT is visible |
+
+### SQL Work Control Options - View
+
+| **Property** | **Description** |
+|---------|-------------|
+| **Enable tests ¹** | Toggle: True or False<br/>Determines if tests are enabled |
+
+---
+
+### Notes
+
+- Verify that all **column datatypes** are successfully resolved before creating the object. Columns with an `UNKNOWN` datatype may cause stage generation or runtime failures.
+- `@nullable` defaults to **true**. Use `@nullable("false")` to enforce NOT NULL.
+- **¹** Tests are performed only when `Enable tests` is ON
+    ```text
+    @tests("<SQL Query>", "<Run Order>", <Continue On Failure>)
+    ```
+    | Parameter | Description |
+    |-----------|-------------|
+    | SQL Query | SQL statement to execute as a validation test. The test fails if the query returns any records. |
+    | Run Order | `Before` or `After`. Determines whether the test is executed before or after the load operation. |
+    | Continue On Failure | `true` or `false`. Determines whether execution continues when the test fails. |
+    
+    **Examples**
+    
+    ```text
+    @tests("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1", "Before", true)
+    
+    @tests("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1", "After", true)
+    ```
+- **²** The hash transformation can be defined either using the reusable macro or by writing the full hash expression explicitly. Both approaches are supported and will produce the same result. Choose the macro approach for better reusability and cleaner code, or use the explicit expression when custom logic is required.
+
+    #### Examples:
+    
+    Using hash macro(default-SHA1)
+    ```sql
+    <col_name> AS <col_name> @inHash("1|GH_COL"),
+    {{ get_hash('GH_COL') }}::STRING AS "GH_COL"
+    ```
+    Using hash macro(MD5)
+    ```sql
+    <col_name> AS <col_name> @inHash("1|GH_COL"),
+    {{ get_hash('GH_COL', 'MD5') }}::STRING AS "GH_COL"<SHA256
+    ```
+    Using hash macro(SHA256)
+    ```sql
+    <col_name> AS <col_name> @inHash("1|GH_COL"),
+    {{ get_hash('GH_COL', 'SHA256') }}::STRING AS "GH_COL"
+    ```
+    Using hash macro(algo=SHA256, delimeter='~' )
+    ```sql
+    <col_name> AS <col_name> @inHash("1|GH_COL"),
+    {{ get_hash('GH_COL', 'SHA256', '~') }}::STRING AS "GH_COL"
+    ```
+    Using multiple keys hash macro
+    ```sql
+    <col_name1> AS <col_name1> @inHash("1|GH_COL"),
+    <col_name2> AS <col_name2> @inHash("2|GH_COL"),
+    {{ get_hash('GH_COL') }}::STRING AS "GH_COL_COMBINED"
+    ```
+    Using multiple hash macros
+    ```sql
+    <col_name1> AS <col_name1> @inHash("1|GH_COL1", "2|GH_COL2"),
+    <col_name2> AS <col_name2> @inHash("2|GH_COL1"),
+    <col_name3> AS <col_name3> @inHash("1|GH_COL2"),
+    {{ get_hash('GH_COL1') }}::STRING AS "GH_COL_COMBINED1",
+    {{ get_hash('GH_COL2') }}::STRING AS "GH_COL_COMBINED2"
+    ```
+    Using explicit expression:
+    ```sql
+    CAST(
+      SHA1(
+        NVL(CAST(<col_name> AS VARCHAR), 'null')
+      ) AS STRING
+    )::STRING AS "GH_Key"
+    ```
+---
+
+### Known Limitations
+
+Users should be aware of the following technical constraints when using SQL:
+
+* **Parsable SQL Only**:
+ The node only supports SQL that can be fully parsed by the platform’s engine. Non-standard SQL or vendor-specific "semantic views" that bypass standard parsing will not work.
+
+* **SELECT Statements Only**:  
+This node only supports data retrieval and transformation logic. DML or DDL commands such as `CREATE`, `MERGE`, `DELETE`, `UPDATE`, or `TRUNCATE` are not supported and will cause execution failures.
+
+* **Support for `DISTINCT`, `UNION`, and `UNION ALL`**:  
+`DISTINCT`, `UNION`, and `UNION ALL` are fully supported when used within **Common Table Expressions (CTEs)**. While these keywords can also be used in standard `SELECT` statements without generating an error, they may not parsed correctly by the platform. As a result, subsequent clauses (such as `JOIN`s) may be interpreted as part of a standard join structure, causing the generated SQL to differ from the intended query and potentially leading to inconsistent data loads. To ensure the SQL is parsed and executed as expected, always implement these operations inside a CTE.
+
+---
+
+### Usage Examples 
+
+The following patterns represent common ways to use the SQL Node.<br/>
+
+**Sample node with Annotations**
+```sql
+SELECT
+     "N_NATIONKEY" AS "N_NATIONKEY" @nullable("false") @inHash("1|GH_COL"),
+     "N_NAME" AS "N_NAME" @defaultValue("NA"),
+     "N_REGIONKEY" AS "N_REGIONKEY" @description("region key"),
+     "N_COMMENT" AS "N_COMMENT" @inHash("2|GH_COL"),
+     "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @tests("null", "unique"),
+     {{ get_hash('GH_COL') }}::STRING AS "GH_COL"
+FROM {{ ref('SRC', 'NATION') }} "NATION"
+```
+**Basic Transformation & Cleaning** - Standard pattern for renaming columns and handling nulls.
+
+```sql
+SELECT
+     "O_ORDERKEY" AS "O_ORDERKEY",
+     "O_CUSTKEY" AS "O_CUSTKEY",
+     UPPER("O_ORDERSTATUS") AS "O_ORDERSTATUS",
+     COALESCE("O_TOTALPRICE", 0) AS "O_TOTALPRICE",
+     "O_ORDERDATE" AS "O_ORDERDATE"
+FROM {{ ref('SRC', 'ORDERS') }} "ORDERS"
+WHERE "O_ORDERSTATUS" != 'F'
+```
+**Using CTEs (Common Table Expressions)** - For more complex, multi-step logic
+
+```sql
+WITH PRIORITY_COUNTS AS (
+    SELECT 
+        "O_ORDERPRIORITY" AS "O_ORDERPRIORITY",
+        COUNT(*) AS ORDER_COUNT
+    FROM {{ ref('SRC', 'ORDERS') }}
+    GROUP BY 1
+)
+SELECT * FROM PRIORITY_COUNTS
+```
+**Multi-CTE Transformation With Window Functions** <br/>
+Complex transformations that would otherwise require multiple nodes can be written as a single SQL statement. Coalesce tracks lineage through each CTE and down to the source tables
+```sql
+WITH ORDERED_ORDERS AS (
+-- CTE 1: Rank every order for each customer by date
+SELECT
+O_CUSTKEY,
+O_ORDERKEY,
+O_ORDERDATE,
+O_TOTALPRICE,
+O_ORDERSTATUS,
+ROW_NUMBER() OVER (
+PARTITION BY O_CUSTKEY
+ORDER BY O_ORDERDATE ASC, O_ORDERKEY ASC
+) AS ORDER_RANK
+FROM {{ ref('SRC', 'ORDERS') }}
+),
+FIRST_ORDERS AS (
+-- CTE 2: Filter to keep only the first order (rank 1) for each customer
+SELECT
+O_CUSTKEY,
+O_ORDERKEY AS FIRST_ORDER_ID,
+O_ORDERDATE AS FIRST_PURCHASE_DATE,
+O_TOTALPRICE AS FIRST_ORDER_VALUE,
+O_ORDERSTATUS
+FROM ORDERED_ORDERS
+WHERE ORDER_RANK = 1
+)
+-- Final Select: Add metadata and return the results
+SELECT
+F.O_CUSTKEY,
+F.FIRST_ORDER_ID,
+F.FIRST_PURCHASE_DATE,
+F.FIRST_ORDER_VALUE,
+F.O_ORDERSTATUS @nullable(false),
+CURRENT_TIMESTAMP() AS REFRESHED_AT,
+'Initial Customer Purchase' AS RECORD_TYPE
+FROM FIRST_ORDERS F
+```
+**Using Recursive CTE - Date Series**
+```sql
+WITH RECURSIVE RCTE_FNL AS (
+    SELECT TO_DATE('2025-01-01') AS "date_s"
+    UNION ALL
+    SELECT DATEADD(day, 1, "date_s") AS "date_s"
+    FROM RCTE_FNL
+    where "date_s" < TO_DATE('2025-01-10')
+  )
+SELECT "date_s"
+FROM RCTE_FNL
+```
+**Using Recursive CTE - Classic Employee**
+```sql
+WITH RECURSIVE RCTE_FINAL AS (
+
+    -- Anchor clause: top-level employees (no manager)
+    SELECT
+        "EMPLOYEES_RECUR"."EMPLOYEE_ID"  AS "EMPLOYEE_ID",
+        1                                AS "LEVEL",
+        "EMPLOYEES_RECUR"."TITLE"        AS "TITLE",
+        "EMPLOYEES_RECUR"."MANAGER_ID"   AS "MANAGER_ID"
+    FROM {{ ref('SRC', 'EMPLOYEES_RECUR') }} AS "EMPLOYEES_RECUR"
+    WHERE "EMPLOYEES_RECUR"."MANAGER_ID" IS NULL
+
+    UNION ALL
+
+    -- Recursive clause: employees reporting to someone in the CTE
+    SELECT
+        "EMPLOYEES_RECUR"."EMPLOYEE_ID"  AS "EMPLOYEE_ID",
+        "RCTE_FINAL"."LEVEL" + 1         AS "LEVEL",
+        "EMPLOYEES_RECUR"."TITLE"        AS "TITLE",
+        "EMPLOYEES_RECUR"."MANAGER_ID"   AS "MANAGER_ID"
+    FROM {{ ref('SRC', 'EMPLOYEES_RECUR') }} AS "EMPLOYEES_RECUR"
+    JOIN RCTE_FINAL
+        ON "EMPLOYEES_RECUR"."MANAGER_ID" = "RCTE_FINAL"."EMPLOYEE_ID"
+)
+
+SELECT
+    "LEVEL"          AS "LEVEL",
+    "TITLE"::VARCHAR AS "TITLE"
+FROM RCTE_FINAL
+```
+**Using CTE for multisource combine**
+```sql
+WITH ALL_NATIONS AS (
+    SELECT *
+    FROM {{ ref('SOURCE_DATA', 'NATION_COPY1') }}
+    UNION
+    SELECT *
+    FROM {{ ref('SOURCE_DATA', 'NATION_COPY2') }}
+)
+SELECT * FROM ALL_NATIONS
+```
+
+### Supported SQL Functionality
+
+- **Multi-Source Joins & Enrichment:** The ability to reference and join multiple upstream nodes (e.g., Joining ORDERS and CUSTOMER) within a single stage to flatten data or create enriched wide tables while maintaining full lineage for every source.
+
+- **Conditional Logic via CASE Statements:** Support for complex business rules and data categorization using standard CASE WHEN syntax to create derived columns based on multiple logical conditions.
+
+ - **Flexible Projection (SELECT * with Expressions):** Enhanced projection capabilities that allow for selecting all columns from a source (`SELECT *`) while simultaneously appending new calculated expressions, timestamps, or metadata in the same statement.
+
+- **Nested Subqueries:** Support for correlated and non-correlated subqueries within SELECT, FROM, or WHERE clauses, enabling granular filtering and complex lookups that don't require separate nodes.
+
+- **Common Table Expressions (CTEs)**: Support for standard `WITH` clauses to break down complex, multi-step transformation logic into readable, modular blocks. Coalesce tracks lineage through each CTE and back to the source tables.
+
+- **Recursive CTEs**: Full support for `WITH` RECURSIVE logic, enabling the transformation of hierarchical data and the programmatic generation of data sequences within a single node.
+  
+- If a CTE is referenced in templates that may include joins, always use a **table alias** and qualify all column references with that alias. This prevents ambiguous column errors and ensures the template remains extensible as additional joins are introduced.
+
+----
+
+### SQL Work Deployment
+
+#### SQL Work Initial Deployment
+
+When deployed for the first time into an Environment the SQL Work Node of materialization type table will execute the below stage:
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Create SQL Work Table** | This will execute a CREATE OR REPLACE statement and create a table in the target Environment |
+| **Create SQL Work View** | This will execute a CREATE OR REPLACE statement and create a view in the target Environment |
+
+#### SQL Work Redeployment
+
+After the SQL Work Node with materialization type table has been deployed for the first time into a target Environment, subsequent deployments may result in either altering the SQL Work Table or recreating the SQL Work table.
+
+#### Altering the SQL Work Tables
+
+A few types of column or table changes will result in an ALTER statement to modify the SQL Work Table in the target Environment, whether these changes are made individually or all together:
+
+* Changing table names
+* Dropping existing columns
+* Altering column data types
+* Adding new columns
+
+The following stages are executed:
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Clone Table** | Creates an internal table |
+| **Rename Table\| Alter Column \| Delete Column \| Add Column \| Edit table description** | Alter table statement is executed to perform the alter operation |
+| **Swap Cloned Table** | Upon successful completion of all updates, the clone replaces the main table ensuring that no data is lost |
+| **Delete Table** | Drops the internal table |
+
+#### Recreating the SQL Work Tables
+
+If any of the following changes are detected, then the table will be recreated using a CREATE OR REPLACE.
+
+* Join clause
+* Adding transformation
+* Changes in configuration like adding distinct, group by, or order by
+
+One of the following stages is executed:
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Create Table** | Creates a new table |
+| **Replace Table** | Replaces an existing table|
+
+#### Recreating the SQL Work Views
+
+The subsequent deployment of the SQL Work Node of materialization type view with changes in view definition, adding table description or renaming view results in deleting the existing view and recreating the view.
+
+The following stages are executed:
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Delete View** | Removes existing view |
+| **Create View** | Creates new view with updated definition |
+
+### Removing a SQL Work Node
+
+If a SQL Work Node of materialization type table is deleted from a SQL Workspace, that SQL Workspace is committed to Git and that commit deployed to a higher-level Environment, then the SQL WorkTable in the target Environment will be dropped.
+
+This is executed in two stages:
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Delete Table** | Coalesce Internal table is dropped |
+| **Delete Table** | Target table in Snowflake is dropped |
+
+If a SQL Work Node of materialization type view is deleted from a Workspace, that Workspace is committed to Git and that commit deployed to a higher-level Environment, then the WorkView in the target Environment will be dropped.
+
+The stage executed:
+
+| **Stage** | **Description** |
+|-----------|----------------|
+| **Delete View** | Drops the existing SQL Work view from the target Environment |
+
+---
+
 ## Code
 
 ### Work Code
@@ -795,6 +1180,12 @@ This is executed in the below stage:
 * [Node definition](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/View-188/definition.yml)
 * [Create Template](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/View-188/create.sql.j2)
 * [Run Template](https://github.com/coalesceio/Coalesce-Base-Node-Types/blob/main/nodeTypes/View-188/run.sql.j2)
+
+### SQL Work Code
+
+* [Node definition]()
+* [Create Template]()
+* [Run Template]()
 
 ### Macros
 

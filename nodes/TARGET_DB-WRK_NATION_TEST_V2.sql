@@ -4,7 +4,8 @@
 @tests("SELECT 1 FROM {{ this }}", "Before", true)
 @preSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
 @postSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
-@materializationType("view")
+@tests("SELECT 1 FROM {{ this }}", "After", true)
+@testsEnabled(true)
 SELECT
      "N_NATIONKEY" AS "N_NATIONKEY" @nullable(false) @inHash("2|GH_COL"),
      "N_NAME" AS "N_NAME" @description("Nation name"),

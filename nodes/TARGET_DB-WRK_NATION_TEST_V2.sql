@@ -7,7 +7,7 @@
 @tests("SELECT 1 FROM {{ this }}", "After", true)
 @testsEnabled(true)
 SELECT
-     "N_NATIONKEY" AS "N_NATIONKEY" @nullable(false) @inHash("2|GH_COL"),
+     "N_NATIONKEY" AS "N_NATIONKEY" @inHash("2|GH_COL"),
      "N_NAME" AS "N_NAME" @description("Nation name"),
      "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0") @nullable(false) @inHash("1|GH_COL"),
      "N_COMMENT" AS "N_COMMENT" @tests("null", "unique"),

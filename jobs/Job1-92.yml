@@ -1,6 +1,6 @@
 excludeSelector: ""
 fileVersion: 1
 id: "92"
-includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CUSTOMER1_CUSTOMER3\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST\" } OR { location: \"SOURCE_DATA\" name: \"NATION_TEST\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_V1\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_V2\" }"
+includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CUSTOMER1_CUSTOMER3\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST\" } OR { location: \"SOURCE_DATA\" name: \"NATION_TEST\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_V1\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_V2\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_3\" }"
 name: Job1
 type: Job

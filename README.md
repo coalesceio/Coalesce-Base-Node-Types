@@ -910,6 +910,9 @@ This node only supports data retrieval and transformation logic. DML or DDL comm
 * **Support for `DISTINCT`, `UNION`, and `UNION ALL`**:  
 `DISTINCT`, `UNION`, and `UNION ALL` are fully supported when used within **Common Table Expressions (CTEs)**. While these keywords can also be used in standard `SELECT` statements without generating an error, they may not parsed correctly by the platform. As a result, subsequent clauses (such as `JOIN`s) may be interpreted as part of a standard join structure, causing the generated SQL to differ from the intended query and potentially leading to inconsistent data loads. To ensure the SQL is parsed and executed as expected, always implement these operations inside a CTE.
 
+* **Other Keywords**:  
+GROUP BY, ORDER BY and HAVING clauses can be included as part of the join query and will be parsed and processed accordingly.
+
 ---
 
 ### Usage Examples 
@@ -1095,6 +1098,8 @@ The following stages are executed:
 | **Rename Table\| Alter Column \| Delete Column \| Add Column \| Edit table description** | Alter table statement is executed to perform the alter operation |
 | **Swap Cloned Table** | Upon successful completion of all updates, the clone replaces the main table ensuring that no data is lost |
 | **Delete Table** | Drops the internal table |
+
+> **Note:** Renaming a column results in the existing column being dropped and a new column being created. This operation may lead to data loss and should be performed with caution.
 
 #### Recreating the SQL Work Tables
 

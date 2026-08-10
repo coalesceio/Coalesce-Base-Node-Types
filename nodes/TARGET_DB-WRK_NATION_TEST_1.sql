@@ -1,0 +1,9 @@
+@id("c3090427-7b0f-4f67-8b9e-56d6f1f3669b")
+@nodeType("695")
+SELECT
+     "N_NATIONKEY" AS "N_NATIONKEY",
+     "N_NAME" AS "N_NAME",
+     "N_REGIONKEY" AS "N_REGIONKEY" @nullable(false),
+     "N_COMMENT" AS "N_COMMENT",
+     "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP"
+FROM {{ ref('SOURCE_DATA', 'NATION_TEST') }} "NATION_TEST"

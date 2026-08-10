@@ -1,7 +1,7 @@
 @id("171de2ea-41e9-492e-bfaf-272d422c15cc")
 @nodeType("695")
 @groupByAll(true)
-@tests("SELECT 1 FROM {{ this }}", "Before", true)
+@tests("SELECT 1 FROM {{ this }}", "Before", falkse)
 @preSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
 @postSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
 @tests("SELECT 1 FROM {{ this }}", "After", true)

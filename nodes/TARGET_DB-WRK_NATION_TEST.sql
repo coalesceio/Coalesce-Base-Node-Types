@@ -1,12 +1,14 @@
-@id("ee0e2096-3872-4115-a47b-b1b1efb9117e")
+@id("171de2ea-41e9-492e-bfaf-272d422c15cc")
 @nodeType("695")
-@truncateBefore(false)
-@description("adfg''ad,")
+@groupByAll(true)
+@tests("SELECT 1 FROM {{ this }}", "Before", true)
+@preSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
+@postSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
 SELECT
-     "N_NATIONKEY" AS "N_NATIONKEY" @nullable(false) @inHash("1|GH_COL"),
-     "N_NAME" AS "N_NAME" @description("Nation Name"),
-     "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue(0),
-     "N_COMMENT" AS "N_COMMENT",
+     "N_NATIONKEY" AS "N_NATIONKEY" @nullable(false) @inHash("2|GH_COL"),
+     "N_NAME" AS "N_NAME" @description("Nation name"),
+     "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0") @nullable(false) @inHash("1|GH_COL"),
+     "N_COMMENT" AS "N_COMMENT" @tests("null", "unique"),
      "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP",
      {{ get_hash('GH_COL') }}::STRING AS "GH_COL"
 FROM {{ ref('SOURCE_DATA', 'NATION_TEST') }} "NATION_TEST"

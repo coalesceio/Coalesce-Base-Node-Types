@@ -386,8 +386,8 @@ macroString: |-
               {{ algo_start }}
                   {%- for c in sorted_cols -%}
                       NVL(CAST({{ c.column }} AS VARCHAR), 'null')
-                      {%- if not loop.last -%}
-                          || {%- if delimiter != '' -%}'{{ delimiter }}'||{%- endif -%}
+                      {%- if not loop.last %}
+                          || {%- if delimiter != '' %} '{{ delimiter }}' || {% endif -%}
                       {%- endif -%}
                   {%- endfor -%}
               {{ algo_end }}

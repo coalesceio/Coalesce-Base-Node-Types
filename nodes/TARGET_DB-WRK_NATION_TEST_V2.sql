@@ -12,5 +12,6 @@ SELECT
      "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0") @nullable(false) @inHash("1|GH_COL"),
      "N_COMMENT" AS "N_COMMENT" @tests("null", "unique"),
      "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP",
-     {{ get_hash('GH_COL') }}::STRING AS "GH_COL"
+     {{ get_hash('GH_COL') }}::STRING AS "GH_COL",
+     CAST(SHA1(NVL(CAST(GH_COL AS VARCHAR), 'null')) AS STRING)::STRING AS "GH_Key"
 FROM {{ ref('SOURCE_DATA', 'NATION_TEST') }} "NATION_TEST"

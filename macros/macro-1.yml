@@ -1,6 +1,6 @@
 fileVersion: 1
 id: "1"
-macroString: |
+macroString: |-
   {#-- The below block of code initialises variables in case of node typess using advance deployment strategy #}
 
   {% if desiredState %}
@@ -148,22 +148,37 @@ macroString: |
 
           {%- set dtype = dataType | upper -%}
           {%- set default_str = defaultValue | string -%}
-
-          {%- set is_function = default_str | upper in [
-              'CURRENT_DATE', 
-              'CURRENT_TIME', 
-              'CURRENT_TIMESTAMP', 
-              'SYSDATE()', 
-              'CURRENT_TIMESTAMP()'
+          {%- set is_quoted = default_str.startswith("'") and default_str.endswith("'") -%}
+          {%- set quote_types = [
+              'VARCHAR', 'STRING', 'TEXT', 'CHAR', 'DATE', 'TIME', 'VARIANT', 'OBJECT', 'ARRAY', 'GEOGRAPHY', 'GEOMETRY', 'XML', 'BINARY'
           ] -%}
+          {%- set upper_default = default_str | upper -%}
+          {%- set is_function =
+              not is_quoted
+              and (
+                  upper_default in [
+                      'CURRENT_DATE',
+                      'CURRENT_TIME',
+                      'CURRENT_TIMESTAMP',
+                      'CURRENT_USER',
+                      'CURRENT_ROLE'
+                  ]
+                  or upper_default.startswith('SYSDATE(')
+                  or upper_default.startswith('CURRENT_TIMESTAMP(')
+                  or upper_default.startswith('TO_DATE(')
+                  or upper_default.startswith('TO_TIME(')
+                  or upper_default.startswith('TO_TIMESTAMP(')
+                  or upper_default.startswith('TO_TIMESTAMP_NTZ(')
+                  or upper_default.startswith('TO_TIMESTAMP_LTZ(')
+                  or upper_default.startswith('TO_TIMESTAMP_TZ(')
+                  or upper_default.startswith('UUID_STRING(')
+                  or upper_default.startswith('RAND(')
+                  or upper_default.startswith('RANDOM(')
+              )
+          -%}
           {%- set is_null = default_str | upper == 'NULL' -%}
           {%- set is_boolean = default_str | upper in ['TRUE', 'FALSE'] -%}
           {%- set is_number = default_str.replace('.', '', 1).isdigit() -%}
-          {%- set is_quoted = default_str.startswith("'") and default_str.endswith("'") -%}
-
-          {%- set quote_types = [
-              'VARCHAR', 'STRING', 'TEXT', 'CHAR', 'DATE', 'TIME', 'VARIANT', 'OBJECT', 'ARRAY'
-          ] -%}
 
           {%- if is_null -%}
               NULL
@@ -183,7 +198,7 @@ macroString: |
           {%- else -%}
               {%- for qt in quote_types -%}
                   {%- if dtype.startswith(qt) -%}
-                      '{{ default_str }}'
+                      '{{ default_str | escape }}'
                   {%- endif -%}
               {%- endfor -%}
           {%- endif -%}
@@ -353,46 +368,46 @@ macroString: |
   {%- endmacro -%}
 
   {#====================================================================================================
-        Macro Name : sortorder_by_col_v2
+      Macro Name : sortorder_by_col_v2
 
-        Description:
-            Generates an ORDER BY clause using the configured sort columns and
-            sort directions.
+      Description:
+          Generates an ORDER BY clause using the configured sort columns and
+          sort directions.
 
-        Inputs:
-            - config.orderby (Boolean)
-                Enables or disables sorting.
+      Inputs:
+          - config.orderby (Boolean)
+              Enables or disables sorting.
 
-            - config.orderbycolumn.items (Array)
-                List of sort definitions:
-                    * sortColName.name : Column name
-                    * sortOrder        : ASC or DESC
+          - config.orderbycolumn.items (Array)
+              List of sort definitions:
+                  * sortColName.name : Column name
+                  * sortOrder        : ASC or DESC
 
-        Output:
-            - ORDER BY clause string.
-            - Empty string if sorting is disabled or no sort columns exist.
+      Output:
+          - ORDER BY clause string.
+          - Empty string if sorting is disabled or no sort columns exist.
 
-        Example Output:
-            ORDER BY "CUSTOMER_ID" ASC, "LOAD_DATE" DESC
-    ====================================================================================================#}
-    {%- macro sortorder_by_col_v2() -%}
-        {%- if config.orderby -%}
-            {%- set ns = namespace(orderByClause='') -%}
-            {%- set orderByItems = config.orderbycolumn.get('items', []) if config.orderbycolumn is mapping
-                                                                        else config.orderbycolumn -%}
+      Example Output:
+          ORDER BY "CUSTOMER_ID" ASC, "LOAD_DATE" DESC
+  ====================================================================================================#}
+  {%- macro sortorder_by_col_v2() -%}
+      {%- if config.orderby -%}
+          {%- set ns = namespace(orderByClause='') -%}
+          {%- set orderByItems = config.orderbycolumn.get('items', []) if config.orderbycolumn is mapping
+                                                                      else config.orderbycolumn -%}
 
-            {%- for item in orderByItems -%}
-                {%- set colName = item.sortColName.name if config.orderbycolumn is mapping
-                                                        else item.sortColName -%}
+          {%- for item in orderByItems -%}
+              {%- set colName = item.sortColName.name if config.orderbycolumn is mapping
+                                                      else item.sortColName -%}
 
-                {%- if loop.first -%}
-                    {%- set ns.orderByClause = '"' ~ colName ~ '" ' ~ item.sortOrder -%}
-                {%- else -%}
-                    {%- set ns.orderByClause = ns.orderByClause ~ ', "' ~ colName ~ '" ' ~ item.sortOrder -%}
-                {%- endif -%}
-            {%- endfor -%}
-            ORDER BY {{ ns.orderByClause }}
-        {%- endif -%}
-    {%- endmacro -%}
+              {%- if loop.first -%}
+                  {%- set ns.orderByClause = '"' ~ colName ~ '" ' ~ item.sortOrder -%}
+              {%- else -%}
+                  {%- set ns.orderByClause = ns.orderByClause ~ ', "' ~ colName ~ '" ' ~ item.sortOrder -%}
+              {%- endif -%}
+          {%- endfor -%}
+          ORDER BY {{ ns.orderByClause }}
+      {%- endif -%}
+  {%- endmacro -%}
 name: macro
 type: Macro

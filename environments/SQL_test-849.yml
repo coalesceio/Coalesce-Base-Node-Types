@@ -1,5 +1,11 @@
 fileVersion: 1
 id: "849"
-mappingDefinitions: {}
+mappingDefinitions:
+  SOURCE_DATA:
+    database: TANVI_DEV
+    schema: SOURCE
+  TARGET_DB:
+    database: TANVI_DEV
+    schema: TARGET
 name: SQL_test
 type: Environment

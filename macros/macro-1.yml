@@ -1,6 +1,6 @@
 fileVersion: 1
 id: "1"
-macroString: |-
+macroString: |
   {#-- The below block of code initialises variables in case of node typess using advance deployment strategy #}
 
   {% if desiredState %}
@@ -351,5 +351,48 @@ macroString: |-
           AS STRING)
       {%- endif -%}
   {%- endmacro -%}
+
+  {#====================================================================================================
+        Macro Name : sortorder_by_col_v2
+
+        Description:
+            Generates an ORDER BY clause using the configured sort columns and
+            sort directions.
+
+        Inputs:
+            - config.orderby (Boolean)
+                Enables or disables sorting.
+
+            - config.orderbycolumn.items (Array)
+                List of sort definitions:
+                    * sortColName.name : Column name
+                    * sortOrder        : ASC or DESC
+
+        Output:
+            - ORDER BY clause string.
+            - Empty string if sorting is disabled or no sort columns exist.
+
+        Example Output:
+            ORDER BY "CUSTOMER_ID" ASC, "LOAD_DATE" DESC
+    ====================================================================================================#}
+    {%- macro sortorder_by_col_v2() -%}
+        {%- if config.orderby -%}
+            {%- set ns = namespace(orderByClause='') -%}
+            {%- set orderByItems = config.orderbycolumn.get('items', []) if config.orderbycolumn is mapping
+                                                                        else config.orderbycolumn -%}
+
+            {%- for item in orderByItems -%}
+                {%- set colName = item.sortColName.name if config.orderbycolumn is mapping
+                                                        else item.sortColName -%}
+
+                {%- if loop.first -%}
+                    {%- set ns.orderByClause = '"' ~ colName ~ '" ' ~ item.sortOrder -%}
+                {%- else -%}
+                    {%- set ns.orderByClause = ns.orderByClause ~ ', "' ~ colName ~ '" ' ~ item.sortOrder -%}
+                {%- endif -%}
+            {%- endfor -%}
+            ORDER BY {{ ns.orderByClause }}
+        {%- endif -%}
+    {%- endmacro -%}
 name: macro
 type: Macro

@@ -26,7 +26,6 @@ operation:
           - columnReferences: []
             transform: ""
         transform: ""
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -40,12 +39,10 @@ operation:
         description: ""
         name: R_NAME
         nullable: false
-        primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
         transform: ""
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -59,12 +56,10 @@ operation:
         description: ""
         name: R_COMMENT
         nullable: true
-        primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
         transform: ""
-        uniqueKey: false
   name: REGION_PK
   schema: ""
   sqlType: Source

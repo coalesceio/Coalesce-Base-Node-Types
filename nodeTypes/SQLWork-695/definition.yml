@@ -40,6 +40,32 @@ metadata:
         default: false
         enableIf: "{% if config.selectDistinct %} false {% else %} true {% endif %}"
 
+      - displayName: Order By
+        attributeName: orderby
+        type: toggleButton
+        default: false
+        enableIf: "{% if node.materializationType == 'view' %} false {% else %} true {% endif %}"
+
+      - type: tabular
+        displayName: 'ℹ️ Columns are sorted in the order they are defined'
+        attributeName: orderbycolumn
+        columns:
+
+          -  type: columnDropdownSelector
+             displayName: Sort Column
+             attributeName: sortColName
+
+          -  type: dropdownSelector
+             displayName: Sort Order
+             attributeName: sortOrder
+             default: desc
+             options:
+              - desc
+              - asc
+      
+        isRequired: false
+        enableIf:  "{% if node.materializationType != 'view' and config.orderby %} true {% else %} false {% endif %}"
+
     - groupName: Control Options
       items:
 

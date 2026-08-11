@@ -1,0 +1,310 @@
+fileVersion: 1
+id: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+name: DIM_TABLE_LM_SCD2_UNION
+operation:
+  config:
+    id:
+      parameters:
+        - 58548972-aa58-4a55-be1e-69d4d9fe0979
+    lastModifiedComparison:
+      parameters:
+        - "true"
+    materializationType:
+      parameters:
+        - table
+    nodeType:
+      parameters:
+        - 932f2d25-0815-4c57-8e77-4a7d2c9a4c75
+    postSQL:
+      parameters:
+        - " "
+    preSQL:
+      parameters:
+        - " "
+    selectDistinct:
+      parameters:
+        - "true"
+    treatNullAsCurrentTimestamp:
+      parameters:
+        - "true"
+    truncateBefore:
+      parameters:
+        - "false"
+    type2Dimension:
+      parameters:
+        - "true"
+  database: ""
+  deployEnabled: true
+  description: Nation data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "{{ node.name }}_KEY"
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          description:
+            parameters:
+              - System generated value
+          isSurrogateKey: true
+          nullable:
+            parameters:
+              - "false"
+        dataType: INTEGER
+        defaultValue: ""
+        description: ""
+        name: "{{ node.name }}_KEY"
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "0"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: N_NATIONKEY
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          defaultValue:
+            parameters:
+              - "0"
+          isBusinessKey: true
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: N_NATIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: nation."N_NATIONKEY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: N_NAME
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          defaultValue:
+            parameters:
+              - John-Doe
+        dataType: VARCHAR(25)
+        defaultValue: ""
+        description: ""
+        name: N_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: nation."N_NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: N_REGIONKEY
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          defaultValue:
+            parameters:
+              - "0"
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: N_REGIONKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: nation."N_REGIONKEY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: N_COMMENT
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          defaultValue:
+            parameters:
+              - NA
+          description:
+            parameters:
+              - Add comments
+          nullable:
+            parameters:
+              - "true"
+        dataType: VARCHAR(152)
+        defaultValue: ""
+        description: ""
+        name: N_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: nation."N_COMMENT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: N_LOAD_TIMESTAMP
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          isLastModifiedColumn: true
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: N_LOAD_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: nation."N_LOAD_TIMESTAMP"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: SYSTEM_VERSION
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          defaultValue:
+            parameters:
+              - "1"
+          isSystemVersion: true
+        dataType: INTEGER
+        defaultValue: ""
+        description: ""
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "0"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: SYSTEM_CURRENT_FLAG
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          defaultValue:
+            parameters:
+              - "Y"
+          isSystemCurrentFlag: true
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "''"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: SYSTEM_START_DATE
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          isSystemStartDate: true
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: SYSTEM_END_DATE
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          isSystemEndDate: true
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: SYSTEM_CREATE_DATE
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          isSystemCreateDate: true
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: SYSTEM_UPDATE_DATE
+          stepCounter: df7d5213-a4a5-4a18-a6c6-39bceeef2682
+        config:
+          isSystemUpdateDate: true
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: |-
+      WITH ALL_NATIONS AS (
+
+          SELECT nc1.N_NATIONKEY, nc1.N_NAME, nc1.N_REGIONKEY, nc1.N_COMMENT, nc1.N_LOAD_TIMESTAMP
+          FROM {{ ref('SOURCE_DATA', 'NATION_COPY1') }} nc1
+
+          UNION
+
+          SELECT nc2.N_NATIONKEY, nc2.N_NAME, nc2.N_REGIONKEY, nc2.N_COMMENT, nc2.N_LOAD_TIMESTAMP
+          FROM {{ ref('SOURCE_DATA', 'NATION_COPY2') }} nc2
+
+      )
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            @id("df7d5213-a4a5-4a18-a6c6-39bceeef2682")
+            @nodeType("932f2d25-0815-4c57-8e77-4a7d2c9a4c75")
+            @materializationType("table")
+            @truncateBefore("false")
+            @selectDistinct("true")
+            @lastModifiedComparison("true")
+            @treatNullAsCurrentTimestamp("true")
+            @type2Dimension("true")
+            @preSQL(" ")
+            @postSQL(" ")
+
+            WITH ALL_NATIONS AS (
+
+                SELECT nc1.N_NATIONKEY, nc1.N_NAME, nc1.N_REGIONKEY, nc1.N_COMMENT, nc1.N_LOAD_TIMESTAMP
+                FROM {{ ref('SOURCE_DATA', 'NATION_COPY1') }} nc1
+
+                UNION
+
+                SELECT nc2.N_NATIONKEY, nc2.N_NAME, nc2.N_REGIONKEY, nc2.N_COMMENT, nc2.N_LOAD_TIMESTAMP
+                FROM {{ ref('SOURCE_DATA', 'NATION_COPY2') }} nc2
+
+            )
+
+            SELECT
+                 0 AS "{{ node.name }}_KEY" @isSurrogateKey @nullable("false") @description("System generated value"),
+                 nation."N_NATIONKEY" AS "N_NATIONKEY" @isBusinessKey @defaultValue("0"),
+                 nation."N_NAME" AS "N_NAME" @defaultValue("John-Doe"),
+                 nation."N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0"),
+                 nation."N_COMMENT" AS "N_COMMENT" @description("Add comments") @nullable("true") @defaultValue("NA"),
+                 nation."N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @isLastModifiedColumn,
+                 0 AS "SYSTEM_VERSION" @isSystemVersion @defaultValue("1"),
+                 '' AS "SYSTEM_CURRENT_FLAG" @isSystemCurrentFlag @defaultValue("Y"),
+                 CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_START_DATE" @isSystemStartDate,
+                 CAST('2999-12-31 00:00:00' AS TIMESTAMP) AS "SYSTEM_END_DATE" @isSystemEndDate,
+                 CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_CREATE_DATE" @isSystemCreateDate,
+                 CAST(CURRENT_TIMESTAMP AS TIMESTAMP) AS "SYSTEM_UPDATE_DATE" @isSystemUpdateDate
+            FROM ALL_NATIONS nation
+            WHERE nation.N_NATIONKEY = 2
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: NATION_COPY1
+        join:
+          joinCondition: |-
+            FROM ALL_NATIONS nation
+            WHERE nation.N_NATIONKEY = 2
+        name: DIM_TABLE_LM_SCD2_UNION
+        noLinkRefs: []
+  name: DIM_TABLE_LM_SCD2_UNION
+  overrideSQL: false
+  schema: ""
+  sqlType: 932f2d25-0815-4c57-8e77-4a7d2c9a4c75
+  type: sql
+  version: 1
+type: Node

@@ -4,7 +4,7 @@ isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |-
+  nodeMetadataSpec: |
     capitalized: SQL Work
     short: WRK
     plural: Works
@@ -52,7 +52,7 @@ metadata:
           default: false
 
         - name: tests
-          description: materialization selector
+          description: Node test usage
           allowMultiple: true
           parameters:
             - name: querySQL
@@ -97,31 +97,25 @@ metadata:
 
 
         column:
-          - name: isBusinessKey
-            description: Include this column in the business key used to match rows.                                                                                                                                           
-            allowsMultiple: true
+        - name: description
+          description: Adds column description.
+          isRequired: false
+          parameters:
+          - name: descText
+            type: string
+            description: Column description
 
-          - name: isChangeTracking
-            description: Changes to this column open a new version of the row.
-      
-          - name: isNotNull
-            description: Enforce NOT NULL on the target column.
+        - name: defaultValue
+          description: Default applied when the source column value is null.
+          parameters:
+            - name: value
+              type: string
+              isRequired: true
 
-          - name: defaultValue
-            description: Default applied when the source value is null.
-            parameters:
-              - name: value
-                type: string
-                isRequired: true
-
-          - name: precision
-            description: Numeric precision override for the target column.
-            parameters:
-              - name: digits
-                type: number
-                isRequired: true
-              - name: scale
-                type: number
-                default: 0
+        - name: notNull
+          type: boolean
+          description: Enforce NOT NULL on the target column.
+          isRequired: false
+          default: true
 name: SQL Work
 type: NodeType

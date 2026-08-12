@@ -125,5 +125,238 @@ macroString: |-
   {%- macro ref_no_link_raw(location_name, node_name) -%}
       {% raw %}{{ ref_no_link('{% endraw %}{{ location_name }}{% raw %}', '{% endraw %}{{ node_name }}{% raw %}') }}{% endraw %}
   {%- endmacro -%}
+
+  {# ========================================================================
+  Description:
+  Generates a correctly formatted SQL default value based on the provided datatype
+  and input value. Ensures proper quoting, function handling, and datatype alignment
+  for use in DDL/DML statements.
+
+  Inputs:
+  - dataType (string):
+      Target column datatype (e.g., VARCHAR, NUMBER, DATE, BOOLEAN, VARIANT)
+
+  - defaultValue (any):
+      Default value to be applied (can be string, number, boolean, NULL, or function)
+
+  Output:
+  - Returns a SQL-safe default value string formatted according to datatype
+  ========================================================================#}
+  {%- macro get_default(dataType, defaultValue) -%}
+
+      {%- if dataType is not none -%}
+
+          {%- set dtype = dataType | upper -%}
+          {%- set default_str = defaultValue | string -%}
+          {%- set is_quoted = default_str.startswith("'") and default_str.endswith("'") -%}
+          {%- set quote_types = [
+              'VARCHAR', 'STRING', 'TEXT', 'CHAR', 'DATE', 'TIME', 'VARIANT', 'OBJECT', 'ARRAY', 'GEOGRAPHY', 'GEOMETRY', 'XML', 'BINARY'
+          ] -%}
+          {%- set upper_default = default_str | upper -%}
+          {%- set is_function =
+              not is_quoted
+              and (
+                  upper_default in [
+                      'CURRENT_DATE',
+                      'CURRENT_TIME',
+                      'CURRENT_TIMESTAMP',
+                      'CURRENT_USER',
+                      'CURRENT_ROLE'
+                  ]
+                  or upper_default.startswith('SYSDATE(')
+                  or upper_default.startswith('CURRENT_TIMESTAMP(')
+                  or upper_default.startswith('TO_DATE(')
+                  or upper_default.startswith('TO_TIME(')
+                  or upper_default.startswith('TO_TIMESTAMP(')
+                  or upper_default.startswith('TO_TIMESTAMP_NTZ(')
+                  or upper_default.startswith('TO_TIMESTAMP_LTZ(')
+                  or upper_default.startswith('TO_TIMESTAMP_TZ(')
+                  or upper_default.startswith('UUID_STRING(')
+                  or upper_default.startswith('RAND(')
+                  or upper_default.startswith('RANDOM(')
+              )
+          -%}
+          {%- set is_null = default_str | upper == 'NULL' -%}
+          {%- set is_boolean = default_str | upper in ['TRUE', 'FALSE'] -%}
+          {%- set is_number = default_str.replace('.', '', 1).isdigit() -%}
+
+          {%- if is_null -%}
+              NULL
+
+          {%- elif is_function -%}
+              {{ default_str }}
+
+          {%- elif is_boolean -%}
+              {{ default_str | upper }}
+
+          {%- elif is_number and dtype not in quote_types -%}
+              {{ defaultValue }}
+
+          {%- elif is_quoted -%}
+              {{ default_str }}
+
+          {%- else -%}
+              {%- for qt in quote_types -%}
+                  {%- if dtype.startswith(qt) -%}
+                      '{{ default_str | escape }}'
+                  {%- endif -%}
+              {%- endfor -%}
+          {%- endif -%}
+      {%- endif -%}
+  {%- endmacro -%}
+
+  {# ========================================================================
+  Purpose          : Executes data quality tests associated with the node
+                      and its columns, based on the configured run order.
+                      Supports running tests either before or after data
+                      insertion, and respects the test continuation
+                      behavior on failure.
+  Input Parameters : runOrder (String)
+                      - Determines when the tests should be executed.
+                          Expected values: 'Before' or 'After'
+  Returns          : Rendered SQL statements for executing the applicable
+                      node-level and column-level data quality tests.
+                      No output is generated if tests are disabled.
+  ========================================================================= #}
+  {%- macro run_tests(runOrder) -%}
+
+      {%- if config.testsEnabled -%}
+          {%- if runOrder == 'After' -%}
+              {%- for column in columns -%}
+                  {%- if column.tests is mapping and column.tests.parameters is defined -%}
+                      {%- for test in column.tests.parameters -%}
+                          {%- if test | trim | lower == "null" -%}
+                              {%- set templateString = "SELECT 1 FROM " +  ref(node.location.name, node.name)  + " WHERE " + column.name + " IS NULL " -%}                      
+                              {{ test_stage("Column Test: " + column.name + " - " + test | lower) }}
+                              {{ templateString }}
+                          {%- endif -%}
+                          {%- if test | trim | lower == "unique" -%}
+                              {%- set templateString = "SELECT 1 FROM " + ref(node.location.name, node.name) + " GROUP BY " + column.name +  " HAVING COUNT(*) > 1" -%}                      
+                              {{ test_stage("Column Test: " + column.name + " - " + test | lower) }}
+                              {{ templateString }}
+                          {%- endif -%}
+                      {%- endfor -%}
+                  {%- endif -%}
+              {%- endfor -%}
+          {%- endif -%}
+
+          {%- set ns = namespace(cnt=0) -%}
+          {%- for test in config.tests -%}
+          {{ stage('0')}}
+          -- {{ test }}
+
+
+
+          {%- endfor -%}
+
+      {%- endif -%}
+  {%- endmacro -%}
+
+  {# ========================================================================
+    Purpose:
+        Returns the SQL expression to be used for a column transformation.
+
+    Input:
+        col
+            - transform: Column transform expression.
+            - sourceColumns[0].node.name: Source table name.
+            - sourceColumns[0].column.name: Source column name.
+
+    Logic:
+        1. If transform is not empty and matches the source column name
+           (ignoring double quotes), return a fully qualified source
+           column reference:
+               "SOURCE_TABLE"."SOURCE_COLUMN"
+
+        2. If transform is not empty and does not match the source column
+           name, return the transform expression as-is.
+
+        3. If transform is empty, return NULL.
+
+    Examples:
+        transform = '"N_NAME"'      -> "NATION_TEST"."N_NAME"
+        transform = 'N_NAME'        -> "NATION_TEST"."N_NAME"
+        transform = 'UPPER(N_NAME)' -> UPPER(N_NAME)
+        transform = ''              -> NULL
+    ========================================================================#}
+    {%- macro get_source_transform_v2(col) -%}
+        {%- set transform = col.transform | trim -%}
+        {%- if transform != '' -%}
+            {%- if col.sourceColumns
+                    and col.sourceColumns[0].node
+                    and transform | replace('"', '')
+                        == col.sourceColumns[0].column.name -%}
+
+                  "{{ col.sourceColumns[0].node.name }}"."{{ col.sourceColumns[0].column.name }}"
+            {%- else -%}
+                {{ transform }}
+            {%- endif -%}
+        {%- else -%}
+            NULL
+        {%- endif -%}
+    {%- endmacro -%}
+
+  {#===================================================================================================
+  Description:
+  Generates a deterministic hash value by combining and hashing all column values associated with the given `hash_name` using the `@inHash` annotation.
+
+  Input: `hash_name` (string) - The hash group identifier used in `@inHash("<hash_name>")` to group columns for hashing.
+
+  Output: - Returns a SQL expression of type `STRING`:
+          - A SHA1 hash of concatenated column values  
+          - Returns `NULL` if no columns are mapped to the given hash group
+  ====================================================================================================#}
+  {%- macro get_hash(hash_name, algo='SHA1', delimiter='||', datatype='CHAR(32)') -%}
+
+      {%- set cols = namespace(items=[]) -%}
+      {%- set algo_upper = algo | upper -%}
+
+      {# Collect columns participating in this hash #}
+      {%- for col in sources[0].columns -%}
+
+          {%- if col.inHash is defined
+              and col.inHash.parameters is defined -%}
+
+              {%- for p in col.inHash.parameters -%}
+
+                  {%- set parts = p.split('|') -%}
+                  {%- set position = parts[0] | int -%}
+                  {%- set hash = parts[1] -%}
+
+                  {%- if hash == hash_name -%}
+                      {%- set cols.items = cols.items + [{
+                          "position": position,
+                          "column": get_source_transform_v2(col)
+                      }] -%}
+                  {%- endif -%}
+              {%- endfor -%}
+          {%- endif -%}
+      {%- endfor -%}
+
+      {%- if cols.items | length == 0 -%}
+          NULL
+      {%- else -%}
+          {%- set sorted_cols = cols.items | sort(attribute='position') -%}
+          {# Define algo wrappers #}
+          {%- set algo_start = algo_upper + '(' -%}
+          {%- set algo_end = ')' -%}
+
+          {%- if algo_upper == 'SHA256' -%}
+              {%- set algo_start = 'SHA2(' -%}
+              {%- set algo_end = ', 256)' -%}
+          {%- endif -%}
+
+          CAST(
+              {{ algo_start }}
+                  {%- for c in sorted_cols -%}
+                      NVL(CAST({{ c.column }} AS VARCHAR), 'null')
+                      {%- if not loop.last %}
+                          || {%- if delimiter != '' %} '{{ delimiter }}' || {% endif -%}
+                      {%- endif -%}
+                  {%- endfor -%}
+              {{ algo_end }}
+          AS STRING)
+      {%- endif -%}
+  {%- endmacro -%}
 name: macro
 type: Macro

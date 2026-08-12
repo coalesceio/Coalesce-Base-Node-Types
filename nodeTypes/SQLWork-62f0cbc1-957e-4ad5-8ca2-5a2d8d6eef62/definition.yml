@@ -4,7 +4,7 @@ isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |
+  nodeMetadataSpec: |-
     capitalized: SQL Work
     short: WRK
     plural: Works
@@ -22,6 +22,7 @@ metadata:
             - name: type
               type: string
               description: Object type to create
+              isRequired: true
               default: table
               options:
               - table
@@ -95,13 +96,13 @@ metadata:
             description: Query to be executed.
             isRequired: true
 
-
         column:
         - name: description
           description: Adds column description.
           isRequired: false
           parameters:
           - name: descText
+            isRequired: true
             type: string
             description: Column description
 
@@ -117,5 +118,34 @@ metadata:
           description: Enforce NOT NULL on the target column.
           isRequired: false
           default: true
+
+        - name: tests
+          description: Column level tests for data quality requirements. One or more tests can be selected based on validation requirements. Order of specification does not matter.
+          isRequired: false
+          parameters:
+            - name: unique
+              isRequired: true
+              type: string
+              description: Checks to ensure all values are UNIQUE
+              options:
+              - unique
+
+            - name: 'null'
+              isRequired: true
+              type: string
+              description: Ensures the column contains no NULL values.
+              options:
+              - 'null'
+
+        - name: inHash
+          description: Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.
+          allowMultiple: true
+          parameters:
+            - name: hashOrder|hashName
+              type: string
+              description: |
+                ◆ hashOrder - Order of columns used to calculate the hash. 
+                ◆ hashName - Common name assigned to the generated hash.
+              isRequired: true
 name: SQL Work
 type: NodeType

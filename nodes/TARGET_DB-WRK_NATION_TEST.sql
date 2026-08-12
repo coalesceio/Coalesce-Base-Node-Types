@@ -10,9 +10,11 @@
 @preSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
 @postSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
 SELECT
-     "N_NATIONKEY" AS "N_NATIONKEY",
+     "N_NATIONKEY" AS "N_NATIONKEY" @tests("unique") @inHash("2|GH_COL1") @inHash("1|GH_COL2"),
      "N_NAME" AS "N_NAME" @notNull,
-     "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0"),
-     "N_COMMENT" AS "N_COMMENT" @description("Nation comment"),
-     "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP"
+     "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0")  @tests("unique", "null") @inHash("1|GH_COL1") @inHash("2|GH_COL2"),
+     "N_COMMENT" AS "N_COMMENT" @description("Nation comment")  @tests("null", "unique"),
+     "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @tests("null"),
+     {{ get_hash('GH_COL1') }}::STRING AS "GH_COL1",
+     {{ get_hash('GH_COL2') }}::STRING AS "GH_COL2"
 FROM {{ ref('SOURCE_DATA', 'NATION_TEST') }} "NATION_TEST"

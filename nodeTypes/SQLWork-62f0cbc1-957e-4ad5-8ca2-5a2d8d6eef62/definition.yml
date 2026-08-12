@@ -54,7 +54,7 @@ metadata:
 
         - name: tests
           description: Node test usage
-          allowMultiple: true
+          allowsMultiple: true
           parameters:
             - name: querySQL
               type: string
@@ -139,7 +139,7 @@ metadata:
 
         - name: inHash
           description: Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.
-          allowMultiple: true
+          allowsMultiple: true
           parameters:
             - name: hashOrder|hashName
               type: string

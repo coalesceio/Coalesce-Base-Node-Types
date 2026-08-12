@@ -1,6 +1,6 @@
 excludeSelector: ""
 fileVersion: 1
 id: "92"
-includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CUSTOMER1_CUSTOMER3\" }"
+includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CUSTOMER1_CUSTOMER3\" } OR { location: \"SOURCE_DATA\" name: \"NATION_TEST\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_TABLE\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_VIEW\" }"
 name: Job1
 type: Job

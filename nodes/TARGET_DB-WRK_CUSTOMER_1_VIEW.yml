@@ -211,8 +211,6 @@ operation:
         name: WRK_CUSTOMER_1_VIEW
         noLinkRefs: []
       - aliases: {}
-        customSQL:
-          customSQL: ""
         dependencies: []
         join:
           joinCondition: ""

@@ -207,8 +207,6 @@ operation:
       - hasNull
     sourceMapping:
       - aliases: {}
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: DIM_PRODUCTS1

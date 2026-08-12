@@ -248,8 +248,6 @@ operation:
     sourceMapping:
       - aliases:
           EMP_SOURCE: dcff340c-4a47-4b11-905a-b1d8df7fd350
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: EMP_SOURCE

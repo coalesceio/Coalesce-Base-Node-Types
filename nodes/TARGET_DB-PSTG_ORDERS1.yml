@@ -293,8 +293,6 @@ operation:
     sourceMapping:
       - aliases:
           ORDERS: ce9c34e4-4128-4304-b50c-63ce91228793
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: ORDERS

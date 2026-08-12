@@ -21,8 +21,6 @@ operation:
         description: ""
         name: R_REGIONKEY
         nullable: false
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -36,8 +34,6 @@ operation:
         description: ""
         name: R_NAME
         nullable: false
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -51,8 +47,6 @@ operation:
         description: ""
         name: R_COMMENT
         nullable: true
-        primaryKey: false
-        uniqueKey: false
   name: REGION
   schema: ""
   sqlType: Source

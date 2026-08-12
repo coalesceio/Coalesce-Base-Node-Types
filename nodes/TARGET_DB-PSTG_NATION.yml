@@ -222,8 +222,6 @@ operation:
     sourceMapping:
       - aliases:
           NATION: 7619c2cd-cf54-49c7-bec2-eecd282615a0
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: NATION

@@ -315,8 +315,6 @@ operation:
     sourceMapping:
       - aliases:
           WRK_ORDERS: e8fbffc5-ce7d-4788-b489-41f14a711b0c
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: WRK_ORDERS

@@ -240,8 +240,6 @@ operation:
     sourceMapping:
       - aliases:
           PRODUCTS: 3ba85f1e-e3d2-490f-8423-b9c6b99ca366
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: PRODUCTS
@@ -253,8 +251,6 @@ operation:
         noLinkRefs: []
       - aliases:
           PRODUCTS_GROCERY: 3ee0793d-5b13-4599-89b7-5df13fa16937
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: PRODUCTS_GROCERY

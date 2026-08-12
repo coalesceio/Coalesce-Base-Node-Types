@@ -392,8 +392,6 @@ operation:
     sourceMapping:
       - aliases:
           LINEITEM: d0f98343-29cb-4130-a1f8-1895d12250da
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: LINEITEM

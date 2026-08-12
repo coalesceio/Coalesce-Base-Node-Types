@@ -161,8 +161,6 @@ operation:
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases: {}
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: FCT_CUSTOMER

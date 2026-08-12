@@ -80,18 +80,12 @@ operation:
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        keyColumnType: None
         name: DIM_NATION3_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "''"
-        systemColumnType: None
-        transform: "''"
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_NATIONKEY
           stepCounter: 710180f2-ea77-4e5d-bc98-a8999bb2f930
@@ -99,7 +93,6 @@ operation:
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_NATIONKEY
         nullable: true
         sourceColumnReferences:
@@ -107,12 +100,7 @@ operation:
               - columnCounter: N_NATIONKEY
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_NATIONKEY\""
-        systemColumnType: None
-        transform: "\"N_NATIONKEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_NAME
           stepCounter: 710180f2-ea77-4e5d-bc98-a8999bb2f930
@@ -120,7 +108,6 @@ operation:
         dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_NAME
         nullable: true
         sourceColumnReferences:
@@ -128,12 +115,7 @@ operation:
               - columnCounter: N_NAME
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_NAME\""
-        systemColumnType: None
-        transform: "\"N_NAME\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_REGIONKEY
           stepCounter: 710180f2-ea77-4e5d-bc98-a8999bb2f930
@@ -141,7 +123,6 @@ operation:
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_REGIONKEY
         nullable: true
         sourceColumnReferences:
@@ -149,12 +130,7 @@ operation:
               - columnCounter: N_REGIONKEY
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_REGIONKEY\""
-        systemColumnType: None
-        transform: "\"N_REGIONKEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_COMMENT
           stepCounter: 710180f2-ea77-4e5d-bc98-a8999bb2f930
@@ -162,7 +138,6 @@ operation:
         dataType: VARCHAR(152)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
@@ -170,12 +145,7 @@ operation:
               - columnCounter: N_COMMENT
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_COMMENT\""
-        systemColumnType: None
-        transform: "\"N_COMMENT\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_LOAD_TIMESTAMP
           stepCounter: 710180f2-ea77-4e5d-bc98-a8999bb2f930
@@ -183,7 +153,6 @@ operation:
         dataType: TIMESTAMP_LTZ(9)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_LOAD_TIMESTAMP
         nullable: true
         sourceColumnReferences:
@@ -191,8 +160,6 @@ operation:
               - columnCounter: N_LOAD_TIMESTAMP
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_LOAD_TIMESTAMP\""
-        systemColumnType: None
-        transform: "\"N_LOAD_TIMESTAMP\""
       - acceptedValues:
           strictMatch: true
           values: []
@@ -205,14 +172,11 @@ operation:
         defaultValue: ""
         description: ""
         isSystemVersion: true
-        keyColumnType: None
         name: SYSTEM_VERSION
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "''"
-        systemColumnType: None
-        transform: "''"
       - acceptedValues:
           strictMatch: true
           values: []
@@ -225,14 +189,11 @@ operation:
         defaultValue: ""
         description: ""
         isSystemCurrentFlag: true
-        keyColumnType: None
         name: SYSTEM_CURRENT_FLAG
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "''"
-        systemColumnType: None
-        transform: "''"
       - acceptedValues:
           strictMatch: true
           values: []
@@ -245,14 +206,11 @@ operation:
         defaultValue: ""
         description: ""
         isSystemCreateDate: true
-        keyColumnType: None
         name: SYSTEM_CREATE_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-        systemColumnType: None
-        transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
       - acceptedValues:
           strictMatch: true
           values: []
@@ -265,14 +223,11 @@ operation:
         defaultValue: ""
         description: ""
         isSystemUpdateDate: true
-        keyColumnType: None
         name: SYSTEM_UPDATE_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-        systemColumnType: None
-        transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
       - acceptedValues:
           strictMatch: true
           values: []
@@ -285,14 +240,11 @@ operation:
         defaultValue: ""
         description: ""
         isSystemEndDate: true
-        keyColumnType: None
         name: SYSTEM_END_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
-        systemColumnType: None
-        transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

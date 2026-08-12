@@ -352,8 +352,6 @@ operation:
       - aliases:
           LINEITEM: d0f98343-29cb-4130-a1f8-1895d12250da
           REGION: 5b0228f8-ce14-4084-8755-cf91974c5fe8
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: LINEITEM

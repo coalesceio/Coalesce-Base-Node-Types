@@ -68,10 +68,7 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: DIM_NATION_KEY
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -79,18 +76,12 @@ operation:
         dataType: UNKNOWN
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: DIM_NATION_KEY
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "\"{{NODE_NAME}}_KEY\""
-        systemColumnType: None
-        transform: "\"{{NODE_NAME}}_KEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_NATIONKEY
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -99,7 +90,6 @@ operation:
         defaultValue: ""
         description: ""
         isBusinessKey: true
-        keyColumnType: None
         name: N_NATIONKEY
         nullable: true
         sourceColumnReferences:
@@ -107,12 +97,7 @@ operation:
               - columnCounter: N_NATIONKEY
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_NATIONKEY\""
-        systemColumnType: None
-        transform: "\"N_NATIONKEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_NAME
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -120,7 +105,6 @@ operation:
         dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_NAME
         nullable: true
         sourceColumnReferences:
@@ -128,12 +112,7 @@ operation:
               - columnCounter: N_NAME
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_NAME\""
-        systemColumnType: None
-        transform: "\"N_NAME\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_REGIONKEY
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -141,7 +120,6 @@ operation:
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_REGIONKEY
         nullable: true
         sourceColumnReferences:
@@ -149,12 +127,7 @@ operation:
               - columnCounter: N_REGIONKEY
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_REGIONKEY\""
-        systemColumnType: None
-        transform: "\"N_REGIONKEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_COMMENT
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -162,7 +135,6 @@ operation:
         dataType: VARCHAR(152)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
@@ -170,12 +142,7 @@ operation:
               - columnCounter: N_COMMENT
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_COMMENT\""
-        systemColumnType: None
-        transform: "\"N_COMMENT\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_LOAD_TIMESTAMP
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -183,7 +150,6 @@ operation:
         dataType: TIMESTAMP_LTZ(9)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_LOAD_TIMESTAMP
         nullable: true
         sourceColumnReferences:
@@ -191,12 +157,7 @@ operation:
               - columnCounter: N_LOAD_TIMESTAMP
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_LOAD_TIMESTAMP\""
-        systemColumnType: None
-        transform: "\"N_LOAD_TIMESTAMP\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: SYSTEM_VERSION
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -204,18 +165,12 @@ operation:
         dataType: INTEGER
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: SYSTEM_VERSION
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "1"
-        systemColumnType: None
-        transform: "1"
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: SYSTEM_CURRENT_FLAG
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -223,18 +178,12 @@ operation:
         dataType: VARCHAR
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: SYSTEM_CURRENT_FLAG
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "'Y'"
-        systemColumnType: None
-        transform: "'Y'"
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: SYSTEM_CREATE_DATE
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -242,18 +191,12 @@ operation:
         dataType: TIMESTAMP
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: SYSTEM_CREATE_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-        systemColumnType: None
-        transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: SYSTEM_UPDATE_DATE
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -261,18 +204,12 @@ operation:
         dataType: TIMESTAMP
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: SYSTEM_UPDATE_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-        systemColumnType: None
-        transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: SYSTEM_END_DATE
           stepCounter: 24e86c0b-6429-49fc-9b15-03b86a4bb85d
@@ -280,14 +217,11 @@ operation:
         dataType: TIMESTAMP
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: SYSTEM_END_DATE
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
-        systemColumnType: None
-        transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

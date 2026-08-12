@@ -267,10 +267,7 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 47d43163-8e7c-49e9-81db-464898fcad85
           stepCounter: f7716d66-48f5-44ab-893f-fa3a546b0c6f
@@ -287,14 +284,11 @@ operation:
             stepCounter: f7716d66-48f5-44ab-893f-fa3a546b0c6f
         name: GH
         nullable: true
-        sourceColumnReferences: []
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
           CUSTOMER: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: CUSTOMER

@@ -429,8 +429,6 @@ operation:
       - aliases:
           CUSTOMER: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
           ORDERS: ce9c34e4-4128-4304-b50c-63ce91228793
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: CUSTOMER

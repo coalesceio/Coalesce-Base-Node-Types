@@ -232,8 +232,6 @@ operation:
     sourceMapping:
       - aliases:
           COURSES_IT: f9a0ad54-aa29-470f-8752-eb459a71f206
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: COURSES_IT
@@ -243,8 +241,6 @@ operation:
         noLinkRefs: []
       - aliases:
           COURSES_SC: 2b91a193-34a5-4829-a30d-90658b25d3fb
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: COURSES_SC

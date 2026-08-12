@@ -228,8 +228,6 @@ operation:
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases: {}
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: WRK_CUSTOMERtest1
@@ -239,8 +237,6 @@ operation:
         noLinkRefs: []
       - aliases:
           WRK_CUSTOMERtest2: ab1b68a0-3f93-43ff-b41d-2729d889d16e
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: WRK_CUSTOMERtest2

@@ -170,10 +170,7 @@ operation:
               - columnCounter: ab3d52da-b14b-486f-8e2a-2c13f4081ff5
                 stepCounter: ce9c34e4-4128-4304-b50c-63ce91228793
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 62139e84-308b-4dfe-8741-a845ef90cfb6
           stepCounter: e8fbffc5-ce7d-4788-b489-41f14a711b0c
@@ -184,17 +181,13 @@ operation:
         name: Group_col
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: "'g'"
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
           ORDERS: ce9c34e4-4128-4304-b50c-63ce91228793
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: ORDERS

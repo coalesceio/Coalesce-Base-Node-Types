@@ -137,8 +137,6 @@ operation:
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases: {}
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: PRODUCTS
@@ -148,8 +146,6 @@ operation:
         noLinkRefs: []
       - aliases:
           PRODUCTS_GROCERY: 3ee0793d-5b13-4599-89b7-5df13fa16937
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: PRODUCTS_GROCERY

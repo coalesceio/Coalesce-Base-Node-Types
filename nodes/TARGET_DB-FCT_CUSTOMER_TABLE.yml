@@ -238,8 +238,6 @@ operation:
         name: FCT_CUSTOMER_TABLE
         noLinkRefs: []
       - aliases: {}
-        customSQL:
-          customSQL: ""
         dependencies: []
         join:
           joinCondition: ""

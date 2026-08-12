@@ -247,8 +247,6 @@ operation:
     sourceMapping:
       - aliases:
           CLIENTS: dc72847b-374c-4f6e-9c78-4a1ffdb20bcb
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: CLIENTS

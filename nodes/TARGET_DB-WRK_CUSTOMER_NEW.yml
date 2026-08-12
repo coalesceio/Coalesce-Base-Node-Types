@@ -165,8 +165,6 @@ operation:
       - aliases:
           CUSTOMER: 4c6bbc72-ab93-476a-b82c-9b2b827c0f9a
           DIM_CUSTOMER: 121a6ff0-792c-49a8-8e90-99f16f206974
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: CUSTOMER

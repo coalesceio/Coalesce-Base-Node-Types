@@ -344,8 +344,6 @@ operation:
       - aliases:
           WRK_CUSTOMER1: 25f31edd-e4c1-482c-a953-9ffcc72eff27
           WRK_CUSTOMER2: 1366ee1a-5b87-4adb-881f-967fd0e2f694
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: WRK_CUSTOMER1

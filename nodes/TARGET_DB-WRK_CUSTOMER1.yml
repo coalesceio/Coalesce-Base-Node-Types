@@ -156,10 +156,7 @@ operation:
               - columnCounter: d6b2e4bd-dfc1-4f41-8257-e009fb43694b
                 stepCounter: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
             transform: ""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 166d3517-de3a-4037-9b12-a2a2c9a894f4
           stepCounter: 25f31edd-e4c1-482c-a953-9ffcc72eff27
@@ -170,14 +167,9 @@ operation:
         name: WHERE_STATUS
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: "'D'"
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 8005b546-e993-4cc9-bcb1-4a7a4e4e83ba
           stepCounter: 25f31edd-e4c1-482c-a953-9ffcc72eff27
@@ -188,14 +180,9 @@ operation:
         name: GROUP_FLAG
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: "'A'"
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: c9ef7710-8eeb-4f2f-84d3-59c5d1404e88
           stepCounter: 25f31edd-e4c1-482c-a953-9ffcc72eff27
@@ -206,14 +193,9 @@ operation:
         name: QUALIFY_FLAG
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: "'C'"
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 23e33997-c34d-49f0-9d77-0b04a5a2dbe5
           stepCounter: 25f31edd-e4c1-482c-a953-9ffcc72eff27
@@ -224,17 +206,13 @@ operation:
         name: ORDER_COL
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: "'F'"
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
           CUSTOMER: eeddc4f9-b5d5-4c00-acba-d17ea61ed43f
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: CUSTOMER

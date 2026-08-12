@@ -22,7 +22,6 @@ operation:
         name: PRODUCT_ID
         nullable: false
         primaryKey: true
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -36,8 +35,6 @@ operation:
         description: ""
         name: PRODUCT_NAME
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -51,8 +48,6 @@ operation:
         description: ""
         name: BRAND
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -66,8 +61,6 @@ operation:
         description: ""
         name: COLOUR
         nullable: true
-        primaryKey: false
-        uniqueKey: false
   name: PRODUCTS
   schema: ""
   sqlType: Source

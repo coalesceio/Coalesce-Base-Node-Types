@@ -21,8 +21,6 @@ operation:
         description: ""
         name: C_CUSTKEY
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -36,8 +34,6 @@ operation:
         description: ""
         name: C_NAME
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -51,8 +47,6 @@ operation:
         description: ""
         name: C_ADDRESS
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -66,8 +60,6 @@ operation:
         description: ""
         name: C_NATIONKEY
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -81,8 +73,6 @@ operation:
         description: ""
         name: C_PHONE
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -96,8 +86,6 @@ operation:
         description: ""
         name: C_ACCTBAL
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -111,8 +99,6 @@ operation:
         description: ""
         name: C_MKTSEGMENT
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -126,8 +112,6 @@ operation:
         description: ""
         name: C_COMMENT
         nullable: true
-        primaryKey: false
-        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -141,8 +125,6 @@ operation:
         description: ""
         name: C_LOAD_TIMESTAMP
         nullable: true
-        primaryKey: false
-        uniqueKey: false
   name: CUSTOMER
   schema: ""
   sqlType: Source

@@ -349,8 +349,6 @@ operation:
         name: DIM_CUSTOMER_VIEW
         noLinkRefs: []
       - aliases: {}
-        customSQL:
-          customSQL: ""
         dependencies: []
         join:
           joinCondition: ""

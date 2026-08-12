@@ -122,10 +122,7 @@ operation:
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: f6ca62a5-2d41-4c99-a830-b888de16efde
           stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
@@ -133,21 +130,14 @@ operation:
         dataType: NUMERIC
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: SYSTEM_VERSION
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: ""
           - columnReferences: []
             transform: ""
-        systemColumnType: None
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: 77c1a1ee-4d52-415d-85f2-de7527505d3d
           stepCounter: 8d97bbf8-04f2-42cc-8737-cf0b50083a1b
@@ -155,24 +145,18 @@ operation:
         dataType: VARCHAR(1)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: SYSTEM_CURRENT_FLAG
         nullable: true
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
+          - columnReferences: []
             transform: ""
           - columnReferences: []
             transform: ""
-        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
           COURSES_IT: f9a0ad54-aa29-470f-8752-eb459a71f206
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: COURSES_IT
@@ -184,8 +168,6 @@ operation:
         noLinkRefs: []
       - aliases:
           COURSES_SC: 2b91a193-34a5-4829-a30d-90658b25d3fb
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: SOURCE_DATA
             nodeName: COURSES_SC

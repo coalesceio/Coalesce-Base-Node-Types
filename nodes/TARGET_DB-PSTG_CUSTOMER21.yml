@@ -275,8 +275,6 @@ operation:
     sourceMapping:
       - aliases:
           WRK_CUSTOMER21: cab4f9e3-e7ea-400f-86c1-a2690115926d
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: WRK_CUSTOMER21

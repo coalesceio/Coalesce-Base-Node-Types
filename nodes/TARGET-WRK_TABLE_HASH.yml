@@ -48,10 +48,7 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_NATIONKEY
           stepCounter: ef23dea2-46c4-4015-89c6-f5b1fcbb7a64
@@ -60,7 +57,6 @@ operation:
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_NATIONKEY
         nullable: true
         sourceColumnReferences:
@@ -68,12 +64,7 @@ operation:
               - columnCounter: N_NATIONKEY
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_NATIONKEY\""
-        systemColumnType: None
-        transform: "\"N_NATIONKEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_NAME
           stepCounter: ef23dea2-46c4-4015-89c6-f5b1fcbb7a64
@@ -81,7 +72,6 @@ operation:
         dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_NAME
         nullable: true
         sourceColumnReferences:
@@ -89,12 +79,7 @@ operation:
               - columnCounter: N_NAME
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_NAME\""
-        systemColumnType: None
-        transform: "\"N_NAME\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_REGIONKEY
           stepCounter: ef23dea2-46c4-4015-89c6-f5b1fcbb7a64
@@ -105,7 +90,6 @@ operation:
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_REGIONKEY
         nullable: true
         sourceColumnReferences:
@@ -113,12 +97,7 @@ operation:
               - columnCounter: N_REGIONKEY
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_REGIONKEY\""
-        systemColumnType: None
-        transform: "\"N_REGIONKEY\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_COMMENT
           stepCounter: ef23dea2-46c4-4015-89c6-f5b1fcbb7a64
@@ -126,7 +105,6 @@ operation:
         dataType: VARCHAR(152)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
@@ -134,12 +112,7 @@ operation:
               - columnCounter: N_COMMENT
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_COMMENT\""
-        systemColumnType: None
-        transform: "\"N_COMMENT\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: N_LOAD_TIMESTAMP
           stepCounter: ef23dea2-46c4-4015-89c6-f5b1fcbb7a64
@@ -147,7 +120,6 @@ operation:
         dataType: TIMESTAMP_LTZ(9)
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: N_LOAD_TIMESTAMP
         nullable: true
         sourceColumnReferences:
@@ -155,12 +127,7 @@ operation:
               - columnCounter: N_LOAD_TIMESTAMP
                 stepCounter: 053180a4-5ac1-475a-ac2a-4ec61993fcd0
             transform: "\"N_LOAD_TIMESTAMP\""
-        systemColumnType: None
-        transform: "\"N_LOAD_TIMESTAMP\""
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
+      - appliedColumnTests: {}
         columnReference:
           columnCounter: GH_Col
           stepCounter: ef23dea2-46c4-4015-89c6-f5b1fcbb7a64
@@ -168,14 +135,11 @@ operation:
         dataType: STRING
         defaultValue: ""
         description: ""
-        keyColumnType: None
         name: GH_Col
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
             transform: "{{ get_hash('GH_Col') }}::STRING"
-        systemColumnType: None
-        transform: "{{ get_hash('GH_Col') }}::STRING"
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -202,6 +166,7 @@ operation:
         name: WRK_TABLE_HASH
         noLinkRefs: []
   name: WRK_TABLE_HASH
+  overrideSQL: false
   schema: ""
   sqlType: 6fda2820-4404-4b60-bad3-cf0edd7dab92
   type: sql

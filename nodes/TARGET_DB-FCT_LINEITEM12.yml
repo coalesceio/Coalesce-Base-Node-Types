@@ -365,8 +365,6 @@ operation:
     sourceMapping:
       - aliases:
           DIM_LINEITEM12: b14a1b5a-f238-40b6-a765-75e058ddb974
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: DIM_LINEITEM12

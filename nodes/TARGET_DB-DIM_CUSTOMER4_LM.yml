@@ -314,8 +314,6 @@ operation:
     sourceMapping:
       - aliases:
           FCT_CUSTOMER4_LM: 4c20ceee-0b30-4727-aa65-77d3a10f7352
-        customSQL:
-          customSQL: ""
         dependencies:
           - locationName: TARGET_DB
             nodeName: FCT_CUSTOMER4_LM

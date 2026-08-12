@@ -48,17 +48,17 @@ metadata:
 
         - name: testsEnabled
           type: boolean
-          description: Tests will be executed when enabled.
+          description: Controls whether configured tests are executed.
           isRequired: false
           default: true
 
         - name: tests
-          description: Node test usage
+          description: The test fails if the query returns any records.
           allowsMultiple: true
           parameters:
             - name: querySQL
               type: string
-              description: SQL statement to execute as a validation test. The test fails if the query returns any records.
+              description: SQL statement to execute as a validation test.
               isRequired: true
 
             - name: runOrder
@@ -72,7 +72,7 @@ metadata:
 
             - name: continueOnFailure
               type: boolean
-              description: Object type to create
+              description: Determines whether execution continues when the test fails.
               isRequired: true
               default: true
               parameters:
@@ -110,6 +110,7 @@ metadata:
           description: Default applied when the source column value is null.
           parameters:
             - name: value
+              description: Specify a default value appropriate for the column data type.
               type: string
               isRequired: true
 
@@ -120,7 +121,7 @@ metadata:
           default: true
 
         - name: tests
-          description: Column level tests for data quality requirements. One or more tests can be selected based on validation requirements. Order of specification does not matter.
+          description: Column level tests for data quality requirements. One or more tests can be specified based on validation requirements. Order of specification does not matter.
           isRequired: false
           parameters:
             - name: unique

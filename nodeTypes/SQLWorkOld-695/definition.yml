@@ -165,5 +165,5 @@ metadata:
           ➜ Generates hash key from columns\n
           ➜ Use it along with macro {{ get_hash('<hash_name>') }}\n
         ━━━━━━━━━━━━━━━━━━━\n\n"
-name: SQL Work
+name: SQL Work (Old)
 type: NodeType

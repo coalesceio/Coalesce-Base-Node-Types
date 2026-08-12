@@ -1,0 +1,127 @@
+fileVersion: 2
+id: 62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: SQL Work
+    short: WRK
+    plural: Works
+    tagColor: '#2EB67D'
+
+    enableCTESupport: true
+
+    annotations:
+        node:
+
+        - name: materializationType
+          description: materialization selector
+          isRequired: true
+          parameters:
+            - name: type
+              type: string
+              description: Object type to create
+              default: table
+              options:
+              - table
+              - view
+
+        - name: truncateBefore
+          type: boolean
+          description: Truncate the target table before inserting. Ignored on views.
+          isRequired: false      
+          default: true
+
+        - name: selectDistinct
+          type: boolean
+          description: Rows are processed using DISTINCT. GROUP BY ALL is ignored.
+          isRequired: false
+          default: false
+
+        - name: groupByAll
+          type: boolean
+          description: Rows are processed using GROUP BY ALL. DISTINCT is ignored.
+          isRequired: false
+          default: false 
+
+        - name: testsEnabled
+          type: boolean
+          description: Tests will be executed when enabled.
+          isRequired: false
+          default: false
+
+        - name: tests
+          description: materialization selector
+          allowMultiple: true
+          parameters:
+            - name: querySQL
+              type: string
+              description: SQL statement to execute as a validation test. The test fails if the query returns any records.
+              isRequired: true
+
+            - name: runOrder
+              type: string
+              description: Determines whether the test is executed before or after the load operation.
+              isRequired: true
+              default: Before
+              options:
+                - Before
+                - After
+
+            - name: continueOnFailure
+              type: boolean
+              description: Object type to create
+              isRequired: true
+              default: true
+              parameters:
+              options:
+                - true
+                - false
+
+        - name: preSQL
+          description: SQL statement to execute before data load operation. Ignored on views.
+          parameters:
+          - name: querySQL
+            type: string
+            description: Query to be executed.
+            isRequired: true
+
+        - name: postSQL
+          description: SQL statement to execute after data load operation. Ignored on views.
+          parameters:
+          - name: querySQL
+            type: string
+            description: Query to be executed.
+            isRequired: true
+
+
+        column:
+          - name: isBusinessKey
+            description: Include this column in the business key used to match rows.                                                                                                                                           
+            allowsMultiple: true
+
+          - name: isChangeTracking
+            description: Changes to this column open a new version of the row.
+      
+          - name: isNotNull
+            description: Enforce NOT NULL on the target column.
+
+          - name: defaultValue
+            description: Default applied when the source value is null.
+            parameters:
+              - name: value
+                type: string
+                isRequired: true
+
+          - name: precision
+            description: Numeric precision override for the target column.
+            parameters:
+              - name: digits
+                type: number
+                isRequired: true
+              - name: scale
+                type: number
+                default: 0
+name: SQL Work
+type: NodeType

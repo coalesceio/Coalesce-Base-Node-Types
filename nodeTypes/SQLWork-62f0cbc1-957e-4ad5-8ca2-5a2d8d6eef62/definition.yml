@@ -142,11 +142,18 @@ metadata:
           description: Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.
           allowsMultiple: true
           parameters:
-            - name: hashOrder|hashName
-              type: string
-              description: |
-                ◆ hashOrder - Order of columns used to calculate the hash. 
-                ◆ hashName - Common name assigned to the generated hash.
+            - name: hashName
               isRequired: true
+              type: string
+              description: Common name assigned to the generated hash.
+              options:
+              - hashName
+
+            - name: hashOrder
+              isRequired: true
+              type: number
+              description: Order of columns used to calculate the hash.
+              options:
+              - hashOrder
 name: SQL Work
 type: NodeType

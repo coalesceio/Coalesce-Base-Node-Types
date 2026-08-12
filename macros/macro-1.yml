@@ -319,9 +319,9 @@ macroString: |-
 
           {%- if col.inHash is defined -%}
               {%- for p in col.inHash -%}
-                  {%- set parts = p.parameters[0].split('|') -%}
-                  {%- set position = parts[0] | int -%}
-                  {%- set hash = parts[1] -%}
+                  {%- set parts = p.parameters[0] %}
+                  {%- set position = p.parameters[1] | int -%}
+                  {%- set hash = p.parameters[0] -%}
 
                   {%- if hash == hash_name -%}
                       {%- set cols.items = cols.items + [{

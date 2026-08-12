@@ -322,9 +322,7 @@ macroString: |-
 
           {%- if col.inHash is defined
               and col.inHash.parameters is defined -%}
-
               {%- for p in col.inHash.parameters -%}
-
                   {%- set parts = p.split('|') -%}
                   {%- set position = parts[0] | int -%}
                   {%- set hash = parts[1] -%}

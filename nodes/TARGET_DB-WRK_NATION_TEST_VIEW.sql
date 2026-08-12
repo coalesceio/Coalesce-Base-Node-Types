@@ -1,0 +1,22 @@
+@id("8b3f1ea5-43df-4ad8-be67-c4887d845247")
+@nodeType("62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62")
+@materializationType("view")
+@truncateBefore
+@selectDistinct
+@materializationType("<table | view>")
+@testsEnabled
+@tests("SELECT 1 FROM {{ this }}", "Before", true)
+@tests("SELECT 2 FROM {{ this }}", "Before", true)
+@tests("SELECT 3 FROM {{ this }}", "After", true)
+@tests("SELECT 4 FROM {{ this }}", "After", true)
+@preSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
+@postSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
+SELECT
+     "N_NATIONKEY" AS "N_NATIONKEY" @tests("unique") @inHash("2|GH_COL1") @inHash("1|GH_COL2"),
+     "N_NAME" AS "N_NAME" @notNull,
+     "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0")  @tests("unique", "null") @inHash("1|GH_COL1") @inHash("2|GH_COL2"),
+     "N_COMMENT" AS "N_COMMENT" @description("Nation comment")  @tests("null", "unique"),
+     "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @tests("null"),
+     {{ get_hash('GH_COL1') }}::STRING AS "GH_COL1",
+     {{ get_hash('GH_COL2') }}::STRING AS "GH_COL2"
+FROM {{ ref('SOURCE_DATA', 'NATION_TEST') }} "NATION_TEST"

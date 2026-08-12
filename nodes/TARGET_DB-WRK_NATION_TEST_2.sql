@@ -1,6 +1,8 @@
 @id("38f8c4d1-a11b-4db6-9a31-040b0f8f535a")
 @nodeType("695")
 @deployEnabled(false)
+@orderby(true)
+@orderbycolumn("N_NAME", "desc")
 SELECT
      "N_NATIONKEY" AS "N_NATIONKEY" @defaultValue("00"),
      "N_NAME" AS "N_NAME" @defaultValue("0''adkfhljkdahjwhk\\`krwk0"),

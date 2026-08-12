@@ -4,9 +4,11 @@
 @selectDistinct
 @testsEnabled
 @tests("SELECT 1 FROM {{ this }}", "Before", true)
-@tests("SELECT 1 FROM {{ this }}", "Before", true)
-@tests("SELECT 1 FROM {{ this }}", "After", true)
-@tests("SELECT 1 FROM {{ this }}", "After", true)
+@tests("SELECT 2 FROM {{ this }}", "Before", true)
+@tests("SELECT 3 FROM {{ this }}", "After", true)
+@tests("SELECT 4 FROM {{ this }}", "After", true)
+@preSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
+@postSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
 SELECT
      "N_NATIONKEY" AS "N_NATIONKEY",
      "N_NAME" AS "N_NAME" @notNull,

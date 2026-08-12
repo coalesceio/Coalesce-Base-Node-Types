@@ -16,7 +16,7 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     {#== Pre-SQL ==#}
 	{%- if config.preSQL %}
 		{{ stage('Pre-SQL') }}
-		{{ config.preSQL }}
+		{{ config.preSQL.parameters[0] }}
 	{%- endif %}
 
 	{# == Truncate data before data insertion  == #}
@@ -48,7 +48,7 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     {#== Post-SQL ==#}
 	{%- if config.postSQL %}
 		{{ stage('Post-SQL') }}
-		{{ config.postSQL }}
+		{{ config.postSQL.parameters[0] }}
 	{%- endif %}
 
 {%- else %}

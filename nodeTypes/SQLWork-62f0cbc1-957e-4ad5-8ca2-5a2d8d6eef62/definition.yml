@@ -37,19 +37,19 @@ metadata:
           type: boolean
           description: Rows are processed using DISTINCT. GROUP BY ALL is ignored.
           isRequired: false
-          default: false
+          default: true
 
         - name: groupByAll
           type: boolean
           description: Rows are processed using GROUP BY ALL. DISTINCT is ignored.
           isRequired: false
-          default: false 
+          default: true 
 
         - name: testsEnabled
           type: boolean
           description: Tests will be executed when enabled.
           isRequired: false
-          default: false
+          default: true
 
         - name: tests
           description: Node test usage

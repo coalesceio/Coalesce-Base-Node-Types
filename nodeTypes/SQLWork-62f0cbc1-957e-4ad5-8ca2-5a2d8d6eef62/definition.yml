@@ -53,7 +53,7 @@ metadata:
           default: true
 
         - name: tests
-          description: The test fails if the query returns any records.
+          description: The test fails if the query returns any records. Applicable only when 𝘁𝗲𝘀𝘁𝘀𝗘𝗻𝗮𝗯𝗹𝗲𝗱 is enabled.
           allowsMultiple: true
           parameters:
             - name: querySQL
@@ -121,7 +121,7 @@ metadata:
           default: true
 
         - name: tests
-          description: Column level tests for data quality requirements. One or more tests can be specified based on validation requirements. Order of specification does not matter.
+          description: Column level tests for data quality requirements. One or more tests can be specified based on validation requirements. Order of specification does not matter. Applicable only when 𝘁𝗲𝘀𝘁𝘀𝗘𝗻𝗮𝗯𝗹𝗲𝗱 is enabled.
           isRequired: false
           parameters:
             - name: unique

@@ -9,7 +9,7 @@
 SELECT
      "N_NATIONKEY" AS "N_NATIONKEY" @tests("unique") @inHash("GH_COL1", 2),
      "N_NAME" AS "N_NAME" @notNull @inHash("GH_COL2", 1),
-     "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("0")  @tests("unique", "null") @inHash("GH_COL1", 1) @inHash("GH_COL2", 2),
+     "N_REGIONKEY" AS "N_REGIONKEY"  @tests("unique", "null") @inHash("GH_COL1", 1) @inHash("GH_COL2", 2),
      "N_COMMENT" AS "N_COMMENT" @description("Nation comment"),
      "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @tests("null"),
      {{ get_hash('GH_COL1') }}::STRING AS "GH_COL1",

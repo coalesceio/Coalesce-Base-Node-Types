@@ -1,0 +1,121 @@
+fileVersion: 1
+id: c300ee65-0b29-454e-a252-4faacdb17609
+name: WRK_NODE_UNIONALL1
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d22f20cc-47a1-4f09-b30e-77fd63e4c131
+          stepCounter: c300ee65-0b29-454e-a252-4faacdb17609
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: NATION
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: NATION
+                stepCounter: 35789a5c-0918-40d0-8f49-c19c641c38ba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 93cfe712-925f-4df4-8263-7979417fde8c
+          stepCounter: c300ee65-0b29-454e-a252-4faacdb17609
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: REGION
+                stepCounter: 35789a5c-0918-40d0-8f49-c19c641c38ba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fa06bbf9-5011-4302-8807-69aaa3042c54
+          stepCounter: c300ee65-0b29-454e-a252-4faacdb17609
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CUSTOMER_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: CUSTOMER_COUNT
+                stepCounter: 35789a5c-0918-40d0-8f49-c19c641c38ba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b7cee6ac-b33e-45a0-99c2-e970ea63f3e1
+          stepCounter: c300ee65-0b29-454e-a252-4faacdb17609
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ORDER_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ORDER_COUNT
+                stepCounter: 35789a5c-0918-40d0-8f49-c19c641c38ba
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97bb8dc4-52f4-4f63-9a68-ed4339bc42ee
+          stepCounter: c300ee65-0b29-454e-a252-4faacdb17609
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_REVENUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: TOTAL_REVENUE
+                stepCounter: 35789a5c-0918-40d0-8f49-c19c641c38ba
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          WRK_NODE_UNIONALL: 35789a5c-0918-40d0-8f49-c19c641c38ba
+        dependencies:
+          - locationName: TARGET_DB
+            nodeName: WRK_NODE_UNIONALL
+        join:
+          joinCondition: FROM  {{ ref('TARGET_DB', 'WRK_NODE_UNIONALL') }} WRK_NODE_UNIONALL
+        name: WRK_NODE_UNIONALL1
+        noLinkRefs: []
+  name: WRK_NODE_UNIONALL1
+  overrideSQL: false
+  schema: ""
+  sqlType: "204"
+  type: sql
+  version: 1
+type: Node

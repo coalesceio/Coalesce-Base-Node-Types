@@ -17,7 +17,7 @@ metadata:
 
         - name: materializationType
           description: materialization selector
-          isRequired: true
+          isRequired: false
           parameters:
             - name: type
               type: string
@@ -36,13 +36,13 @@ metadata:
 
         - name: selectDistinct
           type: boolean
-          description: Rows are processed using DISTINCT. GROUP BY ALL is ignored.
+          description: Rows are processed using DISTINCT. Avoid using GROUP BY ALL with this option.
           isRequired: false
           default: true
 
         - name: groupByAll
           type: boolean
-          description: Rows are processed using GROUP BY ALL. DISTINCT is ignored.
+          description: Rows are processed using GROUP BY ALL. Avoid using DISTINCT with this option.
           isRequired: false
           default: true 
 

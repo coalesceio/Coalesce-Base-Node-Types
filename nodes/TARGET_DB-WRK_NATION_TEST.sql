@@ -3,7 +3,7 @@
 @description("This node creates the WRK_NATION_TEST table and populates it with distinct records extracted from the NATION_TEST source table.")
 SELECT
      NATION_TEST."N_NATIONKEY" AS "N_NATIONKEY_RENAMED",
-     "NATION_TEST"."N_NAME" AS "N_NAME",
+     "NATION_TEST"."N_NAME"::VARCHAR(100) AS "N_NAME",
      "N_REGIONKEY" AS "N_REGIONKEY" @defaultValue("100"),
      "N_COMMENT" AS "N_COMMENT"@description("Comment-changed"),
      1000 AS "N_AREA"

@@ -6,7 +6,7 @@ metadata:
   error: null
   nodeMetadataSpec: |+
     capitalized: New Type
-    short: NEW
+    short: WRK
     tagColor: gray
     plural: New Types
     annotations:

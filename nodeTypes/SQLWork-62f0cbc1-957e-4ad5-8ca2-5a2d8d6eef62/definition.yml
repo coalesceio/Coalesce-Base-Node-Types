@@ -1,0 +1,159 @@
+fileVersion: 2
+id: 62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: SQL Work
+    short: WRK
+    plural: Works
+    tagColor: '#2EB67D'
+
+    enableCTESupport: true
+
+    annotations:
+        node:
+
+        - name: materializationType
+          description: materialization selector
+          isRequired: false
+          parameters:
+            - name: type
+              type: string
+              description: Object type to create
+              isRequired: true
+              default: table
+              options:
+              - table
+              - view
+
+        - name: truncateBefore
+          type: boolean
+          description: Truncate the target table before inserting. Ignored on views.
+          isRequired: false      
+          default: true
+
+        - name: selectDistinct
+          type: boolean
+          description: Rows are processed using DISTINCT. Avoid using GROUP BY ALL with this option.
+          isRequired: false
+          default: true
+
+        - name: groupByAll
+          type: boolean
+          description: Rows are processed using GROUP BY ALL. Avoid using DISTINCT with this option.
+          isRequired: false
+          default: true 
+
+        - name: testsEnabled
+          type: boolean
+          description: Controls whether configured tests are executed.
+          isRequired: false
+          default: true
+
+        - name: tests
+          description: The test fails if the query returns any records. Applicable only when 𝘁𝗲𝘀𝘁𝘀𝗘𝗻𝗮𝗯𝗹𝗲𝗱 is enabled.
+          allowsMultiple: true
+          parameters:
+            - name: querySQL
+              type: string
+              description: SQL statement to execute as a validation test.
+              isRequired: true
+
+            - name: runOrder
+              type: string
+              description: Determines whether the test is executed before or after the load operation.
+              isRequired: true
+              default: Before
+              options:
+                - Before
+                - After
+
+            - name: continueOnFailure
+              type: boolean
+              description: Determines whether execution continues when the test fails.
+              isRequired: true
+              default: true
+              parameters:
+              options:
+                - true
+                - false
+
+        - name: preSQL
+          description: SQL statement to execute before data load operation. Ignored on views.
+          parameters:
+          - name: querySQL
+            type: string
+            description: Query to be executed.
+            isRequired: true
+
+        - name: postSQL
+          description: SQL statement to execute after data load operation. Ignored on views.
+          parameters:
+          - name: querySQL
+            type: string
+            description: Query to be executed.
+            isRequired: true
+
+        column:
+        - name: description
+          description: Adds column description.
+          isRequired: false
+          parameters:
+          - name: descText
+            isRequired: true
+            type: string
+            description: Column description
+
+        - name: defaultValue
+          description: Default applied when the source column value is null.
+          parameters:
+            - name: value
+              description: Specify a default value appropriate for the column data type.
+              type: string
+              isRequired: true
+
+        - name: notNull
+          type: boolean
+          description: Enforce NOT NULL on the target column.
+          isRequired: false
+          default: true
+
+        - name: tests
+          description: Column level tests for data quality requirements. One or more tests can be specified based on validation requirements. Order of specification does not matter. Applicable only when 𝘁𝗲𝘀𝘁𝘀𝗘𝗻𝗮𝗯𝗹𝗲𝗱 is enabled.
+          isRequired: false
+          parameters:
+            - name: unique
+              isRequired: true
+              type: string
+              description: Checks to ensure all values are UNIQUE
+              options:
+              - unique
+
+            - name: 'null'
+              isRequired: true
+              type: string
+              description: Ensures the column contains no NULL values.
+              options:
+              - 'null'
+
+        - name: inHash
+          description: Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.
+          allowsMultiple: true
+          parameters:
+            - name: hashName
+              isRequired: true
+              type: string
+              description: Common name assigned to the generated hash.
+              options:
+              - hashName
+
+            - name: hashOrder
+              isRequired: true
+              type: number
+              description: Order of columns used to calculate the hash.
+              options:
+              - hashOrder
+name: SQL Work
+type: NodeType

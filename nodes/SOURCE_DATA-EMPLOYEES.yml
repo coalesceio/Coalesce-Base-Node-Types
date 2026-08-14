@@ -1,6 +1,6 @@
 fileVersion: 1
-id: cc41755f-81f6-453f-bc52-59d68da3211b
-name: ORDERS
+id: ebaad1a4-1865-41f0-aead-3b6883c34108
+name: EMPLOYEES
 operation:
   database: ""
   deployEnabled: true
@@ -13,32 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d527f440-6f1d-454b-8058-cd725e0f0fc9
-          stepCounter: cc41755f-81f6-453f-bc52-59d68da3211b
-        config: {}
-        dataType: NUMBER(38,0)
-        defaultValue: ""
-        description: ""
-        name: ORDER_ID
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 3908c638-942f-4a98-9f37-4181cfec504e
-          stepCounter: cc41755f-81f6-453f-bc52-59d68da3211b
+          columnCounter: 1a274d2f-b204-431c-887b-aaa34c48b35c
+          stepCounter: ebaad1a4-1865-41f0-aead-3b6883c34108
         config: {}
         dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: CUSTOMER_NAME
+        name: TITLE
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: a50165ae-ceab-4d35-b6e4-62989fb614e3
-          stepCounter: cc41755f-81f6-453f-bc52-59d68da3211b
+          columnCounter: a1b8f9fe-49da-4ecf-b7b4-1c250cb097c4
+          stepCounter: ebaad1a4-1865-41f0-aead-3b6883c34108
         config: {}
-        dataType: VARIANT
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: ORDER_DATA
+        name: EMPLOYEE_ID
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -65,7 +46,26 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: ORDERS
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 77ed467e-0b79-4a2d-9397-ed9eb7917d57
+          stepCounter: ebaad1a4-1865-41f0-aead-3b6883c34108
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: MANAGER_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: EMPLOYEES
   schema: ""
   sqlType: Source
   type: sourceInput

@@ -18,4 +18,4 @@ SELECT
      {{ get_hash('GH_COL1') }}::STRING AS "GH_COL1",
      {{ get_hash('GH_COL2') }}::STRING AS "GH_COL2"
 FROM {{ ref('SOURCE_DATA', 'NATION_TEST') }} "NATION_TEST"
-WHERE N_NATIONKEY > 2
+WHERE N_NATIONKEY > {{ parameters.nationkey }}

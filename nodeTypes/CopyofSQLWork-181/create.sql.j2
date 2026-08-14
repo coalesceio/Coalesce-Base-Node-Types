@@ -37,13 +37,12 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
         {%- endfor %}
     )
     {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}' {%- endif %}
-    AS    
+    AS
+    SELECT
     {{ sources[0].cteString }}
-    SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
     {%- for col in sources[0].columns %}
         {{ get_source_transform_v2(col) }} AS "{{ col.name }}"
         {%- if not loop.last -%}, {%- endif %}
     {%- endfor %}
     {{ sources[0].join }}
-    {% if config.groupByAll %} GROUP BY ALL {%- endif %}
 {%- endif %}

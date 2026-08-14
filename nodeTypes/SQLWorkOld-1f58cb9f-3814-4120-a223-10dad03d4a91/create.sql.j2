@@ -15,14 +15,17 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
 	CREATE OR REPLACE {{ node.materializationType }} {{ ref_no_link(node.location.name, node.name) }}
 	(
 		{%- for col in columns %}
+            {%- set nullParams = col.nullable.parameters | default([]) %}
+            {%- set defaultValueParams = col.defaultValue.parameters | default([]) %}
+            {%- set descriptionParams = col.description.parameters | default([]) %}
 			"{{ col.name }}" {{ col.dataType }}
-			{%- if col.nullable == false %} NOT NULL {%- endif %}
-			{%- if col.defaultValue %} DEFAULT {{ get_default(col.dataType, col.defaultValue) }} {%- endif %}
-			{%- if col.description | trim | length > 0 %} COMMENT '{{ col.description | trim | escape }}' {%- endif %}
+			{%- if nullParams and (nullParams[0] in ['false', false]) %} NOT NULL {%- endif %}
+			{%- if defaultValueParams and defaultValueParams[0] is not none %} DEFAULT {{ get_default(col.dataType, defaultValueParams[0]) }} {%- endif %}
+			{%- if descriptionParams and descriptionParams[0] | length > 0 %} COMMENT '{{ descriptionParams[0] | escape }}' {%- endif %}
 			{%- if not loop.last -%}, {%- endif %}
 		{%- endfor %}
 	)
-	{%- if node.description | trim | length > 0 %} COMMENT = '{{ node.description | escape }}' {%- endif %}
+	{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}' {%- endif %}
 
 {%- elif node.materializationType == 'view' %}
 
@@ -31,18 +34,20 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     CREATE OR REPLACE {{ node.materializationType }} {{ ref_no_link(node.location.name, node.name) }}
     (
         {%- for col in columns %}
+            {%- set descriptionParams = col.description.parameters | default([]) %}
             "{{ col.name }}"
-            {%- if col.description | trim | length > 0 %} COMMENT '{{ col.description | trim | escape }}' {%- endif %}
+            {%- if descriptionParams and descriptionParams[0] | length > 0 %} COMMENT '{{ descriptionParams[0] | escape }}' {%- endif %}
             {%- if not loop.last -%}, {%- endif %}
         {%- endfor %}
     )
     {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}' {%- endif %}
-    AS
-    SELECT
+    AS    
     {{ sources[0].cteString }}
+    SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
     {%- for col in sources[0].columns %}
         {{ get_source_transform_v2(col) }} AS "{{ col.name }}"
         {%- if not loop.last -%}, {%- endif %}
     {%- endfor %}
     {{ sources[0].join }}
+    {% if config.groupByAll %} GROUP BY ALL {%- endif %}
 {%- endif %}

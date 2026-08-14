@@ -1,11 +1,11 @@
 fileVersion: 2
-id: 62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62
+id: "181"
 isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |-
-    capitalized: SQL Work
+    capitalized: Copy of SQL Work
     short: WRK
     plural: Works
     tagColor: '#2EB67D'
@@ -33,6 +33,7 @@ metadata:
           description: Truncate the target table before inserting. Ignored on views.
           isRequired: false      
           default: true
+        - 
 
         - name: testsEnabled
           type: boolean
@@ -145,5 +146,5 @@ metadata:
               description: Order of columns used to calculate the hash.
               options:
               - hashOrder
-name: SQL Work
+name: Copy of SQL Work
 type: NodeType

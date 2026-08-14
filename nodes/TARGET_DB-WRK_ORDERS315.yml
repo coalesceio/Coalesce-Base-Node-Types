@@ -1,0 +1,109 @@
+fileVersion: 1
+id: 8780e61b-edc5-43af-b903-1fad4a3eb72c
+name: WRK_ORDERS315
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 864030e2-9db3-4bb4-a9f2-702365707fcc
+          stepCounter: 8780e61b-edc5-43af-b903-1fad4a3eb72c
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: ORDER_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ORDER_ID
+                stepCounter: 78816ae1-5cc7-42a8-a074-fa2ebd3c76ab
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 565952e1-8661-4ec1-add2-15426488bf38
+          stepCounter: 8780e61b-edc5-43af-b903-1fad4a3eb72c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: CUSTOMER_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: CUSTOMER_NAME
+                stepCounter: 78816ae1-5cc7-42a8-a074-fa2ebd3c76ab
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 474e8770-b057-43c9-86d9-8bae1d08ee4c
+          stepCounter: 8780e61b-edc5-43af-b903-1fad4a3eb72c
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: ORDER_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ORDER_DATA
+                stepCounter: 78816ae1-5cc7-42a8-a074-fa2ebd3c76ab
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0731131e-8065-4403-86b7-b105feec5b12
+          stepCounter: 8780e61b-edc5-43af-b903-1fad4a3eb72c
+        config: {}
+        dataType: DATE
+        description: ""
+        name: CUR_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: CUR_DATE
+                stepCounter: 78816ae1-5cc7-42a8-a074-fa2ebd3c76ab
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          WRK_ORDERS314: 78816ae1-5cc7-42a8-a074-fa2ebd3c76ab
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET_DB
+            nodeName: WRK_ORDERS314
+        join:
+          joinCondition: FROM  {{ ref('TARGET_DB', 'WRK_ORDERS314') }} WRK_ORDERS314
+        name: WRK_ORDERS315
+        noLinkRefs: []
+  name: WRK_ORDERS315
+  overrideSQL: false
+  schema: ""
+  sqlType: "204"
+  type: sql
+  version: 1
+type: Node

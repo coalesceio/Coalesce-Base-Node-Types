@@ -11,7 +11,7 @@
 @postSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 4")
 SELECT
      "N_NATIONKEY" AS "N_NATIONKEY" @tests("unique") @inHash("GH_COL1", 2),
-     "N_NAME" AS "N_NAME" @inHash("GH_COL2", 1) @defaultValue("N/A"),
+     "N_NAME" AS "N_NAME" @inHash("GH_COL2", 1),
      "N_REGIONKEY" AS "N_REGIONKEY"  @tests("unique", "null") @inHash("GH_COL1", 1) @inHash("GH_COL2", 2),
      "N_COMMENT" AS "N_COMMENT" @description("'Nation Comment'") @notNull,
      "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @tests("null"),

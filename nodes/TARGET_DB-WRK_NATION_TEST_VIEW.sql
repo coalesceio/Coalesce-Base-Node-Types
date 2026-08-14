@@ -3,7 +3,6 @@
 @materializationType("view")
 @truncateBefore
 @selectDistinct
-@materializationType("<table | view>")
 @testsEnabled
 @tests("SELECT 1 FROM {{ this }}", "Before", true)
 @tests("SELECT 2 FROM {{ this }}", "Before", true)

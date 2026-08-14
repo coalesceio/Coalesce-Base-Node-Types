@@ -50,6 +50,7 @@ operation:
           stepCounter: 8780e61b-edc5-43af-b903-1fad4a3eb72c
         config: {}
         dataType: VARCHAR(16777216)
+        defaultValue: happy
         description: ""
         name: CUSTOMER_NAME
         nullable: true
@@ -83,7 +84,7 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: CUR_DATE
+              - columnCounter: LOAD_TIMESTAMP
                 stepCounter: 78816ae1-5cc7-42a8-a074-fa2ebd3c76ab
             transform: ""
     cteString: ""

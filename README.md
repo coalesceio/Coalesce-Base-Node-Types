@@ -765,82 +765,55 @@ The SQL Work node is a powerful transformation tool within Coalesce that allows 
 
 ### SQL Work Node Configuration
 
-The SQL Work Node type has two configuration groups:
+The SQL Work Node type has three configuration groups:
 
-* [Node Properties](#sql-work-node-properties)
-* [General Options](#sql-work-general-options)
-* [Control Options](#sql-work-control-options)
+* [General](#sql-work-general)
+* [Node Annotations](#sql-work-node-annotations)
+* [Column Annotations](#sql-work-column-annotations)
 
-#### SQL Work Node Properties
+#### SQL Work General Options
 
 | **Property** | **Description** |
 |----------|-------------|
 | **Storage Location** | Storage Location where the SQL Work table or view will be created |
 
-#### SQL Work General Options
 
-You can create the Node as:
-
-* [Table](#sql-work-general-options-table)
-* [View](#sql-work-general-options-view)
-
-### SQL Work General Options - Table
+### SQL Work Node Annotations
 
 | **Property** | **Description** |
 |---------|-------------|
-| **Create As** | Table |
-| **Truncate Before** | Toggle: True or False<br/>This determines whether a table will be truncated before data load.<br/> **True**:Truncate table stage gets executed<br/>**False**: Table is not truncated before data load |
-| **Distinct** | Toggle: True or False<br/>**True**: DISTINCT data is chosen for processing. Group by All is invisible.<br/>**False**: Group by All is visible |
-| **Group By All** | Toggle: True or False<br/>**True**: Data is grouped by all columns for processing. DISTINCT is invisible.<br/>**False**: DISTINCT is visible |
-| **Order By** | Toggle: True or False<br/>**True**: Sort column and sort order drop down are visible and are required to form order by clause<br/>**False**: Sort column and sort order drop down are invisible |
+| **Materialization Type** | Table/View |
+| **Truncate Before** | This determines whether a table will be truncated before data load.<br/>Table is truncated if **@truncateBefore** is added to the SQL; if absent, it defaults to **False** |
+| **Enable tests ¹** | Tests are enabled if **@testsEnabled** is added to the SQL; if absent, it defaults to False |
+| **Pre-SQL** |(repeatable) SQL to execute before data insert operation |
+| **Post-SQL** | (repeatable) SQL to execute after data insert operation |
 
-### SQL Work Control Options
 
-| **Property** | **Description** |
-|---------|-------------|
-| **Enable tests ¹** | Toggle: True or False<br/>Determines if tests are enabled |
-| **Pre-SQL** | SQL to execute before data insert operation |
-| **Post-SQL** | SQL to execute after data insert operation |
-
-### Column-Level Annotations
+### SQL Work Column Annotations
 
 | **Property** | **Description** |
 |---------|-------------|
-| `@nullable("false")`<br/>`@nullable(false)` | Marks column as NOT NULL |
+| `@notNull` | Marks column as NOT NULL |
 | `@description("<text>")` | Adds column description |
 | `@defaultValue("<text>")`<br/>`@defaultValue(<number>)`<br/>`@defaultValue(<bool>)` | Adds default value |
 | `@tests("null", "unique")` | Column tests are defined at the individual column level and are used to validate specific column attributes and data quality requirements.<br/>**Supported Tests**<br/>- **null** → Checks for NULL values<br/>- **unique** → Checks to ensure all values are unique |
-| `@inHash("<hash_order>\|<hash_name>")` **²** | Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.<br/>**Default:** Uses `SHA1` algorithm. |
-
-### SQL Work General Options - View
-
-| **Setting** | **Description** |
-|---------|-------------|
-| **Create As** | View |
-| **Distinct** | Toggle: True or False<br/>**True**: DISTINCT data is chosen for processing. Group by All is invisible.<br/>**False**: Group by All is visible |
-| **Group by All** | Toggle: True or False<br/>**True**: Data is grouped by all columns for processing. DISTINCT is invisible.<br/>**False**: DISTINCT is visible |
-
-### SQL Work Control Options - View
-
-| **Property** | **Description** |
-|---------|-------------|
-| **Enable tests ¹** | Toggle: True or False<br/>Determines if tests are enabled |
+| `@inHash("<hash_name>\|<hash_order>")` **²** |(repeatable) Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.<br/>**Default:** Uses `SHA1` algorithm. |
 
 ---
 
 ### Notes
 
 - Verify that all **column datatypes** are successfully resolved before creating the object. Columns with an `UNKNOWN` datatype may cause stage generation or runtime failures.
-- `@nullable` defaults to **true**. Use `@nullable("false")` to enforce NOT NULL.
+- It is recommended to use **DISTINCT**, **UNION** and **UNION ALL** within a CTE rather than directly in the final **SELECT** query.
 - **¹** Tests are performed only when `Enable tests` is ON
     ```text
-    @tests("<SQL Query>", "<Run Order>", <Continue On Failure>)
+    @tests("<querySQL>", "<runOrder>", <continueOnFailure>)
     ```
     | Parameter | Description |
     |-----------|-------------|
-    | SQL Query | SQL statement to execute as a validation test. The test fails if the query returns any records. |
-    | Run Order | `Before` or `After`. Determines whether the test is executed before or after the load operation. |
-    | Continue On Failure | `true` or `false`. Determines whether execution continues when the test fails. |
+    | querySQL | SQL statement to execute as a validation test. The test fails if the query returns any records. |
+    | runOrder | `Before` or `After`. Determines whether the test is executed before or after the load operation. |
+    | continueOnFailure | `true` or `false`. Determines whether execution continues when the test fails. |
     
     **Examples**
     

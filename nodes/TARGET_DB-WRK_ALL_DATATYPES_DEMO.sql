@@ -21,7 +21,7 @@ SELECT
      "COL_VARIANT"          AS "COL_VARIANT"          @defaultValue('{}'),
      "COL_OBJECT"           AS "COL_OBJECT"           @defaultValue('{}'),
      "COL_ARRAY"            AS "COL_ARRAY"            @defaultValue('[]'),
-     "COL_GEOGRAPHY"        AS "COL_GEOGRAPHY"        @defaultValue('POINT(0 0)'),
-     "COL_GEOMETRY"         AS "COL_GEOMETRY"         @defaultValue('POINT(0 0)'),
+     "COL_GEOGRAPHY"        AS "COL_GEOGRAPHY",
+     "COL_GEOMETRY"         AS "COL_GEOMETRY"      ,  
      "COL_XML"              AS "COL_XML"              @defaultValue('<root/>')
 FROM {{ ref('SOURCE_DATA', 'ALL_DATATYPES_DEMO') }} "ALL_DATATYPES_DEMO"

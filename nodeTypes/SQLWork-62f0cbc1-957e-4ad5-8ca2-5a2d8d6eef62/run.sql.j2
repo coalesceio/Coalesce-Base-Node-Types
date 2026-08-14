@@ -14,10 +14,12 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
 {%- if node.materializationType == 'table' %}
 
     {#== Pre-SQL ==#}
-	{%- if config.preSQL %}
-		{{ stage('Pre-SQL') }}
-		{{ config.preSQL.parameters[0] }}
-	{%- endif %}
+    {%- set ns = namespace(cnt=0) %}
+    {%- for sql in config.preSQL %}
+        {%- set ns.cnt = ns.cnt + 1 %}
+        {{ stage('Pre-SQL '  ~ ns.cnt )}}
+        {{ sql.parameters[0] }}
+    {%- endfor %}
 
 	{# == Truncate data before data insertion  == #}
     {%- if config.truncateBefore %}
@@ -26,7 +28,7 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     {%- endif %}
 
 	{# == Insert data from sources into Work table  == #}
-    {{ stage('Load ' + node.materializationType + ' Using Insert') }}
+    {{ stage('Load ' + node.materializationType + ' using Insert') }}
     INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
     (
         {%- for col in sources[0].columns %}
@@ -36,20 +38,21 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     )
     {{ sources[0].cteString }}
     (
-        SELECT {%- if config.selectDistinct %} DISTINCT {%- endif %}
+        SELECT
         {%- for col in sources[0].columns %}
             {{ get_source_transform_v2(col) }} AS "{{ col.name }}"
             {%- if not loop.last -%}, {%- endif %}
         {%- endfor %}
         {{ sources[0].join }}
-        {% if config.groupByAll %} GROUP BY ALL {% endif %}
     )
 
     {#== Post-SQL ==#}
-	{%- if config.postSQL %}
-		{{ stage('Post-SQL') }}
-		{{ config.postSQL.parameters[0] }}
-	{%- endif %}
+    {%- set ns = namespace(cnt=0) %}
+    {%- for sql in config.postSQL %}
+        {%- set ns.cnt = ns.cnt + 1 %}
+        {{ stage('Post-SQL '  ~ ns.cnt ) }}
+        {{ sql.parameters[0] }}
+    {%- endfor %}
 
 {%- else %}
 	{{ stage('Load Skipped for View') }}

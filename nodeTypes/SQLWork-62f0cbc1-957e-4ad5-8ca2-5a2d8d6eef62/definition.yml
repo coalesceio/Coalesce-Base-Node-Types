@@ -34,18 +34,6 @@ metadata:
           isRequired: false      
           default: true
 
-        - name: selectDistinct
-          type: boolean
-          description: Rows are processed using DISTINCT. Avoid using GROUP BY ALL with this option.
-          isRequired: false
-          default: true
-
-        - name: groupByAll
-          type: boolean
-          description: Rows are processed using GROUP BY ALL. Avoid using DISTINCT with this option.
-          isRequired: false
-          default: true 
-
         - name: testsEnabled
           type: boolean
           description: Controls whether configured tests are executed.
@@ -82,6 +70,7 @@ metadata:
 
         - name: preSQL
           description: SQL statement to execute before data load operation. Ignored on views.
+          allowsMultiple: true
           parameters:
           - name: querySQL
             type: string
@@ -90,6 +79,7 @@ metadata:
 
         - name: postSQL
           description: SQL statement to execute after data load operation. Ignored on views.
+          allowsMultiple: true
           parameters:
           - name: querySQL
             type: string
@@ -106,22 +96,22 @@ metadata:
             type: string
             description: Column description
 
+        - name: notNull
+          type: boolean
+          description: Enforce NOT NULL on the target column. Ignored on views.
+          isRequired: false
+          default: true
+
         - name: defaultValue
-          description: Default applied when the source column value is null.
+          description: Default applied when the source column value is null. Ignored on views.
           parameters:
             - name: value
               description: Specify a default value appropriate for the column data type.
               type: string
               isRequired: true
 
-        - name: notNull
-          type: boolean
-          description: Enforce NOT NULL on the target column.
-          isRequired: false
-          default: true
-
         - name: tests
-          description: Column level tests for data quality requirements. One or more tests can be specified based on validation requirements. Order of specification does not matter. Applicable only when 𝘁𝗲𝘀𝘁𝘀𝗘𝗻𝗮𝗯𝗹𝗲𝗱 is enabled.
+          description: Column level tests for data quality requirements. Either or both tests can be specified based on validation requirements. Order of specification does not matter. Applicable only when 𝘁𝗲𝘀𝘁𝘀𝗘𝗻𝗮𝗯𝗹𝗲𝗱 is enabled.
           isRequired: false
           parameters:
             - name: unique

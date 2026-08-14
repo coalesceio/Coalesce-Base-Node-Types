@@ -21,10 +21,12 @@ operation:
         description: ""
         name: N_NATIONKEY
         nullable: true
+        primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
         transform: ""
+        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -38,10 +40,12 @@ operation:
         description: ""
         name: N_NAME
         nullable: true
+        primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
         transform: ""
+        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -55,10 +59,12 @@ operation:
         description: ""
         name: N_REGIONKEY
         nullable: true
+        primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
         transform: ""
+        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -72,10 +78,12 @@ operation:
         description: ""
         name: N_COMMENT
         nullable: true
+        primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
         transform: ""
+        uniqueKey: false
       - acceptedValues:
           strictMatch: true
           values: []
@@ -89,10 +97,12 @@ operation:
         description: ""
         name: N_LOAD_TIMESTAMP
         nullable: true
+        primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
             transform: ""
         transform: ""
+        uniqueKey: false
   name: NATION_TEST
   schema: ""
   sqlType: Source

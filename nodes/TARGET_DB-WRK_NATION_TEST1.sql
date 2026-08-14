@@ -1,6 +1,5 @@
 @id("3a5c22ce-f2f7-48ab-8cff-c5a9272dc06a")
 @nodeType("62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62")
-@selectDistinct
 SELECT
      "N_NATIONKEY" AS "N_NATIONKEY",
      "N_NAME" AS "N_NAME",

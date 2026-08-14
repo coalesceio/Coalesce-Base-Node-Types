@@ -41,7 +41,7 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: ORDER_ID
+              - columnCounter: ORDER_IDS
                 stepCounter: 78816ae1-5cc7-42a8-a074-fa2ebd3c76ab
             transform: ""
       - appliedColumnTests: {}
@@ -87,6 +87,51 @@ operation:
               - columnCounter: LOAD_TIMESTAMP
                 stepCounter: 78816ae1-5cc7-42a8-a074-fa2ebd3c76ab
             transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 575c589e-3a7d-48f2-b4ff-4a8e7307d02d
+          stepCounter: 8780e61b-edc5-43af-b903-1fad4a3eb72c
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: line_items_price
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDER_DATA_line_items\".value:\"price\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97977c48-2c55-4f92-ae41-4b4708c1fd38
+          stepCounter: 8780e61b-edc5-43af-b903-1fad4a3eb72c
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: line_items_product_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDER_DATA_line_items\".value:\"product_id\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 89f4ab0b-9811-428b-9591-0ec275308100
+          stepCounter: 8780e61b-edc5-43af-b903-1fad4a3eb72c
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: line_items_quantity
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: "\"ORDER_DATA_line_items\".value:\"quantity\"::DOUBLE"
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -98,7 +143,9 @@ operation:
           - locationName: TARGET_DB
             nodeName: WRK_ORDERS314
         join:
-          joinCondition: FROM  {{ ref('TARGET_DB', 'WRK_ORDERS314') }} WRK_ORDERS314
+          joinCondition: |-
+            FROM  {{ ref('TARGET_DB', 'WRK_ORDERS314') }} WRK_ORDERS314, 
+            lateral flatten(input => "ORDER_DATA":"line_items", OUTER => TRUE) "ORDER_DATA_line_items"
         name: WRK_ORDERS315
         noLinkRefs: []
   name: WRK_ORDERS315

@@ -1,5 +1,5 @@
 @id("d8c13339-e3a6-464f-89b7-c0d273e78d40")
-@nodeType("1f58cb9f-3814-4120-a223-10dad03d4a91")
+@nodeType("62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62")
 SELECT
      "L_ORDERKEY" AS "L_ORDERKEY",
      "L_PARTKEY" AS "L_PARTKEY",

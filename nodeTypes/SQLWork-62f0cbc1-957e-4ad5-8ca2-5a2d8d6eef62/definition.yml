@@ -48,11 +48,12 @@ metadata:
               type: string
               description: SQL statement to execute as a validation test.
               isRequired: true
+              example: 'SELECT 1'
 
             - name: runOrder
               type: string
               description: Determines whether the test is executed before or after the load operation.
-              isRequired: true
+              isRequired: false
               default: Before
               options:
                 - Before
@@ -61,7 +62,7 @@ metadata:
             - name: continueOnFailure
               type: boolean
               description: Determines whether execution continues when the test fails.
-              isRequired: true
+              isRequired: false
               default: true
               parameters:
               options:
@@ -76,6 +77,7 @@ metadata:
             type: string
             description: Query to be executed.
             isRequired: true
+            example: 'SELECT 1'
 
         - name: postSQL
           description: SQL statement to execute after data load operation. Ignored on views.
@@ -85,6 +87,7 @@ metadata:
             type: string
             description: Query to be executed.
             isRequired: true
+            example: 'SELECT 1'
 
         column:
         - name: description
@@ -104,46 +107,44 @@ metadata:
 
         - name: defaultValue
           description: Default applied when the source column value is null. Ignored on views.
-          parameters:
-            - name: value
-              description: Specify a default value appropriate for the column data type.
-              type: string
-              isRequired: true
-
-        - name: tests
-          description: Column level tests for data quality requirements. Either or both tests can be specified based on validation requirements. Order of specification does not matter. Applicable only when 𝘁𝗲𝘀𝘁𝘀𝗘𝗻𝗮𝗯𝗹𝗲𝗱 is enabled.
           isRequired: false
           parameters:
-            - name: unique
-              isRequired: true
+            - name: value
+              description: Specify a default value appropriate for the column data type. Compatible data types can have values without quotes.
               type: string
-              description: Checks to ensure all values are UNIQUE
-              options:
-              - unique
-
-            - name: 'null'
               isRequired: true
-              type: string
-              description: Ensures the column contains no NULL values.
-              options:
-              - 'null'
 
         - name: inHash
-          description: Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.
+          description: Marks columns for hash key generation. Use the 𝐠𝐞𝐭_𝐡𝐚𝐬𝐡() macro to generate the hash column from the marked columns. See documentation for details.
           allowsMultiple: true
           parameters:
             - name: hashName
               isRequired: true
               type: string
               description: Common name assigned to the generated hash.
-              options:
-              - hashName
+              example: GH_COL
 
             - name: hashOrder
               isRequired: true
               type: number
               description: Order of columns used to calculate the hash.
+              example: 1
+
+        - name: tests
+          description: Column level tests for data quality requirements. Either or both tests can be specified based on validation requirements. Order of specification does not matter. Applicable only when @𝘁𝗲𝘀𝘁𝘀𝗘𝗻𝗮𝗯𝗹𝗲𝗱 is applied.
+          allowsMultiple: true
+          isRequired: false
+          parameters:
+            - name: type
+              type: string
+              description: |
+                Column level data quality requirement type.
+                ➤ 𝐮𝐧𝐢𝐪𝐮𝐞: Checks to ensure all values are UNIQUE.
+                ➤ 𝐧𝐮𝐥𝐥: Ensures the column contains no NULL values. |
+              isRequired: true
+              parameters:
               options:
-              - hashOrder
+                - 'unique'
+                - 'null'
 name: SQL Work
 type: NodeType

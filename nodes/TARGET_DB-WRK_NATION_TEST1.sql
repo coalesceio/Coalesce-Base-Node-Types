@@ -1,9 +1,11 @@
 @id("3a5c22ce-f2f7-48ab-8cff-c5a9272dc06a")
 @nodeType("62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62")
+@testsEnabled(false)
+@truncateBefore(false)
 SELECT
-     "N_NATIONKEY" AS "N_NATIONKEY",
+     "N_NATIONKEY" AS "N_NATIONKEY" @inHash("GH_COL", 1),
      "N_NAME" AS "N_NAME",
-     "N_REGIONKEY" AS "N_REGIONKEY",
-     "N_COMMENT" AS "N_COMMENT",
+     "N_REGIONKEY" AS "N_REGIONKEY" @tests("null") @tests("unique") @tests("null"),
+     "N_COMMENT" AS "N_COMMENT" @notNull(false),
      "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP"
 FROM {{ ref('SOURCE_DATA', 'NATION_TEST') }} "NATION_TEST"

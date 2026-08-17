@@ -22,7 +22,7 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     {%- endfor %}
 
 	{# == Truncate data before data insertion  == #}
-    {%- if config.truncateBefore %}
+    {%- if config.truncateBefore is defined and config.truncateBefore == true %}
         {{ stage('Truncate ' + node.materializationType) }}
         TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
     {%- endif %}

@@ -1,0 +1,10 @@
+@id("e5bc1dd2-5b28-4c21-abbf-df87ec67cace")
+@nodeType("62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62")
+WITH PRIORITY_COUNTS AS (
+    SELECT 
+       "O_ORDERPRIORITY" AS "O_ORDERPRIORITY",
+       COUNT(*) AS "ORDER_COUNT"
+    FROM {{ ref('SRC', 'ORDERS') }}
+    GROUP BY 1
+)
+SELECT * FROM PRIORITY_COUNTS

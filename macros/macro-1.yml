@@ -220,19 +220,19 @@ macroString: |-
   ========================================================================= #}
   {%- macro run_tests(runOrder) -%}
 
-      {%- if config.testsEnabled -%}
+      {%- if config.testsEnabled is defined and config.testsEnabled == true -%}
           {%- if runOrder == 'After' -%}
               {%- for column in columns -%}
-                  {%- if column.tests is mapping and column.tests.parameters is defined -%}
-                      {%- for test in column.tests.parameters -%}
-                          {%- if test | trim | lower == "null" -%}
+                  {%- if column.tests is defined -%}
+                      {%- for test in column.tests -%}
+                          {%- if test.parameters[0] | trim | lower == "null" -%}
                               {%- set templateString = "SELECT 1 FROM " +  ref(node.location.name, node.name)  + " WHERE " + column.name + " IS NULL " -%}                      
-                              {{ test_stage("Column Test: " + column.name + " - " + test | lower) }}
+                              {{ test_stage("Column Test: " + column.name + " - " + test.parameters[0] | lower) }}
                               {{ templateString }}
                           {%- endif -%}
-                          {%- if test | trim | lower == "unique" -%}
+                          {%- if test.parameters[0] | trim | lower == "unique" -%}
                               {%- set templateString = "SELECT 1 FROM " + ref(node.location.name, node.name) + " GROUP BY " + column.name +  " HAVING COUNT(*) > 1" -%}                      
-                              {{ test_stage("Column Test: " + column.name + " - " + test | lower) }}
+                              {{ test_stage("Column Test: " + column.name + " - " + test.parameters[0] | lower) }}
                               {{ templateString }}
                           {%- endif -%}
                       {%- endfor -%}
@@ -242,11 +242,11 @@ macroString: |-
 
           {%- set ns = namespace(cnt=0) -%}
           {%- for test in config.tests -%}
-              {%- if test.parameters[1] == runOrder -%}
+              {%- if test.parameters[1] | default("Before") == runOrder -%}
                   {%- set ns.cnt = ns.cnt + 1 -%}
                   {{ test_stage(
                       ('Pre Load Test ' if runOrder == 'Before' else 'Post Load Test ') ~ ns.cnt,
-                      test.parameters[2]
+                      test.parameters[2] | default(true)
                   ) }}
                   {{ test.parameters[0] }}
               {%- endif -%}

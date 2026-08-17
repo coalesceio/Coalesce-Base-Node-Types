@@ -767,6 +767,8 @@ The SQL Work node is a powerful transformation tool within Coalesce that allows 
 
 The SQL Work Node type has three configuration groups:
 
+<img width="487" height="250" alt="image" src="https://github.com/user-attachments/assets/a342656c-66a8-4a6c-abe1-adbca4505163" />
+
 * [General](#sql-work-general)
 * [Node Annotations](#sql-work-node-annotations)
 * [Column Annotations](#sql-work-column-annotations)
@@ -780,24 +782,31 @@ The SQL Work Node type has three configuration groups:
 
 ### SQL Work Node Annotations
 
+<img width="441" height="474" alt="image" src="https://github.com/user-attachments/assets/ed2cd106-7a03-4ef3-9237-fb803eaf0bf4" />
+
+
 | **Property** | **Description** |
 |---------|-------------|
-| **Materialization Type** | Table/View |
-| **Truncate Before** | This determines whether a table will be truncated before data load.<br/>Table is truncated if **@truncateBefore** is added to the SQL; if absent, it defaults to **False** |
-| **Enable tests ¹** | Tests are enabled if **@testsEnabled** is added to the SQL; if absent, it defaults to False |
-| **Pre-SQL** |(repeatable) SQL to execute before data insert operation |
-| **Post-SQL** | (repeatable) SQL to execute after data insert operation |
+| `@materializationType(type)` | Table/View |
+| `@truncateBefore` | This determines whether a table will be truncated before data load.<br/>Table is truncated if **@truncateBefore** is added to the SQL, the truncate stage is executed; if absent, it is not executed.<br/> **Note:** Ignored on Views. |
+| `@testsEnabled¹` | Tests are enabled if **@testsEnabled** is added to the SQL, tests are executed; if absent, they are not executed. |
+| `@tests(querySQL, runOrder?, continueOnFailure?)` |(repeatable) Tests are performed only when **@testsEnabled** is added to the SQL. |
+| `@preSQL("querySQL")` |(repeatable) SQL to execute before data insert operation. <br/> **Note:** Ignored on Views. |
+| `@postSQL(querySQL)` | (repeatable) SQL to execute after data insert operation. <br/> **Note:** Ignored on Views. |
 
 
 ### SQL Work Column Annotations
 
+<img width="451" height="416" alt="image" src="https://github.com/user-attachments/assets/8a2e5186-c6e4-4db7-a7c1-ff363f1e3a22" />
+
+
 | **Property** | **Description** |
 |---------|-------------|
-| `@notNull` | Marks column as NOT NULL |
-| `@description("<text>")` | Adds column description |
-| `@defaultValue("<text>")`<br/>`@defaultValue(<number>)`<br/>`@defaultValue(<bool>)` | Adds default value |
-| `@tests("null", "unique")` | Column tests are defined at the individual column level and are used to validate specific column attributes and data quality requirements.<br/>**Supported Tests**<br/>- **null** → Checks for NULL values<br/>- **unique** → Checks to ensure all values are unique |
-| `@inHash("<hash_name>\|<hash_order>")` **²** |(repeatable) Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.<br/>**Default:** Uses `SHA1` algorithm. |
+| `@notNull` | Marks column as NOT NULL. <br/> **Note:** Ignored on Views.  |
+| `@description("<descText>")` | Adds column description |
+| `@defaultValue("<value>")` | Adds default value. <br/> Default value must match the column's data type — use quotes for strings, and quotes can be omitted for non-string values. <br/> **Note:** Ignored on Views.  |
+| `@tests(type)` |(repeatable) Column tests are defined at the individual column level and are used to validate specific column attributes and data quality requirements.<br/>**Supported Tests**<br/>- **null** → Checks for NULL values<br/>- **unique** → Checks to ensure all values are unique. <br/> **Note:** Applicable only when **@testsEnabled** is added to the SQL. |
+| `@inHash("<hash_name>",<hash_order>)` **²** |(repeatable) Generates a hash key by combining and hashing the values of columns associated with a given hash group, ensuring consistent change detection and key generation.<br/>**Default:** Uses `SHA1` algorithm. |
 
 ---
 
@@ -812,8 +821,8 @@ The SQL Work Node type has three configuration groups:
     | Parameter | Description |
     |-----------|-------------|
     | querySQL | SQL statement to execute as a validation test. The test fails if the query returns any records. |
-    | runOrder | `Before` or `After`. Determines whether the test is executed before or after the load operation. |
-    | continueOnFailure | `true` or `false`. Determines whether execution continues when the test fails. |
+    | runOrder |**(optional)** `Before` or `After`. Determines whether the test is executed before or after the load operation. |
+    | continueOnFailure |**(optional)** `true` or `false`. Determines whether execution continues when the test fails. |
     
     **Examples**
     
@@ -828,35 +837,35 @@ The SQL Work Node type has three configuration groups:
     
     Using hash macro(default-SHA1)
     ```sql
-    <col_name> AS <col_name> @inHash("1|GH_COL"),
+    <col_name> AS <col_name> @inHash("GH_COL",1),
     {{ get_hash('GH_COL') }}::STRING AS "GH_COL"
     ```
     Using hash macro(MD5)
     ```sql
-    <col_name> AS <col_name> @inHash("1|GH_COL"),
+    <col_name> AS <col_name> @inHash("GH_COL",1),
     {{ get_hash('GH_COL', 'MD5') }}::STRING AS "GH_COL"<SHA256
     ```
     Using hash macro(SHA256)
     ```sql
-    <col_name> AS <col_name> @inHash("1|GH_COL"),
+    <col_name> AS <col_name> @inHash("GH_COL",1),
     {{ get_hash('GH_COL', 'SHA256') }}::STRING AS "GH_COL"
     ```
     Using hash macro(algo=SHA256, delimeter='~' )
     ```sql
-    <col_name> AS <col_name> @inHash("1|GH_COL"),
+    <col_name> AS <col_name> @inHash("GH_COL",1),
     {{ get_hash('GH_COL', 'SHA256', '~') }}::STRING AS "GH_COL"
     ```
     Using multiple keys hash macro
     ```sql
-    <col_name1> AS <col_name1> @inHash("1|GH_COL"),
-    <col_name2> AS <col_name2> @inHash("2|GH_COL"),
+    <col_name1> AS <col_name1> @inHash("GH_COL",1),
+    <col_name2> AS <col_name2> @inHash("GH_COL",2),
     {{ get_hash('GH_COL') }}::STRING AS "GH_COL_COMBINED"
     ```
     Using multiple hash macros
     ```sql
-    <col_name1> AS <col_name1> @inHash("1|GH_COL1", "2|GH_COL2"),
-    <col_name2> AS <col_name2> @inHash("2|GH_COL1"),
-    <col_name3> AS <col_name3> @inHash("1|GH_COL2"),
+    <col_name1> AS <col_name1> @inHash("GH_COL1",1 , "GH_COL2",2),
+    <col_name2> AS <col_name2> @inHash("GH_COL1",2),
+    <col_name3> AS <col_name3> @inHash("GH_COL2",1),
     {{ get_hash('GH_COL1') }}::STRING AS "GH_COL_COMBINED1",
     {{ get_hash('GH_COL2') }}::STRING AS "GH_COL_COMBINED2"
     ```
@@ -895,13 +904,13 @@ The following patterns represent common ways to use the SQL Node.<br/>
 **Sample node with Annotations**
 ```sql
 SELECT
-     "N_NATIONKEY" AS "N_NATIONKEY" @nullable("false") @inHash("1|GH_COL"),
+     "N_NATIONKEY" AS "N_NATIONKEY" @notNull  @inHash("GH_COL",1),
      "N_NAME" AS "N_NAME" @defaultValue("NA"),
      "N_REGIONKEY" AS "N_REGIONKEY" @description("region key"),
-     "N_COMMENT" AS "N_COMMENT" @inHash("2|GH_COL"),
+     "N_COMMENT" AS "N_COMMENT" @inHash("GH_COL",2),
      "N_LOAD_TIMESTAMP" AS "N_LOAD_TIMESTAMP" @tests("null", "unique"),
      {{ get_hash('GH_COL') }}::STRING AS "GH_COL"
-FROM {{ ref('SRC', 'NATION') }} "NATION"
+FROM {{ ref('SOURCE_DATA', 'NATION') }} "NATION"
 ```
 **Basic Transformation & Cleaning** - Standard pattern for renaming columns and handling nulls.
 
@@ -961,7 +970,7 @@ F.O_CUSTKEY,
 F.FIRST_ORDER_ID,
 F.FIRST_PURCHASE_DATE,
 F.FIRST_ORDER_VALUE,
-F.O_ORDERSTATUS @nullable(false),
+F.O_ORDERSTATUS @notNull,
 CURRENT_TIMESTAMP() AS REFRESHED_AT,
 'Initial Customer Purchase' AS RECORD_TYPE
 FROM FIRST_ORDERS F

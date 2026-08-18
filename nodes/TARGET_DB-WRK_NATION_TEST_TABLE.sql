@@ -1,6 +1,6 @@
 @id("fdccd367-f639-4dd8-aac7-b605e5a2d874")
 @nodeType("62f0cbc1-957e-4ad5-8ca2-5a2d8d6eef62")
-@testsEnabled
+@truncateBefore
 @tests("SELECT 1 FROM {{ this }}")
 @tests("SELECT 2 FROM {{ this }}", "Before", true)
 @tests("SELECT 3 FROM {{ this }}", "After", true)

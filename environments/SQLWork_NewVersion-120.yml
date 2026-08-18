@@ -6,6 +6,6 @@ mappingDefinitions:
     schema: SOURCE
   TARGET_DB:
     database: TANVI_DEV
-    schema: TARGET
+    schema: QA
 name: SQLWork_NewVersion
 type: Environment

@@ -4,9 +4,9 @@
 @truncateBefore
 @selectDistinct
 @testsEnabled
-@tests("SELECT 1 FROM {{ this }}", "Before", true)
+@tests("SELECT 1 FROM {{ this }}")
 @tests("SELECT 2 FROM {{ this }}", "Before", true)
-@tests("SELECT 3 FROM {{ this }}", "After", true)
+@tests("SELECT 3 FROM {{ this }}")
 @tests("SELECT 4 FROM {{ this }}", "After", true)
 @preSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")
 @postSQL("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1")

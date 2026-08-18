@@ -16,9 +16,11 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     {#== Pre-SQL ==#}
     {%- set ns = namespace(cnt=0) %}
     {%- for sql in config.preSQL %}
-        {%- set ns.cnt = ns.cnt + 1 %}
-        {{ stage('Pre-SQL '  ~ ns.cnt )}}
-        {{ sql.parameters[0] }}
+        {%- if sql is mapping and sql.parameters is defined %}
+            {%- set ns.cnt = ns.cnt + 1 %}
+            {{ stage('Pre-SQL '  ~ ns.cnt )}}
+            {{ sql.parameters[0] }}
+        {%- endif %}
     {%- endfor %}
 
 	{# == Truncate data before data insertion  == #}
@@ -49,9 +51,11 @@ Coalesce permits you to copy and modify this script for the purposes of using wi
     {#== Post-SQL ==#}
     {%- set ns = namespace(cnt=0) %}
     {%- for sql in config.postSQL %}
-        {%- set ns.cnt = ns.cnt + 1 %}
-        {{ stage('Post-SQL '  ~ ns.cnt ) }}
-        {{ sql.parameters[0] }}
+        {%- if sql is mapping and sql.parameters is defined %}
+            {%- set ns.cnt = ns.cnt + 1 %}
+            {{ stage('Post-SQL '  ~ ns.cnt ) }}
+            {{ sql.parameters[0] }}
+        {%- endif %}
     {%- endfor %}
 
 {%- else %}

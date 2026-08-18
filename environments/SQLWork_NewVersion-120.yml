@@ -1,5 +1,11 @@
 fileVersion: 1
 id: "120"
-mappingDefinitions: {}
+mappingDefinitions:
+  SOURCE_DATA:
+    database: TANVI_DEV
+    schema: SOURCE
+  TARGET_DB:
+    database: TANVI_DEV
+    schema: TARGET
 name: SQLWork_NewVersion
 type: Environment

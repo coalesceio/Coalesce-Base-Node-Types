@@ -220,7 +220,7 @@ macroString: |-
   ========================================================================= #}
   {%- macro run_tests(runOrder) -%}
 
-      {%- if config.testsEnabled is defined and config.testsEnabled == true -%}
+      {%- if get_boolean_config("testsEnabled") | trim | lower == "true" %}
           {%- if runOrder == 'After' -%}
               {%- for column in columns -%}
                   {%- if column.tests is defined -%}
@@ -362,5 +362,50 @@ macroString: |-
           AS STRING)
       {%- endif -%}
   {%- endmacro -%}
+
+  {#===================================================================================================
+    get_boolean_config(flag)
+
+    Description:
+      Extracts the boolean value of a configuration flag, supporting both
+      annotation formats:
+        - @flag
+        - @flag(true) / @flag(false)
+
+    Input:
+      flag: Name of the boolean configuration flag, e.g. "truncateBefore",
+            "testsEnabled", or "clusterDefined".
+
+    Examples:
+      @truncateBefore
+        -> config["truncateBefore"] = true
+        -> Output: true
+
+      @truncateBefore(true)
+        -> config["truncateBefore"] = { parameters: [true] }
+        -> Output: true
+
+      @truncateBefore(false)
+        -> config["truncateBefore"] = { parameters: [false] }
+        -> Output: false
+
+      No annotation
+        -> config["truncateBefore"] is not defined
+        -> Output: empty
+
+    Usage:
+      {% if get_boolean_config("truncateBefore") | trim | lower == "true" %}
+        ...
+      {% endif %}
+  ====================================================================================================#}
+  {% macro get_boolean_config(flag) %}
+      {%- if config[flag] is defined %}
+          {%- if config[flag] is boolean %}
+              {{- config[flag] }}
+          {%- elif config[flag].parameters is defined and config[flag].parameters|length > 0 %}
+              {{- config[flag].parameters[0] }}
+          {%- endif %}
+      {%- endif %}
+  {% endmacro %}
 name: macro
 type: Macro

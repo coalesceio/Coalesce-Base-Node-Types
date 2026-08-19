@@ -870,12 +870,12 @@ The SQL Work Node type has three configuration groups:
     Using hash macro(algo=SHA256, delimeter='~' )
     ```sql
     <col_name> AS <col_name> @inHash("GH_COL",1),
-    {{ get_hash('GH_COL', 'SHA256', '~') }}::STRING AS "GH_COL"
+    {{ get_hash('GH_COL', algo='SHA256', delimiter='~') }}::STRING AS "GH_COL"
     ```
     Using multiple keys hash macro
     ```sql
-    <col_name1> AS <col_name1> @inHash("GH_COL",1),
-    <col_name2> AS <col_name2> @inHash("GH_COL",2),
+    <col_name1> AS <col_name1> @inHash("GH_COL", 1),
+    <col_name2> AS <col_name2> @inHash("GH_COL", 2),
     {{ get_hash('GH_COL') }}::STRING AS "GH_COL_COMBINED"
     ```
     Using multiple hash macros
@@ -884,7 +884,7 @@ The SQL Work Node type has three configuration groups:
     <col_name2> AS <col_name2> @inHash("GH_COL1",2),
     <col_name3> AS <col_name3> @inHash("GH_COL2",1),
     {{ get_hash('GH_COL1') }}::STRING AS "GH_COL_COMBINED1",
-    {{ get_hash('GH_COL2') }}::STRING AS "GH_COL_COMBINED2"
+    {{ get_hash('GH_COL2', delimiter='~') }}::STRING AS "GH_COL_COMBINED2"
     ```
     Using explicit expression:
     ```sql

@@ -220,7 +220,7 @@ macroString: |-
   ========================================================================= #}
   {%- macro run_tests(runOrder) -%}
 
-      {%- if get_boolean_config("testsEnabled") | trim | lower == "true" %}
+      {%- if get_boolean_config("testsEnabled") == "true" %}
           {%- if runOrder == 'After' -%}
               {%- for column in columns -%}
                   {%- if column.tests is defined -%}
@@ -313,7 +313,7 @@ macroString: |-
           - A SHA1 hash of concatenated column values  
           - Returns `NULL` if no columns are mapped to the given hash group
   ====================================================================================================#}
-  {%- macro get_hash(hash_name, algo='SHA1', delimiter='||', datatype='CHAR(32)') -%}
+  {%- macro get_hash(hash_name, algo='SHA1', delimiter='||', datatype='STRING') -%}
 
       {%- set cols = namespace(items=[]) -%}
       {%- set algo_upper = algo | upper -%}
@@ -359,7 +359,7 @@ macroString: |-
                       {%- endif -%}
                   {%- endfor -%}
               {{ algo_end }}
-          AS STRING)
+          AS {{ datatype }})
       {%- endif -%}
   {%- endmacro -%}
 
@@ -398,14 +398,14 @@ macroString: |-
         ...
       {% endif %}
   ====================================================================================================#}
-  {% macro get_boolean_config(flag) %}
-      {%- if config[flag] is defined %}
-          {%- if config[flag] is boolean %}
-              {{- config[flag] }}
-          {%- elif config[flag].parameters is defined and config[flag].parameters|length > 0 %}
-              {{- config[flag].parameters[0] }}
-          {%- endif %}
-      {%- endif %}
-  {% endmacro %}
+  {%- macro get_boolean_config(flag) -%}
+      {%- if config[flag] is defined -%}
+          {%- if config[flag] is boolean -%}
+              {{- config[flag] | trim | lower -}}
+          {%- elif config[flag].parameters is defined and config[flag].parameters|length > 0 -%}
+              {{- config[flag].parameters[0] | trim | lower -}}
+          {%- endif -%}
+      {%- endif -%}
+  {%- endmacro -%}
 name: macro
 type: Macro

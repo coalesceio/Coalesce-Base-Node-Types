@@ -767,7 +767,9 @@ The SQL Work node is a powerful transformation tool within Coalesce that allows 
 
 The SQL Work Node type has three configuration groups:
 
-<img width="487" height="250" alt="image" src="https://github.com/user-attachments/assets/a342656c-66a8-4a6c-abe1-adbca4505163" />
+| |
+|---|
+| <img width="487" height="250" alt="image" src="https://github.com/user-attachments/assets/a342656c-66a8-4a6c-abe1-adbca4505163" /> |
 
 * [General](#sql-work-general)
 * [Node Annotations](#sql-work-node-annotations)
@@ -782,8 +784,9 @@ The SQL Work Node type has three configuration groups:
 
 ### SQL Work Node Annotations
 
-<img width="441" height="474" alt="image" src="https://github.com/user-attachments/assets/ed2cd106-7a03-4ef3-9237-fb803eaf0bf4" />
-
+| |
+|---|
+| <img width="441" height="474" alt="image" src="https://github.com/user-attachments/assets/ed2cd106-7a03-4ef3-9237-fb803eaf0bf4" /> |
 
 | **Property** | **Description** |
 |---------|-------------|
@@ -797,8 +800,9 @@ The SQL Work Node type has three configuration groups:
 
 ### SQL Work Column Annotations
 
-<img width="451" height="416" alt="image" src="https://github.com/user-attachments/assets/8a2e5186-c6e4-4db7-a7c1-ff363f1e3a22" />
-
+| |
+|---|
+| <img width="451" height="416" alt="image" src="https://github.com/user-attachments/assets/8a2e5186-c6e4-4db7-a7c1-ff363f1e3a22" /> |
 
 | **Property** | **Description** |
 |---------|-------------|
@@ -832,6 +836,19 @@ The SQL Work Node type has three configuration groups:
     @tests("SELECT 1 FROM {{ this }} GROUP BY N_COMMENT HAVING COUNT(*) > 1", "After", true)
     ```
 - **²** The hash transformation can be defined either using the reusable macro or by writing the full hash expression explicitly. Both approaches are supported and will produce the same result. Choose the macro approach for better reusability and cleaner code, or use the explicit expression when custom logic is required.
+
+    Use `get_hash()` to generate a hash value for one or more columns. The same `hash_name` can be used across columns to **group columns** which belong to the same hash.
+    
+    ```sql
+    {{ get_hash(<hash_name>, <algo>, <delimiter>, <datatype>) }}
+    ```
+    
+    | Parameter | Description |
+    |-----------|-------------|
+    | `hash_name` | Hash name used across columns to identify the columns included in the hash. |
+    | `algo` | **(optional)** Hashing algorithm to use. Supported values include `SHA1`, `SHA256`, and `MD5`. Defaults to `SHA1`. |
+    | `delimiter` | **(optional)** Delimiter used to separate column values when generating the hash. Defaults to `\|\|` and can be customized. |
+    | `datatype` | **(optional)** Data type of the returned hash value. Defaults to `STRING`. |
 
     #### Examples:
     

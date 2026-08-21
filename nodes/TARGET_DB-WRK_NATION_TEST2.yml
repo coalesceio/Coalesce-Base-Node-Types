@@ -85,7 +85,7 @@ operation:
           - columnReferences:
               - columnCounter: 940d8775-5522-4a9a-a494-7a6b857e34a5
                 stepCounter: 5303c93a-7dbd-4fd0-93a0-a7278c1d6b3c
-            transform: UPPER("WRK_NATION_TEST2"."N_COMMENT")
+            transform: ""
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 035ce1c8-0bee-4995-ac81-9aebbff63050

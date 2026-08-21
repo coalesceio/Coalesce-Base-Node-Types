@@ -16,7 +16,7 @@ metadata:
         node:
 
         - name: materializationType
-          description: materialization selector
+          description: Materialization selector
           isRequired: false
           parameters:
             - name: type
@@ -30,7 +30,7 @@ metadata:
 
         - name: truncateBefore
           type: boolean
-          description: Truncate the target table before inserting. Ignored on views.
+          description: 𝗧𝗥𝗨𝗡𝗖𝗔𝗧𝗘 the target table before inserting. 𝗜𝗴𝗻𝗼𝗿𝗲𝗱 𝗼𝗻 𝘃𝗶𝗲𝘄𝘀.
           isRequired: false      
           default: true
 
@@ -70,7 +70,7 @@ metadata:
                 - false
 
         - name: preSQL
-          description: SQL statement to execute before data load operation. Ignored on views.
+          description: SQL statement to execute before data load operation. 𝗜𝗴𝗻𝗼𝗿𝗲𝗱 𝗼𝗻 𝘃𝗶𝗲𝘄𝘀.
           allowsMultiple: true
           parameters:
           - name: querySQL
@@ -80,7 +80,7 @@ metadata:
             example: 'SELECT 1'
 
         - name: postSQL
-          description: SQL statement to execute after data load operation. Ignored on views.
+          description: SQL statement to execute after data load operation. 𝗜𝗴𝗻𝗼𝗿𝗲𝗱 𝗼𝗻 𝘃𝗶𝗲𝘄𝘀.
           allowsMultiple: true
           parameters:
           - name: querySQL
@@ -101,12 +101,12 @@ metadata:
 
         - name: notNull
           type: boolean
-          description: Enforce NOT NULL on the target column. Ignored on views.
+          description: Enforce 𝗡𝗢𝗧 𝗡𝗨𝗟𝗟 on the target column. 𝗜𝗴𝗻𝗼𝗿𝗲𝗱 𝗼𝗻 𝘃𝗶𝗲𝘄𝘀.
           isRequired: false
           default: true
 
         - name: defaultValue
-          description: Default applied when the source column value is null. Ignored on views.
+          description: 𝗗𝗘𝗙𝗔𝗨𝗟𝗧 applied when the source column value is 𝗡𝗨𝗟𝗟. 𝗜𝗴𝗻𝗼𝗿𝗲𝗱 𝗼𝗻 𝘃𝗶𝗲𝘄𝘀.
           isRequired: false
           parameters:
             - name: value
@@ -115,7 +115,7 @@ metadata:
               isRequired: true
 
         - name: inHash
-          description: Marks columns for hash key generation. Use the 𝐠𝐞𝐭_𝐡𝐚𝐬𝐡() macro to generate the hash column from the marked columns. See documentation for details.
+          description: Marks columns for hash key generation. Use the 𝐠𝐞𝐭_𝐡𝐚𝐬𝐡() macro to generate the hash column from the marked columns. 𝗦𝗲𝗲 𝗱𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻 𝗳𝗼𝗿 𝗱𝗲𝘁𝗮𝗶𝗹𝘀.
           allowsMultiple: true
           parameters:
             - name: hashName
@@ -139,8 +139,8 @@ metadata:
               type: string
               description: |
                 Column level data quality requirement type.
-                ➤ 𝐮𝐧𝐢𝐪𝐮𝐞: Checks to ensure all values are UNIQUE.
-                ➤ 𝐧𝐮𝐥𝐥: Ensures the column contains no NULL values. |
+                ➤ 𝐮𝐧𝐢𝐪𝐮𝐞: Checks to ensure all values are 𝗨𝗡𝗜𝗤𝗨𝗘.
+                ➤ 𝐧𝐮𝐥𝐥: Ensures the column contains no 𝗡𝗨𝗟𝗟 values. |
               isRequired: true
               parameters:
               options:

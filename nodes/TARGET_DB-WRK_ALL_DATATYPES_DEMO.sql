@@ -7,10 +7,10 @@ SELECT
      "COL_FLOAT"            AS "COL_FLOAT"            @defaultValue(0.0),
      "COL_DOUBLE"           AS "COL_DOUBLE"           @defaultValue(0.0),
      "COL_BOOLEAN"          AS "COL_BOOLEAN"          @defaultValue(false),
-     "COL_VARCHAR"          AS "COL_VARCHAR"          @defaultValue("N``'''/``A"),
-     "COL_STRING"           AS "COL_STRING"           @defaultValue('N/A'),
+     "COL_VARCHAR"          AS "COL_VARCHAR"          @defaultValue("'NA'"),
+     "COL_STRING"           AS "COL_STRING"           @defaultValue("'N/A'"),
      "COL_CHAR"             AS "COL_CHAR"             @defaultValue("'A'"),
-     "COL_TEXT"             AS "COL_TEXT"             @defaultValue('N/A'),
+     "COL_TEXT"             AS "COL_TEXT"             @defaultValue("'N/A'"),
      "COL_DATE"             AS "COL_DATE"             @defaultValue("TO_DATE('2000-01-01')"),
      "COL_TIME"             AS "COL_TIME"             @defaultValue("TO_TIME('00:00:00')"),
      "COL_TIMESTAMP"        AS "COL_TIMESTAMP"        @defaultValue("TO_TIMESTAMP('2000-01-01 00:00:00')"),
@@ -23,5 +23,5 @@ SELECT
      "COL_ARRAY"            AS "COL_ARRAY"            @defaultValue('[]'),
      "COL_GEOGRAPHY"        AS "COL_GEOGRAPHY",
      "COL_GEOMETRY"         AS "COL_GEOMETRY"      ,  
-     "COL_XML"              AS "COL_XML"              @defaultValue('<root/>')
+     "COL_XML"              AS "COL_XML"              @defaultValue("'<root/>'")
 FROM {{ ref('SOURCE_DATA', 'ALL_DATATYPES_DEMO') }} "ALL_DATATYPES_DEMO"

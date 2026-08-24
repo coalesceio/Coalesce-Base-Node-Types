@@ -1,6 +1,6 @@
 excludeSelector: ""
 fileVersion: 1
 id: "92"
-includeSelector: "{ location: \"SOURCE_DATA\" name: \"NATION_TEST\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_TABLE\" }"
+includeSelector: "{ location: \"SOURCE_DATA\" name: \"NATION_TEST\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_TABLE\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_OLD_V2\" } OR { location: \"TARGET_DB\" name: \"WRK_NATION_TEST_VIEW\" }"
 name: Job1
 type: Job

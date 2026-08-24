@@ -16,8 +16,8 @@ region_cte AS (
     GROUP BY N_REGIONKEY
 )
 SELECT
-    n.N_NAME @notNull @defaultValue("N/'A"),
-    r.nation_count @description("Region''' Count")
+    n.N_NAME @notNull @defaultValue("'N/'A'"),
+    r.nation_count @description("'Region''' Count'")
 FROM nation_cte n
 JOIN region_cte r
     ON n.N_REGIONKEY = r.N_REGIONKEY

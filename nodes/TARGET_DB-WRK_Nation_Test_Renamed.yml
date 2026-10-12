@@ -1,6 +1,6 @@
 fileVersion: 1
 id: 2a86e16c-584f-4fe8-90f7-abecf4dc9dde
-name: WRK_Nation_Test
+name: WRK_Nation_Test_Renamed
 operation:
   config:
     asofColumn:
@@ -112,9 +112,9 @@ operation:
             nodeName: Nation_Test
         join:
           joinCondition: FROM  {{ ref('SOURCE_DATA', 'Nation_Test') }} Nation_Test
-        name: WRK_Nation_Test
+        name: WRK_Nation_Test_Renamed
         noLinkRefs: []
-  name: WRK_Nation_Test
+  name: WRK_Nation_Test_Renamed
   overrideSQL: false
   schema: ""
   sqlType: "204"

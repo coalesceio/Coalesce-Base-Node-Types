@@ -45,22 +45,22 @@ does not permit copying or modification for any other purpose.
 	
 				INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
 				(
-					{% for col in source.columns %}
+					{%- for col in source.columns %}
 						"{{ col.name }}"
-						{%- if not loop.last -%},{% endif %}
-					{% endfor %}
+						{%- if not loop.last %},{% endif %}
+					{%- endfor %}
 				)
 			{{source.cteString}}
  			(SELECT
-			{% for col in source.columns %}
+			{%- for col in source.columns %}
                 {{ get_source_transform(col) }} AS "{{ col.name }}"
-				{%- if not loop.last -%}, {% endif %}
-			{% endfor %}
+				{%- if not loop.last %}, {% endif %}
+			{%- endfor %}
 	
                 {{ source.join }}
                  {{ sortorder_by_colv() }} )     
 
-		{% endfor %}
+		{%- endfor %}
 
 {# == Queries to be excuted post data insertion  == #}
 

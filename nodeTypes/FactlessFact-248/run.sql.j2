@@ -39,65 +39,64 @@ does not permit copying or modification for any other purpose.
       {{ stage('MERGE ' + 'Sources' | string ) }}
       MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
       USING (
-                {% for source in sources %}
+                {%- for source in sources %}
                     (SELECT
-                    {% if config.selectDistinct %}
+                    {%- if config.selectDistinct %}
                     DISTINCT
-                    {% endif %}
-                    {% for col in source.columns %}
+                    {%- endif %}
+                    {%- for col in source.columns %}
                         {{ get_source_transform(col) }} AS "{{ col.name }}"
                         {%- if not loop.last %}, {% endif %}
-                    {% endfor %}
+                    {%- endfor %}
                     {{ source.join }}
-                    {% if config.groupByAll %}
+                    {%- if config.groupByAll %}
                         GROUP BY ALL
-                    {% endif %}
+                    {%- endif %}
                     {{ sortorder_by_colv() }})
-                    {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                    {%- if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
                         {{config.insertStrategy}}
-                    {% endif %}
-                {% endfor %}   
+                    {%- endif %}
+                {%- endfor %}   
                     )
                     AS "SRC"
       ON
-                {% for col in columns if not ( col.isSystemUpdateDate or
+                {%- for col in columns if not ( col.isSystemUpdateDate or
                                                      col.isSystemCreateDate) -%}
-                    {% if not loop.first %}
-                        AND
-                    {% endif %}
+                    {%- if not loop.first %} AND
+                    {%- endif %}
                     "SRC"."{{ col.name }}" = "TGT"."{{ col.name }}"
-                {% endfor %}
+                {%- endfor %}
 				
 				WHEN MATCHED
-                    {% for col in columns if not (col.isSystemCreateDate) %}
-                        {% if loop.first %}
+                    {%- for col in columns if not (col.isSystemCreateDate) %}
+                        {%- if loop.first %}
                             AND (
-                        {% else %}
+                        {%- else %}
                             OR
-                        {% endif %}
+                        {%- endif %}
                         NVL( CAST("SRC"."{{ col.name }}" as STRING), '**NULL**') <> NVL( CAST("TGT"."{{ col.name }}" as STRING), '**NULL**')
-                        {% if loop.last %}
+                        {%- if loop.last %}
                             )
-                        {% endif %}
-                    {% endfor %}
+                        {%- endif %}
+                    {%- endfor %}
                     THEN UPDATE SET
                     {%- for col in columns if not (col.isSystemCreateDate) %}
                             "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
-                        {% if not loop.last %}, {% endif %}
-                    {% endfor %}
+                        {%- if not loop.last %}, {% endif %}
+                    {%- endfor %}
       
       WHEN NOT MATCHED THEN
         INSERT (
         {%- for col in columns if not col.isSurrogateKey %}
             "{{ col.name }}"
-            {% if not loop.last %}, {% endif %}
-        {% endfor -%}
+            {%- if not loop.last %}, {% endif %}
+        {%- endfor %}
         )
         VALUES (
         {%- for col in columns if not col.isSurrogateKey %}
             "SRC"."{{ col.name }}"
-            {% if not loop.last %}, {% endif %}
-        {% endfor -%}
+            {%- if not loop.last %}, {% endif %}
+        {%- endfor %}
         )
 
 

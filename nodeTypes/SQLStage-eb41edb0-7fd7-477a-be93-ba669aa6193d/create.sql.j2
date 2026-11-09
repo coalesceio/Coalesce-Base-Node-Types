@@ -42,35 +42,35 @@ does not permit copying or modification for any other purpose.
 
     CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
     (
-        {% for col in columns %}
+        {%- for col in columns %}
             "{{ col.name }}"
             {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
-            {%- if not loop.last -%}, {% endif %}
-        {% endfor %}
+            {%- if not loop.last %}, {% endif %}
+        {%- endfor %}
     )
     {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
     AS
-    {% for source in sources %}
+    {%- for source in sources %}
         SELECT
-        {% if config.selectDistinct %}
+        {%- if config.selectDistinct %}
         DISTINCT
-        {% endif %}
-        {% for col in source.columns %}
+        {%- endif %}
+        {%- for col in source.columns %}
             {{ get_source_transform(col) }} AS "{{ col.name }}"
-            {%- if not loop.last -%}, {% endif %}
-        {% endfor %}
+            {%- if not loop.last %}, {% endif %}
+        {%- endfor %}
 
         {{ source.join }}
-        {% if config.groupByAll %}
+        {%- if config.groupByAll %}
 		   Group By All
-	    {% endif %}
-        {% if not loop.last %}
-            {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+	    {%- endif %}
+        {%- if not loop.last %}
+            {%- if config.insertStrategy in ['UNION', 'UNION ALL'] %}
                 {{ config.insertStrategy }}
-            {% else %}
+            {%- else %}
                 UNION
-            {% endif %}
-        {% endif %}
-    {% endfor %}
+            {%- endif %}
+        {%- endif %}
+    {%- endfor %}
 {% endif %}
 {% endif %}

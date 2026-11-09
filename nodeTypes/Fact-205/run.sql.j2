@@ -95,62 +95,62 @@ does not permit copying or modification for any other purpose.
                 MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
                 USING (
                 
-                {% for source in sources %}
+                {%- for source in sources %}
                     (SELECT
-                    {% if config.selectDistinct %}
+                    {%- if config.selectDistinct %}
                     DISTINCT
                     {% endif %}
-                    {% for col in source.columns %}	    
-                       {% if col.name == last_modified_col %}
+                    {%- for col in source.columns %}	    
+                       {%- if col.name == last_modified_col %}
 					     {{ get_source_transform(col) }} AS "{{ col.name }}",
 						 {{ get_source_transform(col) }} AS COMPARISON_VALUE,
 					     MAX ("DIM"."{{last_modified_col}}") AS MAX_TARGET_VALUE
-                       {%else%}
+                       {%-else%}
                         {{ get_source_transform(col) }} AS "{{ col.name }}"
-                       {%endif%}
+                       {%-endif%}
                        {%- if not loop.last %}, {% endif %}
-                    {%endfor%}
+                    {%-endfor%}
                     {{ get_clause(source.join,'from')}}
-                    {%if config.lastModifiedComparison%}	        
+                    {%-if config.lastModifiedComparison%}	        
                         LEFT JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
-                             {% for col in source.columns if col.isBusinessKey -%}
-                                {% if not loop.first %}
+                             {%- for col in source.columns if col.isBusinessKey -%}
+                                {%- if not loop.first %}
                                     AND
-                                {% endif %}
+                                {%- endif %}
                                 {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
-                            {% endfor %}
-                  {%endif%}
+                            {%- endfor %}
+                  {%-endif%}
                    {% set clause = get_clause(source.join) %}
-                   {% if clause %}
+                   {%- if clause %}
                       {{ ("WHERE " ~ clause.strip()[3:].strip()) if clause.strip().upper().startswith('AND') else clause }}
-                   {% endif %}
-                    {% if config.groupByAll or config.lastModifiedComparison%}
+                   {%- endif %}
+                    {%- if config.groupByAll or config.lastModifiedComparison%}
                         GROUP BY ALL
-                    {% endif %}
+                    {%- endif %}
                     {{ sortorder_by_colv() }})
-                    {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                    {%- if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
                         {{config.insertStrategy}}
-                    {% endif %}
-                {% endfor %}   
+                    {%- endif %}
+                {%- endfor %}   
                     )
                     AS "SRC"
                 ON
-                {% for col in columns if col.isBusinessKey -%}
-                    {% if not loop.first %}
+                {%- for col in columns if col.isBusinessKey -%}
+                    {%- if not loop.first %}
                         AND
-                    {% endif %}
+                    {%- endif %}
                     "SRC"."{{ col.name }}" = "TGT"."{{ col.name }}"
-                {% endfor %}
+                {%- endfor %}
     WHEN MATCHED
-                {%if not config.lastModifiedComparison%}
-					{% for col in columns if not (col.isBusinessKey or col.isSystemUpdateDate or col.isSystemCreateDate) %}
+                {%-if not config.lastModifiedComparison%}
+					{%- for col in columns if not (col.isBusinessKey or col.isSystemUpdateDate or col.isSystemCreateDate) %}
 								  
-						{% if loop.first %}
+						{%- if loop.first %}
 							AND (
-						{% else %}
+						{%- else %}
 							OR
-						{% endif %}
-						{% if col.dataType == 'GEOGRAPHY' %}
+						{%- endif %}
+						{%- if col.dataType == 'GEOGRAPHY' %}
 							(
 								ST_DISTANCE(
 									(CASE 
@@ -163,7 +163,7 @@ does not permit copying or modification for any other purpose.
 									END)
 								) > 0
 							)
-						{% elif col.dataType == 'GEOMETRY' %}
+						{%- elif col.dataType == 'GEOMETRY' %}
 							(
 								ST_DISTANCE(
 									(CASE 
@@ -176,39 +176,38 @@ does not permit copying or modification for any other purpose.
 									END)
 								) > 0
 							)
-						{% else %}
+						{%- else %}
 							(
-								NVL(CAST("SRC"."{{ col.name }}" AS STRING), '**NULL**') <> 
-								NVL(CAST("TGT"."{{ col.name }}" AS STRING), '**NULL**')
+								NVL(CAST("SRC"."{{ col.name }}" AS STRING), '**NULL**') <> NVL(CAST("TGT"."{{ col.name }}" AS STRING), '**NULL**')
 							)
-						{% endif %}
-						{% if loop.last %}
+						{%- endif %}
+						{%- if loop.last %}
 							)
-						{% endif %}
-					{% endfor %}  
-                {%else%} 
+						{%- endif %}
+					{%- endfor %}  
+                {%-else%} 
                     AND ("SRC".COMPARISON_VALUE > "SRC".MAX_TARGET_VALUE)
-                {%endif%}
+                {%-endif%}
                 THEN UPDATE SET
                 {%- for col in columns if not (col.isBusinessKey or col.isSystemCreateDate) %}
                         "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
-                    {% if not loop.last %}, {% endif %}
-                {% endfor %}
+                    {%- if not loop.last %}, {% endif %}
+                {%- endfor %}
                 WHEN NOT MATCHED THEN
                 INSERT (
                 {%- for col in columns if not col.isSurrogateKey %}
                     "{{ col.name }}"
-                    {% if not loop.last %}, {% endif %}
-                {% endfor -%}
+                    {%- if not loop.last %}, {% endif %}
+                {%- endfor %}
                 )
                 VALUES (
                 {%- for col in columns if not col.isSurrogateKey %}
                     "SRC"."{{ col.name }}"
-                    {% if not loop.last %}, {% endif %}
-                {% endfor -%}
+                    {%- if not loop.last %}, {% endif %}
+                {%- endfor %}
                 )
         
-            {% else %}
+            {%- else %}
 
                {# == Executed if business key is not specified  == #}
 
@@ -216,30 +215,30 @@ does not permit copying or modification for any other purpose.
         
                     INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
                     (
-                        {% for col in columns %}
+                        {%- for col in columns %}
                             "{{ col.name }}"
-                            {%- if not loop.last -%},{% endif %}
-                        {% endfor %}
+                            {%- if not loop.last %},{% endif %}
+                        {%- endfor %}
                     )
-                {% for source in sources %}
+                {%- for source in sources %}
                     (SELECT
-                    {% if config.selectDistinct %}
+                    {%- if config.selectDistinct %}
                     DISTINCT
-                    {% endif %}
-                    {% for col in source.columns %}
+                    {%- endif %}
+                    {%- for col in source.columns %}
                         {{ get_source_transform(col) }} AS "{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
+                        {%- if not loop.last %}, {% endif %}
+                    {%- endfor %}
                     {{ source.join }}
-                 {% if config.groupByAll %}
+                 {%- if config.groupByAll %}
                      GROUP BY ALL
-                 {% endif %}
+                 {%- endif %}
                  {{ sortorder_by_colv() }})
-                 {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                 {%- if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
                      {{config.insertStrategy}}
-                 {% endif %}
-                {% endfor %} 
-            {% endif %}
+                 {%- endif %}
+                {%- endfor %} 
+            {%- endif %}
 
  {# == Queries to be excuted post data insertion  == #}
 

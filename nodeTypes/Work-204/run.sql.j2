@@ -31,11 +31,11 @@ does not permit copying or modification for any other purpose.
 	
     {# == Multi-Source option  == #}
 
-	    {% if node.isMultisource %}
-            {% set insertStrategy = config.insertStrategy  %}
-		{% else %}
-		    {% set insertStrategy = 'INSERT' %}
-		{% endif %}
+	    {%- if node.isMultisource %}
+            {%- set insertStrategy = config.insertStrategy  %}
+		{%- else %}
+		    {%- set insertStrategy = 'INSERT' %}
+		{%- endif %}
 	
 		{# == Truncate data before data insertion  == #}
 		{% if config.truncateBefore %}
@@ -45,55 +45,55 @@ does not permit copying or modification for any other purpose.
 	
 		{% endif %}
 
-		{% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+		{%- if config.insertStrategy in ['UNION', 'UNION ALL'] %}
 			{{ stage(insertStrategy + ' Sources' | string ) }}
 			INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
 				(
-					{% for col in columns %}
+					{%- for col in columns %}
 						"{{ col.name }}"
-						{%- if not loop.last -%},{% endif %}
-					{% endfor %}
+						{%- if not loop.last %},{% endif %}
+					{%- endfor %}
 				)
-		{% endif %}
+		{%- endif %}
 	
 	
-		{% for source in sources %}
+		{%- for source in sources %}
 
 		{# == Insert data from sources into Work table  == #}
 	
-			{% if config.insertStrategy == 'INSERT' %}
+			{%- if config.insertStrategy == 'INSERT' %}
 				{{ stage('Insert ' + source.name | string ) }}
 	
 				INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
 				(
-					{% for col in source.columns %}
+					{%- for col in source.columns %}
 						"{{ col.name }}"
-						{%- if not loop.last -%},{% endif %}
-					{% endfor %}
+						{%- if not loop.last %},{% endif %}
+					{%- endfor %}
 				)
-			{% endif %}
+			{%- endif %}
 	
  			(SELECT
-			{% if config.selectDistinct %}
+			{%- if config.selectDistinct %}
 			DISTINCT
-			{% endif %}
-			{% for col in source.columns %}
+			{%- endif %}
+			{%- for col in source.columns %}
                 {{ get_source_transform(col) }} AS "{{ col.name }}"
-				{%- if not loop.last -%}, {% endif %}
-			{% endfor %}
+				{%- if not loop.last %},{% endif %}
+			{%- endfor %}
 	
                 {{ source.join }}
-                 {% if config.groupByAll %}
+                 {%- if config.groupByAll %}
                  GROUP BY ALL
-                 {% endif %}
+                 {%- endif %}
                  {{ sortorder_by_colv() }} )     
 
 	
-			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+			{%- if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
 				{{config.insertStrategy}}
-			{% endif %}
+			{%- endif %}
 	
-		{% endfor %}
+		{%- endfor %}
 
 		
 
@@ -119,11 +119,11 @@ does not permit copying or modification for any other purpose.
         {% endif %}
 	{% endfor %}
 
-	{% for column in columns %}
-		{% for test in column.tests %}
+	{%- for column in columns %}
+		{%- for test in column.tests %}
 			{{ test_stage(column.name + ": " + test.name) }}
 			{{ test.templateString }}
-		{% endfor %}
-	{% endfor %}
+		{%- endfor %}
+	{%- endfor %}
 
 {% endif %}

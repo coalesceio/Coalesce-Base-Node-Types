@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "117"
+includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_ORDERS\" } OR { location: \"TARGET_DB\" name: \"FCT_CUSTOMER\" } OR { location: \"TARGET_DB\" name: \"FCT_ORDERS\" } OR { location: \"TARGET_DB\" name: \"PSTG_ORDERS\" } OR { location: \"SOURCE_DATA\" name: \"CUSTOMER\" } OR { location: \"SOURCE_DATA\" name: \"ORDERS\" } OR { location: \"TARGET_DB\" name: \"V_CUSTOMER\" } OR { location: \"TARGET_DB\" name: \"WRK_CUSTOMER\" }"
+name: Job_2
+type: Job

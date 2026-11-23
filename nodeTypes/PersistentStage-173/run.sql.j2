@@ -415,7 +415,7 @@ does not permit copying or modification for any other purpose.
                   {%- if not loop.first %}
                       AND
                   {%- endif %}
-                  {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                  ( NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') = ( NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**')
               {%- endfor %}
               WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
               AND (

@@ -1,0 +1,117 @@
+fileVersion: 1
+id: 74a5df79-359c-471b-b531-ed1c6d8dff6f
+name: WRK_ORDERS_TEST
+operation:
+  config:
+    asofColumn:
+      items:
+        - {}
+    asofJoin: true
+    asofJoinMain: false
+    asofJoinON: false
+    asofJoinUSING: false
+    groupByAll: false
+    insertStrategy: INSERT
+    orderby: false
+    orderbycolumn:
+      items:
+        - {}
+    postSQL: ""
+    preSQL: ""
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET_DB
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b65016e3-a6ee-4b7e-8124-ea94c68bce2f
+          stepCounter: 74a5df79-359c-471b-b531-ed1c6d8dff6f
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: ORDER_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9596a93c-dd8c-49ad-816e-677d9e7c9f1d
+                stepCounter: 8e3012fe-0e32-4fa8-b9a4-28a988b8babd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a124815-1024-482d-8468-fc31ad156a43
+          stepCounter: 74a5df79-359c-471b-b531-ed1c6d8dff6f
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: CUSTOMER_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 179735bd-bfe8-4ef7-bd6f-5edaf56c194a
+                stepCounter: 8e3012fe-0e32-4fa8-b9a4-28a988b8babd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b3881bcc-5641-4cc2-aa61-8a427c4e7001
+          stepCounter: 74a5df79-359c-471b-b531-ed1c6d8dff6f
+        config: {}
+        dataType: VARIANT
+        description: ""
+        name: ORDER_DATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 74e9bb38-8883-4d86-ba8b-aefdd8b60f3b
+                stepCounter: 8e3012fe-0e32-4fa8-b9a4-28a988b8babd
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e5f1e01-9a9c-41b1-87a4-70de86b33d62
+          stepCounter: 74a5df79-359c-471b-b531-ed1c6d8dff6f
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: line_items_price
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+        systemColumnType: None
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          O: 8e3012fe-0e32-4fa8-b9a4-28a988b8babd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_DATA
+            nodeName: ORDERS_TEST
+        join:
+          joinCondition: |-
+            FROM  {{ ref('SOURCE_DATA', 'ORDERS_TEST') }} o
+            LATERAL FLATTEN(input => o."ORDER_DATA":"line_items", OUTER => TRUE) f
+        name: WRK_ORDERS_TEST
+        noLinkRefs: []
+  name: WRK_ORDERS_TEST
+  overrideSQL: false
+  schema: ""
+  sqlType: "204"
+  type: sql
+  version: 1
+type: Node

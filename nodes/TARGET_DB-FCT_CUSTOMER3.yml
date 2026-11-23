@@ -5,6 +5,10 @@ operation:
   config:
     groupByAll: false
     insertStrategy: UNION ALL
+    lastModifiedColumn:
+      columnCounter: 558c1669-dbdf-4920-9d09-0ebc01b8bdcf
+      stepCounter: ce97c23f-b868-4510-acc4-d7564b28e41b
+    lastModifiedComparison: true
     orderby: false
     orderbycolumn:
       items:
@@ -19,7 +23,7 @@ operation:
   description: ""
   isMultisource: false
   locationName: TARGET_DB
-  materializationType: view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
@@ -30,6 +34,7 @@ operation:
         config: {}
         dataType: NUMBER(38,0)
         description: ""
+        isBusinessKey: true
         name: C_CUSTKEY
         nullable: true
         sourceColumnReferences:

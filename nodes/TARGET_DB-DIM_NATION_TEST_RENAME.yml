@@ -1,6 +1,6 @@
 fileVersion: 1
 id: fc9833e2-db2c-4911-bb04-fbcdc8f3a65c
-name: DIM_NATION_TEST
+name: DIM_NATION_TEST_RENAME
 operation:
   config:
     customZeroKeyValues:
@@ -238,9 +238,9 @@ operation:
             nodeName: NATION_TEST
         join:
           joinCondition: FROM {{ ref('SOURCE_DATA', 'NATION_TEST') }} "NATION_TEST"
-        name: DIM_NATION_TEST
+        name: DIM_NATION_TEST_RENAME
         noLinkRefs: []
-  name: DIM_NATION_TEST
+  name: DIM_NATION_TEST_RENAME
   overrideSQL: false
   schema: ""
   sqlType: "194"

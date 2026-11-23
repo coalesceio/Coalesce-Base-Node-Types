@@ -1,0 +1,73 @@
+fileVersion: 1
+id: 8e3012fe-0e32-4fa8-b9a4-28a988b8babd
+name: ORDERS_TEST
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE_DATA
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9596a93c-dd8c-49ad-816e-677d9e7c9f1d
+          stepCounter: 8e3012fe-0e32-4fa8-b9a4-28a988b8babd
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: ORDER_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 179735bd-bfe8-4ef7-bd6f-5edaf56c194a
+          stepCounter: 8e3012fe-0e32-4fa8-b9a4-28a988b8babd
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CUSTOMER_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 74e9bb38-8883-4d86-ba8b-aefdd8b60f3b
+          stepCounter: 8e3012fe-0e32-4fa8-b9a4-28a988b8babd
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: ORDER_DATA
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: ORDERS_TEST
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

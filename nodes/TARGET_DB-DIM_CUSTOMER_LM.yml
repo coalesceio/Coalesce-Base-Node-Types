@@ -8,17 +8,18 @@ operation:
         - {}
     groupByAll: false
     insertStrategy: UNION ALL
-    insertZeroKey: false
+    insertZeroKey: true
     insertZeroKeyAdvanced: false
     insertZeroKeyBol: "TRUE"
     insertZeroKeyDate: 01-01-1900
     insertZeroKeyStr: UNKNOWN
-    insertZeroKeySurrogateKey: "0"
+    insertZeroKeySurrogateKey: "-1"
     insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
     lastModifiedColumn:
       columnCounter: 1e7fae5a-2f85-41bb-91a4-a50dc3af4052
+      name: C_LOAD_TIMESTAMP
       stepCounter: ea673de4-f0de-4c43-824b-c09d8c78901f
-    lastModifiedComparison: true
+    lastModifiedComparison: false
     orderby: true
     orderbycolumn:
       items:

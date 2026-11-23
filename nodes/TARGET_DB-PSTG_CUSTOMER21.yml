@@ -3,6 +3,9 @@ id: 74c41c47-ad3b-4e43-9eec-5ddb62df1572
 name: PSTG_CUSTOMER21
 operation:
   config:
+    deleteStrategy: NO DELETE
+    dmlCol: ""
+    dmlDelete: D
     groupByAll: false
     insertStrategy: UNION ALL
     orderby: false

@@ -32,7 +32,12 @@ operation:
   locationName: TARGET_DB
   materializationType: view
   metadata:
-    appliedNodeTests: []
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: ""
+        name: Test
+        runOrder: After
+        templateString: ""
     columns:
       - appliedColumnTests: {}
         columnReference:

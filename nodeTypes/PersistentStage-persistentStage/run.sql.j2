@@ -147,7 +147,7 @@
                 {% if not loop.first %}
                     AND
                 {% endif %}
-                {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                NVL(CAST({{ get_source_transform(col) }} AS STRING), '**NULL**') = NVL(CAST("DIM"."{{ col.name }}" AS STRING), '**NULL**')
             {% endfor %} )
             {% for col in source.columns if not (   col.isBusinessKey or
                                                     col.isChangeTracking or

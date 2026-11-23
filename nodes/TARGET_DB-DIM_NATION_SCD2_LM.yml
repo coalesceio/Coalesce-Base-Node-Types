@@ -17,6 +17,7 @@ operation:
     insertZeroKeyTimestamp: "1900-01-01 00:00:00.000"
     lastModifiedColumn:
       columnCounter: a77ffa07-774f-470b-9be5-afb6917283c2
+      name: N_LOAD_TIMESTAMP
       stepCounter: e97ac8e2-79fa-4fda-835a-8436d95e4689
     lastModifiedComparison: true
     orderby: true
@@ -24,6 +25,7 @@ operation:
       items:
         - sortColName:
             columnCounter: 4d74fe99-0180-4573-a611-42d5aa5591f4
+            name: N_REGIONKEY
             stepCounter: e97ac8e2-79fa-4fda-835a-8436d95e4689
           sortOrder: desc
     postSQL: ""

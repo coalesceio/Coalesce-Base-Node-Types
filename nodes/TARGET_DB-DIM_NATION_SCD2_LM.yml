@@ -266,7 +266,7 @@ operation:
   name: DIM_NATION_SCD2_LM
   overrideSQL: false
   schema: ""
-  sqlType: "194"
+  sqlType: bnt:::194
   type: sql
   version: 1
 type: Node

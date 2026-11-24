@@ -74,6 +74,7 @@ operation:
         config: {}
         dataType: VARCHAR(25)
         description: ""
+        isChangeTracking: true
         name: C_NAME
         nullable: true
         sourceColumnReferences:
@@ -88,6 +89,7 @@ operation:
         config: {}
         dataType: VARCHAR(40)
         description: ""
+        isChangeTracking: true
         name: C_ADDRESS
         nullable: true
         sourceColumnReferences:

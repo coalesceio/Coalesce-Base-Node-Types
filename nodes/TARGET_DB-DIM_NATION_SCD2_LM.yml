@@ -54,7 +54,7 @@ operation:
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        name: DIM_NATION_KEY
+        name: DIM_NATION_KEY12
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -173,7 +173,7 @@ operation:
         defaultValue: ""
         description: ""
         isSystemCurrentFlag: true
-        name: SYSTEM_CURRENT_FLAG
+        name: SYSTEM_CURRENT_FLAG1
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -190,7 +190,7 @@ operation:
         defaultValue: ""
         description: ""
         isSystemStartDate: true
-        name: SYSTEM_START_DATE
+        name: SYSTEM_START_DATE1
         nullable: true
         sourceColumnReferences:
           - columnReferences: []

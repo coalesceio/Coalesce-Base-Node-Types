@@ -43,7 +43,7 @@ operation:
         dataType: NUMBER
         description: ""
         isSurrogateKey: true
-        name: DIM_CUSTOMER_12_KEY
+        name: DIM_CUSTOMER_KEYS
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -183,7 +183,7 @@ operation:
         dataType: NUMBER
         description: ""
         isSystemVersion: true
-        name: SYSTEM_VERSION
+        name: SYSTEM_VERSIONS
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -196,7 +196,7 @@ operation:
         dataType: VARCHAR
         description: ""
         isSystemCurrentFlag: true
-        name: SYSTEM_CURRENT_FLAG
+        name: SYSTEM_CURRENT_FLAGS
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -209,7 +209,7 @@ operation:
         dataType: TIMESTAMP
         description: ""
         isSystemStartDate: true
-        name: SYSTEM_START_DATE
+        name: SYSTEM_START_DATE1
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -222,7 +222,7 @@ operation:
         dataType: TIMESTAMP
         description: ""
         isSystemEndDate: true
-        name: SYSTEM_END_DATE
+        name: SYSTEM_END_DATE1
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -235,7 +235,7 @@ operation:
         dataType: TIMESTAMP
         description: ""
         isSystemCreateDate: true
-        name: SYSTEM_CREATE_DATE
+        name: SYSTEM_CREATE_DATE1
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -248,7 +248,7 @@ operation:
         dataType: TIMESTAMP
         description: ""
         isSystemUpdateDate: true
-        name: SYSTEM_UPDATE_DATE
+        name: SYSTEM_UPDATE_DATE1
         nullable: true
         sourceColumnReferences:
           - columnReferences: []

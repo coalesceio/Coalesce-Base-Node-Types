@@ -1,0 +1,6 @@
+excludeSelector: ""
+fileVersion: 1
+id: "118"
+includeSelector: "{ location: \"TARGET_DB\" name: \"DIM_CUSTOMER_SCD2\" }"
+name: Job new
+type: Job

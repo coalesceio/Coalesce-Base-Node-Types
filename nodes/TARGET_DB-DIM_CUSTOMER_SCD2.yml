@@ -280,7 +280,7 @@ operation:
   name: DIM_CUSTOMER_SCD2
   overrideSQL: false
   schema: ""
-  sqlType: Dimension
+  sqlType: bnt:::194
   type: sql
   version: 1
 type: Node

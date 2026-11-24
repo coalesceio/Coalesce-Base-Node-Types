@@ -54,7 +54,7 @@ operation:
         defaultValue: ""
         description: ""
         isSurrogateKey: true
-        name: DIM_CUSTOMER3_KEY
+        name: DIM_CUSTOMER3_KEY123
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
@@ -215,7 +215,7 @@ operation:
         defaultValue: ""
         description: ""
         isSystemCurrentFlag: true
-        name: SYSTEM_CURRENT_FLAG
+        name: 12SYSTEM_CURRENT_FLAG
         nullable: true
         sourceColumnReferences:
           - columnReferences: []
